@@ -1,0 +1,496 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Setup Core Google Cloud Infrastructure",
+        "description": "Provision and configure foundational Google Cloud services for CityPulse, ensuring secure, scalable, and compliant infrastructure.",
+        "details": "Create a new Google Cloud project. Enable and configure required APIs: Pub/Sub, Dataflow, BigQuery, Firestore, Cloud Storage, Vertex AI, Identity and Access Management (IAM), Cloud Functions, Cloud Run, Cloud Scheduler, Cloud Monitoring, and Logging. Set up Pub/Sub topics for each data source (social media, citizen reports, IoT sensors). Configure BigQuery datasets and partitioned, clustered tables as per the Event schema. Initialize Firestore with regional settings for real-time data and user/session management. Create Cloud Storage buckets with lifecycle management for multimedia uploads. Prepare Vertex AI endpoints for model inference and agentic workflows. Implement IAM with role-based access for least privilege, and set up VPC, encryption, and audit logging for compliance.",
+        "testStrategy": "Verify all services are provisioned and accessible. Test Pub/Sub topic publishing/subscription. Confirm BigQuery and Firestore are writable and enforce schema constraints. Validate IAM roles and access controls. Check audit logs and monitoring dashboards for activity.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 2,
+        "title": "Define and Implement Core Data Models",
+        "description": "Translate Event, User Profile, and Feedback schemas from the PRD into robust, query-optimized structures in BigQuery and Firestore.",
+        "details": "In BigQuery, create the `city_intelligence.events` table with partitioning (by timestamp) and clustering (by type, ward, status). Implement all fields from the Event schema, ensuring support for geospatial queries and arrays (tags, media). In Firestore, define `users` and `feedback` collections: users with subcollections for preferences/subscriptions, feedback with reference integrity to events and users. Use strict data types (UUIDs as strings, timestamps, arrays, floats, enums). Add indexes for common queries (by type, status, location). Document schema evolution strategy for future fields (e.g., AI insights).",
+        "testStrategy": "Verify table and collection creation. Insert and query sample data to confirm schema enforcement and index performance. Validate document structure and relationships in Firestore.",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 3,
+        "title": "Implement Data Ingestion Pipelines (Social, Citizen, IoT)",
+        "description": "Develop scalable, resilient pipelines for ingesting city data streams into core models using Pub/Sub and Dataflow.",
+        "details": "Create Pub/Sub topics for each data source: Twitter (social), citizen reports, IoT sensors, official feeds. Build Dataflow pipelines (Python/Java SDK) to subscribe, clean, normalize, and geotag incoming data. For citizen reports, process multimedia uploads to Cloud Storage, extract metadata, and write event records to BigQuery and Firestore. For social feeds, apply NLP preprocessing and sentiment scoring stub. Ensure all pipelines handle schema mapping, error logging, and support replay for late data. Integrate with API connectors for Twitter, Facebook, and city systems as per PRD.",
+        "testStrategy": "Simulate data streams for each source. Monitor Pub/Sub and Dataflow job health. Verify data lands in BigQuery and Firestore with correct structure and metadata. Test error handling and replay logic.",
+        "priority": "high",
+        "dependencies": [
+          1,
+          2
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 4,
+        "title": "Develop Core Backend APIs (REST, Auth, CRUD)",
+        "description": "Build secure, scalable REST APIs for Events, Users, Feedback, and Analytics, with robust authentication and role-based authorization.",
+        "details": "Implement API endpoints using Cloud Functions or Cloud Run (Node.js/Python/Go). Endpoints: `GET/POST/PUT/DELETE /api/v1/events`, `GET/PUT /api/v1/users/{id}`, `POST /api/v1/feedback`, and analytics endpoints for KPIs. Integrate Firebase Authentication or Google Identity Platform for user auth (citizen, authority, admin roles). Enforce role-based access for sensitive operations (e.g., status updates by authority only). Ensure APIs interact with BigQuery (analytics, historical) and Firestore (real-time, current state) as per use case. Implement error handling, pagination, filtering, and input validation.",
+        "testStrategy": "Test endpoints with Postman/curl. Validate auth flows and role restrictions. Verify CRUD operations, filtering, and error responses. Confirm data consistency between BigQuery and Firestore.",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          2
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 4.1,
+            "title": "Design API Specification and Contracts",
+            "description": "Define OpenAPI/Swagger specs for all endpoints, including request/response schemas, error codes, and auth flows.",
+            "details": "Document endpoints for Events, Users, Feedback, and Analytics. Specify required/optional fields, authentication headers, and role-based access logic. Review with frontend and mobile teams.",
+            "testStrategy": "API spec review and mock server validation with frontend/mobile teams.",
+            "status": "pending"
+          },
+          {
+            "id": 4.2,
+            "title": "Implement Event CRUD Endpoints",
+            "description": "Develop and deploy REST endpoints for event creation, retrieval, update, and deletion.",
+            "details": "Use Cloud Functions/Cloud Run to implement `/api/v1/events` endpoints. Ensure schema validation, geospatial filtering, and integration with BigQuery/Firestore.",
+            "testStrategy": "Test with Postman/curl for all CRUD operations. Validate filtering and pagination.",
+            "status": "pending"
+          },
+          {
+            "id": 4.3,
+            "title": "Implement User Profile Endpoints",
+            "description": "Develop endpoints to manage user profiles and preferences.",
+            "details": "Implement `/api/v1/users/{id}` GET/PUT endpoints. Enforce authentication and allow updates to preferences and subscriptions.",
+            "testStrategy": "Test user profile updates and access control for different roles.",
+            "status": "pending"
+          },
+          {
+            "id": 4.4,
+            "title": "Implement Feedback Submission Endpoint",
+            "description": "Develop endpoint for submitting feedback linked to events and users.",
+            "details": "Create `/api/v1/feedback` POST endpoint. Validate references and store in Firestore.",
+            "testStrategy": "Submit feedback from frontend/mobile and verify linkage in backend.",
+            "status": "pending"
+          },
+          {
+            "id": 4.5,
+            "title": "Implement Analytics and KPI Endpoints",
+            "description": "Develop endpoints to fetch analytics and KPIs for dashboards.",
+            "details": "Query BigQuery for aggregated metrics. Secure endpoints for authorized users only.",
+            "testStrategy": "Validate analytics data accuracy and access control.",
+            "status": "pending"
+          },
+          {
+            "id": 4.6,
+            "title": "Integrate Authentication and Role-Based Authorization",
+            "description": "Enforce authentication and role-based access for all endpoints.",
+            "details": "Integrate Firebase Authentication/Google Identity Platform. Implement middleware for role checks.",
+            "testStrategy": "Test all endpoints with different user roles for access restrictions.",
+            "status": "pending"
+          },
+          {
+            "id": 4.7,
+            "title": "Implement Error Handling, Pagination, and Filtering",
+            "description": "Ensure robust error responses, pagination, and filtering for all endpoints.",
+            "details": "Standardize error codes/messages. Implement pagination for list endpoints and support filtering by type, status, and location.",
+            "testStrategy": "Test edge cases, invalid inputs, and large datasets.",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Build Web Frontend (Map, Dashboard, Reporting)",
+        "description": "Develop a responsive React/Next.js web app with interactive map, event visualization, and citizen reporting.",
+        "details": "Set up React/Next.js project with Material Design components. Integrate Google Maps JavaScript API for map-centric UI. Fetch and display events with markers, heatmaps, and category filters. Implement citizen report form (text, image upload, geolocation). Display live KPIs, incident lists, and AI-generated insights cards. Ensure accessibility (WCAG 2.1), multi-language support, and progressive disclosure for complex data. Deploy via Firebase Hosting with CDN.",
+        "testStrategy": "Verify map and markers load. Test event filtering and reporting flow. Validate accessibility and localization. Submit reports and confirm backend/API integration. Test on multiple browsers and devices.",
+        "priority": "medium",
+        "dependencies": [
+          4
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 5.1,
+            "title": "Setup Project and Core UI Framework",
+            "description": "Initialize React/Next.js project and configure Material Design components.",
+            "details": "Create project repo, configure linting, theming, and responsive layout.",
+            "testStrategy": "Verify project builds and loads on dev server.",
+            "status": "pending"
+          },
+          {
+            "id": 5.2,
+            "title": "Integrate Google Maps and Event Visualization",
+            "description": "Embed Google Maps, fetch events, and display with markers and heatmaps.",
+            "details": "Implement event fetching from backend. Render markers, heatmaps, and enable category filters.",
+            "testStrategy": "Test map loading, marker clustering, and filter interactions.",
+            "status": "pending"
+          },
+          {
+            "id": 5.3,
+            "title": "Implement Citizen Reporting Form",
+            "description": "Build UI for submitting reports with text, images, and geolocation.",
+            "details": "Integrate file upload, geolocation APIs, and form validation. Connect to backend event creation endpoint.",
+            "testStrategy": "Submit reports with/without media and verify backend integration.",
+            "status": "pending"
+          },
+          {
+            "id": 5.4,
+            "title": "Display Live KPIs and Incident Lists",
+            "description": "Show real-time KPIs, incident lists, and AI-generated insights on dashboard.",
+            "details": "Fetch analytics from backend. Render KPI gauges, lists, and insights cards.",
+            "testStrategy": "Verify live updates and correct rendering of analytics data.",
+            "status": "pending"
+          },
+          {
+            "id": 5.5,
+            "title": "Ensure Accessibility and Multi-language Support",
+            "description": "Implement WCAG 2.1 accessibility and internationalization.",
+            "details": "Add ARIA labels, keyboard navigation, and localization framework.",
+            "testStrategy": "Test with screen readers and switch languages.",
+            "status": "pending"
+          },
+          {
+            "id": 5.6,
+            "title": "Progressive Disclosure for Complex Data",
+            "description": "Design UI to reveal complex analytics and event details progressively.",
+            "details": "Implement expandable cards, modals, and tooltips for detailed data.",
+            "testStrategy": "Test data drill-down and user comprehension.",
+            "status": "pending"
+          },
+          {
+            "id": 5.7,
+            "title": "Deploy Frontend via Firebase Hosting",
+            "description": "Set up CI/CD and deploy web app to Firebase Hosting with CDN.",
+            "details": "Configure deployment scripts, CDN settings, and environment variables.",
+            "testStrategy": "Verify deployment, CDN cache, and public access.",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Setup Mobile App (Flutter) & Citizen Reporting UI",
+        "description": "Initialize Flutter app with intuitive UI for reporting and receiving alerts, designed for cross-platform deployment.",
+        "details": "Create Flutter project. Build reporting UI: issue category selection, text/image/video input, geolocation (auto/manual). Integrate device camera/gallery and location APIs. Structure app for future map/alert features. Connect to backend Events API for submission. Implement push notification support (Firebase Cloud Messaging). Ensure accessibility, multi-language, and responsive design.",
+        "testStrategy": "Test on iOS/Android emulators/devices. Validate reporting flow, media capture, and location. Submit reports and check backend/API integration. Test push notification receipt.",
+        "priority": "medium",
+        "dependencies": [
+          4
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 6.1,
+            "title": "Initialize Flutter Project and Core Structure",
+            "description": "Set up new Flutter project with folder structure for scalability.",
+            "details": "Configure linting, state management, and localization support.",
+            "testStrategy": "Build and run on emulators for initial verification.",
+            "status": "pending"
+          },
+          {
+            "id": 6.2,
+            "title": "Develop Citizen Reporting UI",
+            "description": "Create UI for selecting issue category, entering text, and uploading media.",
+            "details": "Integrate camera/gallery, text input, and category selection widgets.",
+            "testStrategy": "Test all input types and validate field constraints.",
+            "status": "pending"
+          },
+          {
+            "id": 6.3,
+            "title": "Integrate Geolocation (Auto/Manual)",
+            "description": "Enable automatic and manual location selection for reports.",
+            "details": "Use device location APIs and provide map picker for manual override.",
+            "testStrategy": "Test location accuracy and fallback for denied permissions.",
+            "status": "pending"
+          },
+          {
+            "id": 6.4,
+            "title": "Connect to Backend Events API",
+            "description": "Implement API integration for report submission and event fetching.",
+            "details": "Handle authentication, error responses, and offline retries.",
+            "testStrategy": "Submit reports and verify backend data creation.",
+            "status": "pending"
+          },
+          {
+            "id": 6.5,
+            "title": "Implement Push Notifications (FCM)",
+            "description": "Enable push notifications for alerts and event updates.",
+            "details": "Integrate Firebase Cloud Messaging and handle notification routing.",
+            "testStrategy": "Send test notifications and verify device receipt.",
+            "status": "pending"
+          },
+          {
+            "id": 6.6,
+            "title": "Ensure Accessibility and Multi-language Support",
+            "description": "Implement accessibility features and localization.",
+            "details": "Add screen reader support, high-contrast themes, and language toggling.",
+            "testStrategy": "Test with accessibility tools and switch languages.",
+            "status": "pending"
+          },
+          {
+            "id": 6.7,
+            "title": "Design for Future Map and Alert Features",
+            "description": "Structure app to support future map visualization and alert subscriptions.",
+            "details": "Lay groundwork for map widgets and alert management screens.",
+            "testStrategy": "Code review for extensibility.",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Implement Event Clustering, Categorization, & Sentiment Analysis",
+        "description": "Develop AI-driven logic for clustering related events, refining categories/severity, and analyzing social sentiment.",
+        "details": "Implement clustering algorithm (spatial-temporal, AI tags) to assign cluster_id to related events. Refine categorization/severity using Gemini/Vision outputs and business rules. Build pipeline for social sentiment analysis (Vertex AI NLP) on ingested social data, compute sentiment_score, and aggregate by location/ward. Store clustering and sentiment data in BigQuery/Firestore for dashboard visualization.",
+        "testStrategy": "Ingest related and unrelated events, verify clustering. Test categorization/severity output. Ingest varied sentiment social posts, confirm sentiment_score and aggregation accuracy.",
+        "priority": "medium",
+        "dependencies": [
+          3,
+          7
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 8.1,
+            "title": "Design Clustering Algorithm and Data Flow",
+            "description": "Define clustering logic for spatial-temporal and AI tag similarity.",
+            "details": "Select algorithm (e.g., DBSCAN, hierarchical) and document data flow from ingestion to cluster assignment.",
+            "testStrategy": "Code review and test with synthetic data.",
+            "status": "pending"
+          },
+          {
+            "id": 8.2,
+            "title": "Implement Event Clustering Pipeline",
+            "description": "Develop pipeline to assign cluster_id to related events.",
+            "details": "Integrate clustering logic into Dataflow or Cloud Function. Update event records with cluster_id.",
+            "testStrategy": "Ingest test events and verify correct cluster assignments.",
+            "status": "pending"
+          },
+          {
+            "id": 8.3,
+            "title": "Refine Event Categorization and Severity",
+            "description": "Apply AI outputs and business rules to refine event categories and severity levels.",
+            "details": "Use Gemini/Vision outputs, confidence scores, and rule engine for updates.",
+            "testStrategy": "Test with varied event types and verify category/severity accuracy.",
+            "status": "pending"
+          },
+          {
+            "id": 8.4,
+            "title": "Implement Social Sentiment Analysis Pipeline",
+            "description": "Analyze social media data for sentiment using Vertex AI NLP.",
+            "details": "Process social posts, compute sentiment_score, and link to events/locations.",
+            "testStrategy": "Ingest posts with known sentiment and verify scoring.",
+            "status": "pending"
+          },
+          {
+            "id": 8.5,
+            "title": "Aggregate and Store Clustering & Sentiment Data",
+            "description": "Store results in BigQuery/Firestore for dashboard use.",
+            "details": "Update schemas, ensure indexes, and aggregate by location/ward.",
+            "testStrategy": "Query for clusters and sentiment by ward and verify dashboard integration.",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Develop Real-Time Dashboard Updates",
+        "description": "Enable live updates on the web dashboard using Firestore subscriptions and/or WebSockets for events, heatmaps, and KPIs.",
+        "details": "Leverage Firestore's real-time listeners for low-latency updates. For high-volume or aggregated data, implement WebSocket server (Cloud Run/GKE) subscribing to Firestore/PubSub changes. Update frontend logic to handle live event/marker updates, heatmap overlays, and KPI gauges. Ensure stability, scalability, and graceful fallback for disconnected clients.",
+        "testStrategy": "Open dashboard in multiple browsers. Trigger new/updated events, verify instant updates. Monitor WebSocket/Firestore connection health and latency.",
+        "priority": "medium",
+        "dependencies": [
+          5,
+          4
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 9.1,
+            "title": "Integrate Firestore Real-Time Listeners",
+            "description": "Use Firestore subscriptions for low-latency event and KPI updates.",
+            "details": "Implement listeners in frontend for events, markers, and KPIs.",
+            "testStrategy": "Trigger updates and verify real-time UI changes.",
+            "status": "pending"
+          },
+          {
+            "id": 9.2,
+            "title": "Implement WebSocket Server for High-Volume Data",
+            "description": "Deploy WebSocket server for aggregated or high-frequency updates.",
+            "details": "Subscribe to Firestore/PubSub changes and broadcast to clients.",
+            "testStrategy": "Simulate high-frequency updates and monitor latency.",
+            "status": "pending"
+          },
+          {
+            "id": 9.3,
+            "title": "Update Frontend for Live Data Handling",
+            "description": "Modify frontend logic to process live updates and handle disconnections.",
+            "details": "Gracefully handle reconnects, stale data, and UI consistency.",
+            "testStrategy": "Test disconnects and reconnections in browser.",
+            "status": "pending"
+          },
+          {
+            "id": 9.4,
+            "title": "Monitor and Optimize Real-Time Performance",
+            "description": "Track connection health, latency, and scale as needed.",
+            "details": "Set up monitoring dashboards and alerting for real-time services.",
+            "testStrategy": "Monitor under load and optimize for scale.",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Implement User Preferences & Alerting System",
+        "description": "Allow users to set alert preferences and receive push/email/SMS notifications for relevant events.",
+        "details": "Extend Firestore User Profile with preferences (alert_categories, locations, notification_methods). Build backend endpoints for managing preferences. Implement Cloud Function triggered by new/updated events to match against user preferences. Send notifications via Firebase Cloud Messaging, email, or SMS as per user settings. Integrate FCM in Flutter app for mobile notifications. Ensure GDPR compliance and opt-in/opt-out flows.",
+        "testStrategy": "Create test users with varied preferences. Generate events matching/non-matching criteria. Verify notifications are sent/received only to relevant users. Test updating preferences and notification delivery.",
+        "priority": "medium",
+        "dependencies": [
+          2,
+          4,
+          6
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 10.1,
+            "title": "Extend User Profile Schema for Preferences",
+            "description": "Add fields for alert categories, locations, and notification methods in Firestore.",
+            "details": "Update Firestore user documents and ensure backward compatibility.",
+            "testStrategy": "Create/update users and verify schema changes.",
+            "status": "pending"
+          },
+          {
+            "id": 10.2,
+            "title": "Develop Backend Endpoints for Preferences Management",
+            "description": "Create endpoints for users to set and update their alert preferences.",
+            "details": "Implement CRUD operations for preferences and enforce auth.",
+            "testStrategy": "Test preference updates via frontend/mobile.",
+            "status": "pending"
+          },
+          {
+            "id": 10.3,
+            "title": "Implement Event-to-User Matching Logic",
+            "description": "Develop Cloud Function to match new/updated events to user preferences.",
+            "details": "Efficiently query user preferences and trigger notifications for matches.",
+            "testStrategy": "Simulate events and verify correct user matching.",
+            "status": "pending"
+          },
+          {
+            "id": 10.4,
+            "title": "Integrate Notification Channels (FCM, Email, SMS)",
+            "description": "Send notifications via preferred channels based on user settings.",
+            "details": "Integrate FCM for push, email API, and SMS provider (e.g., Twilio).",
+            "testStrategy": "Send test notifications and verify delivery.",
+            "status": "pending"
+          },
+          {
+            "id": 10.5,
+            "title": "Integrate FCM in Flutter App for Push Notifications",
+            "description": "Enable push notification receipt in the mobile app.",
+            "details": "Handle notification routing and display in-app.",
+            "testStrategy": "Send test pushes and verify on devices.",
+            "status": "pending"
+          },
+          {
+            "id": 10.6,
+            "title": "Implement GDPR Compliance and Opt-in/Opt-out Flows",
+            "description": "Ensure user consent, data privacy, and notification opt-out.",
+            "details": "Provide clear consent UI, data export/delete, and easy opt-out.",
+            "testStrategy": "Test consent flows and opt-out/in scenarios.",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Integrate Multimodal AI Processing (Text, Image, Video)",
+        "description": "Leverage Vertex AI Gemini, Vision API, and Imagen for automated analysis of citizen and social media reports.",
+        "details": "Extend Dataflow pipeline or add Cloud Function for post-ingestion AI processing. For text: send to Gemini for summarization, classification, and narrative generation. For images/videos: use Vision API for object detection (e.g., waterlogging, pothole), and Imagen for UI visuals. Store AI-generated insights (summaries, tags, categories, confidence scores) in BigQuery/Firestore. Ensure provenance metadata for explainability. Prepare for future model retraining with feedback loops.",
+        "testStrategy": "Submit diverse reports. Verify AI processing triggers and populates insights in event records. Check explainability metadata. Validate error handling for failed inferences.",
+        "priority": "medium",
+        "dependencies": [
+          3
+        ],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 7.1,
+            "title": "Design AI Processing Architecture",
+            "description": "Define the technical architecture for integrating Vertex AI Gemini, Vision API, and Imagen into the data pipeline, ensuring modularity and scalability.",
+            "details": "Document the flow of data from ingestion (Pub/Sub/Dataflow) to AI services and back to storage. Specify API endpoints, data contracts, and error handling strategies. Ensure architecture supports agentic workflows and explainability metadata as required by the PRD.",
+            "testStrategy": "Architecture review with engineering and AI teams. Confirm all PRD data flows and explainability requirements are addressed.",
+            "status": "done"
+          },
+          {
+            "id": 7.2,
+            "title": "Implement Text AI Processing with Gemini",
+            "description": "Integrate Vertex AI Gemini for text summarization, classification, and narrative generation on citizen and social media reports.",
+            "details": "Develop pipeline steps or Cloud Function to send text fields to Gemini, receive structured outputs (summaries, categories), and append results to event records. Include provenance and confidence score fields in output.",
+            "testStrategy": "Submit sample reports with varied text. Validate Gemini outputs are stored in BigQuery/Firestore and provenance/confidence fields are populated.",
+            "status": "done"
+          },
+          {
+            "id": 7.3,
+            "title": "Implement Image/Video Analysis with Vision API",
+            "description": "Integrate Vertex AI Vision API for object detection and feature extraction from uploaded images and video frames.",
+            "details": "Build logic to process media URLs from event records, call Vision API, and extract detected objects (e.g., waterlogging, pothole), confidence scores, and bounding boxes. Store results in AI insights fields as per schema.",
+            "testStrategy": "Upload images/videos with known features. Verify Vision API detects correct objects and confidence scores are recorded in event data.",
+            "status": "done"
+          },
+          {
+            "id": 7.4,
+            "title": "Integrate Imagen for Custom Visual Generation",
+            "description": "Use Vertex AI Imagen to generate custom visuals for dashboard UI and incident summaries as described in the PRD.",
+            "details": "Trigger Imagen for relevant events (e.g., for summary cards or map overlays), store generated images in Cloud Storage, and reference URLs in event metadata. Ensure visuals enhance explainability and user engagement.",
+            "testStrategy": "Generate visuals for test events. Confirm images are stored and referenced correctly, and UI displays them as intended.",
+            "status": "done"
+          },
+          {
+            "id": 7.5,
+            "title": "Store and Index AI Insights in Data Models",
+            "description": "Extend BigQuery and Firestore schemas to store AI-generated summaries, tags, categories, confidence scores, and provenance metadata.",
+            "details": "Update schemas to include new fields. Implement logic to write AI outputs to the correct locations, maintaining traceability for explainability and future model retraining.",
+            "testStrategy": "Insert test AI outputs. Query and verify all new fields are correctly populated and indexed for analytics and dashboard use.",
+            "status": "done"
+          },
+          {
+            "id": 7.6,
+            "title": "Implement AI Error Handling and Fallbacks",
+            "description": "Ensure robust error handling and fallback logic for failed or delayed AI inferences, as required for production reliability.",
+            "details": "Log all AI errors with context. Implement retry logic and fallback to manual review or default categories if AI services are unavailable. Notify ops team on repeated failures.",
+            "testStrategy": "Simulate AI service outages and errors. Confirm system logs errors, retries appropriately, and applies fallback logic.",
+            "status": "done"
+          },
+          {
+            "id": 7.7,
+            "title": "Prepare for Model Retraining and Feedback Loops",
+            "description": "Design feedback capture and data pipelines to enable future AI model retraining based on user/authority feedback, per PRD requirements.",
+            "details": "Store user feedback and event resolution status as training signals. Document retraining workflow and required data exports for Vertex AI pipelines.",
+            "testStrategy": "Submit feedback on AI-generated insights. Verify feedback is linked to events and available for future retraining.",
+            "status": "done"
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "created": "2025-07-01T18:03:19.221Z",
+      "updated": "2025-07-03T19:57:00.000Z",
+      "description": "Refined master task list for CityPulse MVP and Intelligence Layer, fully aligned with PRD. All pending tasks decomposed into actionable subtasks."
+    }
+  }
+}

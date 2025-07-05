@@ -1,0 +1,13 @@
+apache-beam[gcp]==2.66.0
+google-cloud-bigquery
+google-cloud-firestore
+google-cloud-language
+google-cloud-storage
+google-cloud-pubsub
+pydantic==2.6.4
+requests==2.31.0
+protobuf==4.25.3
+
+# Testing
+pytest==7.4.4
+apache-beam[test]==2.66.0

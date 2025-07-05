@@ -1,0 +1,7 @@
+# Configuration for CityPulse GCP infrastructure
+project_name    = "citypulse-21"
+project_id      = "citypulse-21"
+region          = "asia-south1"
+zone            = "asia-south1-a"
+# Billing account (without the 0x prefix)
+billing_account = "01FB1E-D260A1-286E0A"
