@@ -1,47 +1,67 @@
 # Data Models Tests
 
-This directory contains tests for the data models and related functionality.
+This directory contains the test suite for the CityPulse data models, pipelines, and related services. The tests are written using `pytest` and are designed to ensure the correctness and reliability of the data layer.
+
+## Testing Philosophy
+
+Our testing strategy focuses on three main areas:
+
+1.  **Unit Tests**: These tests verify the functionality of individual components, such as data models and utility functions, in isolation.
+2.  **Integration Tests**: These tests ensure that different parts of the system work together as expected. For example, they test the interaction between the Firestore service and the data models.
+3.  **Pipeline Tests**: These tests validate the logic of the data ingestion pipelines, ensuring that they can process data correctly.
 
 ## Running Tests
 
-1. Install the test dependencies:
-   ```bash
-   pip install -r ../requirements.txt
-   ```
+To run the tests, first make sure you have set up the development environment and installed the required dependencies as described in the main `README.md`.
 
-2. Run all tests:
-   ```bash
-   pytest -v
-   ```
+### Basic Test Execution
 
-3. Run tests with coverage report:
-   ```bash
-   pytest --cov=../
-   ```
+-   **Run all tests**:
+    ```bash
+    pytest
+    ```
 
-4. Generate HTML coverage report:
-   ```bash
-   pytest --cov=../ --cov-report=html
-   ```
-   Then open `htmlcov/index.html` in a web browser.
+-   **Run tests in a specific file**:
+    ```bash
+    pytest data_models/tests/test_firestore_models.py
+    ```
+
+-   **Run a specific test function**:
+    ```bash
+    pytest data_models/tests/test_firestore_models.py::test_event_model_comprehensive
+    ```
+
+### Test Coverage
+
+We aim for high test coverage to ensure the quality of our code. To generate a coverage report, run:
+
+```bash
+pytest --cov=data_models
+```
+
+To view the report in HTML format, run:
+
+```bash
+pytest --cov=data_models --cov-report=html
+```
+
+This will create an `htmlcov` directory. Open `htmlcov/index.html` in your browser to view the detailed report.
 
 ## Test Structure
 
-- `test_schema_validation.py`: Tests for schema validation logic
-- `test_bigquery_setup.py`: Tests for BigQuery table creation and schema loading
+The `tests` directory is organized as follows:
 
-## Writing New Tests
+-   `common.py`: Provides shared utilities and mock data for the tests.
+-   `conftest.py`: Contains shared `pytest` fixtures used across multiple test files.
+-   `test_base_pipeline.py`: Includes base test classes for the data ingestion pipelines.
+-   `test_bigquery_setup.py`: Contains tests for the BigQuery table setup script.
+-   `test_citizen_report_pipeline.py`: Includes tests for the citizen report data pipeline.
+-   `test_firestore_models.py`: Contains tests for the Firestore data models and repository.
+-   `test_pipelines.py`: Provides tests for the main data pipeline classes.
+-   `test_schema_validation.py`: Contains tests for the BigQuery schema validation script.
 
-- Place new test files in this directory with the prefix `test_`
-- Use descriptive test function names starting with `test_`
-- Use fixtures for common setup/teardown code
-- Mock external services and file I/O when possible
+## Mocking
 
-## Fixtures
+To isolate the tests from external services, we use mocking extensively. The `unittest.mock` library is used to mock objects suchs as the Firestore client and BigQuery client. This allows us to test the application's logic without making actual calls to these services.
 
-- `temp_schema_file`: Creates a temporary schema file for testing
-- `mock_bigquery_client`: Provides a mocked BigQuery client
-
-## Test Coverage
-
-We aim to maintain high test coverage for all critical functionality. The current coverage report can be generated using the commands above.
+Fixtures for mock objects are defined in `conftest.py` and can be injected into test functions as needed.

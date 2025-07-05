@@ -1,0 +1,3 @@
+# This is a template file. Do not use directly.
+# Run `terraform apply` to create the GCS bucket for the backend.
+# Then, rename this file to `backend.tf` and run `terraform init`.

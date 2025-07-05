@@ -1,20 +1,33 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
-import { useFormState } from 'react-dom';
+import { useEffect, useRef } from 'react';
+import { useFormState, useFormStatus } from 'react-dom';
 import { submitReport } from './actions';
 
 const initialState = {
   message: '',
 };
 
+function SubmitButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      type="submit"
+      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg disabled:bg-gray-400"
+      disabled={pending}
+    >
+      {pending ? 'Submitting...' : 'Submit Report'}
+    </button>
+  );
+}
+
 const SubmitReportPage = () => {
   const [state, formAction] = useFormState(submitReport, initialState);
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
-    if (state?.message) {
-      alert(state.message);
+    if (state?.message.includes('successfully')) {
       formRef.current?.reset();
     }
   }, [state]);
@@ -39,9 +52,8 @@ const SubmitReportPage = () => {
           <label htmlFor="media" className="block text-gray-700 font-bold mb-2">Upload Media</label>
           <input type="file" id="media" name="media" className="w-full px-3 py-2 border rounded-lg" />
         </div>
-        <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
-          Submit Report
-        </button>
+        <SubmitButton />
+        {state?.message && <p className="mt-4 text-green-600">{state.message}</p>}
       </form>
     </div>
   );

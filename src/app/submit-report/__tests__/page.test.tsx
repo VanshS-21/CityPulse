@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import SubmitReportPage from '../page';
 import { useFormState } from 'react-dom';

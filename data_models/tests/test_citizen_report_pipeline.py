@@ -43,7 +43,9 @@ class ProcessMultimediaTest(unittest.TestCase):
 
         mock_blob = MagicMock()
         mock_blob.name = f'citizen_reports/{event.id}/image.jpg'
-        mock_storage_client.return_value.bucket.return_value.blob.return_value = mock_blob
+        mock_storage_client.return_value.bucket.return_value.blob.return_value = (
+            mock_blob
+        )
 
         expected_gcs_path = f'gs://{bucket_name}/{mock_blob.name}'
 
@@ -68,8 +70,9 @@ class ProcessMultimediaTest(unittest.TestCase):
     @patch('data_models.transforms.multimedia_processing.requests.Session')
     def test_process_multimedia_download_failure(self, mock_requests_session):
         """Tests that media download failures are sent to the dead-letter queue."""
-        mock_requests_session.return_value.get.side_effect = requests.exceptions.RequestException(
-            'Download failed')
+        mock_requests_session.return_value.get.side_effect = (
+            requests.exceptions.RequestException('Download failed')
+        )
 
         event_with_media = MOCK_EVENT_DATA.copy()
         event_with_media['metadata'] = {

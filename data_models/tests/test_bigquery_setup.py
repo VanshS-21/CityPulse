@@ -1,6 +1,6 @@
 """Tests for BigQuery table setup functionality."""
 import json
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 
 import pytest
 from google.api_core.exceptions import NotFound

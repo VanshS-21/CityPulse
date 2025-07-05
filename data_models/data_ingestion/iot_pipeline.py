@@ -54,9 +54,13 @@ class IotPipeline(BasePipeline):
             A tuple containing the main PCollection of processed events and a
             PCollection for any dead-letter records from this step.
         """
-        ai_results = pcollection | 'AI Processing' >> beam.ParDo(
-            ProcessWithAI()
-        ).with_outputs('dead_letter', main='processed')
+        ai_results = (
+            pcollection
+            | 'Batch Elements' >> beam.GroupIntoBatches(batch_size=10)
+            | 'AI Processing' >> beam.ParDo(
+                ProcessWithAI()
+            ).with_outputs('dead_letter', main='processed')
+        )
 
         return ai_results.processed, ai_results.dead_letter
 

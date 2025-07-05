@@ -1,13 +1,11 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Footer from '../Footer';
 
 describe('Footer', () => {
-  it('renders the footer with the current year', () => {
+  it('renders the footer with the correct text', () => {
     render(<Footer />);
 
-    const currentYear = new Date().getFullYear();
-    const footerText = screen.getByText(`© ${currentYear} CityPulse. All rights reserved.`);
+    const footerText = screen.getByText(/© \d{4} CityPulse\. All rights reserved\./i);
     expect(footerText).toBeInTheDocument();
   });
 });

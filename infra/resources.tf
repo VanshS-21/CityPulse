@@ -48,6 +48,21 @@ resource "google_bigquery_dataset" "analytics" {
   depends_on = [google_project_service.services["bigquery.googleapis.com"]]
 }
 
+# Create Cloud Storage bucket for Terraform state
+resource "google_storage_bucket" "tf_state" {
+  name          = "citypulse-tf-state"
+  location      = var.region
+  project       = data.google_project.project.project_id
+  force_destroy = false
+  
+  uniform_bucket_level_access = true
+  versioning {
+    enabled = true
+  }
+  
+  depends_on = [google_project_service.services["storage.googleapis.com"]]
+}
+
 # Create Cloud Storage bucket
 resource "google_storage_bucket" "multimedia" {
   name          = "${var.project_id}-multimedia"
@@ -92,13 +107,29 @@ resource "google_service_account" "citypulse_sa" {
 }
 
 # Assign IAM roles to the service account
+resource "google_project_iam_custom_role" "data_ingestion_role" {
+  role_id     = "dataIngestionRole"
+  project     = data.google_project.project.project_id
+  title       = "Data Ingestion Role"
+  description = "Permissions for data ingestion pipelines to write to Pub/Sub, BigQuery, and Firestore."
+  permissions = [
+    "pubsub.topics.publish",
+    "bigquery.tables.updateData",
+    "bigquery.jobs.create",
+    "datastore.entities.create",
+    "datastore.entities.update",
+  ]
+}
+
+resource "google_project_iam_member" "sa_data_ingestion_role" {
+  project = data.google_project.project.project_id
+  role    = google_project_iam_custom_role.data_ingestion_role.id
+  member  = "serviceAccount:${google_service_account.citypulse_sa.email}"
+}
+
 resource "google_project_iam_member" "sa_roles" {
   for_each = toset([
-    "roles/pubsub.publisher",
-    "roles/pubsub.subscriber",
     "roles/dataflow.worker",
-    "roles/bigquery.dataEditor",
-    "roles/datastore.user",
     "roles/storage.objectAdmin",
     "roles/aiplatform.user"
   ])
