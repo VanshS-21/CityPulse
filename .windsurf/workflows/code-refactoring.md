@@ -1,5 +1,5 @@
 ---
-description: 
+description:
 ---
 
 Refactor code to improve quality, maintainability, and performance:
@@ -52,4 +52,4 @@ Refactor code to improve quality, maintainability, and performance:
    - Track any issues
    - Plan follow-up improvements
 
-Ensure refactoring improves code quality without breaking functionality. 
+Ensure refactoring improves code quality without breaking functionality.

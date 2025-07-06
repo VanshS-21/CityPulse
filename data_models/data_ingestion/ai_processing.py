@@ -5,6 +5,7 @@ This module contains ParDo transforms for AI processing of events.
 import json
 import logging
 import mimetypes
+import asyncio
 
 import apache_beam as beam
 import requests
@@ -30,8 +31,8 @@ class ProcessWithAI(beam.DoFn):
     def setup(self):
         """Initializes clients in the worker."""
         vertexai.init(project=config.PROJECT_ID, location=config.GCP_REGION)
-        self.model = GenerativeModel("gemini-2.0-flash")
-        self.image_gen_model = ImageGenerationModel.from_pretrained("imagegeneration@005")
+        self.model = GenerativeModel("gemini-1.5-flash-001")
+        self.image_gen_model = ImageGenerationModel.from_pretrained("imagegeneration@006")
         self.storage_client = storage.Client()
         self.bucket = self.storage_client.bucket(config.GCS_GENERATED_IMAGES_BUCKET)
 
@@ -100,11 +101,6 @@ class ProcessWithAI(beam.DoFn):
             return await self._generate_and_upload_icon(category, event_id)
         return None
 
-    async def process_batch_async(self, elements):
-        """Processes a batch of elements asynchronously."""
-        tasks = [self.process_element_async(element) for element in elements]
-        return await asyncio.gather(*tasks)
-
     async def process_element_async(self, element):
         """Processes a single element asynchronously."""
         try:
@@ -131,11 +127,11 @@ class ProcessWithAI(beam.DoFn):
             logging.error("Error processing element %s with AI: %s", element.get('event_id'), e)
             return beam.pvalue.TaggedOutput('dead_letter', str(element))
 
-    def process(self, element, *args, **kwargs):
-        import asyncio
-        results = asyncio.run(self.process_batch_async(element))
-        for result in results:
-            if isinstance(result, beam.pvalue.TaggedOutput):
-                yield result
-            else:
-                yield result
+    def process(self, element):
+        """Processes a single element by applying AI-driven analysis."""
+        try:
+            # Run the async processing function for a single element
+            result = asyncio.run(self.process_element_async(element))
+            yield result
+        except Exception as e:
+            logging.error("Failed to process element with AI: %s", e)

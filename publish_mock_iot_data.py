@@ -1,4 +1,4 @@
-""" 
+"""
 Publishes mock IoT data to a Pub/Sub topic.
 
 This script simulates IoT devices sending data to the CityPulse platform.
@@ -13,7 +13,6 @@ Example:
 """
 
 import argparse
-import json
 import os
 import random
 import sys

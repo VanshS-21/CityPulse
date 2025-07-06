@@ -1,5 +1,5 @@
 ---
-description: 
+description:
 ---
 
 Perform comprehensive project health assessment:
@@ -52,4 +52,4 @@ Perform comprehensive project health assessment:
    - Analyze usability metrics
    - Assess feature adoption
 
-Generate comprehensive health report with recommendations. 
+Generate comprehensive health report with recommendations.

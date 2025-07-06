@@ -1,0 +1,40 @@
+
+services:
+  beam-app:
+    build: .
+    container_name: beam-pipeline
+    volumes:
+      - ./src:/app/src
+      - ./config:/app/config
+      - ./data_models:/app/data_models
+      - ./data:/app/data
+      - ~/.config/gcloud:/home/appuser/.config/gcloud:ro
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/home/appuser/.config/gcloud/application_default_credentials.json
+      - PYTHONPATH=/app
+    networks:
+      - beam-network
+
+  # Optional: Add a development service with shell access
+  beam-dev:
+    build: .
+    container_name: beam-dev
+    volumes:
+      - ./src:/app/src
+      - ./config:/app/config
+      - ./data_models:/app/data_models
+      - ./tests:/app/tests
+      - ./data:/app/data
+      - ~/.config/gcloud:/home/appuser/.config/gcloud:ro
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/home/appuser/.config/gcloud/application_default_credentials.json
+      - PYTHONPATH=/app
+    command: /bin/bash
+    stdin_open: true
+    tty: true
+    networks:
+      - beam-network
+
+networks:
+  beam-network:
+    driver: bridge

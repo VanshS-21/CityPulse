@@ -1,5 +1,5 @@
 ---
-description: 
+description:
 ---
 
 Prepare for final deployment and push to GitHub:
@@ -52,4 +52,4 @@ Prepare for final deployment and push to GitHub:
    - Prepare rollback procedures
    - Set up monitoring alerts
 
-Ensure everything is ready for production deployment. 
+Ensure everything is ready for production deployment.

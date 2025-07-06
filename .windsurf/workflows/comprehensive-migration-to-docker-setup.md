@@ -1,5 +1,5 @@
 ---
-description: 
+description:
 ---
 
 # Docker Setup Guide for Apache Beam Python 3.11 Project
@@ -163,7 +163,7 @@ services:
       - PYTHONPATH=/app/src
     networks:
       - beam-network
-    
+
   # Optional: Add a development service with shell access
   beam-dev:
     build: .
@@ -266,10 +266,10 @@ def run_pipeline():
         '--temp_location=gs://your-bucket/temp',
         '--staging_location=gs://your-bucket/staging',
     ])
-    
+
     # Create and run pipeline
     with beam.Pipeline(options=pipeline_options) as p:
-        (p 
+        (p
          | 'Create Data' >> beam.Create(['Hello', 'World', 'Apache', 'Beam'])
          | 'Add Timestamp' >> beam.Map(lambda x: f"{x} - processed")
          | 'Print Results' >> beam.Map(print)

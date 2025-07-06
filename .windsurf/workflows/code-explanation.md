@@ -1,5 +1,5 @@
 ---
-description: 
+description:
 ---
 
 Create comprehensive code explanations and documentation:
@@ -52,4 +52,4 @@ Create comprehensive code explanations and documentation:
    - Explain common patterns
    - Create FAQ sections
 
-Ensure explanations are clear, comprehensive, and accessible to target audience. 
+Ensure explanations are clear, comprehensive, and accessible to target audience.

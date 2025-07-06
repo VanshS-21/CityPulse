@@ -1,3 +1,4 @@
+"""A setuptools based setup module for the CityPulse data models."""
 import setuptools
 
 # Read the contents of your requirements file and filter out comments and empty lines

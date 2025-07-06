@@ -10,5 +10,5 @@ Description: {text_to_process}
 3.  If an image is provided, list key objects detected.
 Return a JSON object with keys "summary", "category", "image_tags"."""
 
-ICON_PROMPT = """A simple, modern, flat icon representing '{category}' 
+ICON_PROMPT = """A simple, modern, flat icon representing '{category}'
 for a city services app. Minimalist, vector style, on a white background."""

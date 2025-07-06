@@ -1,5 +1,5 @@
 ---
-description: 
+description:
 ---
 
 Design and implement database schema for the application:
@@ -40,4 +40,4 @@ Design and implement database schema for the application:
    - Document backup schedules
    - Plan disaster recovery
 
-Ensure database design supports application requirements efficiently. 
+Ensure database design supports application requirements efficiently.

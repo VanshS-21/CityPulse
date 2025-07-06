@@ -52,31 +52,31 @@ resource "google_monitoring_notification_channel" "email" {
 }
 
 # Cloud Storage monitoring
-resource "google_monitoring_alert_policy" "storage_alert" {
-  display_name = "Cloud Storage Object Count Alert"
-  combiner     = "OR"
-  conditions {
-    display_name = "Cloud Storage object count"
-    condition_threshold {
-      filter          = join("", [
-        "resource.type = \"gcs_bucket\" ",
-        "AND resource.labels.bucket_name = \"${google_storage_bucket.multimedia.name}\" ",
-        "AND metric.type = \"storage.googleapis.com/storage/total_bytes\""
-      ])
-      duration        = "300s"
-      comparison      = "COMPARISON_GT"
-      threshold_value = var.alert_thresholds.storage_usage_bytes
-      trigger {
-        count = 1
-      }
-      aggregations {
-        alignment_period   = "300s"
-        per_series_aligner = "ALIGN_MEAN"
-      }
-    }
-  }
-  notification_channels = [google_monitoring_notification_channel.email.name]
-}
+# resource "google_monitoring_alert_policy" "storage_alert" {
+#   display_name = "Cloud Storage Object Count Alert"
+#   combiner     = "OR"
+#   conditions {
+#     display_name = "Cloud Storage object count"
+#     condition_threshold {
+#       filter          = join("", [
+#         "resource.type = \"gcs_bucket\" ",
+#         "AND resource.labels.bucket_name = \"${google_storage_bucket.multimedia.name}\" ",
+#         "AND metric.type = \"storage.googleapis.com/storage/total_bytes\""
+#       ])
+#       duration        = "300s"
+#       comparison      = "COMPARISON_GT"
+#       threshold_value = var.alert_thresholds.storage_usage_bytes
+#       trigger {
+#         count = 1
+#       }
+#       aggregations {
+#         alignment_period   = "300s"
+#         per_series_aligner = "ALIGN_MEAN"
+#       }
+#     }
+#   }
+#   notification_channels = [google_monitoring_notification_channel.email.name]
+# }
 
 # Enable Cloud Monitoring API
 resource "google_project_service" "monitoring" {
@@ -166,14 +166,14 @@ resource "google_monitoring_dashboard" "citypulse_dashboard" {
 }
 
 # Add IAM permissions for monitoring
-resource "google_project_iam_member" "monitoring_viewer" {
-  project = var.project_id
-  role    = "roles/monitoring.viewer"
-  member  = "serviceAccount:${google_service_account.citypulse_sa.email}"
-}
-
-resource "google_project_iam_member" "monitoring_editor" {
-  project = var.project_id
-  role    = "roles/monitoring.editor"
-  member  = "serviceAccount:${google_service_account.citypulse_sa.email}"
-}
+# resource "google_project_iam_member" "monitoring_viewer" {
+#   project = var.project_id
+#   role    = "roles/monitoring.viewer"
+#   member  = "serviceAccount:${google_service_account.citypulse_sa.email}"
+# }
+#
+# resource "google_project_iam_member" "monitoring_editor" {
+#   project = var.project_id
+#   role    = "roles/monitoring.editor"
+#   member  = "serviceAccount:${google_service_account.citypulse_sa.email}"
+# }

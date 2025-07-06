@@ -1,5 +1,5 @@
 ---
-description: 
+description:
 ---
 
 Analyze the current project environment and assess readiness for the upcoming task:
@@ -53,4 +53,4 @@ Perform a comprehensive environment assessment:
 - Files to Create: [List of files and their purposes]
 - Estimated Setup Time: [Time estimate for environment preparation]
 
-This assessment will ensure optimal task execution with minimal setup interruptions. 
+This assessment will ensure optimal task execution with minimal setup interruptions.

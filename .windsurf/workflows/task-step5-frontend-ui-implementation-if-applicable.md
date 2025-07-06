@@ -1,5 +1,5 @@
 ---
-description: 
+description:
 ---
 
 Create the user interface and frontend components for the implemented functionality:
@@ -40,4 +40,4 @@ Create the user interface and frontend components for the implemented functional
    - Validate across different devices/browsers
    - Test accessibility features
 
-Focus on creating intuitive, performant, and accessible user experiences. 
+Focus on creating intuitive, performant, and accessible user experiences.

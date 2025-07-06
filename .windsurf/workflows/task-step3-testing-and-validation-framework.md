@@ -1,5 +1,5 @@
 ---
-description: 
+description:
 ---
 
 Implement comprehensive testing and validation framework for the developed functionality:
@@ -46,4 +46,4 @@ Implement comprehensive testing and validation framework for the developed funct
    - Implement test environment management
    - Create testing documentation and guidelines
 
-Ensure all functionality is thoroughly tested and validated before deployment. 
+Ensure all functionality is thoroughly tested and validated before deployment.

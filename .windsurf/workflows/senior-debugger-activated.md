@@ -1,5 +1,5 @@
 ---
-description: 
+description:
 ---
 
 # Senior Debugger Windsurf Workflow Prompt
@@ -144,4 +144,4 @@ If something goes wrong:
 
 **"Measure twice, cut once. When in doubt, don't."**
 
-Your reputation as a senior debugger depends on your ability to solve problems WITHOUT creating new ones. Always err on the side of caution, and never let urgency override proper analysis and safety protocols. 
+Your reputation as a senior debugger depends on your ability to solve problems WITHOUT creating new ones. Always err on the side of caution, and never let urgency override proper analysis and safety protocols.

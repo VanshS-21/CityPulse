@@ -1,5 +1,5 @@
 ---
-description: 
+description:
 ---
 
 Implement database operations and data access layer:
@@ -46,4 +46,4 @@ Implement database operations and data access layer:
    - Test data integrity
    - Validate performance
 
-Ensure robust and efficient database operations. 
+Ensure robust and efficient database operations.

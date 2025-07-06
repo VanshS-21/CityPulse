@@ -23,7 +23,7 @@ def create_ai_client(project_id: str, region: str) -> tuple[GenerativeModel, Ima
 def get_image_data(image_url: str) -> Optional[tuple[bytes, str]]:
     """
     Downloads and validates image data from URL.
-    
+
     Returns:
         tuple of (image_bytes, mime_type) or None if download fails
     """
@@ -31,7 +31,7 @@ def get_image_data(image_url: str) -> Optional[tuple[bytes, str]]:
         mime_type, _ = mimetypes.guess_type(image_url)
         if not mime_type or not mime_type.startswith('image'):
             logging.warning(
-                "Could not determine a valid image mime type for %s. Defaulting to image/png.", 
+                "Could not determine a valid image mime type for %s. Defaulting to image/png.",
                 image_url
             )
             mime_type = 'image/png'
@@ -62,7 +62,7 @@ def generate_icon(
 ) -> Optional[str]:
     """
     Generates and uploads an icon for the given category.
-    
+
     Returns:
         Public URL of the icon or None if generation fails
     """
@@ -71,7 +71,7 @@ def generate_icon(
             f"A simple, modern, flat icon representing '{category.lower()}' "
             f"for a city services app. Minimalist, vector style, on a white background."
         )
-        
+
         # Create a new image generation model instance
         image_gen_model = ImageGenerationModel.from_pretrained("imagegeneration@005")
         images = image_gen_model.generate_images(
@@ -79,7 +79,7 @@ def generate_icon(
             number_of_images=1,
             aspect_ratio="1:1"
         )
-        
+
         if images and (image_bytes := images[0]._image_bytes):
             # Get or create the bucket
             bucket = storage_client.bucket(bucket_name)
@@ -94,11 +94,11 @@ def generate_icon(
 def create_prompt(text: str, image_url: Optional[str] = None) -> list[Part]:
     """
     Creates prompt parts for the AI model.
-    
+
     Args:
         text: The text description to analyze
         image_url: Optional URL of an image to include in analysis
-    
+
     Returns:
         List of Part objects for the AI model
     """
@@ -121,5 +121,5 @@ def create_prompt(text: str, image_url: Optional[str] = None) -> list[Part]:
         if image_data:
             image_bytes, mime_type = image_data
             prompt_parts.append(Part.from_data(image_bytes, mime_type=mime_type))
-    
+
     return prompt_parts

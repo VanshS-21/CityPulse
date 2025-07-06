@@ -1,5 +1,5 @@
 ---
-description: 
+description:
 ---
 
 Implement the core functionality and architecture based on the planning phase:
@@ -46,4 +46,4 @@ Implement the core functionality and architecture based on the planning phase:
    - Set up load balancing and scaling
    - Create monitoring and health checks
 
-Focus on building a solid foundation that supports future enhancements. 
+Focus on building a solid foundation that supports future enhancements.

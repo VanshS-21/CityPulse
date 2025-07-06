@@ -17,7 +17,7 @@ Example:
         severity=EventSeverity.HIGH,
         source=EventSource.CITY_OFFICIAL
     )
-    
+
     # To save to Firestore (assuming a firestore_service is available)
     # firestore_service.add(Event.collection_name(), event.to_dict())
     ```

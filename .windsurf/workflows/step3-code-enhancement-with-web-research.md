@@ -1,5 +1,5 @@
 ---
-description: 
+description:
 ---
 
 Enhance code quality and functionality through web research and best practices:
@@ -46,4 +46,4 @@ Enhance code quality and functionality through web research and best practices:
    - Identify team collaboration tools
    - Discover learning and training resources
 
-Apply research findings to improve code quality, performance, and maintainability. 
+Apply research findings to improve code quality, performance, and maintainability.

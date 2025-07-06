@@ -1,5 +1,5 @@
 ---
-description: 
+description:
 ---
 
 Optimize application performance across all components:
@@ -34,4 +34,4 @@ Optimize application performance across all components:
    - Monitor resource usage
    - Track performance metrics
 
-Focus on measurable performance improvements. 
+Focus on measurable performance improvements.

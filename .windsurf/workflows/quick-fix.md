@@ -1,5 +1,5 @@
 ---
-description: 
+description:
 ---
 
 Implement quick fixes for urgent issues:
@@ -22,4 +22,4 @@ Implement quick fixes for urgent issues:
    - Verify fix effectiveness
    - Plan follow-up improvements
 
-Focus on rapid resolution with minimal risk. 
+Focus on rapid resolution with minimal risk.

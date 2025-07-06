@@ -1,5 +1,5 @@
 ---
-description: 
+description:
 ---
 
 Perform comprehensive code analysis to understand structure, quality, and potential improvements:
@@ -52,4 +52,4 @@ Perform comprehensive code analysis to understand structure, quality, and potent
    - Suggest refactoring opportunities
    - Plan technical debt reduction
 
-Provide detailed analysis report with actionable recommendations. 
+Provide detailed analysis report with actionable recommendations.

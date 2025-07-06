@@ -2,7 +2,7 @@ rules_version = '2';
 
 /**
  * Firestore Security Rules for CityPulse Application
- * 
+ *
  * Key Security Principles:
  * 1. Default Deny - All operations are denied by default unless explicitly allowed
  * 2. Principle of Least Privilege - Users only get the minimum permissions needed
@@ -16,29 +16,29 @@ service cloud.firestore {
     function isAuthenticated() {
       return request.auth != null;
     }
-    
+
     function isAdmin() {
-      return isAuthenticated() && 
+      return isAuthenticated() &&
              exists(/databases/$(database)/documents/admins/$(request.auth.uid));
     }
-    
+
     function isOwner(userId) {
       return isAuthenticated() && request.auth.uid == userId;
     }
-    
+
     function isValidEmail(email) {
       return email is string && email.matches('^[^@]+@[^@]+\\.[^@]+$');
     }
-    
+
     function isValidTimestamp(timestamp) {
-      return timestamp is timestamp && 
+      return timestamp is timestamp &&
              timestamp >= timestamp.date(2023, 1, 1) &&
              timestamp < timestamp.date(2030, 1, 1);
     }
 
     /**
      * Events Collection Rules
-     * 
+     *
      * Security Model:
      * - Public read access to all events
      * - Only authenticated users can create events
@@ -48,12 +48,12 @@ service cloud.firestore {
     match /events/{eventId} {
       // Allow public read access to all events
       allow read: if true;
-      
+
       // Create rules with input validation
       allow create: if isAuthenticated() &&
                     // Required fields check
                     request.resource.data.keys().hasAll([
-                      'title', 'description', 'location', 
+                      'title', 'description', 'location',
                       'start_time', 'end_time', 'created_at', 'userId'
                     ]) &&
                     // Title validation
@@ -72,7 +72,7 @@ service cloud.firestore {
                     request.resource.data.start_time < request.resource.data.end_time &&
                     // User validation
                     request.resource.data.userId == request.auth.uid;
-      
+
       // Update/Delete rules
       allow update, delete: if isOwner(resource.data.userId) || isAdmin();
 
@@ -97,7 +97,7 @@ service cloud.firestore {
 
     /**
      * User Profiles Collection Rules
-     * 
+     *
      * Security Model:
      * - Users can only read their own profile or admins can read any profile
      * - Users can only create/update their own profile
@@ -106,7 +106,7 @@ service cloud.firestore {
     match /user_profiles/{userId} {
       // Read rules
       allow read: if isOwner(userId) || isAdmin();
-      
+
       // Create rules
       allow create: if isOwner(userId) &&
                     // Required fields check
@@ -119,7 +119,7 @@ service cloud.firestore {
                     request.resource.data.displayName is string &&
                     request.resource.data.displayName.size() >= 2 &&
                     request.resource.data.displayName.size() <= 100;
-      
+
       // Update rules
       allow update: if isOwner(userId) &&
                     // Prevent userId tampering
@@ -127,14 +127,14 @@ service cloud.firestore {
                     // Validate updated fields
                     (request.resource.data.diff(resource.data).affectedKeys()
                       .hasOnly(['displayName', 'photoURL', 'bio', 'interests', 'lastUpdated']));
-      
+
       // Delete rules
       allow delete: if isOwner(userId) || isAdmin();
     }
 
     /**
      * User Feedback Collection Rules
-     * 
+     *
      * Security Model:
      * - Users can read their own feedback
      * - Admins can read all feedback
@@ -143,9 +143,9 @@ service cloud.firestore {
      */
     match /user_feedback/{feedbackId} {
       // Read rules
-      allow read: if isAuthenticated() && 
+      allow read: if isAuthenticated() &&
                   (isAdmin() || isOwner(resource.data.userId));
-      
+
       // Create rules
       allow create: if isAuthenticated() &&
                     // Required fields check
@@ -169,45 +169,45 @@ service cloud.firestore {
                       request.resource.data.keys().has('related_entity') &&
                       request.resource.data.related_entity.type == 'event' &&
                       // Validate rating if present
-                      (!request.resource.data.keys().has('ai_accuracy_rating') || 
+                      (!request.resource.data.keys().has('ai_accuracy_rating') ||
                         (request.resource.data.ai_accuracy_rating is int && request.resource.data.ai_accuracy_rating >= 1 && request.resource.data.ai_accuracy_rating <= 5)) &&
                       // Validate category if present
-                      (!request.resource.data.keys().has('corrected_category') || 
+                      (!request.resource.data.keys().has('corrected_category') ||
                         (request.resource.data.corrected_category is string && request.resource.data.corrected_category.size() > 0)) &&
                       // Validate summary if present
-                      (!request.resource.data.keys().has('corrected_summary') || 
+                      (!request.resource.data.keys().has('corrected_summary') ||
                         (request.resource.data.corrected_summary is string && request.resource.data.corrected_summary.size() > 0))
                     ));
-      
+
       // Update rules (only for admins to update status)
       allow update: if isAdmin() &&
                     // Only allow status updates
                     (request.resource.data.diff(resource.data).affectedKeys()
                       .hasOnly(['status', 'adminNotes', 'updatedAt']));
-      
+
       // Delete rules (admin only)
       allow delete: if isAdmin();
     }
-    
+
     /**
      * Admin Collection Rules
-     * 
+     *
      * Security Model:
      * - Only admins can read/write to admin collection
      */
     match /admins/{document=**} {
       allow read, write: if isAdmin();
     }
-    
+
     /**
      * Rate Limiting Protection
-     * 
+     *
      * This helps prevent abuse by limiting write operations
      */
     function isUnderRateLimit() {
       return request.time > resource.data.lastWrite + duration.value(5, 's');
     }
-    
+
     // Default deny all other operations
     match /{document=**} {
       allow read, write: if false;

@@ -1,5 +1,5 @@
 ---
-description: 
+description:
 ---
 
 Analyze the task requirements and create a detailed implementation plan:
@@ -46,4 +46,4 @@ Analyze the task requirements and create a detailed implementation plan:
    - Prepare knowledge transfer materials
    - Document architectural decisions and rationale
 
-This planning phase ensures thorough understanding and successful implementation. 
+This planning phase ensures thorough understanding and successful implementation.

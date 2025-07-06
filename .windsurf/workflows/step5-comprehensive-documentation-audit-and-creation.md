@@ -1,5 +1,5 @@
 ---
-description: 
+description:
 ---
 
 Perform comprehensive documentation audit and create missing documentation:
@@ -52,4 +52,4 @@ Perform comprehensive documentation audit and create missing documentation:
    - Create FAQ and troubleshooting guides
    - Document lessons learned
 
-Ensure all documentation is comprehensive, accurate, and maintainable. 
+Ensure all documentation is comprehensive, accurate, and maintainable.

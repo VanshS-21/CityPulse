@@ -9,7 +9,7 @@ export async function submitReport(prevState: { message: string; }, formData: Fo
   };
 
   // For now, we'll just log the data to the console.
-  // In the future, this is where you would process the data, 
+  // In the future, this is where you would process the data,
   // save it to a database, and handle file uploads.
   console.log(rawFormData);
 

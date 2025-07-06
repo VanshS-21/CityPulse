@@ -1,5 +1,5 @@
 ---
-description: 
+description:
 ---
 
 Find and organize comprehensive documentation for the project's technology stack:
@@ -52,4 +52,4 @@ Find and organize comprehensive documentation for the project's technology stack
    - Gather benchmarking resources
    - Identify profiling tools and techniques
 
-Create a comprehensive knowledge base for the technology stack. 
+Create a comprehensive knowledge base for the technology stack.

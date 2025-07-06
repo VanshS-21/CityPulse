@@ -1,5 +1,5 @@
 ---
-description: 
+description:
 ---
 
 Create comprehensive documentation and prepare for handoff:
@@ -41,5 +41,3 @@ Create comprehensive documentation and prepare for handoff:
    - Confirm security and compliance standards
 
 Ensure the deliverable is production-ready and the team can maintain it effectively.
-
- 

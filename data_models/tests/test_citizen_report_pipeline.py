@@ -5,25 +5,23 @@ from unittest.mock import MagicMock, patch
 import apache_beam as beam
 import requests
 from apache_beam.options.pipeline_options import PipelineOptions
-from apache_beam.testing.test_pipeline import TestPipeline as BeamTestPipeline
 from apache_beam.testing.util import assert_that, equal_to, is_empty
 
 from data_models.firestore_models.event import Event
-from data_models.tests.common import MOCK_EVENT_DATA
+from data_models.tests.common import BaseBeamTest, MOCK_EVENT_DATA
 from data_models.transforms.multimedia_processing import ProcessMultimedia
 
-TEST_PIPELINE_OPTIONS = PipelineOptions([
-    '--input_topic',
-    'dummy',
-    '--output_table',
-    'dummy:dummy.dummy',
-    '--schema_path',
-    'dummy.json',
-])
 
-
-class ProcessMultimediaTest(unittest.TestCase):
+class ProcessMultimediaTest(BaseBeamTest):
     """Tests for the ProcessMultimedia DoFn."""
+
+    def get_pipeline_options(self):
+        """Return pipeline options for the test."""
+        return PipelineOptions([
+            '--input_topic', 'dummy',
+            '--output_table', 'dummy:dummy.dummy',
+            '--schema_path', 'dummy.json'
+        ])
 
     @patch('data_models.transforms.multimedia_processing.storage.Client')
     @patch('data_models.transforms.multimedia_processing.requests.Session')
@@ -49,23 +47,21 @@ class ProcessMultimediaTest(unittest.TestCase):
 
         expected_gcs_path = f'gs://{bucket_name}/{mock_blob.name}'
 
-        with BeamTestPipeline(options=TEST_PIPELINE_OPTIONS) as p:
-            results = (
-                p | beam.Create([event])
-                | beam.ParDo(ProcessMultimedia(bucket_name=bucket_name))
-                | beam.Map(lambda e: (e.id, e.metadata.get('media_gcs_uri'))))
+        results = (
+            self.pipeline | beam.Create([event])
+            | beam.ParDo(ProcessMultimedia(bucket_name=bucket_name))
+            | beam.Map(lambda e: (e.id, e.metadata.get('media_gcs_uri'))))
 
-            expected = [(event.id, expected_gcs_path)]
-            assert_that(results, equal_to(expected))
+        expected = [(event.id, expected_gcs_path)]
+        assert_that(results, equal_to(expected))
 
     def test_process_multimedia_no_media_url(self):
         """Tests that events without a media URL are passed through unchanged."""
         event = Event(**MOCK_EVENT_DATA)
 
-        with BeamTestPipeline(options=TEST_PIPELINE_OPTIONS) as p:
-            results = (p | beam.Create([event])
-                       | beam.ParDo(ProcessMultimedia('test-bucket')))
-            assert_that(results, equal_to([event]))
+        results = (self.pipeline | beam.Create([event])
+                   | beam.ParDo(ProcessMultimedia('test-bucket')))
+        assert_that(results, equal_to([event]))
 
     @patch('data_models.transforms.multimedia_processing.requests.Session')
     def test_process_multimedia_download_failure(self, mock_requests_session):
@@ -88,16 +84,15 @@ class ProcessMultimediaTest(unittest.TestCase):
             assert dl['raw_data'] == event.model_dump_json()
             assert dl['error_message'] == 'Download failed'
 
-        with BeamTestPipeline(options=TEST_PIPELINE_OPTIONS) as p:
-            results = (p | beam.Create([event]) | beam.ParDo(
-                ProcessMultimedia(
-                    bucket_name='test-bucket')).with_outputs('dead_letter',
-                                                              main='main'))
+        results = (self.pipeline | beam.Create([event]) | beam.ParDo(
+            ProcessMultimedia(
+                bucket_name='test-bucket')).with_outputs('dead_letter',
+                                                         main='main'))
 
-            assert_that(results.main, is_empty(), label='CheckMainIsEmpty')
-            assert_that(results.dead_letter,
-                        _check_dead_letter,
-                        label='CheckDeadLetter')
+        assert_that(results.main, is_empty(), label='CheckMainIsEmpty')
+        assert_that(results.dead_letter,
+                    _check_dead_letter,
+                    label='CheckDeadLetter')
 
 
 if __name__ == '__main__':

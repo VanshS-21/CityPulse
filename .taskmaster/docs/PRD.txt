@@ -1,18 +1,18 @@
 # CityPulse: Unified Smart City Urban Intelligence System
 ## Product Requirements Document (PRD)
 
-# Overview  
+# Overview
 CityPulse is an agentic urban intelligence platform that transforms the overwhelming volume of real-time city data into actionable insights. The system addresses the critical challenge of data fragmentation in modern cities by continuously ingesting diverse urban data streams (traffic feeds, social media, IoT sensors, civic reports, citizen-submitted multimedia) and applying AI agents to synthesize, analyze, and visualize this information on a live, interactive dashboard.
 
 **Problem Solved**: Cities generate massive volumes of disparate data that remain siloed, leading to reactive governance and missed opportunities for proactive city management. Citizens lack effective channels to participate in urban governance and receive timely, relevant information about their city.
 
-**Target Users**: 
+**Target Users**:
 - **Primary**: City authorities (planners, emergency responders, municipal officials)
 - **Secondary**: Citizens (residents, commuters, business owners)
 
 **Value Proposition**: CityPulse provides a "single pane of glass" view of city operations for authorities while empowering citizens with timely alerts and participatory reporting capabilities. The platform turns raw urban data into knowledge and actionable impact through automated AI processing and predictive analytics.
 
-# Core Features  
+# Core Features
 
 ## Data Fusion & Synthesis
 **What it does**: Continuously ingests and correlates data from multiple urban sources (social media, official feeds, IoT sensors, citizen reports) using Google Cloud Pub/Sub and Dataflow pipelines. BigQuery serves as the fusion layer, joining streams by location and time to create a unified urban data view.
@@ -28,7 +28,7 @@ CityPulse is an agentic urban intelligence platform that transforms the overwhel
 
 **How it works**: When a citizen uploads a photo of street flooding, Vision AI detects "waterlogging," Gemini generates a geo-tagged description, and agentic workflows group related reports, assess severity, and trigger appropriate alerts—all without human intervention.
 
-## Predictive Analytics & Forecasting  
+## Predictive Analytics & Forecasting
 **What it does**: Uses BigQuery ML and Vertex AI TimeSeries Insights to train models (ARIMA, LSTMs) on historical data for forecasting events like traffic surges, infrastructure failures, and weather-related incidents.
 
 **Why it's important**: Enables proactive rather than reactive city management, allowing authorities to deploy resources before problems escalate.
@@ -56,7 +56,7 @@ CityPulse is an agentic urban intelligence platform that transforms the overwhel
 
 **How it works**: Citizens report issues through intuitive forms, AI automatically categorizes and plots incidents on the map, and feedback flows back into Vertex AI Pipelines for model retraining. All AI decisions include provenance tracking for accountability.
 
-# User Experience  
+# User Experience
 
 ## User Personas
 **City Authority - Emergency Response Coordinator**
@@ -64,7 +64,7 @@ CityPulse is an agentic urban intelligence platform that transforms the overwhel
 - Goals: Reduce response times, prevent incidents from escalating, optimize resource deployment
 - Pain Points: Information overload, delayed notifications, fragmented data sources
 
-**City Authority - Urban Planner**  
+**City Authority - Urban Planner**
 - Needs: Trend analysis, citizen sentiment, long-term pattern recognition
 - Goals: Data-driven policy decisions, proactive infrastructure planning, citizen satisfaction
 - Pain Points: Lack of predictive insights, difficulty correlating diverse data sources
@@ -115,7 +115,7 @@ CityPulse is an agentic urban intelligence platform that transforms the overwhel
 - **Progressive Disclosure**: Complex data presented in digestible layers with drill-down capabilities
 - **Trust Indicators**: Confidence scores, data source attribution, and AI decision explainability
 
-# Technical Architecture  
+# Technical Architecture
 
 ## System Components
 
@@ -168,7 +168,7 @@ CityPulse is an agentic urban intelligence platform that transforms the overwhel
   "description": "text",
   "location": {
     "lat": "float",
-    "lng": "float", 
+    "lng": "float",
     "address": "string",
     "ward": "string"
   },
@@ -203,7 +203,7 @@ CityPulse is an agentic urban intelligence platform that transforms the overwhel
 ```json
 {
   "feedback_id": "uuid",
-  "event_id": "uuid", 
+  "event_id": "uuid",
   "user_id": "uuid",
   "rating": "useful|not_useful|false_positive",
   "comment": "text",
@@ -262,7 +262,7 @@ CityPulse is an agentic urban intelligence platform that transforms the overwhel
 - Error Reporting: Automated error detection and notification
 - Performance monitoring with user experience tracking
 
-# Development Roadmap  
+# Development Roadmap
 
 ## Phase 1: Foundation MVP (Core Infrastructure)
 **Goal**: Establish basic data ingestion, storage, and simple visualization
@@ -283,7 +283,7 @@ CityPulse is an agentic urban intelligence platform that transforms the overwhel
 - Map showing reported incidents with basic details
 - Admin panel for viewing all incidents
 
-## Phase 2: AI Processing & Clustering (Intelligence Layer)  
+## Phase 2: AI Processing & Clustering (Intelligence Layer)
 **Goal**: Add AI-powered event processing and basic automation
 
 **Scope**:
@@ -363,7 +363,7 @@ CityPulse is an agentic urban intelligence platform that transforms the overwhel
 
 ## Foundation First (Infrastructure & Basic Data Flow)
 **Dependencies**: None
-**Components**: 
+**Components**:
 - Cloud infrastructure setup (BigQuery, Firestore, Pub/Sub)
 - Basic data ingestion pipeline
 - Core data models and schemas
@@ -423,7 +423,7 @@ CityPulse is an agentic urban intelligence platform that transforms the overwhel
 
 This allows frontend and backend development to proceed in parallel once basic data models are established.
 
-# Risks and Mitigations  
+# Risks and Mitigations
 
 ## Technical Challenges
 
@@ -432,7 +432,7 @@ This allows frontend and backend development to proceed in parallel once basic d
 - *Mitigation*: Start with high-confidence scenarios, implement human-in-the-loop validation for critical alerts, provide confidence scores for all AI decisions, build robust feedback loops to continuously improve models
 - *MVP Approach*: Begin with simple text analysis and basic image recognition, expand to complex multimodal analysis only after proving foundation capabilities
 
-**Risk**: Real-Time Data Processing at Scale  
+**Risk**: Real-Time Data Processing at Scale
 - *Challenge*: City-wide data streams may overwhelm processing capabilities or create latency issues
 - *Mitigation*: Use Google Cloud's managed services (Pub/Sub, Dataflow) designed for scale, implement data sampling and filtering strategies, design graceful degradation when systems are overloaded
 - *MVP Approach*: Start with limited geographic area and data sources, gradually expand scope as system proves stable
@@ -481,7 +481,7 @@ This allows frontend and backend development to proceed in parallel once basic d
 - *Mitigation*: Design for multiple revenue models (SaaS for authorities, citizen premium features, data insights licensing), build cost-efficient architecture using managed services, plan freemium model for initial adoption
 - *Business Strategy*: Start with grant funding or pilot partnerships, prove ROI before requiring significant municipal budgets
 
-# Appendix  
+# Appendix
 
 ## Research Findings
 

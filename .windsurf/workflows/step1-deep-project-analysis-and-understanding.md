@@ -1,5 +1,5 @@
 ---
-description: 
+description:
 ---
 
 Perform deep analysis of the project to understand its current state and requirements:
@@ -40,4 +40,4 @@ Perform deep analysis of the project to understand its current state and require
    - Assess communication and collaboration patterns
    - Review code review and quality assurance processes
 
-This analysis provides foundation for informed decision-making and improvement planning. 
+This analysis provides foundation for informed decision-making and improvement planning.

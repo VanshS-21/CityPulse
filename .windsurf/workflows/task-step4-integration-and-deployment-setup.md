@@ -1,5 +1,5 @@
 ---
-description: 
+description:
 ---
 
 Set up integration and deployment infrastructure for the implemented functionality:
@@ -40,4 +40,4 @@ Set up integration and deployment infrastructure for the implemented functionali
    - Write troubleshooting guides
    - Create API documentation
 
-Ensure the deployment is secure, scalable, and follows best practices. 
+Ensure the deployment is secure, scalable, and follows best practices.

@@ -1,4 +1,6 @@
 """Shared utilities and mock data for tests."""
+import unittest
+from apache_beam.testing.test_pipeline import TestPipeline
 from unittest.mock import MagicMock
 
 
@@ -18,3 +20,20 @@ MOCK_EVENT_DATA = {
     'status': 'active',
     'source': 'city_official'
 }
+
+
+class BaseBeamTest(unittest.TestCase):
+    """Base class for Apache Beam tests to handle pipeline setup and teardown."""
+
+    def get_pipeline_options(self):
+        """Return pipeline options for the test. Subclasses can override this."""
+        return None
+
+    def setUp(self):
+        """Set up the test pipeline."""
+        self.pipeline = TestPipeline(options=self.get_pipeline_options())
+        self.pipeline.__enter__()
+
+    def tearDown(self):
+        """Tear down the test pipeline."""
+        self.pipeline.__exit__(None, None, None)

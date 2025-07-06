@@ -1,5 +1,5 @@
 ---
-description: 
+description:
 ---
 
 Intelligently clean up the codebase and remove redundancies:
@@ -46,4 +46,4 @@ Intelligently clean up the codebase and remove redundancies:
    - Update references and links
    - Standardize documentation format
 
-Focus on improving code quality and maintainability while preserving functionality. 
+Focus on improving code quality and maintainability while preserving functionality.

@@ -1,5 +1,5 @@
 ---
-description: 
+description:
 ---
 
 # CityPulse Project Completion Audit Prompt
@@ -173,4 +173,4 @@ After any fixes are applied:
 3. Update task.json file with accurate status
 4. Re-run audit after fixes to ensure completeness
 
-This comprehensive audit ensures that all "done" tasks are truly complete and production-ready. 
+This comprehensive audit ensures that all "done" tasks are truly complete and production-ready.

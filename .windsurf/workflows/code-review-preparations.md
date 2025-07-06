@@ -1,5 +1,5 @@
 ---
-description: 
+description:
 ---
 
 Prepare code for comprehensive review process:
@@ -52,4 +52,4 @@ Prepare code for comprehensive review process:
    - Include testing instructions
    - Document breaking changes
 
-Ensure code is ready for thorough review. 
+Ensure code is ready for thorough review.
