@@ -2,23 +2,26 @@
 """
 Script to set up BigQuery tables for CityPulse based on JSON schema definitions.
 """
-import os
-import json
 import argparse
+import json
+import os
+
 from google.cloud import bigquery, exceptions
 from google.oauth2 import service_account
 
+
 def load_schema_and_config(schema_file):
     """Load schema and table config from a JSON file."""
-    with open(schema_file, 'r', encoding='utf-8') as f:
+    with open(schema_file, "r", encoding="utf-8") as f:
         schema_def = json.load(f)
 
-    schema = _parse_schema_fields(schema_def.get('fields', []))
+    schema = _parse_schema_fields(schema_def.get("fields", []))
     config = {
         "partitioning": schema_def.get("partitioning"),
-        "clustering": schema_def.get("clustering")
+        "clustering": schema_def.get("clustering"),
     }
     return schema, config
+
 
 def _parse_schema_fields(fields):
     """Recursively parse schema fields from a list of dictionaries."""
@@ -27,14 +30,15 @@ def _parse_schema_fields(fields):
 
     return [
         bigquery.SchemaField(
-            name=field['name'],
-            field_type=field['type'],
-            mode=field.get('mode', 'NULLABLE'),
-            description=field.get('description', ''),
-            fields=_parse_schema_fields(field.get('fields', []))
+            name=field["name"],
+            field_type=field["type"],
+            mode=field.get("mode", "NULLABLE"),
+            description=field.get("description", ""),
+            fields=_parse_schema_fields(field.get("fields", [])),
         )
         for field in fields
     ]
+
 
 def create_table(client, project_id, dataset_id, table_name, schema_file):
     """
@@ -56,7 +60,7 @@ def create_table(client, project_id, dataset_id, table_name, schema_file):
             part_conf = config["partitioning"]
             table.time_partitioning = bigquery.TimePartitioning(
                 type_=getattr(bigquery.TimePartitioningType, part_conf["type"]),
-                field=part_conf["field"]
+                field=part_conf["field"],
             )
 
         if config.get("clustering"):
@@ -67,17 +71,20 @@ def create_table(client, project_id, dataset_id, table_name, schema_file):
 
     return table
 
+
 def main():
     """Main function to set up BigQuery tables."""
-    parser = argparse.ArgumentParser(description='Set up BigQuery tables for CityPulse')
-    parser.add_argument('--project', required=True, help='GCP project ID')
-    parser.add_argument('--dataset', default='citypulse', help='BigQuery dataset ID')
-    parser.add_argument('--credentials', help='Path to service account JSON key file')
+    parser = argparse.ArgumentParser(description="Set up BigQuery tables for CityPulse")
+    parser.add_argument("--project", required=True, help="GCP project ID")
+    parser.add_argument("--dataset", default="citypulse", help="BigQuery dataset ID")
+    parser.add_argument("--credentials", help="Path to service account JSON key file")
 
     args = parser.parse_args()
 
     if args.credentials:
-        credentials = service_account.Credentials.from_service_account_file(args.credentials)
+        credentials = service_account.Credentials.from_service_account_file(
+            args.credentials
+        )
         client = bigquery.Client(project=args.project, credentials=credentials)
     else:
         client = bigquery.Client(project=args.project)
@@ -92,15 +99,16 @@ def main():
         client.create_dataset(bigquery.Dataset(dataset_ref))
 
     schema_mapping = {
-        'events': 'event_schema.json',
-        'user_profiles': 'user_profile_schema.json',
-        'user_feedback': 'feedback_schema.json'
+        "events": "event_schema.json",
+        "user_profiles": "user_profile_schema.json",
+        "user_feedback": "feedback_schema.json",
     }
 
-    schemas_dir = os.path.join(os.path.dirname(__file__), 'schemas')
+    schemas_dir = os.path.join(os.path.dirname(__file__), "schemas")
     for table_name, schema_file in schema_mapping.items():
         schema_path = os.path.join(schemas_dir, schema_file)
         create_table(client, args.project, dataset_id, table_name, schema_path)
+
 
 if __name__ == "__main__":
     main()

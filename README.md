@@ -145,6 +145,27 @@ CityPulse/
 └── reports/               # Analysis and audit reports
 ```
 
+## 📚 Documentation
+
+Comprehensive documentation is available in the [`docs/`](./docs/) directory:
+
+### Quick Access
+- **[📖 Documentation Hub](./docs/README.md)** - Complete documentation index
+- **[👤 User Guide](./docs/USER_GUIDE.md)** - How to use CityPulse
+- **[🏗️ Architecture](./docs/ARCHITECTURE.md)** - System design and architecture
+- **[🔌 API Guide](./docs/API_GUIDE.md)** - API reference and examples
+- **[🚀 Deployment](./docs/DEPLOYMENT.md)** - Production deployment guide
+
+### For Developers
+- **[💻 Contributing Guide](./docs/CONTRIBUTING.md)** - Development workflow
+- **[🗄️ Database Schema](./docs/DATABASE_SCHEMA.md)** - Database design
+- **[🔧 Tech Stack](./docs/TECH_STACK_REFERENCE.md)** - Technology reference
+
+### For Operations
+- **[🔒 Security Operations](./docs/SECURITY_OPERATIONS.md)** - Security procedures
+- **[⚡ Performance Guide](./docs/PERFORMANCE_GUIDE.md)** - Optimization strategies
+- **[🆘 Troubleshooting](./docs/TROUBLESHOOTING.md)** - Issue resolution
+
 ## 🤝 Contributing
 
 We welcome contributions! Please see our [Contributing Guide](./docs/CONTRIBUTING.md) for details on:

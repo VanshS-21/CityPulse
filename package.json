@@ -26,7 +26,8 @@
     "@sentry/nextjs": "^9.35.0",
     "next": "15.3.4",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "zustand": "^5.0.6"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.8.2",

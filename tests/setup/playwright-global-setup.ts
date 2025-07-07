@@ -4,9 +4,11 @@ async function globalSetup(config: FullConfig) {
   console.log('🚀 Setting up Playwright test environment...')
   
   // Set up test environment variables
-  process.env.NODE_ENV = 'test'
-  process.env.NEXT_PUBLIC_API_URL = 'http://localhost:8000'
-  process.env.NEXT_PUBLIC_APP_URL = 'http://localhost:3000'
+  if (!process.env.NODE_ENV) {
+    (process.env as any).NODE_ENV = 'test';
+  }
+  (process.env as any).NEXT_PUBLIC_API_URL = 'http://localhost:8000';
+  (process.env as any).NEXT_PUBLIC_APP_URL = 'http://localhost:3000';
   
   // Create test reports directory
   const fs = require('fs')

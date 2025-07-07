@@ -1,4 +1,5 @@
 """Tests for schema validation functionality."""
+
 import json
 
 import pytest
@@ -9,86 +10,74 @@ from data_models import validate_schemas
 VALID_SCHEMA = {
     "name": "TestSchema",
     "description": "Test schema for validation",
-    "fields": [{
-        "name": "id",
-        "type": "STRING",
-        "mode": "REQUIRED",
-        "description": "Unique identifier"
-    }, {
-        "name": "count",
-        "type": "INTEGER",
-        "description": "A count value"
-    }, {
-        "name": "nested",
-        "type": "RECORD",
-        "fields": [{
-            "name": "nested_field",
-            "type": "STRING"
-        }]
-    }]
+    "fields": [
+        {
+            "name": "id",
+            "type": "STRING",
+            "mode": "REQUIRED",
+            "description": "Unique identifier",
+        },
+        {"name": "count", "type": "INTEGER", "description": "A count value"},
+        {
+            "name": "nested",
+            "type": "RECORD",
+            "fields": [{"name": "nested_field", "type": "STRING"}],
+        },
+    ],
 }
 
 # Test cases for schema validation
-SCHEMA_TEST_CASES = [(
-    {
-        "name": "Test",
-        "description": "Test",
-        "fields": [{
-            "name": "id",
-            "type": "STRING"
-        }]
-    }, True, "Valid minimal schema"),
-                     ({
-                         "description": "Test",
-                         "fields": []
-                     }, False, "Missing required key 'name'"),
-                     ({
-                         "name": "Test",
-                         "fields": []
-                     }, False, "Missing required key 'description'"),
-                     ({
-                         "name": "Test",
-                         "description": "Test"
-                     }, False, "Missing required key 'fields'"),
-                     ({
-                         "name": "Test",
-                         "description": "Test",
-                         "fields": [{
-                             "type": "STRING"
-                         }]
-                     }, False, "Field missing 'name'"),
-                     ({
-                         "name": "Test",
-                         "description": "Test",
-                         "fields": [{
-                             "name": "id"
-                         }]
-                     }, False, "Field missing 'type'"),
-                     ({
-                         "name": "Test",
-                         "description": "Test",
-                         "fields": [{
-                             "name": "id",
-                             "type": "INVALID"
-                         }]
-                     }, False, "Invalid field type"),
-                     ({
-                         "name": "Test",
-                         "description": "Test",
-                         "fields": [{
-                             "name": "id",
-                             "type": "STRING",
-                             "mode": "INVALID"
-                         }]
-                     }, False, "Invalid field mode"),
-                     ({
-                         "name": "Test",
-                         "description": "Test",
-                         "fields": [{
-                             "name": "id",
-                             "type": "RECORD"
-                         }]
-                     }, False, "RECORD type missing fields")]
+SCHEMA_TEST_CASES = [
+    (
+        {
+            "name": "Test",
+            "description": "Test",
+            "fields": [{"name": "id", "type": "STRING"}],
+        },
+        True,
+        "Valid minimal schema",
+    ),
+    ({"description": "Test", "fields": []}, False, "Missing required key 'name'"),
+    ({"name": "Test", "fields": []}, False, "Missing required key 'description'"),
+    ({"name": "Test", "description": "Test"}, False, "Missing required key 'fields'"),
+    (
+        {"name": "Test", "description": "Test", "fields": [{"type": "STRING"}]},
+        False,
+        "Field missing 'name'",
+    ),
+    (
+        {"name": "Test", "description": "Test", "fields": [{"name": "id"}]},
+        False,
+        "Field missing 'type'",
+    ),
+    (
+        {
+            "name": "Test",
+            "description": "Test",
+            "fields": [{"name": "id", "type": "INVALID"}],
+        },
+        False,
+        "Invalid field type",
+    ),
+    (
+        {
+            "name": "Test",
+            "description": "Test",
+            "fields": [{"name": "id", "type": "STRING", "mode": "INVALID"}],
+        },
+        False,
+        "Invalid field mode",
+    ),
+    (
+        {
+            "name": "Test",
+            "description": "Test",
+            "fields": [{"name": "id", "type": "RECORD"}],
+        },
+        False,
+        "RECORD type missing fields",
+    ),
+]
 
 
 @pytest.fixture
@@ -99,7 +88,9 @@ def temp_schema_file(tmp_path):
     return str(schema_file)
 
 
-def test_validate_valid_schema(temp_schema_file):  # pylint: disable=redefined-outer-name
+def test_validate_valid_schema(
+    temp_schema_file,
+):  # pylint: disable=redefined-outer-name
     """Test validation of a valid schema file."""
     validator = validate_schemas.SchemaValidator(temp_schema_file)
     is_valid, errors = validator.validate()
@@ -140,19 +131,16 @@ def test_validate_nested_fields(tmp_path):
     schema = {
         "name": "NestedTest",
         "description": "Test nested fields",
-        "fields": [{
-            "name": "nested",
-            "type": "RECORD",
-            "fields": [
-                {
-                    "name": "valid",
-                    "type": "STRING"
-                },
-                {
-                    "type": "MISSING_NAME"
-                }  # Invalid: missing name
-            ]
-        }]
+        "fields": [
+            {
+                "name": "nested",
+                "type": "RECORD",
+                "fields": [
+                    {"name": "valid", "type": "STRING"},
+                    {"type": "MISSING_NAME"},  # Invalid: missing name
+                ],
+            }
+        ],
     }
     test_file = tmp_path / "test_nested.json"
     test_file.write_text(json.dumps(schema))

@@ -10,8 +10,7 @@ from typing import Dict, Any, List, Optional
 import json
 
 from data_models.services.firestore_service import FirestoreService
-from data_models.firestore_models import Event, UserProfile, Feedback
-from data_models.firestore_models.event import EventCategory, EventSeverity, EventStatus
+from data_models.firestore_models import Event, UserProfile, Feedback, EventCategory, EventSeverity, EventStatus
 
 
 class TestFirestoreService:

@@ -1,10 +1,18 @@
 """Pipeline for ingesting data from official city feeds."""
 
 import logging
+import os
+import sys
 
-from data_models.core import config
+# Add parent directories to path to import shared modules
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 from data_models.data_ingestion.base_pipeline import BasePipeline, BasePipelineOptions
 from data_models.utils.pipeline_args import add_common_pipeline_args
+from shared_config import get_config
+
+# Initialize config
+config = get_config()
 
 
 class OfficialFeedsPipelineOptions(BasePipelineOptions):
@@ -19,8 +27,7 @@ class OfficialFeedsPipelineOptions(BasePipelineOptions):
             parser: The argparse.ArgumentParser instance.
         """
         output_table_name = (
-            f'{config.PROJECT_ID}:{config.BIGQUERY_DATASET}.'
-            f'{config.BIGQUERY_TABLE_OFFICIAL_FEEDS}'
+            f"{config.project_id}:{config.database.bigquery_dataset}." f"official_feeds"
         )
         add_common_pipeline_args(parser, default_output_table=output_table_name)
 
@@ -42,7 +49,7 @@ class OfficialFeedsPipeline(BasePipeline):
     # The add_custom_processing hook is intentionally not implemented.
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # This script is designed to be executed as a Dataflow job.
     # It sets up and runs the official feeds ingestion pipeline.
     logging.getLogger().setLevel(logging.INFO)

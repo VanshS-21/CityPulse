@@ -1,5 +1,7 @@
 """Unit tests for the DoFns in the base pipeline."""
+
 import unittest
+
 import apache_beam as beam
 from apache_beam.testing.util import assert_that, equal_to, is_empty
 
@@ -15,39 +17,54 @@ class TestBasePipelineDoFns(BaseBeamTest):
         """Tests the ParseEvent DoFn with valid and invalid data."""
         input_data = [
             b'{"title": "Test Event", "description": "A test event."}',
-            b'{"title": "Another Event", "invalid_field": "some_value"}'
+            b'{"title": "Another Event", "invalid_field": "some_value"}',
         ]
         results = (
-            self.pipeline | beam.Create(input_data)
-            | beam.ParDo(ParseEvent()).with_outputs('dead_letter', main='parsed_events')
+            self.pipeline
+            | beam.Create(input_data)
+            | beam.ParDo(ParseEvent()).with_outputs("dead_letter", main="parsed_events")
         )
-        assert_that(results.parsed_events, equal_to([
-            Event(title='Test Event', description='A test event.')
-        ]), label='CheckParsedEvents')
-        assert_that(results.dead_letter, equal_to([
-            {
-                'pipeline_step': 'ParseEvent',
-                'raw_data': '{"title": "Another Event", "invalid_field": "some_value"}',
-                'error_message': "1 validation error for Event\nunknown field 'invalid_field' (type=value_error.extra)"
-            }
-        ]), label='CheckDeadLetter')
+        assert_that(
+            results.parsed_events,
+            equal_to([Event(title="Test Event", description="A test event.")]),
+            label="CheckParsedEvents",
+        )
+        assert_that(
+            results.dead_letter,
+            equal_to(
+                [
+                    {
+                        "pipeline_step": "ParseEvent",
+                        "raw_data": '{"title": "Another Event", "invalid_field": "some_value"}',
+                        "error_message": "1 validation error for Event\nunknown field 'invalid_field' (type=value_error.extra)",
+                    }
+                ]
+            ),
+            label="CheckDeadLetter",
+        )
 
     def test_write_to_firestore_dofn(self):
         """Tests the WriteToFirestore DoFn."""
-        input_events = [
-            Event(title='Event to Write')
-        ]
-        with unittest.mock.patch('data_models.services.firestore_service.FirestoreService') as mock_service:
+        input_events = [Event(title="Event to Write")]
+        with unittest.mock.patch(
+            "data_models.services.firestore_service.FirestoreService"
+        ) as mock_service:
             instance = mock_service.return_value
             instance.add_document.return_value = None
             results = (
-                self.pipeline | beam.Create(input_events)
-                | beam.ParDo(WriteToFirestore(project_id='test-project'))
-                .with_outputs('dead_letter', main='firestore_events')
+                self.pipeline
+                | beam.Create(input_events)
+                | beam.ParDo(WriteToFirestore(project_id="test-project")).with_outputs(
+                    "dead_letter", main="firestore_events"
+                )
             )
-        assert_that(results.firestore_events, equal_to(input_events), label='CheckSuccessfulWrites')
-        assert_that(results.dead_letter, is_empty(), label='CheckEmptyDeadLetter')
+        assert_that(
+            results.firestore_events,
+            equal_to(input_events),
+            label="CheckSuccessfulWrites",
+        )
+        assert_that(results.dead_letter, is_empty(), label="CheckEmptyDeadLetter")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -33,9 +33,11 @@ class ProcessMultimedia(beam.DoFn):
         self.storage_client = None
         self.requests_session = None
         self.success_counter = beam.metrics.Metrics.counter(
-            'ProcessMultimedia', 'successful_uploads')
+            "ProcessMultimedia", "successful_uploads"
+        )
         self.failure_counter = beam.metrics.Metrics.counter(
-            'ProcessMultimedia', 'failed_uploads')
+            "ProcessMultimedia", "failed_uploads"
+        )
 
     def start_bundle(self):
         """Initializes non-serializable clients for each bundle of elements."""
@@ -61,35 +63,38 @@ class ProcessMultimedia(beam.DoFn):
             - The processed Event object on success.
             - A TaggedOutput to 'dead_letter' on failure.
         """
-        if 'media_url' not in element.metadata:
+        if "media_url" not in element.metadata:
             yield element
             return
 
-        media_url = element.metadata['media_url']
+        media_url = element.metadata["media_url"]
         try:
             response = self.requests_session.get(media_url, stream=True, timeout=60)
             response.raise_for_status()
 
-            file_name = media_url.split('/')[-1]
+            file_name = media_url.split("/")[-1]
             bucket = self.storage_client.bucket(self.bucket_name)
-            blob = bucket.blob(f'citizen_reports/{element.id}/{file_name}')
+            blob = bucket.blob(f"citizen_reports/{element.id}/{file_name}")
 
             blob.upload_from_file(io.BytesIO(response.content))
 
             updated_metadata = element.metadata.copy()
-            updated_metadata['media_gcs_uri'] = f'gs://{self.bucket_name}/{blob.name}'
-            del updated_metadata['media_url']
+            updated_metadata["media_gcs_uri"] = f"gs://{self.bucket_name}/{blob.name}"
+            del updated_metadata["media_url"]
 
-            updated_event = element.model_copy(update={'metadata': updated_metadata})
+            updated_event = element.model_copy(update={"metadata": updated_metadata})
             self.success_counter.inc()
             yield updated_event
 
-        except (requests.exceptions.RequestException, exceptions.GoogleAPICallError) as e:
+        except (
+            requests.exceptions.RequestException,
+            exceptions.GoogleAPICallError,
+        ) as e:
             error_payload = {
-                'pipeline_step': 'ProcessMultimedia',
-                'raw_data': element.model_dump_json(),
-                'error_message': str(e)
+                "pipeline_step": "ProcessMultimedia",
+                "raw_data": element.model_dump_json(),
+                "error_message": str(e),
             }
-            logging.error('Failed to process media for event %s: %s', element.id, e)
+            logging.error("Failed to process media for event %s: %s", element.id, e)
             self.failure_counter.inc()
-            yield beam.pvalue.TaggedOutput('dead_letter', error_payload)
+            yield beam.pvalue.TaggedOutput("dead_letter", error_payload)

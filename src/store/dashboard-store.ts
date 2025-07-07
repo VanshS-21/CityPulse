@@ -78,7 +78,7 @@ interface Report {
   updatedAt: string;
   assignedTo?: string;
   images?: string[];
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 // Main dashboard state interface
@@ -323,7 +323,7 @@ export const useDashboardStore = create<DashboardState>()(
 
           updateReport: (id, updates) =>
             set((state) => {
-              const index = state.reports.reports.findIndex(r => r.id === id);
+              const index = state.reports.reports.findIndex((r: Report) => r.id === id);
               if (index !== -1) {
                 Object.assign(state.reports.reports[index], updates);
               }
@@ -331,7 +331,7 @@ export const useDashboardStore = create<DashboardState>()(
 
           removeReport: (id) =>
             set((state) => {
-              state.reports.reports = state.reports.reports.filter(r => r.id !== id);
+              state.reports.reports = state.reports.reports.filter((r: Report) => r.id !== id);
             }),
 
           setSelectedReport: (report) =>

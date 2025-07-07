@@ -1,7 +1,9 @@
 """Shared utilities and mock data for tests."""
+
 import unittest
-from apache_beam.testing.test_pipeline import TestPipeline
 from unittest.mock import MagicMock
+
+from apache_beam.testing.test_pipeline import TestPipeline
 
 
 def create_mock_firestore_service():
@@ -12,13 +14,13 @@ def create_mock_firestore_service():
 
 
 MOCK_EVENT_DATA = {
-    'id': 'test-event-123',
-    'title': 'Community Cleanup Day',
-    'description': 'Join us for a community cleanup event.',
-    'category': 'community',
-    'severity': 'low',
-    'status': 'active',
-    'source': 'city_official'
+    "id": "test-event-123",
+    "title": "Community Cleanup Day",
+    "description": "Join us for a community cleanup event.",
+    "category": "community",
+    "severity": "low",
+    "status": "active",
+    "source": "city_official",
 }
 
 

@@ -36,14 +36,15 @@ To get started with the data models and pipelines, follow these steps:
 
 The `data_models` directory is organized as follows:
 
--   `core/`: Contains the main configuration file (`config.py`) for the project.
 -   `data_ingestion/`: Includes the Apache Beam pipelines for processing real-time data from various sources.
--   `firestore_models/`: Defines the Python classes that map to Firestore documents.
+-   `firestore_models/`: Defines the Python classes that map to Firestore documents (now using shared models).
 -   `schemas/`: Contains the JSON schemas for the BigQuery tables.
 -   `services/`: Provides a high-level service for interacting with Firestore.
 -   `tests/`: Contains unit and integration tests for the data models and pipelines.
 -   `transforms/`: Includes reusable transformations for the data pipelines.
 -   `utils/`: Provides utility functions and classes used across the project.
+
+**Note**: Configuration has been moved to the unified `shared_config.py` at the project root for consistency across all CityPulse components.
 
 ---
 
@@ -111,7 +112,7 @@ The pipelines can be run locally for development and testing. They are streaming
 
 ### Configuration
 
-All pipeline settings, including GCP project ID, Pub/Sub topics, and BigQuery table names, are managed in `data_models/core/config.py`.
+All pipeline settings, including GCP project ID, Pub/Sub topics, and BigQuery table names, are now managed through the unified configuration system in `shared_config.py`. This provides centralized configuration management across the entire CityPulse platform.
 
 ---
 

@@ -8,13 +8,13 @@ from datetime import datetime, timedelta
 from unittest.mock import Mock, patch
 from typing import Dict, Any
 
-from data_models.firestore_models import (
-    Event, UserProfile, Feedback, 
+from data_models import (
+    Event, UserProfile, Feedback,
     FeedbackStatus, FeedbackType,
     EventCategory, EventSeverity, EventSource, EventStatus,
-    UserRole, NotificationPreference
+    UserRole
 )
-from data_models.firestore_models.base_model import BaseModel
+from shared_models import BaseModel, NotificationPreference
 
 
 class TestBaseModel:

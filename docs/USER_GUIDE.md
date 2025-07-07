@@ -2,6 +2,12 @@
 
 **Welcome to CityPulse** - Your comprehensive platform for urban issue reporting and city intelligence.
 
+## 📚 Related Documentation
+- **[FAQ](./FAQ.md)** - Frequently asked questions and quick answers
+- **[API Guide](./API_GUIDE.md)** - For developers integrating with CityPulse
+- **[Troubleshooting](./TROUBLESHOOTING.md)** - Detailed issue resolution guide
+- **[Architecture](./ARCHITECTURE.md)** - Understanding how CityPulse works
+
 ---
 
 ## Table of Contents

@@ -50,7 +50,7 @@
           1,
           2
         ],
-        "status": "pending",
+        "status": "done",
         "subtasks": [
           {
             "id": 4.1,
@@ -58,7 +58,7 @@
             "description": "Define OpenAPI/Swagger specs for all endpoints, including request/response schemas, error codes, and auth flows.",
             "details": "Document endpoints for Events, Users, Feedback, and Analytics. Specify required/optional fields, authentication headers, and role-based access logic. Review with frontend and mobile teams.",
             "testStrategy": "API spec review and mock server validation with frontend/mobile teams.",
-            "status": "pending"
+            "status": "done"
           },
           {
             "id": 4.2,
@@ -66,7 +66,7 @@
             "description": "Develop and deploy REST endpoints for event creation, retrieval, update, and deletion.",
             "details": "Use Cloud Functions/Cloud Run to implement `/api/v1/events` endpoints. Ensure schema validation, geospatial filtering, and integration with BigQuery/Firestore.",
             "testStrategy": "Test with Postman/curl for all CRUD operations. Validate filtering and pagination.",
-            "status": "pending"
+            "status": "done"
           },
           {
             "id": 4.3,
@@ -74,7 +74,7 @@
             "description": "Develop endpoints to manage user profiles and preferences.",
             "details": "Implement `/api/v1/users/{id}` GET/PUT endpoints. Enforce authentication and allow updates to preferences and subscriptions.",
             "testStrategy": "Test user profile updates and access control for different roles.",
-            "status": "pending"
+            "status": "done"
           },
           {
             "id": 4.4,
@@ -82,7 +82,7 @@
             "description": "Develop endpoint for submitting feedback linked to events and users.",
             "details": "Create `/api/v1/feedback` POST endpoint. Validate references and store in Firestore.",
             "testStrategy": "Submit feedback from frontend/mobile and verify linkage in backend.",
-            "status": "pending"
+            "status": "done"
           },
           {
             "id": 4.5,
@@ -90,7 +90,7 @@
             "description": "Develop endpoints to fetch analytics and KPIs for dashboards.",
             "details": "Query BigQuery for aggregated metrics. Secure endpoints for authorized users only.",
             "testStrategy": "Validate analytics data accuracy and access control.",
-            "status": "pending"
+            "status": "done"
           },
           {
             "id": 4.6,
@@ -98,7 +98,7 @@
             "description": "Enforce authentication and role-based access for all endpoints.",
             "details": "Integrate Firebase Authentication/Google Identity Platform. Implement middleware for role checks.",
             "testStrategy": "Test all endpoints with different user roles for access restrictions.",
-            "status": "pending"
+            "status": "done"
           },
           {
             "id": 4.7,
@@ -106,7 +106,7 @@
             "description": "Ensure robust error responses, pagination, and filtering for all endpoints.",
             "details": "Standardize error codes/messages. Implement pagination for list endpoints and support filtering by type, status, and location.",
             "testStrategy": "Test edge cases, invalid inputs, and large datasets.",
-            "status": "pending"
+            "status": "done"
           }
         ]
       },
@@ -120,7 +120,7 @@
         "dependencies": [
           4
         ],
-        "status": "pending",
+        "status": "in-progress",
         "subtasks": [
           {
             "id": 5.1,
@@ -489,7 +489,7 @@
     ],
     "metadata": {
       "created": "2025-07-01T18:03:19.221Z",
-      "updated": "2025-07-03T19:57:00.000Z",
+      "updated": "2025-07-07T13:54:36.095Z",
       "description": "Refined master task list for CityPulse MVP and Intelligence Layer, fully aligned with PRD. All pending tasks decomposed into actionable subtasks."
     }
   }

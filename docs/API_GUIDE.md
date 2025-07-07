@@ -1,8 +1,15 @@
 # CityPulse API Guide
 
-**Version**: 1.0.0  
-**Base URL**: `https://api.citypulse.example.com/v1`  
-**Authentication**: Bearer Token (Firebase Auth)  
+**Version**: 1.0.0
+**Base URL**: `https://api.citypulse.example.com/v1`
+**Authentication**: Bearer Token (Firebase Auth)
+
+## 📚 Related Documentation
+- **[Architecture](./ARCHITECTURE.md)** - System architecture and design
+- **[Database Schema](./DATABASE_SCHEMA.md)** - Database structure and relationships
+- **[Security Operations](./SECURITY_OPERATIONS.md)** - Authentication and security procedures
+- **[Deployment Guide](./DEPLOYMENT.md)** - API deployment and configuration
+- **[Troubleshooting](./TROUBLESHOOTING.md)** - Common API issues and solutions
 
 ---
 

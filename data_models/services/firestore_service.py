@@ -4,14 +4,14 @@ This module provides a high-level service for interacting with Firestore.
 It includes a generic repository for handling CRUD operations and a service class
 that simplifies the interaction with the database.
 """
+
 from datetime import datetime
-from typing import Type, TypeVar, Optional, List
+from typing import List, Optional, Type, TypeVar
 
 from google.cloud import firestore
+from pydantic import BaseModel
 
-from data_models.firestore_models.base_model import BaseModel
-
-T = TypeVar('T', bound=BaseModel)
+T = TypeVar("T", bound=BaseModel)
 
 
 class FirestoreRepository:
@@ -83,7 +83,9 @@ class FirestoreRepository:
         if not model_instance.id:
             raise ValueError("Document ID is required for updates.")
         model_instance.updated_at = datetime.utcnow()
-        doc_ref = self.client.collection(model_instance.collection_name()).document(model_instance.id)
+        doc_ref = self.client.collection(model_instance.collection_name()).document(
+            model_instance.id
+        )
         doc_ref.update(model_instance.to_firestore_dict())
 
     def delete(self, model_class: Type[T], doc_id: str) -> None:
@@ -112,8 +114,10 @@ class FirestoreRepository:
             if isinstance(value, tuple):
                 query = query.where(key, value[0], value[1])
             else:
-                query = query.where(key, '==', value)
-        return [model_class.from_firestore(doc.id, doc.to_dict()) for doc in query.stream()]
+                query = query.where(key, "==", value)
+        return [
+            model_class.from_firestore(doc.id, doc.to_dict()) for doc in query.stream()
+        ]
 
 
 class FirestoreService:
@@ -133,7 +137,9 @@ class FirestoreService:
             credentials_path: The path to the service account credentials file.
         """
         if credentials_path:
-            self.client = firestore.Client.from_service_account_json(credentials_path, project=project_id)
+            self.client = firestore.Client.from_service_account_json(
+                credentials_path, project=project_id
+            )
         else:
             self.client = firestore.Client(project=project_id)
         self.repository = FirestoreRepository(self.client)

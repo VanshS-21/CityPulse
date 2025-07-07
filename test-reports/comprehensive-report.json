@@ -1,9 +1,9 @@
 {
   "test_run": {
-    "start_time": "2025-07-07T10:00:12.859793",
+    "start_time": "2025-07-07T14:08:01.245900",
     "end_time": null,
     "duration": 0,
-    "timestamp": "2025-07-07T10:00:12.955642"
+    "timestamp": "2025-07-07T14:08:01.343976"
   },
   "overall_metrics": {
     "total_tests": 0,
@@ -12,19 +12,19 @@
     "skipped": 0,
     "errors": 0,
     "success_rate": 0,
-    "total_duration": 0.09,
+    "total_duration": 0.1,
     "test_types_run": 1,
     "test_types_passed": 0
   },
   "test_results": {
     "unit": {
       "test_type": "unit",
-      "duration": 0.09184813499450684,
+      "duration": 0.09752893447875977,
       "exit_code": 1,
       "stdout": "",
       "stderr": "C:\\Users\\SUPER\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe: No module named pytest\n",
       "success": false,
-      "timestamp": "2025-07-07T10:00:12.954640",
+      "timestamp": "2025-07-07T14:08:01.343428",
       "total_tests": 0,
       "passed": 0,
       "failed": 0,
