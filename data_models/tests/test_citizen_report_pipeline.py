@@ -1,4 +1,4 @@
-"""Tests for the citizen report pipeline multimedia processing."""
+"""Tests for the citizen report pipeline including multimedia and AI processing."""
 import unittest
 from unittest.mock import MagicMock, patch
 
@@ -9,6 +9,8 @@ from apache_beam.testing.util import assert_that, equal_to, is_empty
 
 from data_models.firestore_models.event import Event
 from data_models.tests.common import BaseBeamTest, MOCK_EVENT_DATA
+from data_models.data_ingestion.ai_processing import ProcessWithAI
+from data_models.data_ingestion.citizen_report_pipeline import CitizenReportPipeline, CitizenReportOptions
 from data_models.transforms.multimedia_processing import ProcessMultimedia
 
 
@@ -93,6 +95,67 @@ class ProcessMultimediaTest(BaseBeamTest):
         assert_that(results.dead_letter,
                     _check_dead_letter,
                     label='CheckDeadLetter')
+
+
+class CitizenReportPipelineTest(BaseBeamTest):
+    """Tests for the integrated CitizenReportPipeline."""
+
+    def get_pipeline_options(self):
+        """Return pipeline options for the test."""
+        return CitizenReportOptions([
+            '--input_topic', 'dummy',
+            '--output_table', 'dummy:dummy.dummy',
+            '--schema_path', 'dummy.json',
+            '--multimedia_bucket', 'test-bucket'
+        ])
+
+    @patch('data_models.data_ingestion.ai_processing.vertexai.GenerativeModel')
+    @patch('data_models.data_ingestion.ai_processing.storage.Client')
+    @patch('data_models.transforms.multimedia_processing.storage.Client')
+    @patch('data_models.transforms.multimedia_processing.requests.Session')
+    def test_integrated_pipeline(self, mock_requests_session, mock_mm_storage_client,
+                               mock_ai_storage_client, mock_generative_model):
+        """Tests the integrated pipeline with both multimedia and AI processing."""
+        # Mock multimedia processing
+        mock_response = MagicMock()
+        mock_response.content = b'fake media content'
+        mock_requests_session.return_value.get.return_value = mock_response
+
+        mock_mm_blob = MagicMock()
+        mock_mm_blob.name = 'citizen_reports/test-id/image.jpg'
+        mock_mm_storage_client.return_value.bucket.return_value.blob.return_value = mock_mm_blob
+
+        # Mock AI processing
+        mock_ai_response = MagicMock()
+        mock_ai_response.text = '{"summary": "AI summary", "category": "TRAFFIC", "image_tags": ["tag1", "tag2"]}'
+        mock_generative_model.return_value.generate_content.return_value = mock_ai_response
+
+        # Create test pipeline
+        pipeline_options = self.get_pipeline_options()
+        pipeline = CitizenReportPipeline(pipeline_options)
+
+        # Create test event
+        event_with_media = MOCK_EVENT_DATA.copy()
+        event_with_media['metadata'] = {
+            'media_url': 'http://example.com/image.jpg'
+        }
+        event = Event(**event_with_media)
+
+        # Test custom processing
+        pcoll = self.pipeline | beam.Create([event])
+        processed, dead_letters = pipeline.add_custom_processing(pcoll)
+
+        # Verify processed events have both multimedia and AI processing applied
+        def check_processed(events):
+            self.assertEqual(len(events), 1)
+            processed_event = events[0]
+            self.assertIn('media_gcs_uri', processed_event.metadata)
+            self.assertEqual(processed_event.ai_summary, 'AI summary')
+            self.assertEqual(processed_event.ai_category, 'TRAFFIC')
+            self.assertEqual(processed_event.ai_image_tags, ['tag1', 'tag2'])
+
+        assert_that(processed, check_processed, label='CheckProcessed')
+        assert_that(dead_letters, is_empty(), label='CheckDeadLetters')
 
 
 if __name__ == '__main__':

@@ -8,6 +8,7 @@ import logging
 from typing import Optional
 
 import requests
+import vertexai
 from google.api_core import exceptions
 from vertexai.generative_models import GenerativeModel, Part
 from vertexai.preview.vision_models import ImageGenerationModel

@@ -1,0 +1,189 @@
+# CityPulse Comprehensive Testing Framework Requirements
+# Python 3.11+ required for Apache Beam compatibility
+
+# Core Testing Framework
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+pytest-timeout>=2.2.0
+pytest-xdist>=3.5.0
+pytest-cov>=4.1.0
+pytest-html>=4.1.0
+pytest-json-report>=1.5.0
+pytest-mock>=3.12.0
+
+# Browser Testing and E2E
+playwright>=1.40.0
+selenium>=4.15.0
+
+# Performance Testing
+psutil>=5.9.0
+locust>=2.17.0
+requests>=2.31.0
+
+# Security Testing
+bandit>=1.7.5
+safety>=2.3.0
+cryptography>=41.0.0
+bcrypt>=4.1.0
+
+# Accessibility Testing
+axe-core-python>=4.8.0
+
+# API Testing
+httpx>=0.25.0
+fastapi[all]>=0.104.0
+starlette>=0.27.0
+
+# Database Testing
+sqlalchemy>=2.0.0
+alembic>=1.12.0
+
+# Mock and Test Data
+factory-boy>=3.3.0
+faker>=20.0.0
+responses>=0.24.0
+
+# Coverage and Reporting
+coverage>=7.3.0
+pytest-cov>=4.1.0
+
+# Code Quality
+flake8>=6.1.0
+black>=23.10.0
+isort>=5.12.0
+mypy>=1.7.0
+
+# Google Cloud Testing (compatible with main requirements)
+google-cloud-bigquery==3.11.4
+google-cloud-firestore==2.11.1
+google-cloud-language==2.9.1
+google-cloud-storage==2.16.0
+google-cloud-pubsub==2.18.4
+google-cloud-dataflow-client>=0.8.0
+
+# Apache Beam Testing (compatible with main requirements)
+apache-beam[gcp]==2.57.0
+
+# Core Google libraries (matching main requirements)
+google-api-core==2.15.0
+google-auth==2.26.1
+googleapis-common-protos==1.56.4
+google-cloud-core==2.3.3
+
+# Data Processing and Analysis
+pandas>=2.1.0
+numpy==1.24.4
+pyarrow==14.0.2
+
+# Utilities
+python-dotenv>=1.0.0
+pyyaml>=6.0.1
+click>=8.1.7
+structlog>=23.2.0
+colorama>=0.4.6
+
+# Development and Debugging
+ipython>=8.17.0
+ipdb>=0.13.13
+rich>=13.7.0
+
+# JSON and Data Validation
+jsonschema>=4.20.0
+pydantic>=2.5.0
+
+# Time and Date Utilities
+python-dateutil==2.8.2
+pytz==2024.1
+
+# Network and HTTP
+urllib3>=2.0.0
+certifi>=2023.11.17
+
+# Async Support
+aiohttp>=3.9.0
+asyncio-mqtt>=0.16.0
+
+# Image Processing (for accessibility testing)
+Pillow>=10.1.0
+
+# XML Processing
+lxml>=4.9.0
+
+# Regular Expressions
+regex>=2023.12.25
+
+# Type Checking
+typing-extensions==4.9.0
+
+# Logging
+loguru>=0.7.0
+
+# Configuration Management
+dynaconf>=3.2.0
+
+# Environment Management
+python-decouple>=3.8
+
+# File Processing
+openpyxl>=3.1.0
+xlsxwriter>=3.1.0
+
+# Monitoring and Metrics
+prometheus-client>=0.19.0
+
+# Serialization
+orjson==3.9.10
+msgpack>=1.0.0
+
+# Compression
+zstandard>=0.22.0
+
+# Memory Profiling
+memory-profiler>=0.61.0
+pympler>=0.9
+
+# Process Management
+supervisor>=4.2.0
+
+# System Information
+distro>=1.8.0
+
+# Concurrency
+concurrent-futures>=3.1.1
+
+# Retry Logic
+tenacity>=8.2.0
+
+# Rate Limiting
+ratelimit>=2.2.0
+
+# Caching
+cachetools>=5.3.0
+
+# String Processing
+fuzzywuzzy>=0.18.0
+python-levenshtein>=0.23.0
+
+# Email Testing
+email-validator>=2.1.0
+
+# Phone Number Validation
+phonenumbers>=8.13.0
+
+# URL Processing
+validators>=0.22.0
+
+# Timezone Handling
+zoneinfo>=0.2.1; python_version >= "3.9"
+
+# Development Tools
+pre-commit>=3.6.0
+tox>=4.11.0
+
+# Documentation
+sphinx>=7.2.0
+sphinx-rtd-theme>=1.3.0
+
+# API Documentation
+redoc>=2.1.0
+swagger-ui-bundle>=0.1.0

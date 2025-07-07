@@ -54,5 +54,34 @@ logs/
 
 # Data files (unless needed)
 *.csv
-*.json
 *.parquet
+
+# Security sensitive files
+keys/
+*.key
+*.pem
+*.p12
+*.pfx
+.env*
+
+# Test and development files
+test_scripts/
+e2e_test_suite/
+reports/
+infra/
+*.tfstate*
+.terraform/
+
+# Build artifacts
+*.tar.gz
+*.zip
+node_modules/
+
+# Workflow files
+.windsurf/
+
+# Keep only essential JSON files, exclude others
+*.json
+!requirements.txt
+!package.json
+!data_models/schemas/*.json

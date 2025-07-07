@@ -3,11 +3,10 @@
 import datetime
 import json
 import logging
-import os
 
 import apache_beam as beam
 from apache_beam import window
-from apache_beam.options.pipeline_options import PipelineOptions, GoogleCloudOptions, SetupOptions
+from apache_beam.options.pipeline_options import PipelineOptions, GoogleCloudOptions
 from apache_beam.pvalue import TaggedOutput
 from google.api_core import exceptions
 from pydantic import ValidationError
@@ -15,6 +14,17 @@ from pydantic import ValidationError
 from data_models.core import config
 from data_models.firestore_models.event import Event
 from data_models.services.firestore_service import FirestoreService
+
+
+def format_for_bigquery(event):
+    """Formats an Event object for BigQuery insertion."""
+    data = event.to_firestore_dict()
+
+    # Convert metadata to JSON string for BigQuery JSON field
+    if 'metadata' in data and data['metadata'] is not None:
+        data['metadata'] = json.dumps(data['metadata'])
+
+    return data
 
 
 class BasePipelineOptions(PipelineOptions):
@@ -39,7 +49,7 @@ class BasePipelineOptions(PipelineOptions):
 class ParseEvent(beam.DoFn):
     """Parses a JSON string into a Pydantic Event object."""
 
-    def process(self, element, *args, **kwargs):
+    def process(self, element):
         """
         Processes a single element, parsing it from JSON to an Event object.
 
@@ -74,7 +84,7 @@ class WriteToFirestore(beam.DoFn):
         """Initializes the FirestoreService client in the worker."""
         self.firestore_service = FirestoreService(project_id=self.project_id)
 
-    def process(self, element: Event, *args, **kwargs):
+    def process(self, element: Event):
         """
         Processes a single element by writing it to Firestore.
 
@@ -151,6 +161,8 @@ class BasePipeline:
             WriteToFirestore(project_id=self.google_cloud_options.project)
         ).with_outputs('dead_letter', main='firestore_events')
 
+
+
     def _write_to_bigquery(self, pcollection):
         """Writes the final processed events to BigQuery."""
         with open(self.custom_options.schema_path, encoding="utf-8") as f:
@@ -160,7 +172,8 @@ class BasePipeline:
             self.custom_options.output_table,
             schema={'fields': schema['fields']},
             write_disposition=beam.io.BigQueryDisposition.WRITE_APPEND,
-            create_disposition=beam.io.BigQueryDisposition.CREATE_NEVER
+            create_disposition=beam.io.BigQueryDisposition.CREATE_IF_NEEDED,
+            method=beam.io.WriteToBigQuery.Method.STREAMING_INSERTS  # Fix for streaming data
         )
 
     def _handle_dead_letters(self, dead_letter_pcollections):
@@ -180,7 +193,7 @@ class BasePipeline:
 
             if isinstance(element, dict):
                 return {
-                    'timestamp': datetime.datetime.utcnow().isoformat(),
+                    'timestamp': datetime.datetime.now(datetime.timezone.utc).isoformat(),
                     'pipeline_step': element.get('pipeline_step', 'unknown'),
                     'raw_data': str(element.get('raw_data')),
                     'error_message': str(element.get('error_message', 'unknown'))
@@ -194,7 +207,7 @@ class BasePipeline:
                 pass
 
             return {
-                'timestamp': datetime.datetime.utcnow().isoformat(),
+                'timestamp': datetime.datetime.now(datetime.timezone.utc).isoformat(),
                 'pipeline_step': 'unknown',
                 'raw_data': raw_data,
                 'error_message': 'unknown'
@@ -211,7 +224,8 @@ class BasePipeline:
             self.custom_options.dead_letter_table,
             schema={'fields': schema['fields']},
             write_disposition=beam.io.BigQueryDisposition.WRITE_APPEND,
-            create_disposition=beam.io.BigQueryDisposition.CREATE_IF_NEEDED
+            create_disposition=beam.io.BigQueryDisposition.CREATE_IF_NEEDED,
+            method=beam.io.WriteToBigQuery.Method.STREAMING_INSERTS  # Fix for streaming data
         )
 
     def build_pipeline(self, pipeline):
@@ -226,7 +240,7 @@ class BasePipeline:
         firestore_results = self._write_to_firestore(processed_data)
 
         bq_events = firestore_results.firestore_events | 'ToDict' >> beam.Map(
-            lambda x: x.to_firestore_dict()
+            format_for_bigquery
         )
 
         # For streaming pipelines, apply a window to batch writes to BigQuery.

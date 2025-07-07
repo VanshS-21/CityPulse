@@ -22,31 +22,31 @@ resource "google_project_service" "services" {
   disable_on_destroy = false
 }
 
-# Create Pub/Sub topics
-# resource "google_pubsub_topic" "topics" {
-#   for_each = toset([
-#     "twitter",
-#     "citizen_reports",
-#     "iot_sensors",
-#     "official_feeds"
-#   ])
+# Create Pub/Sub topics for production
+resource "google_pubsub_topic" "topics" {
+  for_each = toset([
+    "twitter",
+    "citizen_reports",
+    "iot_sensors",
+    "official_feeds"
+  ])
+
+  name    = "citypulse-${each.key}-ingestion"
+  project = data.google_project.project.project_id
+
+  depends_on = [google_project_service.services["pubsub.googleapis.com"]]
+}
 #
-#   name    = "citypulse-${each.key}-ingestion"
-#   project = data.google_project.project.project_id
-#
-#   depends_on = [google_project_service.services["pubsub.googleapis.com"]]
-# }
-#
-# # Create BigQuery dataset
-# resource "google_bigquery_dataset" "analytics" {
-#   dataset_id    = "citypulse_analytics"
-#   friendly_name = "CityPulse Analytics Dataset"
-#   description   = "Dataset containing all analytics data for CityPulse"
-#   location      = var.region
-#   project       = data.google_project.project.project_id
-#
-#   depends_on = [google_project_service.services["bigquery.googleapis.com"]]
-# }
+# # Create BigQuery dataset for production
+resource "google_bigquery_dataset" "analytics" {
+  dataset_id    = "citypulse_analytics"
+  friendly_name = "CityPulse Analytics Dataset"
+  description   = "Dataset containing all analytics data for CityPulse"
+  location      = var.region
+  project       = data.google_project.project.project_id
+
+  depends_on = [google_project_service.services["bigquery.googleapis.com"]]
+}
 
 # Create Cloud Storage bucket for Terraform state
 resource "google_storage_bucket" "tf_state" {
@@ -99,12 +99,12 @@ resource "google_storage_bucket" "tf_state" {
 #   depends_on = [google_project_service.services["aiplatform.googleapis.com"]]
 # }
 #
-# # Create service account for applications
-# resource "google_service_account" "citypulse_sa" {
-#   account_id   = "citypulse-sa"
-#   display_name = "CityPulse Service Account"
-#   project      = data.google_project.project.project_id
-# }
+# # Create service account for production applications
+resource "google_service_account" "citypulse_sa" {
+  account_id   = "citypulse-sa"
+  display_name = "CityPulse Service Account"
+  project      = data.google_project.project.project_id
+}
 
 # Assign IAM roles to the service account
 # resource "google_project_iam_custom_role" "data_ingestion_role" {

@@ -1,0 +1,528 @@
+name: CityPulse Comprehensive Testing
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # Run comprehensive tests daily at 2 AM UTC
+    - cron: '0 2 * * *'
+
+env:
+  PYTHON_VERSION: '3.11'
+  NODE_VERSION: '18'
+
+jobs:
+  # Unit Tests - Fast feedback
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Cache Python dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -r requirements-test.txt
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      - name: Install Node.js dependencies
+        run: npm ci
+      
+      - name: Run Python unit tests
+        run: |
+          python tests/test_runner.py --types unit
+      
+      - name: Run JavaScript unit tests
+        run: |
+          npm test -- --coverage --watchAll=false
+      
+      - name: Upload unit test results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: unit-test-results
+          path: |
+            test-reports/unit-*
+            coverage/
+      
+      - name: Comment PR with unit test results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            try {
+              const results = JSON.parse(fs.readFileSync('test-reports/comprehensive-report.json', 'utf8'));
+              const unitResults = results.test_results.unit || {};
+              
+              const comment = `## 🧪 Unit Test Results
+              
+              - **Status**: ${unitResults.success ? '✅ PASSED' : '❌ FAILED'}
+              - **Tests**: ${unitResults.total_tests || 0} total, ${unitResults.passed || 0} passed, ${unitResults.failed || 0} failed
+              - **Duration**: ${(unitResults.duration || 0).toFixed(1)}s
+              - **Coverage**: ${results.overall_metrics?.coverage_percentage || 0}%
+              
+              ${unitResults.success ? '' : '⚠️ Please fix failing unit tests before merging.'}`;
+              
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: comment
+              });
+            } catch (error) {
+              console.log('Could not post unit test results:', error.message);
+            }
+
+  # Integration Tests
+  integration-tests:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: unit-tests
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: citypulse_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -r requirements-test.txt
+      
+      - name: Set up test environment
+        run: |
+          # Set up test database
+          export DATABASE_URL=postgresql://postgres:postgres@localhost:5432/citypulse_test
+          
+          # Set up test environment variables
+          export ENVIRONMENT=test
+          export FIRESTORE_PROJECT_ID=citypulse-test
+          export BIGQUERY_PROJECT_ID=citypulse-test
+      
+      - name: Run integration tests
+        run: |
+          python tests/test_runner.py --types integration
+      
+      - name: Upload integration test results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: integration-test-results
+          path: test-reports/integration-*
+
+  # End-to-End Tests
+  e2e-tests:
+    name: End-to-End Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    needs: integration-tests
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -r requirements-test.txt
+          npm ci
+      
+      - name: Install Playwright browsers
+        run: |
+          playwright install --with-deps chromium
+      
+      - name: Start application services
+        run: |
+          # Start backend services
+          python -m uvicorn main:app --host 0.0.0.0 --port 8000 &
+          
+          # Start frontend
+          npm run build
+          npm run start &
+          
+          # Wait for services to be ready
+          sleep 30
+      
+      - name: Run E2E tests
+        run: |
+          python tests/test_runner.py --types e2e
+      
+      - name: Upload E2E test results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: e2e-test-results
+          path: |
+            test-reports/e2e-*
+            test-results/
+      
+      - name: Upload E2E screenshots
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: e2e-screenshots
+          path: test-results/
+
+  # Performance Tests (only on main branch and scheduled runs)
+  performance-tests:
+    name: Performance Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    if: github.ref == 'refs/heads/main' || github.event_name == 'schedule'
+    needs: e2e-tests
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -r requirements-test.txt
+      
+      - name: Start application for performance testing
+        run: |
+          python -m uvicorn main:app --host 0.0.0.0 --port 8000 &
+          sleep 10
+      
+      - name: Run performance tests
+        run: |
+          python tests/test_runner.py --types performance
+      
+      - name: Upload performance test results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: performance-test-results
+          path: test-reports/performance-*
+
+  # Security Tests
+  security-tests:
+    name: Security Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: unit-tests
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -r requirements-test.txt
+      
+      - name: Run security tests
+        run: |
+          python tests/test_runner.py --types security
+      
+      - name: Run additional security scans
+        run: |
+          # Run bandit for Python security issues
+          bandit -r . -f json -o test-reports/bandit-report.json || true
+          
+          # Run safety for dependency vulnerabilities
+          safety check --json --output test-reports/safety-report.json || true
+      
+      - name: Upload security test results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: security-test-results
+          path: test-reports/security-*
+
+  # Accessibility Tests
+  accessibility-tests:
+    name: Accessibility Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: unit-tests
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -r requirements-test.txt
+          npm ci
+      
+      - name: Install Playwright browsers
+        run: |
+          playwright install --with-deps chromium
+      
+      - name: Start application
+        run: |
+          npm run build
+          npm run start &
+          sleep 20
+      
+      - name: Run accessibility tests
+        run: |
+          python tests/test_runner.py --types accessibility
+      
+      - name: Upload accessibility test results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: accessibility-test-results
+          path: test-reports/accessibility-*
+
+  # Generate comprehensive report
+  generate-report:
+    name: Generate Test Report
+    runs-on: ubuntu-latest
+    needs: [unit-tests, integration-tests, e2e-tests, security-tests, accessibility-tests]
+    if: always()
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-test.txt
+      
+      - name: Download all test results
+        uses: actions/download-artifact@v3
+        with:
+          path: test-artifacts
+      
+      - name: Combine test results
+        run: |
+          python -c "
+          import json
+          import os
+          from pathlib import Path
+          
+          combined_results = {
+              'test_run': {
+                  'timestamp': '$(date -u +%Y-%m-%dT%H:%M:%SZ)',
+                  'branch': '${{ github.ref_name }}',
+                  'commit': '${{ github.sha }}',
+                  'workflow_run_id': '${{ github.run_id }}'
+              },
+              'test_results': {},
+              'overall_metrics': {}
+          }
+          
+          # Combine results from all test types
+          for artifact_dir in Path('test-artifacts').iterdir():
+              if artifact_dir.is_dir():
+                  for result_file in artifact_dir.glob('*-report.json'):
+                      try:
+                          with open(result_file) as f:
+                              data = json.load(f)
+                              test_type = result_file.stem.split('-')[0]
+                              combined_results['test_results'][test_type] = data
+                      except Exception as e:
+                          print(f'Error processing {result_file}: {e}')
+          
+          # Save combined results
+          os.makedirs('test-reports', exist_ok=True)
+          with open('test-reports/combined-results.json', 'w') as f:
+              json.dump(combined_results, f, indent=2)
+          "
+      
+      - name: Generate comprehensive report
+        run: |
+          python tests/report_generator.py --results test-reports/combined-results.json --output test-reports --format html
+          python tests/report_generator.py --results test-reports/combined-results.json --output test-reports --format executive
+      
+      - name: Upload comprehensive report
+        uses: actions/upload-artifact@v3
+        with:
+          name: comprehensive-test-report
+          path: test-reports/
+      
+      - name: Deploy report to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: test-reports
+          destination_dir: test-reports/${{ github.run_number }}
+      
+      - name: Comment PR with comprehensive results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            try {
+              const results = JSON.parse(fs.readFileSync('test-reports/combined-results.json', 'utf8'));
+              const overall = results.overall_metrics || {};
+              
+              const comment = `## 📊 Comprehensive Test Results
+              
+              ### Overall Status
+              - **Total Tests**: ${overall.total_tests || 0}
+              - **Success Rate**: ${(overall.success_rate || 0).toFixed(1)}%
+              - **Coverage**: ${(overall.coverage_percentage || 0).toFixed(1)}%
+              - **Duration**: ${(overall.total_duration || 0).toFixed(1)}s
+              
+              ### Test Type Results
+              ${Object.entries(results.test_results || {}).map(([type, data]) => 
+                `- **${type.charAt(0).toUpperCase() + type.slice(1)}**: ${data.success ? '✅' : '❌'} (${data.total_tests || 0} tests, ${(data.duration || 0).toFixed(1)}s)`
+              ).join('\n')}
+              
+              📋 [View Detailed Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+              `;
+              
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: comment
+              });
+            } catch (error) {
+              console.log('Could not post comprehensive results:', error.message);
+            }
+
+  # Quality Gate
+  quality-gate:
+    name: Quality Gate
+    runs-on: ubuntu-latest
+    needs: [unit-tests, integration-tests, e2e-tests, security-tests, accessibility-tests]
+    if: always()
+    
+    steps:
+      - name: Check quality requirements
+        run: |
+          echo "Checking quality gate requirements..."
+          
+          # This would check against actual test results
+          # For now, we'll simulate the check
+          
+          UNIT_SUCCESS="${{ needs.unit-tests.result }}"
+          INTEGRATION_SUCCESS="${{ needs.integration-tests.result }}"
+          E2E_SUCCESS="${{ needs.e2e-tests.result }}"
+          SECURITY_SUCCESS="${{ needs.security-tests.result }}"
+          ACCESSIBILITY_SUCCESS="${{ needs.accessibility-tests.result }}"
+          
+          echo "Unit Tests: $UNIT_SUCCESS"
+          echo "Integration Tests: $INTEGRATION_SUCCESS"
+          echo "E2E Tests: $E2E_SUCCESS"
+          echo "Security Tests: $SECURITY_SUCCESS"
+          echo "Accessibility Tests: $ACCESSIBILITY_SUCCESS"
+          
+          # Fail if critical tests failed
+          if [[ "$UNIT_SUCCESS" != "success" ]]; then
+            echo "❌ Quality gate failed: Unit tests must pass"
+            exit 1
+          fi
+          
+          if [[ "$SECURITY_SUCCESS" != "success" ]]; then
+            echo "❌ Quality gate failed: Security tests must pass"
+            exit 1
+          fi
+          
+          echo "✅ Quality gate passed"
+      
+      - name: Update commit status
+        if: always()
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const state = '${{ job.status }}' === 'success' ? 'success' : 'failure';
+            const description = state === 'success' ? 
+              'All quality checks passed' : 
+              'Quality checks failed - see test results';
+            
+            github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: context.sha,
+              state: state,
+              target_url: `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              description: description,
+              context: 'CityPulse Quality Gate'
+            });

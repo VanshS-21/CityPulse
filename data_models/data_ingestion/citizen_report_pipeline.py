@@ -6,6 +6,7 @@ import apache_beam as beam
 
 from data_models.core import config
 from data_models.data_ingestion.base_pipeline import BasePipeline, BasePipelineOptions
+from data_models.data_ingestion.ai_processing import ProcessWithAI
 from data_models.transforms.multimedia_processing import ProcessMultimedia
 from data_models.utils.pipeline_args import add_common_pipeline_args
 
@@ -59,11 +60,21 @@ class CitizenReportPipeline(BasePipeline):
             A tuple containing the main PCollection of processed events and a
             PCollection for any dead-letter records from this step.
         """
-        results = pcollection | 'Process Multimedia' >> beam.ParDo(
+        multimedia_results = pcollection | 'Process Multimedia' >> beam.ParDo(
             ProcessMultimedia(self.custom_options.multimedia_bucket)
         ).with_outputs('dead_letter', main='main')
 
-        return results.main, results.dead_letter
+        ai_results = multimedia_results.main | 'Process with AI' >> beam.ParDo(
+            ProcessWithAI()
+        ).with_outputs('dead_letter', main='main')
+
+        # Merge dead-letter PCollections
+        dead_letters = (
+            (multimedia_results.dead_letter, ai_results.dead_letter)
+            | 'Flatten Dead Letters' >> beam.Flatten()
+        )
+
+        return ai_results.main, dead_letters
 
 
 if __name__ == '__main__':

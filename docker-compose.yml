@@ -5,9 +5,7 @@ services:
     container_name: beam-pipeline
     volumes:
       - ./src:/app/src
-      - ./config:/app/config
       - ./data_models:/app/data_models
-      - ./data:/app/data
       - ~/.config/gcloud:/home/appuser/.config/gcloud:ro
     environment:
       - GOOGLE_APPLICATION_CREDENTIALS=/home/appuser/.config/gcloud/application_default_credentials.json
@@ -21,10 +19,8 @@ services:
     container_name: beam-dev
     volumes:
       - ./src:/app/src
-      - ./config:/app/config
       - ./data_models:/app/data_models
       - ./tests:/app/tests
-      - ./data:/app/data
       - ~/.config/gcloud:/home/appuser/.config/gcloud:ro
     environment:
       - GOOGLE_APPLICATION_CREDENTIALS=/home/appuser/.config/gcloud/application_default_credentials.json

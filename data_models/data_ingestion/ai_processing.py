@@ -6,6 +6,7 @@ import json
 import logging
 import mimetypes
 import asyncio
+import aiohttp
 
 import apache_beam as beam
 import requests
@@ -27,6 +28,7 @@ class ProcessWithAI(beam.DoFn):
         self.image_gen_model = None
         self.storage_client = None
         self.bucket = None
+        self.session = None
 
     def setup(self):
         """Initializes clients in the worker."""
@@ -36,6 +38,17 @@ class ProcessWithAI(beam.DoFn):
         self.storage_client = storage.Client()
         self.bucket = self.storage_client.bucket(config.GCS_GENERATED_IMAGES_BUCKET)
 
+    async def start_session(self):
+        """Initialize the aiohttp session for async requests."""
+        if self.session is None or self.session.closed:
+            self.session = aiohttp.ClientSession()
+        return self.session
+
+    async def close_session(self):
+        """Close the aiohttp session."""
+        if self.session and not self.session.closed:
+            await self.session.close()
+
     async def _get_prompt_parts(self, text_to_process, image_url):
         """Builds the prompt for the generative AI model."""
         prompt_parts = []
@@ -44,6 +57,7 @@ class ProcessWithAI(beam.DoFn):
 
         if image_url:
             try:
+                session = await self.start_session()
                 mime_type, _ = mimetypes.guess_type(image_url)
                 if not mime_type or not mime_type.startswith('image'):
                     logging.warning(
@@ -54,7 +68,7 @@ class ProcessWithAI(beam.DoFn):
                 headers = {
                     'User-Agent': 'CityPulseBot/1.0 (https://github.com/VanshS-21/CityPulse; citypulse-admin@example.com)'
                 }
-                response = await self.session.get(image_url, headers=headers, timeout=60)
+                response = await session.get(image_url, headers=headers, timeout=60)
                 response.raise_for_status()
                 prompt_parts.append(Part.from_data(await response.read(), mime_type=mime_type))
             except Exception as e:
@@ -64,10 +78,19 @@ class ProcessWithAI(beam.DoFn):
     def _parse_ai_response(self, response):
         """Parses the JSON response from the AI model."""
         try:
-            return json.loads(response.text.strip("```json\n").strip("```"))
-        except (json.JSONDecodeError, AttributeError) as e:
+            # First try to extract JSON from markdown code block
+            if "```json" in response.text:
+                json_text = response.text.split("```json")[1].split("```")[0].strip()
+                return json.loads(json_text)
+            # If that fails, try to parse the entire response as JSON
+            return json.loads(response.text)
+        except (json.JSONDecodeError, AttributeError, IndexError) as e:
             logging.error("Error parsing AI response: %s. Response: %s", e, response.text)
-            return None
+            return {
+                "summary": "Unable to generate summary.",
+                "category": "Other",
+                "image_tags": []
+            }
 
     async def _generate_and_upload_icon(self, category, event_id):
         """Generates an icon and uploads it to GCS."""
@@ -79,7 +102,7 @@ class ProcessWithAI(beam.DoFn):
                 aspect_ratio="1:1")
             if images and (image_bytes := images[0]._image_bytes):  # pylint: disable=protected-access
                 blob = self.bucket.blob(f"icons/{event_id}_icon.png")
-                await blob.upload_from_string_async(image_bytes, content_type='image/png')
+                blob.upload_from_string(image_bytes, content_type='image/png')
                 blob.make_public()
                 return blob.public_url
         except (exceptions.GoogleAPICallError, ValueError) as e:
@@ -115,7 +138,7 @@ class ProcessWithAI(beam.DoFn):
                 element['ai_image_tags'] = ai_insights.get('image_tags', [])
 
                 icon_url = await self._handle_icon_generation(
-                    ai_insights.get('category'), element['event_id']
+                    ai_insights.get('category'), element.get('event_id', element.get('id', 'unknown'))
                 )
                 if icon_url:
                     element['ai_generated_image_url'] = icon_url
@@ -124,8 +147,10 @@ class ProcessWithAI(beam.DoFn):
 
         except (AttributeError, json.JSONDecodeError, requests.exceptions.RequestException,
                 ValueError, exceptions.GoogleAPICallError) as e:
-            logging.error("Error processing element %s with AI: %s", element.get('event_id'), e)
+            logging.error("Error processing element %s with AI: %s", element.get('event_id', element.get('id', 'unknown')), e)
             return beam.pvalue.TaggedOutput('dead_letter', str(element))
+        finally:
+            await self.close_session()
 
     def process(self, element):
         """Processes a single element by applying AI-driven analysis."""
@@ -135,3 +160,4 @@ class ProcessWithAI(beam.DoFn):
             yield result
         except Exception as e:
             logging.error("Failed to process element with AI: %s", e)
+            yield beam.pvalue.TaggedOutput('dead_letter', str(element))
