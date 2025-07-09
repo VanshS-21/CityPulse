@@ -1,23 +1,48 @@
-"use client";
+'use client'
 
-import * as Sentry from "@sentry/nextjs";
-import NextError from "next/error";
-import { useEffect } from "react";
-
-export default function GlobalError({ error }: { error: Error & { digest?: string } }) {
-  useEffect(() => {
-    Sentry.captureException(error);
-  }, [error]);
-
+export default function GlobalError({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string }
+  reset: () => void
+}) {
   return (
     <html>
       <body>
-        {/* `NextError` is the default Next.js error page component. Its type
-        definition requires a `statusCode` prop. However, since the App Router
-        does not expose status codes for errors, we simply pass 0 to render a
-        generic error message. */}
-        <NextError statusCode={0} />
+        <div className="min-h-screen bg-gradient-to-br from-red-50 to-pink-100 flex items-center justify-center px-4">
+          <div className="max-w-md w-full text-center">
+            <div className="mb-8">
+              <div className="text-6xl mb-4">💥</div>
+              <h1 className="text-2xl font-semibold text-gray-900 mb-2">Global Error</h1>
+              <p className="text-gray-600 mb-4">
+                Something went wrong at the application level.
+              </p>
+              {error.digest && (
+                <p className="text-sm text-gray-500 mb-4">
+                  Error ID: {error.digest}
+                </p>
+              )}
+            </div>
+            
+            <div className="space-y-4">
+              <button
+                onClick={reset}
+                className="inline-block bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors mr-4"
+              >
+                Try Again
+              </button>
+              
+              <button
+                onClick={() => window.location.href = '/'}
+                className="inline-block bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-700 transition-colors"
+              >
+                Go Home
+              </button>
+            </div>
+          </div>
+        </div>
       </body>
     </html>
-  );
+  )
 }

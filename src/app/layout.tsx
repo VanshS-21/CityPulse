@@ -1,14 +1,17 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-
-const inter = Inter({ subsets: ["latin"] });
+import { AsyncErrorBoundary } from "@/components/common/ErrorBoundary";
 
 export const metadata: Metadata = {
-  title: "CityPulse",
-  description: "Community-driven urban issue tracking and resolution.",
+  title: "CityPulse - Urban Issue Tracking Platform",
+  description: "Community-driven urban issue reporting and resolution platform with AI-powered insights",
+  keywords: "urban planning, issue tracking, community reporting, smart city, AI analytics",
+  authors: [{ name: "CityPulse Team" }],
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -18,12 +21,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`} suppressHydrationWarning={true}>
-        <div className="flex flex-col min-h-screen">
-          <Header />
-          <main className="flex-grow container mx-auto p-4">{children}</main>
-          <Footer />
-        </div>
+      <body className="antialiased">
+        <AsyncErrorBoundary
+          onError={(error, errorInfo) => {
+            // Log error for monitoring
+            console.error("Root layout error:", error, errorInfo);
+          }}
+        >
+          {children}
+        </AsyncErrorBoundary>
       </body>
     </html>
   );

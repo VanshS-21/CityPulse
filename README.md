@@ -72,12 +72,14 @@ All cloud resources are managed by Terraform. See the **[Infrastructure Setup Gu
 ### 2. Setup Backend
 The backend data pipelines require a specific Python environment. See the **[Data Models & Backend Guide](./data_models/README.md)**.
 
-### 3. Run Frontend
+### 3. Run Frontend (Basic Setup)
 ```bash
 npm install
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) to view the app.
+Open [http://localhost:3000](http://localhost:3000) to view the basic Next.js setup.
+
+**Note**: Frontend has been simplified to basic Next.js setup. Complex UI components, Material-UI, Firebase integration, and advanced features have been removed. This provides a clean foundation for future frontend development.
 
 ## 🧪 Testing & Quality Assurance
 

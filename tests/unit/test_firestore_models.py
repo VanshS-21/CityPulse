@@ -7,12 +7,17 @@ import pytest
 from datetime import datetime, timedelta
 from unittest.mock import Mock, patch
 from typing import Dict, Any
+import sys
+import os
+
+# Add server directory to path
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..', 'server'))
 
 from data_models import (
     Event, UserProfile, Feedback,
     FeedbackStatus, FeedbackType,
     EventCategory, EventSeverity, EventSource, EventStatus,
-    UserRole
+    UserRole, Location
 )
 from shared_models import BaseModel, NotificationPreference
 

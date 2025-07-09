@@ -127,6 +127,21 @@ E2E/venv/
 
 # Sensitive credentials
 /keys/
+/infra/keys/
+*.json
+!package*.json
+!tsconfig*.json
+!jest.config.js
+!next.config.ts
+
+# Environment files with secrets
+.env.local
+.env.production
+.env.staging
+
+# Service account keys
+*service-account*.json
+*credentials*.json
 
 # Test coverage reports
 .coverage

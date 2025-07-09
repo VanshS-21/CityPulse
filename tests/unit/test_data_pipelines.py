@@ -11,6 +11,11 @@ from apache_beam.testing.util import assert_that, equal_to
 from unittest.mock import Mock, patch, MagicMock
 from datetime import datetime, timedelta
 from typing import Dict, Any, List
+import sys
+import os
+
+# Add server directory to path
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..', 'server'))
 
 from data_models.data_ingestion.enhanced_error_handling import (
     EnhancedDeadLetterHandler,

@@ -8,9 +8,14 @@ from unittest.mock import Mock, patch, MagicMock, call
 from datetime import datetime, timedelta
 from typing import Dict, Any, List, Optional
 import json
+import sys
+import os
+
+# Add server directory to path
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..', 'server'))
 
 from data_models.services.firestore_service import FirestoreService
-from data_models.firestore_models import Event, UserProfile, Feedback, EventCategory, EventSeverity, EventStatus
+from data_models import Event, UserProfile, Feedback, EventCategory, EventSeverity, EventStatus
 
 
 class TestFirestoreService:
