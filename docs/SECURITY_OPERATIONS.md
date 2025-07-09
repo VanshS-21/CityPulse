@@ -1,7 +1,7 @@
 # CityPulse Security Operations Guide
 
 **Version**: 1.0.0
-**Last Updated**: January 2025
+**Last Updated**: July 9, 2025
 **Classification**: Internal Use Only
 **Target Audience**: Security Engineers, DevOps, System Administrators
 

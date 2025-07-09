@@ -1,7 +1,7 @@
 # CityPulse Performance Optimization Guide
 
 **Version**: 1.0.0  
-**Last Updated**: January 2025  
+**Last Updated**: July 9, 2025
 **Target Audience**: DevOps Engineers, System Administrators, Developers  
 
 ---

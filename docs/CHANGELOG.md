@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.1.0] - 2025-07-05
+## [1.0.0] - July 9, 2025
 
 ### Added
 - Created `CODE_OF_CONDUCT.md` to establish community standards.

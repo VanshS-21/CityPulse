@@ -1,6 +1,6 @@
 # CityPulse FAQ & Knowledge Base
 
-**Last Updated**: January 2025  
+**Last Updated**: July 9, 2025
 **Version**: 1.0.0  
 
 ---

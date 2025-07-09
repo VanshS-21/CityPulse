@@ -50,7 +50,7 @@ This document provides a comprehensive reference to the documentation for all te
 
 ## Backend Technologies (Python)
 
-### Apache Beam (v2.66.0)
+### Apache Beam (v2.57.0)
 - **Description**: A unified model for defining both batch and streaming data-parallel processing pipelines.
 - **Python SDK Docs**: [https://beam.apache.org/documentation/sdks/python/](https://beam.apache.org/documentation/sdks/python/)
 - **Programming Guide**: [https://beam.apache.org/documentation/programming-guide/](https://beam.apache.org/documentation/programming-guide/)

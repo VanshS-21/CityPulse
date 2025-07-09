@@ -1,27 +1,46 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { optionalAuth, requireAuth, requireModerator, getCorsHeaders } from '@/middleware/auth'
 
 /**
  * Analytics API Route Handler
- * Proxies requests to the backend analytics service
+ * Handles analytics with role-based access control
  */
 
 const BACKEND_BASE_URL = process.env.BACKEND_API_URL || 'http://localhost:8000'
 
 /**
- * GET /api/v1/analytics - Fetch analytics data
+ * GET /api/v1/analytics - Fetch analytics data (role-based access)
  */
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
     const endpoint = searchParams.get('endpoint') || 'kpis'
-    
-    // Validate endpoint to prevent path traversal
-    const allowedEndpoints = ['kpis', 'trends', 'public/summary', 'events/by-category', 'events/by-location', 'performance']
-    if (!allowedEndpoints.includes(endpoint)) {
+
+    // Define public and protected endpoints
+    const publicEndpoints = ['public/summary', 'events/by-category']
+    const protectedEndpoints = ['kpis', 'trends', 'events/by-location', 'performance', 'detailed']
+
+    // Check if endpoint is valid
+    if (!publicEndpoints.includes(endpoint) && !protectedEndpoints.includes(endpoint)) {
       return NextResponse.json(
         { error: 'Invalid analytics endpoint', success: false },
         { status: 400 }
       )
+    }
+
+    // Handle authentication based on endpoint type
+    let user = null
+    if (protectedEndpoints.includes(endpoint)) {
+      // Require moderator role for protected analytics
+      const authResult = await requireModerator(request)
+      if (authResult instanceof NextResponse) {
+        return authResult
+      }
+      user = authResult.user
+    } else {
+      // Optional auth for public endpoints
+      const authResult = await optionalAuth(request)
+      user = authResult.user
     }
 
     // Build query parameters
@@ -35,14 +54,21 @@ export async function GET(request: NextRequest) {
     const queryString = queryParams.toString()
     const url = `${BACKEND_BASE_URL}/v1/analytics/${endpoint}${queryString ? `?${queryString}` : ''}`
 
+    // Prepare headers
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+    }
+
+    if (user) {
+      headers['X-User-ID'] = user.uid
+      headers['X-User-Role'] = user.role
+      headers['X-User-Email'] = user.email || ''
+    }
+
     // Forward request to backend
     const response = await fetch(url, {
       method: 'GET',
-      headers: {
-        'Authorization': request.headers.get('Authorization') || '',
-        'Content-Type': 'application/json',
-        'X-API-Key': request.headers.get('X-API-Key') || '',
-      },
+      headers,
     })
 
     if (!response.ok) {
@@ -60,7 +86,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       success: true,
       data: data
-    })
+    }, { headers: getCorsHeaders() })
 
   } catch (error) {
     console.error('Analytics API error:', error)
@@ -72,10 +98,17 @@ export async function GET(request: NextRequest) {
 }
 
 /**
- * POST /api/v1/analytics - Submit analytics event
+ * POST /api/v1/analytics - Submit analytics event (requires authentication)
  */
 export async function POST(request: NextRequest) {
   try {
+    // Require authentication for submitting analytics events
+    const authResult = await requireAuth(request)
+    if (authResult instanceof NextResponse) {
+      return authResult
+    }
+
+    const { user } = authResult
     const body = await request.json()
 
     // Validate required fields
@@ -86,23 +119,27 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Add metadata
+    // Add metadata with user context
     const analyticsData = {
       ...body,
       timestamp: new Date().toISOString(),
       source: 'web_frontend',
       user_agent: request.headers.get('User-Agent') || '',
-      ip_address: request.headers.get('X-Forwarded-For') || 
-                  request.headers.get('X-Real-IP') || 
+      ip_address: request.headers.get('X-Forwarded-For') ||
+                  request.headers.get('X-Real-IP') ||
                   'unknown',
+      user_id: user.uid,
+      user_role: user.role,
     }
 
     // Forward to backend analytics service
     const response = await fetch(`${BACKEND_BASE_URL}/v1/analytics/events`, {
       method: 'POST',
       headers: {
-        'Authorization': request.headers.get('Authorization') || '',
         'Content-Type': 'application/json',
+        'X-User-ID': user.uid,
+        'X-User-Role': user.role,
+        'X-User-Email': user.email || '',
       },
       body: JSON.stringify(analyticsData),
     })
@@ -122,7 +159,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       data: data
-    })
+    }, { headers: getCorsHeaders() })
 
   } catch (error) {
     console.error('Analytics submission error:', error)
@@ -139,10 +176,6 @@ export async function POST(request: NextRequest) {
 export async function OPTIONS() {
   return new NextResponse(null, {
     status: 200,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-API-Key',
-    },
+    headers: getCorsHeaders(),
   })
 }
