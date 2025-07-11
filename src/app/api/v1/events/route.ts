@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { apiGateway } from '@/lib/api-gateway'
-import { validateData } from '@/lib/validation'
-import { createIssueFormSchema } from '@/lib/validation'
+import { forwardToBackend, createErrorResponse, createSuccessResponse, withErrorHandler, getQueryParams, createBackendHeaders, handleOptions } from '@/lib/api-utils'
 import { optionalAuth, requireAuth, requireAuthority, getCorsHeaders } from '@/middleware/auth'
+import { validateData, createIssueFormSchema } from '@/lib/validation'
 
 /**
  * Events API Route Handler
@@ -83,7 +82,7 @@ export async function POST(request: NextRequest) {
         {
           error: 'Validation failed',
           success: false,
-          details: validation.errors.errors
+          message: 'Please check your input data'
         },
         { status: 400 }
       )

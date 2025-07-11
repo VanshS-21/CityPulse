@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom'
+import 'whatwg-fetch'
 
 // Mock IntersectionObserver
 global.IntersectionObserver = class IntersectionObserver {
@@ -38,8 +39,25 @@ global.navigator.geolocation = {
   clearWatch: jest.fn(),
 }
 
-// Mock fetch
-global.fetch = jest.fn()
+// Note: fetch is provided by whatwg-fetch polyfill
+
+// Mock BroadcastChannel (required for MSW)
+global.BroadcastChannel = class BroadcastChannel {
+  constructor(name) {
+    this.name = name
+  }
+  postMessage() {}
+  close() {}
+  addEventListener() {}
+  removeEventListener() {}
+}
+
+// Polyfill for TextEncoder/TextDecoder (required for MSW)
+if (typeof global.TextEncoder === 'undefined') {
+  const { TextEncoder, TextDecoder } = require('util')
+  global.TextEncoder = TextEncoder
+  global.TextDecoder = TextDecoder
+}
 
 // Mock console methods to reduce noise in tests
 global.console = {
@@ -52,3 +70,7 @@ global.console = {
 process.env.NODE_ENV = 'test'
 process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID = 'test-project'
 process.env.NEXT_PUBLIC_FIREBASE_API_KEY = 'test-api-key'
+
+// Setup MSW for API mocking
+// Note: MSW setup is handled individually in each test file
+// This is to avoid issues with Jest module resolution

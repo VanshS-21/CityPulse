@@ -6,6 +6,7 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { verifyFirebaseToken, getUserProfile } from '@/lib/firebase-admin'
+import { CORS_HEADERS } from '@/lib/api-utils'
 
 export interface AuthenticatedUser {
   uid: string
@@ -171,13 +172,8 @@ export function checkRateLimit(identifier: string, maxRequests: number = 100, wi
 }
 
 /**
- * CORS headers for API responses
+ * Export CORS headers for compatibility
  */
 export function getCorsHeaders() {
-  return {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    'Access-Control-Max-Age': '86400',
-  }
+  return CORS_HEADERS
 }

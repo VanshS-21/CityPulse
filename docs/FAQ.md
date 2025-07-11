@@ -61,7 +61,7 @@ A: Yes, CityPulse is free for citizens to use. The platform is funded by partici
 
 A: Creating an account is simple:
 
-1. Visit [citypulse.example.com](https://citypulse.example.com)
+1. Visit [[your-citypulse-domain]]([Your CityPulse URL])
 2. Click "Sign Up" in the top right corner
 3. Choose your preferred method:
    - Email and password
@@ -133,7 +133,7 @@ A: If you're having trouble with social login:
 
 1. **Clear your browser cache** and try again
 2. **Check if you're logged into the social platform** (Google/Facebook)
-3. **Ensure pop-ups are enabled** for citypulse.example.com
+3. **Ensure pop-ups are enabled** for [your-citypulse-domain]
 4. **Try using an incognito/private browser window**
 
 If the issue persists, try creating an account with email instead.
@@ -417,7 +417,7 @@ A: If you're not receiving notifications:
 
 **Check your email:**
 1. Look in your spam/junk folder
-2. Add citypulse.example.com to your safe senders list
+2. Add [your-citypulse-domain] to your safe senders list
 3. Check if your email provider is blocking notifications
 
 **Browser notifications:**
@@ -545,7 +545,7 @@ A: For mobile issues:
 
 A: To access the CityPulse API:
 
-1. **Create a developer account** at [developers.citypulse.example.com](https://developers.citypulse.example.com)
+1. **Create a developer account** at [developers.[your-citypulse-domain]]([Your CityPulse URL])
 2. **Read the API documentation** and terms of service
 3. **Request an API key** through the developer portal
 4. **Wait for approval** (usually 1-2 business days)
@@ -591,7 +591,7 @@ A: Complete API documentation is available at:
 
 - **API Guide**: [docs/API_GUIDE.md](./API_GUIDE.md)
 - **OpenAPI Specification**: [openapi.yaml](../openapi.yaml)
-- **Developer Portal**: [developers.citypulse.example.com](https://developers.citypulse.example.com)
+- **Developer Portal**: [developers.[your-citypulse-domain]]([Your CityPulse URL])
 - **Code Examples**: Available in multiple programming languages
 
 ---
@@ -675,7 +675,7 @@ A: Account security best practices:
 - Enable email notifications for account changes
 
 **Safe Browsing:**
-- Always log in through citypulse.example.com
+- Always log in through [your-citypulse-domain]
 - Look for the lock icon (HTTPS)
 - Don't click suspicious links in emails
 
@@ -692,7 +692,7 @@ A: If you suspect account compromise:
 4. **Check your email** for any account change notifications
 
 **Contact Support:**
-- Email: security@citypulse.example.com
+- Email: security@[your-citypulse-domain]
 - Include: Your username and when you noticed the issue
 - We'll help secure your account and investigate
 
@@ -744,7 +744,7 @@ A: Photo upload troubleshooting:
 A: Location detection issues:
 
 **Browser Permissions:**
-1. Check if location access is allowed for citypulse.example.com
+1. Check if location access is allowed for [your-citypulse-domain]
 2. Look for location icon in address bar
 3. Click and select "Allow"
 
@@ -767,9 +767,9 @@ A: Location detection issues:
 A: Multiple support options:
 
 **Email Support:**
-- General: support@citypulse.example.com
-- Technical: tech@citypulse.example.com
-- Security: security@citypulse.example.com
+- General: support@[your-citypulse-domain]
+- Technical: tech@[your-citypulse-domain]
+- Security: security@[your-citypulse-domain]
 
 **Response Times:**
 - Critical issues: Within 2 hours
@@ -781,7 +781,7 @@ A: Multiple support options:
 - Click the chat icon in the bottom right
 
 **Community Forum:**
-- [community.citypulse.example.com](https://community.citypulse.example.com)
+- [community.[your-citypulse-domain]]([Your CityPulse URL])
 - Search existing questions
 - Get help from other users
 
@@ -812,3 +812,4 @@ A: To report bugs or suggest features:
 ---
 
 *For additional help not covered in this FAQ, please contact our support team. We're here to help!*
+

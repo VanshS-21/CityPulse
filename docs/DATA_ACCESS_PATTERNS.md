@@ -87,3 +87,4 @@ async function submitNewEvent(eventData) {
 | **Real-time chat/notifications**| Direct Firestore Access | Ideal for low-latency, subscription-based features. |
 
 By adhering to these patterns, we ensure that the CityPulse application remains secure, scalable, and maintainable as it evolves.
+

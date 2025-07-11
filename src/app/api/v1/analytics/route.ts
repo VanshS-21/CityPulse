@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { withErrorHandler, forwardToBackend, getQueryParams, createBackendHeaders, createErrorResponse, createSuccessResponse, handleOptions } from '@/lib/api-utils'
 import { optionalAuth, requireAuth, requireModerator, getCorsHeaders } from '@/middleware/auth'
 
 /**

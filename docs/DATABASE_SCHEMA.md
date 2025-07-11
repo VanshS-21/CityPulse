@@ -498,3 +498,4 @@ service cloud.firestore {
 ---
 
 *This schema documentation provides the foundation for understanding and working with CityPulse data structures.*
+

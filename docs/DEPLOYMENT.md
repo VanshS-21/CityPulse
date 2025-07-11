@@ -124,3 +124,4 @@ The backend consists of Apache Beam pipelines that process streaming data. These
     *   You will see your running job and can monitor its progress, inspect logs, and view metrics.
 
 Repeat this process for each data pipeline (`citizen_report_pipeline`, `social_media_pipeline`, etc.) by creating a corresponding Dockerfile, template spec, and launch command.
+

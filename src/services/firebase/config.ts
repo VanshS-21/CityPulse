@@ -44,12 +44,12 @@ function validateFirebaseConfig(): FirebaseConfig {
     // Use default/mock configuration for development
     if (process.env.NODE_ENV === 'development') {
       return {
-        apiKey: 'mock-api-key',
-        authDomain: 'citypulse-21.firebaseapp.com',
-        projectId: 'citypulse-21',
-        storageBucket: 'citypulse-21.appspot.com',
-        messagingSenderId: '123456789012',
-        appId: '1:123456789012:web:abcdef123456',
+        apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || 'mock-api-key',
+        authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || 'citypulse-21.firebaseapp.com',
+        projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || 'citypulse-21',
+        storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || 'citypulse-21.appspot.com',
+        messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || '123456789012',
+        appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || '1:123456789012:web:abcdef123456',
       }
     } else {
       throw new Error(`Missing required Firebase configuration: ${missingKeys.join(', ')}`)
@@ -88,7 +88,7 @@ function initializeFirebaseAuth(app: FirebaseApp): Auth {
     const auth = getAuth(app)
     
     // Connect to Auth emulator in development
-    if (process.env.NODE_ENV === 'development' && !auth.config.emulator) {
+    if (process.env.NODE_ENV === 'development') {
       try {
         connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: true })
         console.log('Connected to Firebase Auth emulator')

@@ -22,12 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        <AsyncErrorBoundary
-          onError={(error, errorInfo) => {
-            // Log error for monitoring
-            console.error("Root layout error:", error, errorInfo);
-          }}
-        >
+        <AsyncErrorBoundary>
           {children}
         </AsyncErrorBoundary>
       </body>

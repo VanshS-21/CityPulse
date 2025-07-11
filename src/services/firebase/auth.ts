@@ -99,7 +99,7 @@ export class FirebaseAuthService {
     
     try {
       // Try to get user profile from backend
-      const userProfile = await apiGateway.get(`/users/${firebaseUser.uid}`)
+      const userProfile = await apiGateway.get(`/users/${firebaseUser.uid}`) as any
       role = userProfile.role || 'citizen'
     } catch (error) {
       // If backend call fails, default to citizen role
@@ -337,5 +337,3 @@ export class FirebaseAuthService {
 // Export singleton instance
 export const firebaseAuth = new FirebaseAuthService()
 
-// Export types
-export type { AuthUser, AuthError, LoginCredentials, RegisterCredentials }

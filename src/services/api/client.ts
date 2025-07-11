@@ -31,7 +31,10 @@ class ApiClient {
         }
 
         // Add request timestamp
-        config.metadata = { startTime: new Date() }
+        config.metadata = { 
+          startTime: Date.now(),
+          requestId: Math.random().toString(36).substr(2, 9)
+        }
 
         return config
       },
@@ -44,10 +47,10 @@ class ApiClient {
     this.instance.interceptors.response.use(
       (response: AxiosResponse) => {
         // Log response time
-        const endTime = new Date()
+        const endTime = Date.now()
         const startTime = response.config.metadata?.startTime
         if (startTime) {
-          const duration = endTime.getTime() - startTime.getTime()
+          const duration = endTime - startTime
           console.log(`API call to ${response.config.url} took ${duration}ms`)
         }
 
@@ -175,7 +178,8 @@ export const apiClient = new ApiClient()
 declare module 'axios' {
   interface AxiosRequestConfig {
     metadata?: {
-      startTime: Date
+      startTime: number
+      requestId: string
     }
   }
 }

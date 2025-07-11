@@ -1,7 +1,7 @@
 # CityPulse Disaster Recovery Plan
 
 **Version**: 1.0.0  
-**Last Updated**: January 2025  
+**Last Updated**: July 12, 2025
 **Classification**: Confidential  
 **Target Audience**: DevOps Engineers, System Administrators, Management  
 
@@ -13,10 +13,6 @@
 2. [Recovery Objectives](#recovery-objectives)
 3. [Backup Strategies](#backup-strategies)
 4. [Recovery Procedures](#recovery-procedures)
-5. [Business Continuity](#business-continuity)
-6. [Communication Plan](#communication-plan)
-7. [Testing and Validation](#testing-and-validation)
-8. [Maintenance and Updates](#maintenance-and-updates)
 
 ---
 
@@ -450,14 +446,14 @@ recover_frontend() {
         
         gcloud dns record-sets transaction remove \
             --zone=citypulse-zone \
-            --name=citypulse.example.com. \
+            --name=[your-citypulse-domain]. \
             --type=A \
             --ttl=300 \
             --rrdatas="$(get_primary_ip)"
         
         gcloud dns record-sets transaction add \
             --zone=citypulse-zone \
-            --name=citypulse.example.com. \
+            --name=[your-citypulse-domain]. \
             --type=A \
             --ttl=60 \
             --rrdatas="$(get_secondary_ip)"
@@ -467,13 +463,13 @@ recover_frontend() {
         echo "DNS failover completed"
         
         # Verify secondary region service
-        verify_service_health "https://citypulse.example.com/health"
+        verify_service_health "[Your CityPulse URL]"
         
     else
         echo "Primary region operational, checking service health..."
         
         # Restart service if unhealthy
-        if ! verify_service_health "https://citypulse.example.com/health"; then
+        if ! verify_service_health "[Your CityPulse URL]"; then
             echo "Service unhealthy, restarting..."
             
             gcloud run services update $SERVICE_NAME \
@@ -676,3 +672,4 @@ class DatabaseRecovery:
 ---
 
 *This disaster recovery plan provides comprehensive procedures for maintaining business continuity and recovering from various failure scenarios.*
+
