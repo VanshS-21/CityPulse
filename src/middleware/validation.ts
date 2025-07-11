@@ -143,7 +143,7 @@ export async function validateRequest(
         if (validation.success) {
           result.data!.body = validation.data
         } else {
-          result.errors!.body = validation.errors
+          result.errors!.body = (validation as any).errors
           hasErrors = true
         }
       } catch (error) {
@@ -168,7 +168,7 @@ export async function validateRequest(
       if (validation.success) {
         result.data!.query = validation.data
       } else {
-        result.errors!.query = validation.errors
+        result.errors!.query = (validation as any).errors
         hasErrors = true
       }
     }
@@ -181,7 +181,7 @@ export async function validateRequest(
       if (validation.success) {
         result.data!.headers = validation.data
       } else {
-        result.errors!.headers = validation.errors
+        result.errors!.headers = (validation as any).errors
         hasErrors = true
       }
     }

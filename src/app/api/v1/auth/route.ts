@@ -142,7 +142,7 @@ async function handleRegister(authData: any, request: NextRequest) {
       {
         error: 'Validation failed',
         success: false,
-        details: validation.errors.errors
+        message: 'Please check your input data'
       },
       { status: 400 }
     )

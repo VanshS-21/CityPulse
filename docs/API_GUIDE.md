@@ -1,7 +1,7 @@
 # CityPulse API Guide
 
 **Version**: 1.0.0
-**Base URL**: `https://api.citypulse.example.com/v1`
+**Base URL**: `[Your CityPulse URL]`
 **Authentication**: Bearer Token (Firebase Auth)
 
 ## 📚 Related Documentation
@@ -41,7 +41,7 @@ import { CityPulseClient } from '@citypulse/api-client';
 
 const client = new CityPulseClient({
   apiKey: 'your-api-key',
-  baseURL: 'https://api.citypulse.example.com/v1'
+  baseURL: '[Your CityPulse URL]'
 });
 
 // 3. Fetch events
@@ -69,7 +69,7 @@ console.log('Recent traffic events:', events.data);
 
 ```bash
 curl -H "X-API-Key: your-api-key" \
-  https://api.citypulse.example.com/v1/events
+  [Your CityPulse URL]
 ```
 
 ### 🎫 Bearer Token Authentication
@@ -119,7 +119,7 @@ sequenceDiagram
 
 ```bash
 curl -H "X-API-Key: your-api-key" \
-  "https://api.citypulse.example.com/v1/events?category=traffic&limit=10"
+  "[Your CityPulse URL]?category=traffic&limit=10"
 ```
 
 **Parameters**:
@@ -210,7 +210,7 @@ console.log('Created event:', event.data.id);
 
 ```bash
 curl -H "X-API-Key: your-api-key" \
-  https://api.citypulse.example.com/v1/events/evt_123456
+  [Your CityPulse URL]_123456
 ```
 
 **Response**:
@@ -376,7 +376,7 @@ const feedback = await fetch('/api/v1/feedback', {
 
 ```bash
 curl -H "Authorization: Bearer your-token" \
-  "https://api.citypulse.example.com/v1/feedback?status=open"
+  "[Your CityPulse URL]?status=open"
 ```
 
 ---
@@ -444,7 +444,7 @@ const trendData = await trends.json();
 ```javascript
 // Using Server-Sent Events
 const eventSource = new EventSource(
-  'https://api.citypulse.example.com/v1/events/stream?category=traffic',
+  '[Your CityPulse URL]?category=traffic',
   {
     headers: {
       'Authorization': `Bearer ${token}`
@@ -710,4 +710,5 @@ implementation 'com.citypulse:java-sdk:1.0.0'
 
 ---
 
-*For more examples and detailed API reference, visit our [Developer Portal](https://developers.citypulse.example.com).*
+*For more examples and detailed API reference, visit our [Developer Portal]([Your CityPulse URL]).*
+

@@ -35,7 +35,7 @@
 
 ```bash
 # Performance monitoring dashboard
-https://monitoring.citypulse.example.com/performance
+[Your CityPulse URL]
 
 # Key metrics to track:
 - Average response time: 245ms
@@ -544,7 +544,7 @@ data:
     defaultService: citypulse-backend
     hostRules:
     - hosts:
-      - "static.citypulse.example.com"
+      - "static.[your-citypulse-domain]"
       pathMatcher: "static-matcher"
     pathMatchers:
     - name: "static-matcher"
@@ -577,8 +577,8 @@ metadata:
   name: citypulse-ssl-cert
 spec:
   domains:
-  - citypulse.example.com
-  - api.citypulse.example.com
+  - [your-citypulse-domain]
+  - api.[your-citypulse-domain]
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -591,7 +591,7 @@ metadata:
     cloud.google.com/backend-config: '{"default": "citypulse-backend-config"}'
 spec:
   rules:
-  - host: citypulse.example.com
+  - host: [your-citypulse-domain]
     http:
       paths:
       - path: /*
@@ -601,7 +601,7 @@ spec:
             name: citypulse-frontend
             port:
               number: 80
-  - host: api.citypulse.example.com
+  - host: api.[your-citypulse-domain]
     http:
       paths:
       - path: /*
@@ -710,7 +710,7 @@ export let options = {
 
 export default function() {
   // Test event listing endpoint
-  let response = http.get('https://api.citypulse.example.com/v1/events?limit=20');
+  let response = http.get('[Your CityPulse URL]?limit=20');
   check(response, {
     'status is 200': (r) => r.status === 200,
     'response time < 500ms': (r) => r.timings.duration < 500,
@@ -732,7 +732,7 @@ export default function() {
     },
   };
   
-  response = http.post('https://api.citypulse.example.com/v1/events', payload, params);
+  response = http.post('[Your CityPulse URL]', payload, params);
   check(response, {
     'event created': (r) => r.status === 201,
   });
@@ -751,7 +751,7 @@ echo "Starting CityPulse Performance Benchmark..."
 
 # Frontend performance test
 echo "Testing frontend performance..."
-lighthouse https://citypulse.example.com \
+lighthouse [Your CityPulse URL] \
   --output=json \
   --output-path=./reports/lighthouse-report.json \
   --chrome-flags="--headless"
@@ -759,7 +759,7 @@ lighthouse https://citypulse.example.com \
 # API performance test
 echo "Testing API performance..."
 ab -n 1000 -c 10 -H "X-API-Key: test-key" \
-  https://api.citypulse.example.com/v1/events > ./reports/api-benchmark.txt
+  [Your CityPulse URL] > ./reports/api-benchmark.txt
 
 # Database performance test
 echo "Testing database performance..."
@@ -888,3 +888,4 @@ def monitor_connection_pool():
 ---
 
 *This performance guide provides comprehensive strategies for optimizing CityPulse across all layers of the application stack.*
+

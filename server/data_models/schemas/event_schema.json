@@ -1,0 +1,108 @@
+{
+  "name": "Event",
+  "description": "Schema for storing event information",
+  "partitioning": {
+    "type": "DAY",
+    "field": "created_at"
+  },
+  "clustering": {
+    "fields": ["category", "ai_category", "status"]
+  },
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "STRING",
+      "mode": "REQUIRED",
+      "description": "Unique identifier for the event"
+    },
+    {
+      "name": "title",
+      "type": "STRING",
+      "mode": "REQUIRED",
+      "description": "Title of the event"
+    },
+    {
+      "name": "description",
+      "type": "STRING",
+      "description": "Detailed description of the event"
+    },
+    {
+      "name": "location",
+      "type": "GEOGRAPHY",
+      "description": "Geographic location of the event"
+    },
+    {
+      "name": "start_time",
+      "type": "TIMESTAMP",
+      "mode": "REQUIRED",
+      "description": "Start time of the event"
+    },
+    {
+      "name": "end_time",
+      "type": "TIMESTAMP",
+      "description": "End time of the event"
+    },
+    {
+      "name": "category",
+      "type": "STRING",
+      "description": "Category of the event (e.g., traffic, weather, public_safety)"
+    },
+    {
+      "name": "severity",
+      "type": "STRING",
+      "description": "Severity level (low, medium, high, critical)"
+    },
+    {
+      "name": "source",
+      "type": "STRING",
+      "description": "Source of the event data (e.g., user_report, sensor, social_media)"
+    },
+    {
+      "name": "status",
+      "type": "STRING",
+      "description": "Current status of the event (active, resolved, false_positive)"
+    },
+    {
+      "name": "user_id",
+      "type": "STRING",
+      "description": "ID of the user who reported the event"
+    },
+    {
+      "name": "created_at",
+      "type": "TIMESTAMP",
+      "mode": "REQUIRED",
+      "description": "Timestamp when the event was created"
+    },
+    {
+      "name": "updated_at",
+      "type": "TIMESTAMP",
+      "description": "Timestamp when the event was last updated"
+    },
+    {
+      "name": "metadata",
+      "type": "JSON",
+      "description": "Additional metadata in JSON format"
+    },
+    {
+      "name": "ai_summary",
+      "type": "STRING",
+      "description": "AI-generated summary of the event description"
+    },
+    {
+      "name": "ai_category",
+      "type": "STRING",
+      "description": "AI-generated category for the event"
+    },
+    {
+      "name": "ai_image_tags",
+      "type": "STRING",
+      "mode": "REPEATED",
+      "description": "AI-detected object tags from the event image"
+    },
+    {
+      "name": "ai_generated_image_url",
+      "type": "STRING",
+      "description": "URL of the AI-generated icon for the event category"
+    }
+  ]
+}

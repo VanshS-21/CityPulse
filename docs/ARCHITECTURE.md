@@ -139,3 +139,4 @@ The intelligence layer leverages **Vertex AI** to automate analysis and generate
 ## 7. Infrastructure (`infra/`)
 
 All cloud resources are defined declaratively in **Terraform**. This IaC approach ensures the environment is version-controlled, reproducible, and easy to manage. Key managed resources include VPC networking, databases, Pub/Sub topics, IAM roles, and monitoring dashboards.
+

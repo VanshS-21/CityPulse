@@ -15,8 +15,6 @@
 4. [Incident Response](#incident-response)
 5. [Vulnerability Management](#vulnerability-management)
 6. [Data Protection](#data-protection)
-7. [Compliance and Auditing](#compliance-and-auditing)
-8. [Security Maintenance](#security-maintenance)
 
 ---
 
@@ -661,7 +659,7 @@ jobs:
     - name: Run OWASP ZAP scan
       uses: zaproxy/action-full-scan@v0.4.0
       with:
-        target: 'https://staging.citypulse.example.com'
+        target: '[Your CityPulse URL]'
         rules_file_name: '.zap/rules.tsv'
         cmd_options: '-a'
 ```

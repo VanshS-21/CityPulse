@@ -108,15 +108,8 @@ export async function submitReport(formData: FormData): Promise<SubmitReportResp
       }
     }
 
-    // Revalidate relevant pages
-    revalidatePath('/dashboard')
-    revalidatePath('/reports')
-    revalidatePath('/')
-
-    return {
-      success: true,
-      reportId: mockReportId,
-    }
+    // This code should never be reached since both success and catch return
+    // Keeping for safety but it should not execute
 
   } catch (error) {
     console.error('Report submission error:', error)

@@ -27,7 +27,7 @@
 
 ### 🚀 Quick Start (5 Minutes)
 
-1. **Access CityPulse**: Visit [https://citypulse.example.com](https://citypulse.example.com)
+1. **Access CityPulse**: Visit your organization's CityPulse deployment URL
 2. **Create Account**: Sign up with email or social login
 3. **Set Location**: Allow location access for personalized alerts
 4. **Explore Dashboard**: View real-time city events on the map
@@ -419,10 +419,10 @@ Solutions:
 ### 📞 Getting Help
 
 #### Support Channels
-- **Help Center**: [help.citypulse.example.com](https://help.citypulse.example.com)
-- **Email Support**: support@citypulse.example.com
-- **Live Chat**: Available 9 AM - 5 PM weekdays
-- **Community Forum**: [community.citypulse.example.com](https://community.citypulse.example.com)
+- **Help Center**: Contact your system administrator for support resources
+- **Email Support**: Contact your system administrator for support contact
+- **Live Chat**: Available through your organization's support system
+- **Community Forum**: Check with your organization for internal community resources
 
 #### Response Times
 - **Critical Issues**: Within 2 hours
@@ -449,3 +449,4 @@ Solutions:
 ---
 
 *For additional help or feedback, please contact our support team. We're here to help you make the most of CityPulse!*
+

@@ -7,7 +7,7 @@ export const APP_CONFIG = {
   description: 'Urban Issue Tracking Platform',
   url: config.app.url,
   api: {
-    baseUrl: config.api.baseUrl,
+    baseUrl: '/api/v1',
     timeout: config.api.timeout,
   },
 } as const

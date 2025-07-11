@@ -116,3 +116,4 @@ For contributions to the backend API:
 -   **Specification First**: All new endpoints or changes to existing ones must be documented in the OpenAPI/Swagger specification first.
 -   **RESTful Principles**: Follow RESTful design principles for creating scalable and maintainable APIs.
 -   **Security**: Ensure all endpoints have proper authentication and authorization checks.
+

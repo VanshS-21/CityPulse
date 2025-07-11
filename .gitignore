@@ -1,7 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
-/node_modules
+# ========================================
+# DEPENDENCIES
+# ========================================
+node_modules/
 /.pnp
 .pnp.*
 .yarn/*
@@ -10,57 +12,93 @@
 !.yarn/releases
 !.yarn/versions
 
-# testing
-/coverage
-/htmlcov
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
-.DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# env files (can opt-in for committing if needed)
-.env*
+# ========================================
+# ENVIRONMENT & SECRETS
+# ========================================
+# Environment files
+.env
+.env.local
+.env.production
+.env.staging
+.env.development
+.env.*
 
 # Firebase service account keys
 *service-account*.json
 citypulse-*.json
 
-# vercel
-.vercel
+# Credentials directory
+credentials/*.env
+credentials/*.json
+credentials/*credentials*
+credentials/.env*
+citypulse-credentials.env
+# Allow safe files in credentials directory
+!credentials/README.md
+!credentials/setup-credentials.js
 
-# typescript
+# Keys and sensitive files
+/keys/
+/infra/keys/
+*.key
+*.pem
+*credentials*.json
+
+# ========================================
+# BUILDS & PRODUCTION
+# ========================================
+# Next.js
+/.next/
+/out/
+*.old
+
+# Production builds
+/build
+/dist
+
+# ========================================
+# TESTING
+# ========================================
+/coverage
+/htmlcov
+.coverage
+.pytest_cache/
+
+# ========================================
+# LOGS & DEBUG
+# ========================================
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+dev-debug.log
+bandit_report.txt
+pylint_report.txt
+baseline-errors.log
+
+# ========================================
+# DEVELOPMENT TOOLS
+# ========================================
+# TypeScript
 *.tsbuildinfo
 next-env.d.ts
 
-# Logs
-logs
-*.log
-dev-debug.log
-# Dependency directories
-node_modules/
-# Environment variables
-.env
+# Vercel
+.vercel
 
-# Terraform
+# Sentry
+.env.sentry-build-plugin
+
+# ========================================
+# TERRAFORM
+# ========================================
 **/.terraform/*
 **/.terraform.lock.hcl
 **/*.tfstate
 **/*.tfstate.*
 **/.terraform.tfstate.lock.info
-**/.terraform.lock.hcl
 **/override.tf
 **/override.tf.json
 **/*_override.tf
@@ -70,43 +108,18 @@ node_modules/
 **/crash.log
 **/crash.*.log
 **/*.tfvars
-**/.terraform.lock.hcl
 **/.terraform/providers/
 **/terraform.tfstate.backup
 
-# IDE specific files
-.idea/
-.vscode/
-*.swp
-*.swo
-*~
-
-# Local development files
-.cursor/
-# Editor directories and files
-.idea
-.vscode
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-# OS specific
-
-# Task files
-# tasks.json
-# tasks/ 
-
-# Python
+# ========================================
+# PYTHON
+# ========================================
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
-build/
 develop-eggs/
-dist/
-downloads/
 eggs/
 .eggs/
 lib/
@@ -129,34 +142,33 @@ E2E/venv/
 */venv/
 **/venv/
 
-# Sensitive credentials
-/keys/
-/infra/keys/
-*.json
+# ========================================
+# IDE & EDITORS
+# ========================================
+.idea/
+.vscode/
+.cursor/
+*.swp
+*.swo
+*~
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ========================================
+# OS SPECIFIC
+# ========================================
+.DS_Store
+Thumbs.db
+
+# ========================================
+# ALLOWED FILES
+# ========================================
+# Allow specific configuration files
 !package*.json
 !tsconfig*.json
 !jest.config.js
 !next.config.ts
-
-# Environment files with secrets
-.env.local
-.env.production
-.env.staging
-
-# Service account keys
-*service-account*.json
-*credentials*.json
-
-# Test coverage reports
-.coverage
-
-# Python build artifacts
-dist/
-build/
-*.egg-info/
-
-# Local reports
-bandit_report.txt
-pylint_report.txt
-# Sentry Config File
-.env.sentry-build-plugin
+!.env.example
