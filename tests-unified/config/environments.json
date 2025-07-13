@@ -1,0 +1,119 @@
+{
+  "environments": {
+    "test": {
+      "name": "Test Environment",
+      "description": "Local development testing environment",
+      "backend_url": "http://localhost:8000",
+      "frontend_url": "http://localhost:3000",
+      "database": {
+        "type": "mock",
+        "firestore_emulator": true,
+        "bigquery_emulator": false
+      },
+      "authentication": {
+        "type": "mock",
+        "firebase_emulator": true,
+        "test_users": true
+      },
+      "external_services": {
+        "gcp_credentials": false,
+        "pub_sub": "mock",
+        "vertex_ai": "mock"
+      }
+    },
+    "integration": {
+      "name": "Integration Testing Environment",
+      "description": "Real service integration testing",
+      "backend_url": "http://localhost:8000",
+      "frontend_url": "http://localhost:3000",
+      "database": {
+        "type": "real",
+        "firestore_emulator": false,
+        "bigquery_emulator": false
+      },
+      "authentication": {
+        "type": "real",
+        "firebase_emulator": false,
+        "test_users": true
+      },
+      "external_services": {
+        "gcp_credentials": true,
+        "pub_sub": "real",
+        "vertex_ai": "real"
+      }
+    },
+    "staging": {
+      "name": "Staging Environment",
+      "description": "Pre-production testing environment",
+      "backend_url": "https://api-staging.citypulse.example.com",
+      "frontend_url": "https://staging.citypulse.example.com",
+      "database": {
+        "type": "real",
+        "firestore_emulator": false,
+        "bigquery_emulator": false
+      },
+      "authentication": {
+        "type": "real",
+        "firebase_emulator": false,
+        "test_users": true
+      },
+      "external_services": {
+        "gcp_credentials": true,
+        "pub_sub": "real",
+        "vertex_ai": "real"
+      }
+    },
+    "production": {
+      "name": "Production Environment",
+      "description": "Production environment (read-only tests)",
+      "backend_url": "https://api.citypulse.example.com",
+      "frontend_url": "https://citypulse.example.com",
+      "database": {
+        "type": "real",
+        "firestore_emulator": false,
+        "bigquery_emulator": false
+      },
+      "authentication": {
+        "type": "real",
+        "firebase_emulator": false,
+        "test_users": false
+      },
+      "external_services": {
+        "gcp_credentials": true,
+        "pub_sub": "real",
+        "vertex_ai": "real"
+      },
+      "restrictions": {
+        "read_only": true,
+        "no_data_modification": true,
+        "limited_test_scope": true
+      }
+    }
+  },
+  "default_environment": "test",
+  "test_configuration": {
+    "timeout": {
+      "unit_tests": 30,
+      "integration_tests": 120,
+      "e2e_tests": 300,
+      "frontend_tests": 60
+    },
+    "retry": {
+      "max_attempts": 3,
+      "delay_seconds": 1
+    },
+    "reporting": {
+      "formats": ["json", "html", "junit"],
+      "include_performance": true,
+      "include_coverage": true,
+      "include_screenshots": true
+    },
+    "parallel_execution": {
+      "enabled": true,
+      "max_workers": 4,
+      "unit_tests": true,
+      "integration_tests": false,
+      "e2e_tests": false
+    }
+  }
+}

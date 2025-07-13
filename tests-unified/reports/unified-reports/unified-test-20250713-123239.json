@@ -1,0 +1,30 @@
+{
+  "test_run_id": "unified-1752409957",
+  "timestamp": "2025-07-13T12:32:37.377964",
+  "environment": "test",
+  "test_suites": {
+    "unit": {
+      "suite_name": "Unit Tests",
+      "start_time": "2025-07-13T12:32:37.378189",
+      "tests": [],
+      "summary": {
+        "total": 0,
+        "collected": 12
+      },
+      "status": "failed",
+      "end_time": "2025-07-13T12:32:39.514906"
+    }
+  },
+  "summary": {
+    "total_tests": 0,
+    "passed": 0,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "performance_metrics": {},
+  "coverage_report": {},
+  "start_time": "2025-07-13T12:32:37.378161",
+  "end_time": "2025-07-13T12:32:39.514925",
+  "total_duration": 2.13676381111145
+}
