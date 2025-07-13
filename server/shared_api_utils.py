@@ -1,18 +1,25 @@
 """
-Shared API utilities for FastAPI routers to eliminate code duplication.
+Enhanced shared API utilities for FastAPI routers with correlation tracking.
 """
 
 import logging
+import structlog
 from functools import wraps
 from typing import Any, Callable, Dict, Optional
+from uuid import uuid4
 
-from fastapi import HTTPException, status
+from fastapi import HTTPException, status, Request
 from fastapi.responses import JSONResponse
 
 from auth.permissions import Permission, check_permission
-from shared_exceptions import CityPulseException, create_error_response
+from shared_exceptions import (
+    CityPulseException,
+    create_error_response,
+    error_context,
+    ErrorContext
+)
 
-logger = logging.getLogger(__name__)
+logger = structlog.get_logger(__name__)
 
 
 class APIConstants:
@@ -31,36 +38,129 @@ class APIConstants:
     MAX_PAGE_SIZE = 100
 
 
-def handle_api_errors(func: Callable) -> Callable:
+def handle_api_errors(operation: str = None):
     """
-    Decorator to handle common API errors consistently.
-    
+    Enhanced decorator to handle API errors with correlation tracking.
+
     Args:
-        func: The async function to wrap
-        
+        operation: Name of the operation for logging context
+
     Returns:
-        Wrapped function with error handling
+        Decorator function
     """
-    @wraps(func)
-    async def wrapper(*args, **kwargs):
-        try:
-            return await func(*args, **kwargs)
-        except HTTPException:
-            # Re-raise HTTP exceptions as-is
-            raise
-        except CityPulseException as e:
-            # Convert custom exceptions to HTTP exceptions
-            raise HTTPException(
-                status_code=e.status_code,
-                detail=e.message
-            )
-        except Exception as e:
-            # Log unexpected errors and return generic error
-            logger.error(f"Unexpected error in {func.__name__}: {e}")
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail="Internal server error"
-            )
+    def decorator(func: Callable) -> Callable:
+        @wraps(func)
+        async def wrapper(*args, **kwargs):
+            # Extract request information if available
+            request = None
+            user_id = None
+            request_id = None
+
+            # Try to find Request object in args/kwargs
+            for arg in args:
+                if isinstance(arg, Request):
+                    request = arg
+                    break
+
+            if request:
+                request_id = getattr(request.state, 'request_id', None) or str(uuid4())
+                user_id = getattr(request.state, 'user_id', None)
+
+            operation_name = operation or func.__name__
+
+            with error_context(
+                operation=operation_name,
+                user_id=user_id,
+                request_id=request_id,
+                function=func.__name__,
+                module=func.__module__
+            ) as ctx:
+                try:
+                    result = await func(*args, **kwargs)
+
+                    # Log successful operation
+                    logger.info(
+                        "API operation completed successfully",
+                        correlation_id=ctx.correlation_id,
+                        operation=operation_name,
+                        user_id=user_id,
+                        request_id=request_id
+                    )
+
+                    return result
+
+                except HTTPException as e:
+                    # Log HTTP exceptions with context
+                    logger.warning(
+                        "HTTP exception in API operation",
+                        correlation_id=ctx.correlation_id,
+                        operation=operation_name,
+                        status_code=e.status_code,
+                        detail=e.detail,
+                        user_id=user_id,
+                        request_id=request_id
+                    )
+
+                    # Add correlation ID to headers if possible
+                    if hasattr(e, 'headers') and e.headers:
+                        e.headers['X-Correlation-ID'] = ctx.correlation_id
+                    else:
+                        e.headers = {'X-Correlation-ID': ctx.correlation_id}
+
+                    raise
+
+                except CityPulseException as e:
+                    # Update exception with correlation context
+                    e.correlation_id = ctx.correlation_id
+                    e.user_id = user_id
+                    e.request_id = request_id
+                    e.operation = operation_name
+
+                    # Log the exception
+                    e.log_error(logger)
+
+                    # Convert to HTTP exception with enhanced detail
+                    detail = {
+                        "message": e.message,
+                        "error_code": e.error_code.value,
+                        "correlation_id": e.correlation_id,
+                        "details": e.details
+                    }
+
+                    raise HTTPException(
+                        status_code=getattr(e, 'status_code', 500),
+                        detail=detail,
+                        headers={'X-Correlation-ID': e.correlation_id}
+                    )
+
+                except Exception as e:
+                    # Log unexpected errors with full context
+                    logger.error(
+                        "Unexpected error in API operation",
+                        correlation_id=ctx.correlation_id,
+                        operation=operation_name,
+                        error_type=type(e).__name__,
+                        error_message=str(e),
+                        user_id=user_id,
+                        request_id=request_id,
+                        exc_info=True
+                    )
+
+                    # Create enhanced error response
+                    detail = {
+                        "message": "Internal server error",
+                        "error_code": "INTERNAL_ERROR",
+                        "correlation_id": ctx.correlation_id
+                    }
+
+                    raise HTTPException(
+                        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                        detail=detail,
+                        headers={'X-Correlation-ID': ctx.correlation_id}
+                    )
+
+        return wrapper
+    return decorator
     
     return wrapper
 

@@ -1,14 +1,93 @@
 """
-Shared exception handling for CityPulse platform.
+Enhanced shared exception handling for CityPulse platform.
 
-This module provides unified exception classes and error handling patterns
-that can be used across all components of the CityPulse platform.
+This module provides unified exception classes and error handling utilities
+with correlation IDs, structured logging, and comprehensive error context.
 """
 
 import logging
-from typing import Dict, Any, Optional, List
+import structlog
+from typing import Dict, Any, Optional, List, Union
 from enum import Enum
+from dataclasses import dataclass, field
+from contextlib import contextmanager
+from uuid import uuid4
+import traceback
+import time
 from pydantic import BaseModel, Field
+
+# Configure structured logging
+logger = structlog.get_logger(__name__)
+
+
+@dataclass
+class ErrorContext:
+    """Enhanced error context with correlation ID and metadata."""
+    correlation_id: str = field(default_factory=lambda: str(uuid4()))
+    timestamp: float = field(default_factory=time.time)
+    context: Dict[str, Any] = field(default_factory=dict)
+    user_id: Optional[str] = None
+    request_id: Optional[str] = None
+    operation: Optional[str] = None
+
+    def add_context(self, **kwargs):
+        """Add additional context information."""
+        self.context.update(kwargs)
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert error context to dictionary."""
+        return {
+            "correlation_id": self.correlation_id,
+            "timestamp": self.timestamp,
+            "context": self.context,
+            "user_id": self.user_id,
+            "request_id": self.request_id,
+            "operation": self.operation
+        }
+
+
+@contextmanager
+def error_context(operation: str = None, user_id: str = None, request_id: str = None, **context):
+    """
+    Context manager for error handling with correlation IDs and structured logging.
+
+    Args:
+        operation: Name of the operation being performed
+        user_id: ID of the user performing the operation
+        request_id: ID of the request
+        **context: Additional context information
+
+    Yields:
+        ErrorContext: The error context object
+    """
+    error_ctx = ErrorContext(
+        user_id=user_id,
+        request_id=request_id,
+        operation=operation
+    )
+    error_ctx.add_context(**context)
+
+    try:
+        yield error_ctx
+    except Exception as e:
+        # Log the error with full context
+        logger.error(
+            "Operation failed",
+            correlation_id=error_ctx.correlation_id,
+            operation=operation,
+            user_id=user_id,
+            request_id=request_id,
+            error_type=type(e).__name__,
+            error_message=str(e),
+            context=error_ctx.context,
+            traceback=traceback.format_exc()
+        )
+
+        # Add correlation ID to the exception if it's a CityPulse exception
+        if hasattr(e, 'correlation_id'):
+            e.correlation_id = error_ctx.correlation_id
+
+        raise
 
 
 class ErrorCode(str, Enum):
@@ -53,46 +132,86 @@ class ErrorCode(str, Enum):
 
 
 class CityPulseException(Exception):
-    """Base exception class for CityPulse platform."""
-    
+    """Enhanced base exception class for CityPulse platform with correlation tracking."""
+
     def __init__(
         self,
         message: str,
         error_code: ErrorCode = ErrorCode.INTERNAL_ERROR,
         details: Optional[Dict[str, Any]] = None,
-        cause: Optional[Exception] = None
+        cause: Optional[Exception] = None,
+        correlation_id: Optional[str] = None,
+        user_id: Optional[str] = None,
+        request_id: Optional[str] = None,
+        operation: Optional[str] = None
     ):
         """
-        Initialize CityPulse exception.
-        
+        Initialize enhanced CityPulse exception.
+
         Args:
             message: Human-readable error message
             error_code: Standardized error code
             details: Additional error details
             cause: Original exception that caused this error
+            correlation_id: Correlation ID for tracking
+            user_id: ID of the user associated with the error
+            request_id: ID of the request that caused the error
+            operation: Name of the operation that failed
         """
         super().__init__(message)
         self.message = message
         self.error_code = error_code
         self.details = details or {}
         self.cause = cause
+        self.correlation_id = correlation_id or str(uuid4())
+        self.user_id = user_id
+        self.request_id = request_id
+        self.operation = operation
+        self.timestamp = time.time()
     
     def to_dict(self) -> Dict[str, Any]:
         """Convert exception to dictionary for serialization."""
         result = {
             "error_code": self.error_code.value,
             "message": self.message,
-            "details": self.details
+            "details": self.details,
+            "correlation_id": self.correlation_id,
+            "timestamp": self.timestamp
         }
-        
+
         if self.cause:
             result["cause"] = str(self.cause)
-        
+
+        if self.user_id:
+            result["user_id"] = self.user_id
+
+        if self.request_id:
+            result["request_id"] = self.request_id
+
+        if self.operation:
+            result["operation"] = self.operation
+
         return result
     
     def __str__(self) -> str:
         """String representation of the exception."""
-        return f"{self.error_code.value}: {self.message}"
+        return f"[{self.correlation_id}] {self.error_code.value}: {self.message}"
+
+    def log_error(self, logger_instance: Optional[logging.Logger] = None):
+        """Log the error with full context."""
+        log = logger_instance or logger
+        log.error(
+            "CityPulse Exception",
+            correlation_id=self.correlation_id,
+            error_code=self.error_code.value,
+            message=self.message,
+            details=self.details,
+            user_id=self.user_id,
+            request_id=self.request_id,
+            operation=self.operation,
+            timestamp=self.timestamp,
+            cause=str(self.cause) if self.cause else None
+        )
 
 
 class ValidationException(CityPulseException):
