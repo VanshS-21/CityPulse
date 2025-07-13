@@ -1,7 +1,7 @@
 # CityPulse Disaster Recovery Plan
 
-**Version**: 1.0.0  
-**Last Updated**: July 12, 2025
+**Version**: 0.1.0
+**Last Updated**: July 13, 2025
 **Classification**: Confidential  
 **Target Audience**: DevOps Engineers, System Administrators, Management  
 

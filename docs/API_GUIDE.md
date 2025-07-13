@@ -1,6 +1,6 @@
 # CityPulse API Guide
 
-**Version**: 1.0.0
+**Version**: 0.1.0
 **Base URL**: `[Your CityPulse URL]`
 **Authentication**: Bearer Token (Firebase Auth)
 

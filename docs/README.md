@@ -30,6 +30,7 @@ Documentation for deployment, monitoring, and maintenance:
 Additional reference documentation and resources:
 - **[Changelog](./CHANGELOG.md)** - Version history and changes
 - **[Code of Conduct](./CODE_OF_CONDUCT.md)** - Community guidelines
+- **[Documentation Maintenance Checklist](./DOCUMENTATION_MAINTENANCE_CHECKLIST.md)** - Quality assurance guidelines
 
 ### 📊 [Reports](../reports/)
 Analysis and audit reports:
@@ -87,7 +88,7 @@ For documentation issues or suggestions:
 
 ---
 
-**Last Updated**: July 9, 2025
-**Documentation Version**: 2.0.0
-**Project Version**: 1.0.0
+**Last Updated**: July 13, 2025
+**Documentation Version**: 2.1.0
+**Project Version**: 0.1.0
 

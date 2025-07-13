@@ -1,6 +1,6 @@
 # CityPulse: Urban Intelligence Platform
 
-**Version**: 1.0.0 | **Status**: Production Ready 🚀
+**Version**: 0.1.0 | **Status**: Development 🚧
 
 CityPulse is a comprehensive urban intelligence platform that transforms real-time city data into actionable insights. Built with enterprise-grade architecture, it provides citizens, authorities, and administrators with powerful tools for urban issue reporting, monitoring, and analytics.
 
@@ -26,7 +26,7 @@ CityPulse is a comprehensive urban intelligence platform that transforms real-ti
 
 ## System Architecture
 
-Our architecture is designed for scalability and resilience, leveraging GCP's managed services. For a complete overview, including a detailed data flow diagram and component breakdown, please see our full **[Architecture Document](./ARCHITECTURE.md)**.
+Our architecture is designed for scalability and resilience, leveraging GCP's managed services. For a complete overview, including a detailed data flow diagram and component breakdown, please see our full **[Architecture Document](./docs/ARCHITECTURE.md)**.
 
 ## 🛠️ Technology Stack
 
@@ -58,7 +58,7 @@ Our architecture is designed for scalability and resilience, leveraging GCP's ma
 
 ## Getting Started
 
-To get the project up and running, follow these steps. For more detailed instructions, see the [Contributing Guide](./CONTRIBUTING.md).
+To get the project up and running, follow these steps. For more detailed instructions, see the [Contributing Guide](./docs/CONTRIBUTING.md).
 
 ### Prerequisites
 -   Node.js (v18+)
@@ -70,7 +70,7 @@ To get the project up and running, follow these steps. For more detailed instruc
 All cloud resources are managed by Terraform. See the **[Infrastructure Setup Guide](./infra/README.md)** for instructions.
 
 ### 2. Setup Backend
-The backend data pipelines require a specific Python environment. See the **[Data Models & Backend Guide](./data_models/README.md)**.
+The backend data pipelines require a specific Python environment. See the **[Data Models & Backend Guide](./server/data_models/README.md)**.
 
 ### 3. Run Frontend (Basic Setup)
 ```bash
@@ -90,17 +90,17 @@ CityPulse maintains **95%+ test coverage** across all components:
 # Frontend tests (Jest + React Testing Library)
 npm run test:ci
 
-# End-to-end tests (Playwright)
-npm run test:e2e
+# Frontend tests with watch mode
+npm run test:watch
 
 # Python backend tests (pytest)
 python -m pytest tests/ -v
 
-# Security tests
-npm run test:security
+# Type checking
+npm run type-check
 
-# Performance tests
-npm run test:performance
+# Code formatting
+npm run format:check
 ```
 
 ### **Quality Metrics**
@@ -120,31 +120,21 @@ npm run test:performance
 
 See the **[Deployment Guide](./docs/DEPLOYMENT.md)** for detailed instructions.
 
-## 📚 Documentation
 
-Comprehensive documentation is available in the `/docs` directory:
-
-- **[Architecture Guide](./docs/ARCHITECTURE.md)** - System design and data flow
-- **[API Documentation](./docs/API_GUIDE.md)** - Complete API reference with examples
-- **[User Guide](./docs/USER_GUIDE.md)** - User training and tutorials
-- **[Deployment Guide](./docs/DEPLOYMENT.md)** - Production deployment instructions
-- **[Security Operations](./docs/SECURITY_OPERATIONS.md)** - Security procedures and best practices
-- **[Performance Guide](./docs/PERFORMANCE_GUIDE.md)** - Optimization strategies
-- **[Database Schema](./docs/DATABASE_SCHEMA.md)** - Complete data model documentation
-- **[FAQ](./docs/FAQ.md)** - Frequently asked questions and troubleshooting
 
 ## 🏗️ Project Structure
 
 ```
 CityPulse/
 ├── src/                    # Next.js frontend (App Router)
-├── data_models/           # Python data processing core
+├── server/                 # Python backend and data processing
+│   └── data_models/       # Data pipelines and models
 ├── infra/                 # Terraform infrastructure
 ├── tests/                 # Comprehensive testing framework
 ├── docs/                  # Complete documentation suite
-├── E2E/                   # End-to-end testing
 ├── scripts/               # Automation utilities
-└── reports/               # Analysis and audit reports
+├── reports/               # Analysis and audit reports
+└── .windsurf/workflows/   # Development workflows
 ```
 
 ## 📚 Documentation
