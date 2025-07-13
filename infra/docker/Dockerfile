@@ -1,5 +1,5 @@
-# Use Python 3.11 with latest Alpine for Apache Beam compatibility
-FROM python:3.11.11-alpine3.21
+# Use Python 3.11 with Debian slim for better Apache Beam compatibility
+FROM python:3.11-slim-bookworm
 
 # Set environment variables for security and performance
 ENV PYTHONUNBUFFERED=1
@@ -12,21 +12,22 @@ ENV PATH="/home/appuser/.local/bin:$PATH"
 # Set work directory
 WORKDIR /app
 
-# Install system dependencies with Alpine package manager
-RUN apk update && apk upgrade && apk add --no-cache \
+# Install system dependencies with Debian package manager
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
     gcc \
     g++ \
-    musl-dev \
-    linux-headers \
     git \
     curl \
     ca-certificates \
-    && rm -rf /var/cache/apk/* \
+    libffi-dev \
+    libssl-dev \
+    && rm -rf /var/lib/apt/lists/* \
     && rm -rf /tmp/* \
     && rm -rf /var/tmp/*
 
-# Create non-root user early for security (Alpine syntax)
-RUN addgroup -g 1001 -S appuser && adduser -u 1001 -S appuser -G appuser \
+# Create non-root user early for security (Debian syntax)
+RUN groupadd -g 1001 appuser && useradd -u 1001 -g appuser -m appuser \
     && mkdir -p /home/appuser/.local/bin \
     && chown -R appuser:appuser /home/appuser
 
@@ -45,14 +46,14 @@ RUN pip install --user --no-cache-dir -r requirements.txt
 # Copy application code with proper ownership
 COPY --chown=appuser:appuser src/ /app/src/
 COPY --chown=appuser:appuser tests/ /app/tests/
-COPY --chown=appuser:appuser data_models/ /app/data_models/
+COPY --chown=appuser:appuser server/ /app/server/
 
 # Add comprehensive health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD python -c "import sys, os; sys.exit(0 if os.path.exists('/app/src/main.py') else 1)" || exit 1
+    CMD python -c "import sys, os; sys.exit(0 if os.path.exists('/app/main.py') else 1)" || exit 1
 
 # Expose port (if needed for web services)
 EXPOSE 8080
 
 # Default command
-CMD ["python", "src/main.py"]
+CMD ["python", "main.py"]

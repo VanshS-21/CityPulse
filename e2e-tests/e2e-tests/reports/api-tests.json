@@ -1,9 +1,0 @@
-{
-  "created": 1752401767.5097177,
-  "duration": 0.009747028350830078,
-  "exitcode": 4,
-  "root": "/mnt/persist/workspace/e2e-tests",
-  "environment": {},
-  "summary": { "total": 0, "collected": 0 },
-  "tests": []
-}

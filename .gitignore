@@ -164,6 +164,49 @@ E2E/venv/
 Thumbs.db
 
 # ========================================
+# REPORTS & GENERATED FILES
+# ========================================
+# Auto-generated reports
+reports/
+test-reports/
+**/reports/
+assessment-report-*.json
+*-report-*.html
+*-report-*.json
+*-report-*.md
+
+# Generated analysis files
+audit_report.json
+pylint-report.*
+baseline-errors.log
+
+# ========================================
+# TOOL-SPECIFIC CONFIGURATIONS
+# ========================================
+# Taskmaster
+.taskmaster/
+
+# Kilocode
+.kilocode/
+
+# Other development tools
+.cursor/
+
+# ========================================
+# TEMPORARY & DEVELOPMENT DIRECTORIES
+# ========================================
+temp_*/
+**/temp_*/
+legacy-cleanup/
+**/legacy-cleanup/
+
+# ========================================
+# ADDITIONAL BUILD ARTIFACTS
+# ========================================
+# TypeScript build info
+*.tsbuildinfo
+
+# ========================================
 # ALLOWED FILES
 # ========================================
 # Allow specific configuration files

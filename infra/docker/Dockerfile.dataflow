@@ -26,7 +26,7 @@ RUN pip install --user --no-cache-dir -r requirements.txt
 
 # Copy application code
 COPY src/ ./src/
-COPY data_models/ ./data_models/
+COPY server/ ./server/
 
 # Stage 2: Dataflow runtime (based on Google's template launcher)
 FROM gcr.io/dataflow-templates-base/python311-template-launcher-base
@@ -46,7 +46,7 @@ COPY --from=builder /dataflow/template /dataflow/template
 WORKDIR /dataflow/template
 
 # Set the entrypoint for the Dataflow template
-ENV FLEX_TEMPLATE_PYTHON_PY_FILE="src/main.py"
+ENV FLEX_TEMPLATE_PYTHON_PY_FILE="main.py"
 
 # Health check for Dataflow
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
