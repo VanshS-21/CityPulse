@@ -1,0 +1,27 @@
+{
+  "environment": "test",
+  "start_time": "2025-07-13T10:22:14.078154",
+  "end_time": "2025-07-13T10:22:14.645812",
+  "duration": 0.5676562786102295,
+  "suites": {
+    "api_tests": {
+      "name": "API Integration Tests",
+      "status": "failed",
+      "tests": [],
+      "summary": {
+        "total": 0,
+        "collected": 10
+      },
+      "duration": 0.1067960262298584
+    }
+  },
+  "summary": {
+    "total_tests": 0,
+    "passed": 0,
+    "failed": 0,
+    "skipped": 0,
+    "errors": 0
+  },
+  "performance_metrics": {},
+  "coverage_report": {}
+}

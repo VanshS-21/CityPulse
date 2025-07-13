@@ -1,0 +1,3694 @@
+{
+  "timestamp": "2025-07-13T10:08:49.649114",
+  "project_root": "/mnt/persist/workspace",
+  "test_directories": {
+    "tests/": {
+      "path": "/mnt/persist/workspace/tests",
+      "exists": true,
+      "files": [
+        {
+          "name": "README.md",
+          "path": "tests/README.md",
+          "size": 9921,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": false,
+          "language": "markdown"
+        },
+        {
+          "name": "conftest.py",
+          "path": "tests/conftest.py",
+          "size": 15254,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": false,
+          "language": "python"
+        },
+        {
+          "name": "report_generator.py",
+          "path": "tests/report_generator.py",
+          "size": 27708,
+          "modified": "2025-07-13T09:58:04.823370",
+          "is_test": false,
+          "language": "python"
+        },
+        {
+          "name": "test_ai_processing.py",
+          "path": "tests/test_ai_processing.py",
+          "size": 3126,
+          "modified": "2025-07-13T09:58:04.823370",
+          "is_test": true,
+          "language": "python",
+          "functions": [
+            {
+              "name": "test_run_pipeline",
+              "line": 32,
+              "is_async": false
+            }
+          ],
+          "classes": [
+            {
+              "name": "TestAIProcessing",
+              "line": 27
+            }
+          ],
+          "imports": [
+            "os",
+            "sys",
+            "unittest.mock",
+            "apache_beam",
+            "apache_beam.options.pipeline_options",
+            "data_models.data_ingestion.ai_processing",
+            "data_models.core",
+            "data_models.tests.common",
+            "json"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "test_runner.py",
+          "path": "tests/test_runner.py",
+          "size": 18641,
+          "modified": "2025-07-13T09:58:04.823370",
+          "is_test": true,
+          "language": "python",
+          "functions": [],
+          "classes": [
+            {
+              "name": "TestRunner",
+              "line": 25
+            }
+          ],
+          "imports": [
+            "os",
+            "sys",
+            "subprocess",
+            "json",
+            "time",
+            "datetime",
+            "typing",
+            "argparse",
+            "logging",
+            "pathlib"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "README.md",
+          "path": "tests/e2e-legacy/README.md",
+          "size": 5044,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": false,
+          "language": "markdown"
+        },
+        {
+          "name": "__init__.py",
+          "path": "tests/e2e-legacy/__init__.py",
+          "size": 36,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": false,
+          "language": "python"
+        },
+        {
+          "name": "publish_to_main_topic.py",
+          "path": "tests/e2e-legacy/publish_to_main_topic.py",
+          "size": 1361,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": false,
+          "language": "python"
+        },
+        {
+          "name": "run_tests.py",
+          "path": "tests/e2e-legacy/run_tests.py",
+          "size": 4937,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": false,
+          "language": "python"
+        },
+        {
+          "name": "simple_pipeline_test.py",
+          "path": "tests/e2e-legacy/simple_pipeline_test.py",
+          "size": 5318,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": true,
+          "language": "python",
+          "functions": [],
+          "classes": [
+            {
+              "name": "SimplePipelineTest",
+              "line": 20
+            }
+          ],
+          "imports": [
+            "json",
+            "logging",
+            "time",
+            "datetime",
+            "typing",
+            "google.cloud",
+            "google.api_core"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "__init__.py",
+          "path": "tests/e2e-legacy/config/__init__.py",
+          "size": 28,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": false,
+          "language": "python"
+        },
+        {
+          "name": "test_config.py",
+          "path": "tests/e2e-legacy/config/test_config.py",
+          "size": 5650,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": true,
+          "language": "python",
+          "functions": [],
+          "classes": [
+            {
+              "name": "TestConfig",
+              "line": 68
+            }
+          ],
+          "imports": [
+            "typing",
+            "dataclasses",
+            "utils.environment_helpers",
+            "utils.environment_helpers"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "sample_events.json",
+          "path": "tests/e2e-legacy/data/sample_events.json",
+          "size": 5462,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": false,
+          "language": "json"
+        },
+        {
+          "name": "__init__.py",
+          "path": "tests/e2e-legacy/tests/__init__.py",
+          "size": 20,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": false,
+          "language": "python"
+        },
+        {
+          "name": "test_bigquery_tables.py",
+          "path": "tests/e2e-legacy/tests/test_bigquery_tables.py",
+          "size": 9277,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": true,
+          "language": "python",
+          "functions": [
+            {
+              "name": "test_events_table_schema",
+              "line": 38,
+              "is_async": false
+            },
+            {
+              "name": "test_citizen_reports_table_schema",
+              "line": 69,
+              "is_async": false
+            },
+            {
+              "name": "test_dead_letter_table_schema",
+              "line": 95,
+              "is_async": false
+            },
+            {
+              "name": "test_insert_valid_citizen_report",
+              "line": 114,
+              "is_async": false
+            },
+            {
+              "name": "test_query_performance",
+              "line": 162,
+              "is_async": false
+            },
+            {
+              "name": "test_current_production_data",
+              "line": 190,
+              "is_async": false
+            },
+            {
+              "name": "test_dead_letter_data_structure",
+              "line": 210,
+              "is_async": false
+            }
+          ],
+          "classes": [
+            {
+              "name": "TestBigQuerySchemas",
+              "line": 35
+            },
+            {
+              "name": "TestBigQueryDataValidation",
+              "line": 111
+            },
+            {
+              "name": "TestBigQueryDataIntegrity",
+              "line": 187
+            }
+          ],
+          "imports": [
+            "pytest",
+            "typing",
+            "google.cloud",
+            "config.test_config",
+            "utils.gcp_helpers",
+            "utils.data_generators",
+            "utils.test_helpers"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "test_dataflow_pipeline.py",
+          "path": "tests/e2e-legacy/tests/test_dataflow_pipeline.py",
+          "size": 11579,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": true,
+          "language": "python",
+          "functions": [
+            {
+              "name": "test_list_active_dataflow_jobs",
+              "line": 64,
+              "is_async": false
+            },
+            {
+              "name": "test_get_job_details",
+              "line": 87,
+              "is_async": false
+            },
+            {
+              "name": "test_validate_citizen_reports_pipeline_config",
+              "line": 131,
+              "is_async": false
+            },
+            {
+              "name": "test_pipeline_dependencies",
+              "line": 152,
+              "is_async": false
+            },
+            {
+              "name": "test_citizen_report_transformation",
+              "line": 170,
+              "is_async": false
+            },
+            {
+              "name": "test_invalid_data_handling",
+              "line": 188,
+              "is_async": false
+            },
+            {
+              "name": "test_pipeline_resource_usage",
+              "line": 204,
+              "is_async": false
+            },
+            {
+              "name": "test_pipeline_scaling",
+              "line": 223,
+              "is_async": false
+            },
+            {
+              "name": "test_pipeline_logs_available",
+              "line": 266,
+              "is_async": false
+            },
+            {
+              "name": "test_pipeline_error_handling",
+              "line": 300,
+              "is_async": false
+            }
+          ],
+          "classes": [
+            {
+              "name": "TestDataflowJobManagement",
+              "line": 61
+            },
+            {
+              "name": "TestPipelineValidation",
+              "line": 128
+            },
+            {
+              "name": "TestDataTransformation",
+              "line": 167
+            },
+            {
+              "name": "TestPipelinePerformance",
+              "line": 201
+            },
+            {
+              "name": "TestPipelineMonitoring",
+              "line": 263
+            }
+          ],
+          "imports": [
+            "pytest",
+            "time",
+            "subprocess",
+            "typing",
+            "config.test_config",
+            "utils.gcp_helpers",
+            "utils.data_generators",
+            "utils.test_helpers",
+            "json",
+            "json",
+            "os",
+            "google.cloud",
+            "sys",
+            "data_ingestion"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "test_end_to_end.py",
+          "path": "tests/e2e-legacy/tests/test_end_to_end.py",
+          "size": 12970,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": true,
+          "language": "python",
+          "functions": [
+            {
+              "name": "test_helpers",
+              "line": 35,
+              "is_async": false
+            },
+            {
+              "name": "test_citizen_reports_end_to_end",
+              "line": 58,
+              "is_async": false
+            },
+            {
+              "name": "test_data_pipeline_performance",
+              "line": 179,
+              "is_async": false
+            },
+            {
+              "name": "test_data_integrity_validation",
+              "line": 230,
+              "is_async": false
+            },
+            {
+              "name": "test_duplicate_handling",
+              "line": 291,
+              "is_async": false
+            }
+          ],
+          "classes": [
+            {
+              "name": "TestCompleteDataFlow",
+              "line": 55
+            },
+            {
+              "name": "TestDataConsistency",
+              "line": 227
+            }
+          ],
+          "imports": [
+            "pytest",
+            "time",
+            "json",
+            "typing",
+            "config.test_config",
+            "utils.gcp_helpers",
+            "utils.data_generators",
+            "utils.test_helpers"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "test_pubsub_integration.py",
+          "path": "tests/e2e-legacy/tests/test_pubsub_integration.py",
+          "size": 10532,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": true,
+          "language": "python",
+          "functions": [
+            {
+              "name": "test_create_citizen_reports_topic",
+              "line": 39,
+              "is_async": false
+            },
+            {
+              "name": "test_create_iot_data_topic",
+              "line": 56,
+              "is_async": false
+            },
+            {
+              "name": "test_create_subscription_for_topic",
+              "line": 70,
+              "is_async": false
+            },
+            {
+              "name": "test_publish_citizen_report_messages",
+              "line": 98,
+              "is_async": false
+            },
+            {
+              "name": "test_publish_iot_data_messages",
+              "line": 114,
+              "is_async": false
+            },
+            {
+              "name": "test_publish_invalid_messages",
+              "line": 130,
+              "is_async": false
+            },
+            {
+              "name": "test_consume_published_messages",
+              "line": 153,
+              "is_async": false
+            },
+            {
+              "name": "test_publish_to_nonexistent_topic",
+              "line": 233,
+              "is_async": false
+            },
+            {
+              "name": "test_create_duplicate_topic",
+              "line": 247,
+              "is_async": false
+            },
+            {
+              "name": "test_bulk_message_publishing",
+              "line": 263,
+              "is_async": false
+            }
+          ],
+          "classes": [
+            {
+              "name": "TestPubSubTopics",
+              "line": 36
+            },
+            {
+              "name": "TestPubSubSubscriptions",
+              "line": 67
+            },
+            {
+              "name": "TestMessagePublishing",
+              "line": 95
+            },
+            {
+              "name": "TestMessageConsumption",
+              "line": 150
+            },
+            {
+              "name": "TestPubSubErrorHandling",
+              "line": 230
+            },
+            {
+              "name": "TestPubSubPerformance",
+              "line": 260
+            }
+          ],
+          "imports": [
+            "pytest",
+            "json",
+            "time",
+            "typing",
+            "google.cloud",
+            "google.cloud.exceptions",
+            "config.test_config",
+            "utils.gcp_helpers",
+            "utils.data_generators",
+            "utils.test_helpers"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "__init__.py",
+          "path": "tests/e2e-legacy/utils/__init__.py",
+          "size": 24,
+          "modified": "2025-07-13T09:58:04.823370",
+          "is_test": false,
+          "language": "python"
+        },
+        {
+          "name": "data_generators.py",
+          "path": "tests/e2e-legacy/utils/data_generators.py",
+          "size": 9259,
+          "modified": "2025-07-13T09:58:04.823370",
+          "is_test": false,
+          "language": "python"
+        },
+        {
+          "name": "environment_helpers.py",
+          "path": "tests/e2e-legacy/utils/environment_helpers.py",
+          "size": 4166,
+          "modified": "2025-07-13T09:58:04.823370",
+          "is_test": false,
+          "language": "python"
+        },
+        {
+          "name": "gcp_helpers.py",
+          "path": "tests/e2e-legacy/utils/gcp_helpers.py",
+          "size": 11636,
+          "modified": "2025-07-13T09:58:04.823370",
+          "is_test": false,
+          "language": "python"
+        },
+        {
+          "name": "publish_test_event.py",
+          "path": "tests/e2e-legacy/utils/publish_test_event.py",
+          "size": 3339,
+          "modified": "2025-07-13T09:58:04.823370",
+          "is_test": false,
+          "language": "python"
+        },
+        {
+          "name": "test_helpers.py",
+          "path": "tests/e2e-legacy/utils/test_helpers.py",
+          "size": 11263,
+          "modified": "2025-07-13T09:58:04.823370",
+          "is_test": true,
+          "language": "python",
+          "functions": [
+            {
+              "name": "test_resource_cleanup",
+              "line": 275,
+              "is_async": false
+            }
+          ],
+          "classes": [
+            {
+              "name": "TestTimer",
+              "line": 19
+            }
+          ],
+          "imports": [
+            "time",
+            "json",
+            "logging",
+            "subprocess",
+            "typing",
+            "datetime",
+            "contextlib"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "test_api_endpoints.py",
+          "path": "tests/integration/test_api_endpoints.py",
+          "size": 22123,
+          "modified": "2025-07-13T09:58:04.823370",
+          "is_test": true,
+          "language": "python",
+          "functions": [
+            {
+              "name": "test_get_events_success",
+              "line": 263,
+              "is_async": false
+            },
+            {
+              "name": "test_get_events_with_filters",
+              "line": 278,
+              "is_async": false
+            },
+            {
+              "name": "test_get_events_with_pagination",
+              "line": 290,
+              "is_async": false
+            },
+            {
+              "name": "test_get_events_unauthorized",
+              "line": 302,
+              "is_async": false
+            },
+            {
+              "name": "test_get_events_invalid_token",
+              "line": 308,
+              "is_async": false
+            },
+            {
+              "name": "test_create_event_success",
+              "line": 315,
+              "is_async": false
+            },
+            {
+              "name": "test_create_event_missing_fields",
+              "line": 338,
+              "is_async": false
+            },
+            {
+              "name": "test_get_event_by_id_success",
+              "line": 351,
+              "is_async": false
+            },
+            {
+              "name": "test_get_event_by_id_not_found",
+              "line": 364,
+              "is_async": false
+            },
+            {
+              "name": "test_update_event_as_admin",
+              "line": 372,
+              "is_async": false
+            },
+            {
+              "name": "test_update_event_status_as_user",
+              "line": 385,
+              "is_async": false
+            },
+            {
+              "name": "test_create_feedback_success",
+              "line": 399,
+              "is_async": false
+            },
+            {
+              "name": "test_create_feedback_missing_content",
+              "line": 419,
+              "is_async": false
+            },
+            {
+              "name": "test_create_anonymous_feedback",
+              "line": 429,
+              "is_async": false
+            },
+            {
+              "name": "test_get_trends_success",
+              "line": 450,
+              "is_async": false
+            },
+            {
+              "name": "test_get_trends_with_filters",
+              "line": 469,
+              "is_async": false
+            },
+            {
+              "name": "test_get_kpis_success",
+              "line": 480,
+              "is_async": false
+            },
+            {
+              "name": "test_complete_event_lifecycle",
+              "line": 507,
+              "is_async": false
+            },
+            {
+              "name": "test_authentication_flow",
+              "line": 551,
+              "is_async": false
+            },
+            {
+              "name": "test_role_based_access_control",
+              "line": 567,
+              "is_async": false
+            },
+            {
+              "name": "test_data_validation_across_endpoints",
+              "line": 581,
+              "is_async": false
+            }
+          ],
+          "classes": [
+            {
+              "name": "TestEventEndpoints",
+              "line": 260
+            },
+            {
+              "name": "TestFeedbackEndpoints",
+              "line": 396
+            },
+            {
+              "name": "TestAnalyticsEndpoints",
+              "line": 447
+            },
+            {
+              "name": "TestAPIIntegration",
+              "line": 504
+            }
+          ],
+          "imports": [
+            "pytest",
+            "json",
+            "asyncio",
+            "datetime",
+            "unittest.mock",
+            "typing",
+            "httpx",
+            "fastapi.testclient",
+            "fastapi",
+            "fastapi.security"
+          ],
+          "dependencies": [],
+          "api_endpoints": [
+            "\"/api/v1/events\"",
+            "\"/api/v1/events\"",
+            "\"/api/v1/events/{event_id}\"",
+            "\"/api/v1/events/{event_id}\"",
+            "\"/api/v1/events/{event_id}/feedback\"",
+            "\"/api/v1/analytics/trends\"",
+            "\"/api/v1/analytics/kpis\"",
+            "\"/api/v1/events\"",
+            "\"/api/v1/events?category=infrastructure\"",
+            "\"/api/v1/events?limit=1&offset=0\"",
+            "\"/api/v1/events\"",
+            "\"/api/v1/events\"",
+            "\"/api/v1/events\"",
+            "\"/api/v1/events\"",
+            "\"/api/v1/events/event-1\"",
+            "\"/api/v1/events/non-existent\"",
+            "\"/api/v1/events/event-1\"",
+            "\"/api/v1/events/event-1\"",
+            "\"/api/v1/events/event-1/feedback\"",
+            "\"/api/v1/events/event-1/feedback\"",
+            "\"/api/v1/events/event-1/feedback\"",
+            "\"/api/v1/analytics/trends\"",
+            "\"/api/v1/analytics/trends?category=infrastructure&date_range=month\"",
+            "\"/api/v1/analytics/kpis\"",
+            "\"/api/v1/events\"",
+            "\"/api/v1/events/{event_id}\"",
+            "\"/api/v1/events/{event_id}/feedback\"",
+            "\"/api/v1/events/{event_id}\"",
+            "\"/api/v1/events/{event_id}\"",
+            "\"/api/v1/events\"",
+            "\"/api/v1/events\"",
+            "\"/api/v1/events\"",
+            "\"/api/v1/events/event-1\"",
+            "\"/api/v1/events/event-1\"",
+            "\"/api/v1/events\"",
+            "\"/api/v1/events/event-1/feedback\""
+          ],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "test_database_operations.py",
+          "path": "tests/integration/test_database_operations.py",
+          "size": 25178,
+          "modified": "2025-07-13T09:58:04.823370",
+          "is_test": true,
+          "language": "python",
+          "functions": [
+            {
+              "name": "test_firestore_connection",
+              "line": 32,
+              "is_async": false
+            },
+            {
+              "name": "test_document_crud_operations",
+              "line": 45,
+              "is_async": false
+            },
+            {
+              "name": "test_query_operations",
+              "line": 102,
+              "is_async": false
+            },
+            {
+              "name": "test_multiple_condition_query",
+              "line": 141,
+              "is_async": false
+            },
+            {
+              "name": "test_batch_operations",
+              "line": 168,
+              "is_async": false
+            },
+            {
+              "name": "test_transaction_operations",
+              "line": 196,
+              "is_async": false
+            },
+            {
+              "name": "test_error_handling",
+              "line": 238,
+              "is_async": false
+            },
+            {
+              "name": "test_bigquery_connection",
+              "line": 270,
+              "is_async": false
+            },
+            {
+              "name": "test_table_operations",
+              "line": 283,
+              "is_async": false
+            },
+            {
+              "name": "test_query_execution",
+              "line": 305,
+              "is_async": false
+            },
+            {
+              "name": "test_data_insertion",
+              "line": 335,
+              "is_async": false
+            },
+            {
+              "name": "test_streaming_insert",
+              "line": 371,
+              "is_async": false
+            },
+            {
+              "name": "test_query_with_parameters",
+              "line": 397,
+              "is_async": false
+            },
+            {
+              "name": "test_analytics_queries",
+              "line": 427,
+              "is_async": false
+            },
+            {
+              "name": "test_event_data_sync",
+              "line": 469,
+              "is_async": false
+            },
+            {
+              "name": "test_transaction_consistency",
+              "line": 512,
+              "is_async": false
+            },
+            {
+              "name": "test_data_validation_consistency",
+              "line": 539,
+              "is_async": false
+            },
+            {
+              "name": "test_complete_data_pipeline",
+              "line": 607,
+              "is_async": false
+            },
+            {
+              "name": "test_error_recovery_scenarios",
+              "line": 643,
+              "is_async": false
+            }
+          ],
+          "classes": [
+            {
+              "name": "TestFirestoreIntegration",
+              "line": 22
+            },
+            {
+              "name": "TestBigQueryIntegration",
+              "line": 263
+            },
+            {
+              "name": "TestDataConsistency",
+              "line": 461
+            },
+            {
+              "name": "TestDatabaseIntegrationScenarios",
+              "line": 604
+            }
+          ],
+          "imports": [
+            "pytest",
+            "asyncio",
+            "datetime",
+            "unittest.mock",
+            "typing",
+            "json",
+            "google.cloud",
+            "google.cloud.firestore_v1.base_query",
+            "google.api_core",
+            "data_models.services.firestore_service",
+            "data_models.firestore_models",
+            "data_models.firestore_models.event"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "test_external_services.py",
+          "path": "tests/integration/test_external_services.py",
+          "size": 23765,
+          "modified": "2025-07-13T09:58:04.823370",
+          "is_test": true,
+          "language": "python",
+          "functions": [
+            {
+              "name": "test_publisher_client_initialization",
+              "line": 29,
+              "is_async": false
+            },
+            {
+              "name": "test_message_publishing",
+              "line": 42,
+              "is_async": false
+            },
+            {
+              "name": "test_message_publishing_with_attributes",
+              "line": 73,
+              "is_async": false
+            },
+            {
+              "name": "test_message_subscription",
+              "line": 101,
+              "is_async": false
+            },
+            {
+              "name": "test_error_handling",
+              "line": 133,
+              "is_async": false
+            },
+            {
+              "name": "test_storage_client_initialization",
+              "line": 159,
+              "is_async": false
+            },
+            {
+              "name": "test_file_upload",
+              "line": 172,
+              "is_async": false
+            },
+            {
+              "name": "test_file_download",
+              "line": 191,
+              "is_async": false
+            },
+            {
+              "name": "test_file_metadata",
+              "line": 209,
+              "is_async": false
+            },
+            {
+              "name": "test_file_deletion",
+              "line": 235,
+              "is_async": false
+            },
+            {
+              "name": "test_signed_url_generation",
+              "line": 251,
+              "is_async": false
+            },
+            {
+              "name": "test_sentiment_analysis",
+              "line": 278,
+              "is_async": false
+            },
+            {
+              "name": "test_entity_extraction",
+              "line": 307,
+              "is_async": false
+            },
+            {
+              "name": "test_text_classification",
+              "line": 343,
+              "is_async": false
+            },
+            {
+              "name": "test_email_notification",
+              "line": 386,
+              "is_async": false
+            },
+            {
+              "name": "test_sms_notification",
+              "line": 406,
+              "is_async": false
+            },
+            {
+              "name": "test_push_notification",
+              "line": 423,
+              "is_async": false
+            },
+            {
+              "name": "test_notification_preferences",
+              "line": 446,
+              "is_async": false
+            },
+            {
+              "name": "test_complete_event_processing_pipeline",
+              "line": 529,
+              "is_async": false
+            },
+            {
+              "name": "test_error_handling_across_services",
+              "line": 590,
+              "is_async": false
+            }
+          ],
+          "classes": [
+            {
+              "name": "TestPubSubIntegration",
+              "line": 18
+            },
+            {
+              "name": "TestCloudStorageIntegration",
+              "line": 149
+            },
+            {
+              "name": "TestAIMLIntegration",
+              "line": 271
+            },
+            {
+              "name": "TestNotificationServices",
+              "line": 377
+            },
+            {
+              "name": "TestExternalServiceIntegration",
+              "line": 526
+            }
+          ],
+          "imports": [
+            "pytest",
+            "asyncio",
+            "datetime",
+            "unittest.mock",
+            "typing",
+            "json",
+            "base64",
+            "google.cloud",
+            "google.api_core"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "test_basic.py",
+          "path": "tests/unit/test_basic.py",
+          "size": 1739,
+          "modified": "2025-07-13T09:58:04.823370",
+          "is_test": true,
+          "language": "python",
+          "functions": [
+            {
+              "name": "test_python_version",
+              "line": 9,
+              "is_async": false
+            },
+            {
+              "name": "test_basic_math",
+              "line": 13,
+              "is_async": false
+            },
+            {
+              "name": "test_string_operations",
+              "line": 19,
+              "is_async": false
+            },
+            {
+              "name": "test_list_operations",
+              "line": 26,
+              "is_async": false
+            },
+            {
+              "name": "test_dict_operations",
+              "line": 34,
+              "is_async": false
+            },
+            {
+              "name": "test_parametrized",
+              "line": 47,
+              "is_async": false
+            },
+            {
+              "name": "test_environment_variables",
+              "line": 51,
+              "is_async": false
+            },
+            {
+              "name": "test_class_method",
+              "line": 61,
+              "is_async": false
+            },
+            {
+              "name": "test_setup_method",
+              "line": 65,
+              "is_async": false
+            }
+          ],
+          "classes": [
+            {
+              "name": "TestBasicClass",
+              "line": 58
+            }
+          ],
+          "imports": [
+            "pytest",
+            "sys",
+            "os"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "test_data_pipelines.py",
+          "path": "tests/unit/test_data_pipelines.py",
+          "size": 21190,
+          "modified": "2025-07-13T09:58:04.823370",
+          "is_test": true,
+          "language": "python",
+          "functions": [
+            {
+              "name": "test_error_metadata_creation",
+              "line": 42,
+              "is_async": false
+            },
+            {
+              "name": "test_enhanced_dead_letter_handler",
+              "line": 71,
+              "is_async": false
+            },
+            {
+              "name": "test_metrics_collector",
+              "line": 104,
+              "is_async": false
+            },
+            {
+              "name": "test_adaptive_windowing_strategy",
+              "line": 130,
+              "is_async": false
+            },
+            {
+              "name": "test_batched_api_processor",
+              "line": 151,
+              "is_async": false
+            },
+            {
+              "name": "test_location_hash_generator",
+              "line": 185,
+              "is_async": false
+            },
+            {
+              "name": "test_location_hash_generator_missing_location",
+              "line": 212,
+              "is_async": false
+            },
+            {
+              "name": "test_event_id_generator",
+              "line": 234,
+              "is_async": false
+            },
+            {
+              "name": "test_optimized_data_validator",
+              "line": 257,
+              "is_async": false
+            },
+            {
+              "name": "test_optimized_data_validator_invalid_data",
+              "line": 285,
+              "is_async": false
+            },
+            {
+              "name": "test_batched_ai_processor",
+              "line": 309,
+              "is_async": false
+            },
+            {
+              "name": "test_optimized_bigquery_writer",
+              "line": 349,
+              "is_async": false
+            },
+            {
+              "name": "test_pipeline_options_creation",
+              "line": 382,
+              "is_async": false
+            },
+            {
+              "name": "test_pipeline_schema_generation",
+              "line": 404,
+              "is_async": false
+            },
+            {
+              "name": "test_add_processing_timestamp",
+              "line": 442,
+              "is_async": false
+            },
+            {
+              "name": "test_pipeline_component_chain",
+              "line": 503,
+              "is_async": false
+            },
+            {
+              "name": "test_pipeline_timestamp_handling",
+              "line": 534,
+              "is_async": false
+            }
+          ],
+          "classes": [
+            {
+              "name": "TestEnhancedErrorHandling",
+              "line": 39
+            },
+            {
+              "name": "TestOptimizedPipelineComponents",
+              "line": 182
+            },
+            {
+              "name": "TestOptimizedCityPulsePipeline",
+              "line": 379
+            },
+            {
+              "name": "TestPipelineIntegration",
+              "line": 500
+            },
+            {
+              "name": "TestMetricsCollector",
+              "line": 106
+            },
+            {
+              "name": "TestBatchProcessor",
+              "line": 153
+            }
+          ],
+          "imports": [
+            "pytest",
+            "json",
+            "apache_beam",
+            "apache_beam.testing.test_pipeline",
+            "apache_beam.testing.util",
+            "unittest.mock",
+            "datetime",
+            "typing",
+            "sys",
+            "os",
+            "data_models.data_ingestion.enhanced_error_handling",
+            "data_models.data_ingestion.optimized_pipeline"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "test_firestore_models.py",
+          "path": "tests/unit/test_firestore_models.py",
+          "size": 18071,
+          "modified": "2025-07-13T09:58:04.824370",
+          "is_test": true,
+          "language": "python",
+          "functions": [
+            {
+              "name": "test_base_model_creation",
+              "line": 28,
+              "is_async": false
+            },
+            {
+              "name": "test_base_model_custom_id",
+              "line": 44,
+              "is_async": false
+            },
+            {
+              "name": "test_base_model_to_dict",
+              "line": 54,
+              "is_async": false
+            },
+            {
+              "name": "test_base_model_from_dict",
+              "line": 70,
+              "is_async": false
+            },
+            {
+              "name": "test_event_creation_minimal",
+              "line": 94,
+              "is_async": false
+            },
+            {
+              "name": "test_event_creation_full",
+              "line": 110,
+              "is_async": false
+            },
+            {
+              "name": "test_event_validation_title_required",
+              "line": 149,
+              "is_async": false
+            },
+            {
+              "name": "test_event_location_validation",
+              "line": 154,
+              "is_async": false
+            },
+            {
+              "name": "test_event_time_validation",
+              "line": 169,
+              "is_async": false
+            },
+            {
+              "name": "test_event_to_dict",
+              "line": 177,
+              "is_async": false
+            },
+            {
+              "name": "test_event_from_dict",
+              "line": 192,
+              "is_async": false
+            },
+            {
+              "name": "test_user_profile_creation_minimal",
+              "line": 216,
+              "is_async": false
+            },
+            {
+              "name": "test_user_profile_creation_full",
+              "line": 230,
+              "is_async": false
+            },
+            {
+              "name": "test_user_profile_email_validation",
+              "line": 257,
+              "is_async": false
+            },
+            {
+              "name": "test_user_profile_role_validation",
+              "line": 267,
+              "is_async": false
+            },
+            {
+              "name": "test_user_profile_has_role",
+              "line": 285,
+              "is_async": false
+            },
+            {
+              "name": "test_user_profile_add_role",
+              "line": 297,
+              "is_async": false
+            },
+            {
+              "name": "test_user_profile_remove_role",
+              "line": 312,
+              "is_async": false
+            },
+            {
+              "name": "test_feedback_creation_minimal",
+              "line": 332,
+              "is_async": false
+            },
+            {
+              "name": "test_feedback_creation_full",
+              "line": 348,
+              "is_async": false
+            },
+            {
+              "name": "test_feedback_rating_validation",
+              "line": 370,
+              "is_async": false
+            },
+            {
+              "name": "test_feedback_content_validation",
+              "line": 399,
+              "is_async": false
+            },
+            {
+              "name": "test_feedback_approve",
+              "line": 426,
+              "is_async": false
+            },
+            {
+              "name": "test_feedback_reject",
+              "line": 439,
+              "is_async": false
+            },
+            {
+              "name": "test_event_with_user_profile",
+              "line": 494,
+              "is_async": false
+            },
+            {
+              "name": "test_feedback_with_event",
+              "line": 501,
+              "is_async": false
+            },
+            {
+              "name": "test_model_serialization_roundtrip",
+              "line": 508,
+              "is_async": false
+            }
+          ],
+          "classes": [
+            {
+              "name": "TestBaseModel",
+              "line": 25
+            },
+            {
+              "name": "TestEvent",
+              "line": 91
+            },
+            {
+              "name": "TestUserProfile",
+              "line": 213
+            },
+            {
+              "name": "TestFeedback",
+              "line": 329
+            },
+            {
+              "name": "TestModelIntegrations",
+              "line": 491
+            },
+            {
+              "name": "TestModel",
+              "line": 31
+            },
+            {
+              "name": "TestModel",
+              "line": 46
+            },
+            {
+              "name": "TestModel",
+              "line": 56
+            },
+            {
+              "name": "TestModel",
+              "line": 72
+            }
+          ],
+          "imports": [
+            "pytest",
+            "datetime",
+            "unittest.mock",
+            "typing",
+            "sys",
+            "os",
+            "data_models",
+            "shared_models"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "test_services.py",
+          "path": "tests/unit/test_services.py",
+          "size": 24987,
+          "modified": "2025-07-13T09:58:04.824370",
+          "is_test": true,
+          "language": "python",
+          "functions": [
+            {
+              "name": "test_service_initialization",
+              "line": 30,
+              "is_async": false
+            },
+            {
+              "name": "test_get_document_success",
+              "line": 41,
+              "is_async": false
+            },
+            {
+              "name": "test_get_document_not_found",
+              "line": 71,
+              "is_async": false
+            },
+            {
+              "name": "test_set_document_success",
+              "line": 87,
+              "is_async": false
+            },
+            {
+              "name": "test_set_document_failure",
+              "line": 112,
+              "is_async": false
+            },
+            {
+              "name": "test_update_document_success",
+              "line": 129,
+              "is_async": false
+            },
+            {
+              "name": "test_delete_document_success",
+              "line": 151,
+              "is_async": false
+            },
+            {
+              "name": "test_query_documents_success",
+              "line": 168,
+              "is_async": false
+            },
+            {
+              "name": "test_query_with_multiple_conditions",
+              "line": 195,
+              "is_async": false
+            },
+            {
+              "name": "test_batch_operations",
+              "line": 219,
+              "is_async": false
+            },
+            {
+              "name": "test_transaction_operations",
+              "line": 247,
+              "is_async": false
+            },
+            {
+              "name": "test_create_event",
+              "line": 277,
+              "is_async": false
+            },
+            {
+              "name": "test_get_events_by_category",
+              "line": 298,
+              "is_async": false
+            },
+            {
+              "name": "test_get_events_by_location",
+              "line": 315,
+              "is_async": false
+            },
+            {
+              "name": "test_update_event_status",
+              "line": 338,
+              "is_async": false
+            },
+            {
+              "name": "test_get_event_statistics",
+              "line": 355,
+              "is_async": false
+            },
+            {
+              "name": "test_create_user_profile",
+              "line": 410,
+              "is_async": false
+            },
+            {
+              "name": "test_get_user_by_email",
+              "line": 434,
+              "is_async": false
+            },
+            {
+              "name": "test_update_user_preferences",
+              "line": 454,
+              "is_async": false
+            },
+            {
+              "name": "test_deactivate_user",
+              "line": 474,
+              "is_async": false
+            },
+            {
+              "name": "test_create_feedback",
+              "line": 500,
+              "is_async": false
+            },
+            {
+              "name": "test_get_feedback_by_event",
+              "line": 521,
+              "is_async": false
+            },
+            {
+              "name": "test_moderate_feedback",
+              "line": 548,
+              "is_async": false
+            },
+            {
+              "name": "test_calculate_feedback_metrics",
+              "line": 567,
+              "is_async": false
+            },
+            {
+              "name": "test_event_with_user_integration",
+              "line": 647,
+              "is_async": false
+            },
+            {
+              "name": "test_feedback_with_event_integration",
+              "line": 666,
+              "is_async": false
+            },
+            {
+              "name": "test_transaction_func",
+              "line": 254,
+              "is_async": false
+            }
+          ],
+          "classes": [
+            {
+              "name": "TestFirestoreService",
+              "line": 21
+            },
+            {
+              "name": "TestEventService",
+              "line": 268
+            },
+            {
+              "name": "TestUserProfileService",
+              "line": 402
+            },
+            {
+              "name": "TestFeedbackService",
+              "line": 492
+            },
+            {
+              "name": "TestServiceIntegration",
+              "line": 644
+            }
+          ],
+          "imports": [
+            "pytest",
+            "unittest.mock",
+            "datetime",
+            "typing",
+            "json",
+            "sys",
+            "os",
+            "data_models.services.firestore_service",
+            "data_models"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        }
+      ],
+      "subdirectories": [
+        "e2e-legacy",
+        "integration",
+        "unit",
+        "e2e-legacy/config",
+        "e2e-legacy/data",
+        "e2e-legacy/tests",
+        "e2e-legacy/utils"
+      ],
+      "total_files": 31,
+      "test_files": 16
+    },
+    "__tests__/": {
+      "path": "/mnt/persist/workspace/__tests__",
+      "exists": true,
+      "files": [
+        {
+          "name": "firebase-config.test.ts",
+          "path": "__tests__/firebase-config.test.ts",
+          "size": 2307,
+          "modified": "2025-07-13T09:58:04.807370",
+          "is_test": true,
+          "language": "typescript",
+          "functions": [
+            "should throw error in production with missing config",
+            "should use mock config in development with missing env vars",
+            "should throw error in production with mock values",
+            "should accept valid config in production",
+            "Firebase Configuration"
+          ],
+          "classes": [],
+          "imports": [
+            "../src/services/firebase/config",
+            "../src/services/firebase/config",
+            "../src/services/firebase/config",
+            "../src/services/firebase/config"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "msw-example.test.ts",
+          "path": "__tests__/examples/msw-example.test.ts",
+          "size": 6420,
+          "modified": "2025-07-13T09:58:04.807370",
+          "is_test": true,
+          "language": "typescript",
+          "functions": [
+            "should mock successful API response",
+            "should mock error response",
+            "should mock dynamic response with parameters",
+            "should mock POST request with body validation",
+            "should mock failed authentication",
+            "should override handler at runtime",
+            "should simulate Next.js rewrite behavior",
+            "MSW Example Tests",
+            "API Mocking Examples",
+            "Runtime Handler Override",
+            "Next.js Rewrite Simulation"
+          ],
+          "classes": [],
+          "imports": [
+            "msw/node",
+            "msw",
+            "@/utils/constants"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "api-routing.test.ts",
+          "path": "__tests__/integration/api-routing.test.ts",
+          "size": 3226,
+          "modified": "2025-07-13T09:58:04.807370",
+          "is_test": true,
+          "language": "typescript",
+          "functions": [
+            "should have correct base URL in APP_CONFIG",
+            "should have correct API endpoints with /api/v1 prefix",
+            "should verify rewrite configuration exists",
+            "should verify rewrite rules are correct",
+            "should construct URLs correctly using constants",
+            "should validate all endpoints follow the same pattern",
+            "should validate that rewrite transforms /api/v1 to /api",
+            "should validate path parameter handling",
+            "API Routing Integration Tests",
+            "Constants Configuration",
+            "Next.js Rewrite Configuration",
+            "URL Construction",
+            "Routing Logic Verification"
+          ],
+          "classes": [],
+          "imports": [
+            "@/utils/constants"
+          ],
+          "dependencies": [],
+          "api_endpoints": [
+            "'/api/v1/users/123/"
+          ],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "msw.ts",
+          "path": "__tests__/setup/msw.ts",
+          "size": 1769,
+          "modified": "2025-07-13T09:58:04.807370",
+          "is_test": false,
+          "language": "typescript"
+        }
+      ],
+      "subdirectories": [
+        "examples",
+        "integration",
+        "setup"
+      ],
+      "total_files": 4,
+      "test_files": 3
+    },
+    "e2e-tests/": {
+      "path": "/mnt/persist/workspace/e2e-tests",
+      "exists": true,
+      "files": [
+        {
+          "name": "README.md",
+          "path": "e2e-tests/README.md",
+          "size": 6784,
+          "modified": "2025-07-13T10:03:33.324067",
+          "is_test": false,
+          "language": "markdown"
+        },
+        {
+          "name": "environments.json",
+          "path": "e2e-tests/config/environments.json",
+          "size": 5854,
+          "modified": "2025-07-13T10:04:03.568320",
+          "is_test": false,
+          "language": "json"
+        },
+        {
+          "name": "test-data.json",
+          "path": "e2e-tests/config/test-data.json",
+          "size": 7809,
+          "modified": "2025-07-13T10:04:43.293703",
+          "is_test": false,
+          "language": "json"
+        },
+        {
+          "name": "assessment-tool.py",
+          "path": "e2e-tests/legacy-cleanup/assessment-tool.py",
+          "size": 15135,
+          "modified": "2025-07-13T10:05:47.768386",
+          "is_test": false,
+          "language": "python"
+        },
+        {
+          "name": "base_api_test.py",
+          "path": "e2e-tests/core/api-integration/base_api_test.py",
+          "size": 12840,
+          "modified": "2025-07-13T10:06:48.297782",
+          "is_test": true,
+          "language": "python",
+          "functions": [],
+          "classes": [
+            {
+              "name": "APITestBase",
+              "line": 21
+            },
+            {
+              "name": "EventsAPITest",
+              "line": 271
+            },
+            {
+              "name": "UsersAPITest",
+              "line": 326
+            }
+          ],
+          "imports": [
+            "asyncio",
+            "json",
+            "time",
+            "typing",
+            "datetime",
+            "httpx",
+            "pytest",
+            "pathlib"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "pipeline_e2e_test.py",
+          "path": "e2e-tests/core/data-pipeline/pipeline_e2e_test.py",
+          "size": 12665,
+          "modified": "2025-07-13T10:07:39.936028",
+          "is_test": true,
+          "language": "python",
+          "functions": [],
+          "classes": [
+            {
+              "name": "DataPipelineE2ETest",
+              "line": 27
+            }
+          ],
+          "imports": [
+            "asyncio",
+            "json",
+            "time",
+            "uuid",
+            "typing",
+            "datetime",
+            "pytest",
+            "pathlib",
+            "google.cloud",
+            "google.cloud",
+            "google.cloud",
+            "google.api_core"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "test-runner.py",
+          "path": "e2e-tests/utils/test-runner.py",
+          "size": 15531,
+          "modified": "2025-07-13T10:08:41.586444",
+          "is_test": false,
+          "language": "python"
+        }
+      ],
+      "subdirectories": [
+        "config",
+        "legacy-cleanup",
+        "core",
+        "utils",
+        "core/api-integration",
+        "core/data-pipeline"
+      ],
+      "total_files": 7,
+      "test_files": 2
+    },
+    "tests/e2e-legacy/": {
+      "path": "/mnt/persist/workspace/tests/e2e-legacy",
+      "exists": true,
+      "files": [
+        {
+          "name": "README.md",
+          "path": "tests/e2e-legacy/README.md",
+          "size": 5044,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": false,
+          "language": "markdown"
+        },
+        {
+          "name": "__init__.py",
+          "path": "tests/e2e-legacy/__init__.py",
+          "size": 36,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": false,
+          "language": "python"
+        },
+        {
+          "name": "publish_to_main_topic.py",
+          "path": "tests/e2e-legacy/publish_to_main_topic.py",
+          "size": 1361,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": false,
+          "language": "python"
+        },
+        {
+          "name": "run_tests.py",
+          "path": "tests/e2e-legacy/run_tests.py",
+          "size": 4937,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": false,
+          "language": "python"
+        },
+        {
+          "name": "simple_pipeline_test.py",
+          "path": "tests/e2e-legacy/simple_pipeline_test.py",
+          "size": 5318,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": true,
+          "language": "python",
+          "functions": [],
+          "classes": [
+            {
+              "name": "SimplePipelineTest",
+              "line": 20
+            }
+          ],
+          "imports": [
+            "json",
+            "logging",
+            "time",
+            "datetime",
+            "typing",
+            "google.cloud",
+            "google.api_core"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "__init__.py",
+          "path": "tests/e2e-legacy/config/__init__.py",
+          "size": 28,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": false,
+          "language": "python"
+        },
+        {
+          "name": "test_config.py",
+          "path": "tests/e2e-legacy/config/test_config.py",
+          "size": 5650,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": true,
+          "language": "python",
+          "functions": [],
+          "classes": [
+            {
+              "name": "TestConfig",
+              "line": 68
+            }
+          ],
+          "imports": [
+            "typing",
+            "dataclasses",
+            "utils.environment_helpers",
+            "utils.environment_helpers"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "sample_events.json",
+          "path": "tests/e2e-legacy/data/sample_events.json",
+          "size": 5462,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": false,
+          "language": "json"
+        },
+        {
+          "name": "__init__.py",
+          "path": "tests/e2e-legacy/tests/__init__.py",
+          "size": 20,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": false,
+          "language": "python"
+        },
+        {
+          "name": "test_bigquery_tables.py",
+          "path": "tests/e2e-legacy/tests/test_bigquery_tables.py",
+          "size": 9277,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": true,
+          "language": "python",
+          "functions": [
+            {
+              "name": "test_events_table_schema",
+              "line": 38,
+              "is_async": false
+            },
+            {
+              "name": "test_citizen_reports_table_schema",
+              "line": 69,
+              "is_async": false
+            },
+            {
+              "name": "test_dead_letter_table_schema",
+              "line": 95,
+              "is_async": false
+            },
+            {
+              "name": "test_insert_valid_citizen_report",
+              "line": 114,
+              "is_async": false
+            },
+            {
+              "name": "test_query_performance",
+              "line": 162,
+              "is_async": false
+            },
+            {
+              "name": "test_current_production_data",
+              "line": 190,
+              "is_async": false
+            },
+            {
+              "name": "test_dead_letter_data_structure",
+              "line": 210,
+              "is_async": false
+            }
+          ],
+          "classes": [
+            {
+              "name": "TestBigQuerySchemas",
+              "line": 35
+            },
+            {
+              "name": "TestBigQueryDataValidation",
+              "line": 111
+            },
+            {
+              "name": "TestBigQueryDataIntegrity",
+              "line": 187
+            }
+          ],
+          "imports": [
+            "pytest",
+            "typing",
+            "google.cloud",
+            "config.test_config",
+            "utils.gcp_helpers",
+            "utils.data_generators",
+            "utils.test_helpers"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "test_dataflow_pipeline.py",
+          "path": "tests/e2e-legacy/tests/test_dataflow_pipeline.py",
+          "size": 11579,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": true,
+          "language": "python",
+          "functions": [
+            {
+              "name": "test_list_active_dataflow_jobs",
+              "line": 64,
+              "is_async": false
+            },
+            {
+              "name": "test_get_job_details",
+              "line": 87,
+              "is_async": false
+            },
+            {
+              "name": "test_validate_citizen_reports_pipeline_config",
+              "line": 131,
+              "is_async": false
+            },
+            {
+              "name": "test_pipeline_dependencies",
+              "line": 152,
+              "is_async": false
+            },
+            {
+              "name": "test_citizen_report_transformation",
+              "line": 170,
+              "is_async": false
+            },
+            {
+              "name": "test_invalid_data_handling",
+              "line": 188,
+              "is_async": false
+            },
+            {
+              "name": "test_pipeline_resource_usage",
+              "line": 204,
+              "is_async": false
+            },
+            {
+              "name": "test_pipeline_scaling",
+              "line": 223,
+              "is_async": false
+            },
+            {
+              "name": "test_pipeline_logs_available",
+              "line": 266,
+              "is_async": false
+            },
+            {
+              "name": "test_pipeline_error_handling",
+              "line": 300,
+              "is_async": false
+            }
+          ],
+          "classes": [
+            {
+              "name": "TestDataflowJobManagement",
+              "line": 61
+            },
+            {
+              "name": "TestPipelineValidation",
+              "line": 128
+            },
+            {
+              "name": "TestDataTransformation",
+              "line": 167
+            },
+            {
+              "name": "TestPipelinePerformance",
+              "line": 201
+            },
+            {
+              "name": "TestPipelineMonitoring",
+              "line": 263
+            }
+          ],
+          "imports": [
+            "pytest",
+            "time",
+            "subprocess",
+            "typing",
+            "config.test_config",
+            "utils.gcp_helpers",
+            "utils.data_generators",
+            "utils.test_helpers",
+            "json",
+            "json",
+            "os",
+            "google.cloud",
+            "sys",
+            "data_ingestion"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "test_end_to_end.py",
+          "path": "tests/e2e-legacy/tests/test_end_to_end.py",
+          "size": 12970,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": true,
+          "language": "python",
+          "functions": [
+            {
+              "name": "test_helpers",
+              "line": 35,
+              "is_async": false
+            },
+            {
+              "name": "test_citizen_reports_end_to_end",
+              "line": 58,
+              "is_async": false
+            },
+            {
+              "name": "test_data_pipeline_performance",
+              "line": 179,
+              "is_async": false
+            },
+            {
+              "name": "test_data_integrity_validation",
+              "line": 230,
+              "is_async": false
+            },
+            {
+              "name": "test_duplicate_handling",
+              "line": 291,
+              "is_async": false
+            }
+          ],
+          "classes": [
+            {
+              "name": "TestCompleteDataFlow",
+              "line": 55
+            },
+            {
+              "name": "TestDataConsistency",
+              "line": 227
+            }
+          ],
+          "imports": [
+            "pytest",
+            "time",
+            "json",
+            "typing",
+            "config.test_config",
+            "utils.gcp_helpers",
+            "utils.data_generators",
+            "utils.test_helpers"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "test_pubsub_integration.py",
+          "path": "tests/e2e-legacy/tests/test_pubsub_integration.py",
+          "size": 10532,
+          "modified": "2025-07-13T09:58:04.822370",
+          "is_test": true,
+          "language": "python",
+          "functions": [
+            {
+              "name": "test_create_citizen_reports_topic",
+              "line": 39,
+              "is_async": false
+            },
+            {
+              "name": "test_create_iot_data_topic",
+              "line": 56,
+              "is_async": false
+            },
+            {
+              "name": "test_create_subscription_for_topic",
+              "line": 70,
+              "is_async": false
+            },
+            {
+              "name": "test_publish_citizen_report_messages",
+              "line": 98,
+              "is_async": false
+            },
+            {
+              "name": "test_publish_iot_data_messages",
+              "line": 114,
+              "is_async": false
+            },
+            {
+              "name": "test_publish_invalid_messages",
+              "line": 130,
+              "is_async": false
+            },
+            {
+              "name": "test_consume_published_messages",
+              "line": 153,
+              "is_async": false
+            },
+            {
+              "name": "test_publish_to_nonexistent_topic",
+              "line": 233,
+              "is_async": false
+            },
+            {
+              "name": "test_create_duplicate_topic",
+              "line": 247,
+              "is_async": false
+            },
+            {
+              "name": "test_bulk_message_publishing",
+              "line": 263,
+              "is_async": false
+            }
+          ],
+          "classes": [
+            {
+              "name": "TestPubSubTopics",
+              "line": 36
+            },
+            {
+              "name": "TestPubSubSubscriptions",
+              "line": 67
+            },
+            {
+              "name": "TestMessagePublishing",
+              "line": 95
+            },
+            {
+              "name": "TestMessageConsumption",
+              "line": 150
+            },
+            {
+              "name": "TestPubSubErrorHandling",
+              "line": 230
+            },
+            {
+              "name": "TestPubSubPerformance",
+              "line": 260
+            }
+          ],
+          "imports": [
+            "pytest",
+            "json",
+            "time",
+            "typing",
+            "google.cloud",
+            "google.cloud.exceptions",
+            "config.test_config",
+            "utils.gcp_helpers",
+            "utils.data_generators",
+            "utils.test_helpers"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "__init__.py",
+          "path": "tests/e2e-legacy/utils/__init__.py",
+          "size": 24,
+          "modified": "2025-07-13T09:58:04.823370",
+          "is_test": false,
+          "language": "python"
+        },
+        {
+          "name": "data_generators.py",
+          "path": "tests/e2e-legacy/utils/data_generators.py",
+          "size": 9259,
+          "modified": "2025-07-13T09:58:04.823370",
+          "is_test": false,
+          "language": "python"
+        },
+        {
+          "name": "environment_helpers.py",
+          "path": "tests/e2e-legacy/utils/environment_helpers.py",
+          "size": 4166,
+          "modified": "2025-07-13T09:58:04.823370",
+          "is_test": false,
+          "language": "python"
+        },
+        {
+          "name": "gcp_helpers.py",
+          "path": "tests/e2e-legacy/utils/gcp_helpers.py",
+          "size": 11636,
+          "modified": "2025-07-13T09:58:04.823370",
+          "is_test": false,
+          "language": "python"
+        },
+        {
+          "name": "publish_test_event.py",
+          "path": "tests/e2e-legacy/utils/publish_test_event.py",
+          "size": 3339,
+          "modified": "2025-07-13T09:58:04.823370",
+          "is_test": false,
+          "language": "python"
+        },
+        {
+          "name": "test_helpers.py",
+          "path": "tests/e2e-legacy/utils/test_helpers.py",
+          "size": 11263,
+          "modified": "2025-07-13T09:58:04.823370",
+          "is_test": true,
+          "language": "python",
+          "functions": [
+            {
+              "name": "test_resource_cleanup",
+              "line": 275,
+              "is_async": false
+            }
+          ],
+          "classes": [
+            {
+              "name": "TestTimer",
+              "line": 19
+            }
+          ],
+          "imports": [
+            "time",
+            "json",
+            "logging",
+            "subprocess",
+            "typing",
+            "datetime",
+            "contextlib"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        }
+      ],
+      "subdirectories": [
+        "config",
+        "data",
+        "tests",
+        "utils"
+      ],
+      "total_files": 19,
+      "test_files": 7
+    },
+    "tests/integration/": {
+      "path": "/mnt/persist/workspace/tests/integration",
+      "exists": true,
+      "files": [
+        {
+          "name": "test_api_endpoints.py",
+          "path": "tests/integration/test_api_endpoints.py",
+          "size": 22123,
+          "modified": "2025-07-13T09:58:04.823370",
+          "is_test": true,
+          "language": "python",
+          "functions": [
+            {
+              "name": "test_get_events_success",
+              "line": 263,
+              "is_async": false
+            },
+            {
+              "name": "test_get_events_with_filters",
+              "line": 278,
+              "is_async": false
+            },
+            {
+              "name": "test_get_events_with_pagination",
+              "line": 290,
+              "is_async": false
+            },
+            {
+              "name": "test_get_events_unauthorized",
+              "line": 302,
+              "is_async": false
+            },
+            {
+              "name": "test_get_events_invalid_token",
+              "line": 308,
+              "is_async": false
+            },
+            {
+              "name": "test_create_event_success",
+              "line": 315,
+              "is_async": false
+            },
+            {
+              "name": "test_create_event_missing_fields",
+              "line": 338,
+              "is_async": false
+            },
+            {
+              "name": "test_get_event_by_id_success",
+              "line": 351,
+              "is_async": false
+            },
+            {
+              "name": "test_get_event_by_id_not_found",
+              "line": 364,
+              "is_async": false
+            },
+            {
+              "name": "test_update_event_as_admin",
+              "line": 372,
+              "is_async": false
+            },
+            {
+              "name": "test_update_event_status_as_user",
+              "line": 385,
+              "is_async": false
+            },
+            {
+              "name": "test_create_feedback_success",
+              "line": 399,
+              "is_async": false
+            },
+            {
+              "name": "test_create_feedback_missing_content",
+              "line": 419,
+              "is_async": false
+            },
+            {
+              "name": "test_create_anonymous_feedback",
+              "line": 429,
+              "is_async": false
+            },
+            {
+              "name": "test_get_trends_success",
+              "line": 450,
+              "is_async": false
+            },
+            {
+              "name": "test_get_trends_with_filters",
+              "line": 469,
+              "is_async": false
+            },
+            {
+              "name": "test_get_kpis_success",
+              "line": 480,
+              "is_async": false
+            },
+            {
+              "name": "test_complete_event_lifecycle",
+              "line": 507,
+              "is_async": false
+            },
+            {
+              "name": "test_authentication_flow",
+              "line": 551,
+              "is_async": false
+            },
+            {
+              "name": "test_role_based_access_control",
+              "line": 567,
+              "is_async": false
+            },
+            {
+              "name": "test_data_validation_across_endpoints",
+              "line": 581,
+              "is_async": false
+            }
+          ],
+          "classes": [
+            {
+              "name": "TestEventEndpoints",
+              "line": 260
+            },
+            {
+              "name": "TestFeedbackEndpoints",
+              "line": 396
+            },
+            {
+              "name": "TestAnalyticsEndpoints",
+              "line": 447
+            },
+            {
+              "name": "TestAPIIntegration",
+              "line": 504
+            }
+          ],
+          "imports": [
+            "pytest",
+            "json",
+            "asyncio",
+            "datetime",
+            "unittest.mock",
+            "typing",
+            "httpx",
+            "fastapi.testclient",
+            "fastapi",
+            "fastapi.security"
+          ],
+          "dependencies": [],
+          "api_endpoints": [
+            "\"/api/v1/events\"",
+            "\"/api/v1/events\"",
+            "\"/api/v1/events/{event_id}\"",
+            "\"/api/v1/events/{event_id}\"",
+            "\"/api/v1/events/{event_id}/feedback\"",
+            "\"/api/v1/analytics/trends\"",
+            "\"/api/v1/analytics/kpis\"",
+            "\"/api/v1/events\"",
+            "\"/api/v1/events?category=infrastructure\"",
+            "\"/api/v1/events?limit=1&offset=0\"",
+            "\"/api/v1/events\"",
+            "\"/api/v1/events\"",
+            "\"/api/v1/events\"",
+            "\"/api/v1/events\"",
+            "\"/api/v1/events/event-1\"",
+            "\"/api/v1/events/non-existent\"",
+            "\"/api/v1/events/event-1\"",
+            "\"/api/v1/events/event-1\"",
+            "\"/api/v1/events/event-1/feedback\"",
+            "\"/api/v1/events/event-1/feedback\"",
+            "\"/api/v1/events/event-1/feedback\"",
+            "\"/api/v1/analytics/trends\"",
+            "\"/api/v1/analytics/trends?category=infrastructure&date_range=month\"",
+            "\"/api/v1/analytics/kpis\"",
+            "\"/api/v1/events\"",
+            "\"/api/v1/events/{event_id}\"",
+            "\"/api/v1/events/{event_id}/feedback\"",
+            "\"/api/v1/events/{event_id}\"",
+            "\"/api/v1/events/{event_id}\"",
+            "\"/api/v1/events\"",
+            "\"/api/v1/events\"",
+            "\"/api/v1/events\"",
+            "\"/api/v1/events/event-1\"",
+            "\"/api/v1/events/event-1\"",
+            "\"/api/v1/events\"",
+            "\"/api/v1/events/event-1/feedback\""
+          ],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "test_database_operations.py",
+          "path": "tests/integration/test_database_operations.py",
+          "size": 25178,
+          "modified": "2025-07-13T09:58:04.823370",
+          "is_test": true,
+          "language": "python",
+          "functions": [
+            {
+              "name": "test_firestore_connection",
+              "line": 32,
+              "is_async": false
+            },
+            {
+              "name": "test_document_crud_operations",
+              "line": 45,
+              "is_async": false
+            },
+            {
+              "name": "test_query_operations",
+              "line": 102,
+              "is_async": false
+            },
+            {
+              "name": "test_multiple_condition_query",
+              "line": 141,
+              "is_async": false
+            },
+            {
+              "name": "test_batch_operations",
+              "line": 168,
+              "is_async": false
+            },
+            {
+              "name": "test_transaction_operations",
+              "line": 196,
+              "is_async": false
+            },
+            {
+              "name": "test_error_handling",
+              "line": 238,
+              "is_async": false
+            },
+            {
+              "name": "test_bigquery_connection",
+              "line": 270,
+              "is_async": false
+            },
+            {
+              "name": "test_table_operations",
+              "line": 283,
+              "is_async": false
+            },
+            {
+              "name": "test_query_execution",
+              "line": 305,
+              "is_async": false
+            },
+            {
+              "name": "test_data_insertion",
+              "line": 335,
+              "is_async": false
+            },
+            {
+              "name": "test_streaming_insert",
+              "line": 371,
+              "is_async": false
+            },
+            {
+              "name": "test_query_with_parameters",
+              "line": 397,
+              "is_async": false
+            },
+            {
+              "name": "test_analytics_queries",
+              "line": 427,
+              "is_async": false
+            },
+            {
+              "name": "test_event_data_sync",
+              "line": 469,
+              "is_async": false
+            },
+            {
+              "name": "test_transaction_consistency",
+              "line": 512,
+              "is_async": false
+            },
+            {
+              "name": "test_data_validation_consistency",
+              "line": 539,
+              "is_async": false
+            },
+            {
+              "name": "test_complete_data_pipeline",
+              "line": 607,
+              "is_async": false
+            },
+            {
+              "name": "test_error_recovery_scenarios",
+              "line": 643,
+              "is_async": false
+            }
+          ],
+          "classes": [
+            {
+              "name": "TestFirestoreIntegration",
+              "line": 22
+            },
+            {
+              "name": "TestBigQueryIntegration",
+              "line": 263
+            },
+            {
+              "name": "TestDataConsistency",
+              "line": 461
+            },
+            {
+              "name": "TestDatabaseIntegrationScenarios",
+              "line": 604
+            }
+          ],
+          "imports": [
+            "pytest",
+            "asyncio",
+            "datetime",
+            "unittest.mock",
+            "typing",
+            "json",
+            "google.cloud",
+            "google.cloud.firestore_v1.base_query",
+            "google.api_core",
+            "data_models.services.firestore_service",
+            "data_models.firestore_models",
+            "data_models.firestore_models.event"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "test_external_services.py",
+          "path": "tests/integration/test_external_services.py",
+          "size": 23765,
+          "modified": "2025-07-13T09:58:04.823370",
+          "is_test": true,
+          "language": "python",
+          "functions": [
+            {
+              "name": "test_publisher_client_initialization",
+              "line": 29,
+              "is_async": false
+            },
+            {
+              "name": "test_message_publishing",
+              "line": 42,
+              "is_async": false
+            },
+            {
+              "name": "test_message_publishing_with_attributes",
+              "line": 73,
+              "is_async": false
+            },
+            {
+              "name": "test_message_subscription",
+              "line": 101,
+              "is_async": false
+            },
+            {
+              "name": "test_error_handling",
+              "line": 133,
+              "is_async": false
+            },
+            {
+              "name": "test_storage_client_initialization",
+              "line": 159,
+              "is_async": false
+            },
+            {
+              "name": "test_file_upload",
+              "line": 172,
+              "is_async": false
+            },
+            {
+              "name": "test_file_download",
+              "line": 191,
+              "is_async": false
+            },
+            {
+              "name": "test_file_metadata",
+              "line": 209,
+              "is_async": false
+            },
+            {
+              "name": "test_file_deletion",
+              "line": 235,
+              "is_async": false
+            },
+            {
+              "name": "test_signed_url_generation",
+              "line": 251,
+              "is_async": false
+            },
+            {
+              "name": "test_sentiment_analysis",
+              "line": 278,
+              "is_async": false
+            },
+            {
+              "name": "test_entity_extraction",
+              "line": 307,
+              "is_async": false
+            },
+            {
+              "name": "test_text_classification",
+              "line": 343,
+              "is_async": false
+            },
+            {
+              "name": "test_email_notification",
+              "line": 386,
+              "is_async": false
+            },
+            {
+              "name": "test_sms_notification",
+              "line": 406,
+              "is_async": false
+            },
+            {
+              "name": "test_push_notification",
+              "line": 423,
+              "is_async": false
+            },
+            {
+              "name": "test_notification_preferences",
+              "line": 446,
+              "is_async": false
+            },
+            {
+              "name": "test_complete_event_processing_pipeline",
+              "line": 529,
+              "is_async": false
+            },
+            {
+              "name": "test_error_handling_across_services",
+              "line": 590,
+              "is_async": false
+            }
+          ],
+          "classes": [
+            {
+              "name": "TestPubSubIntegration",
+              "line": 18
+            },
+            {
+              "name": "TestCloudStorageIntegration",
+              "line": 149
+            },
+            {
+              "name": "TestAIMLIntegration",
+              "line": 271
+            },
+            {
+              "name": "TestNotificationServices",
+              "line": 377
+            },
+            {
+              "name": "TestExternalServiceIntegration",
+              "line": 526
+            }
+          ],
+          "imports": [
+            "pytest",
+            "asyncio",
+            "datetime",
+            "unittest.mock",
+            "typing",
+            "json",
+            "base64",
+            "google.cloud",
+            "google.api_core"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        }
+      ],
+      "subdirectories": [],
+      "total_files": 3,
+      "test_files": 3
+    },
+    "tests/unit/": {
+      "path": "/mnt/persist/workspace/tests/unit",
+      "exists": true,
+      "files": [
+        {
+          "name": "test_basic.py",
+          "path": "tests/unit/test_basic.py",
+          "size": 1739,
+          "modified": "2025-07-13T09:58:04.823370",
+          "is_test": true,
+          "language": "python",
+          "functions": [
+            {
+              "name": "test_python_version",
+              "line": 9,
+              "is_async": false
+            },
+            {
+              "name": "test_basic_math",
+              "line": 13,
+              "is_async": false
+            },
+            {
+              "name": "test_string_operations",
+              "line": 19,
+              "is_async": false
+            },
+            {
+              "name": "test_list_operations",
+              "line": 26,
+              "is_async": false
+            },
+            {
+              "name": "test_dict_operations",
+              "line": 34,
+              "is_async": false
+            },
+            {
+              "name": "test_parametrized",
+              "line": 47,
+              "is_async": false
+            },
+            {
+              "name": "test_environment_variables",
+              "line": 51,
+              "is_async": false
+            },
+            {
+              "name": "test_class_method",
+              "line": 61,
+              "is_async": false
+            },
+            {
+              "name": "test_setup_method",
+              "line": 65,
+              "is_async": false
+            }
+          ],
+          "classes": [
+            {
+              "name": "TestBasicClass",
+              "line": 58
+            }
+          ],
+          "imports": [
+            "pytest",
+            "sys",
+            "os"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "test_data_pipelines.py",
+          "path": "tests/unit/test_data_pipelines.py",
+          "size": 21190,
+          "modified": "2025-07-13T09:58:04.823370",
+          "is_test": true,
+          "language": "python",
+          "functions": [
+            {
+              "name": "test_error_metadata_creation",
+              "line": 42,
+              "is_async": false
+            },
+            {
+              "name": "test_enhanced_dead_letter_handler",
+              "line": 71,
+              "is_async": false
+            },
+            {
+              "name": "test_metrics_collector",
+              "line": 104,
+              "is_async": false
+            },
+            {
+              "name": "test_adaptive_windowing_strategy",
+              "line": 130,
+              "is_async": false
+            },
+            {
+              "name": "test_batched_api_processor",
+              "line": 151,
+              "is_async": false
+            },
+            {
+              "name": "test_location_hash_generator",
+              "line": 185,
+              "is_async": false
+            },
+            {
+              "name": "test_location_hash_generator_missing_location",
+              "line": 212,
+              "is_async": false
+            },
+            {
+              "name": "test_event_id_generator",
+              "line": 234,
+              "is_async": false
+            },
+            {
+              "name": "test_optimized_data_validator",
+              "line": 257,
+              "is_async": false
+            },
+            {
+              "name": "test_optimized_data_validator_invalid_data",
+              "line": 285,
+              "is_async": false
+            },
+            {
+              "name": "test_batched_ai_processor",
+              "line": 309,
+              "is_async": false
+            },
+            {
+              "name": "test_optimized_bigquery_writer",
+              "line": 349,
+              "is_async": false
+            },
+            {
+              "name": "test_pipeline_options_creation",
+              "line": 382,
+              "is_async": false
+            },
+            {
+              "name": "test_pipeline_schema_generation",
+              "line": 404,
+              "is_async": false
+            },
+            {
+              "name": "test_add_processing_timestamp",
+              "line": 442,
+              "is_async": false
+            },
+            {
+              "name": "test_pipeline_component_chain",
+              "line": 503,
+              "is_async": false
+            },
+            {
+              "name": "test_pipeline_timestamp_handling",
+              "line": 534,
+              "is_async": false
+            }
+          ],
+          "classes": [
+            {
+              "name": "TestEnhancedErrorHandling",
+              "line": 39
+            },
+            {
+              "name": "TestOptimizedPipelineComponents",
+              "line": 182
+            },
+            {
+              "name": "TestOptimizedCityPulsePipeline",
+              "line": 379
+            },
+            {
+              "name": "TestPipelineIntegration",
+              "line": 500
+            },
+            {
+              "name": "TestMetricsCollector",
+              "line": 106
+            },
+            {
+              "name": "TestBatchProcessor",
+              "line": 153
+            }
+          ],
+          "imports": [
+            "pytest",
+            "json",
+            "apache_beam",
+            "apache_beam.testing.test_pipeline",
+            "apache_beam.testing.util",
+            "unittest.mock",
+            "datetime",
+            "typing",
+            "sys",
+            "os",
+            "data_models.data_ingestion.enhanced_error_handling",
+            "data_models.data_ingestion.optimized_pipeline"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "test_firestore_models.py",
+          "path": "tests/unit/test_firestore_models.py",
+          "size": 18071,
+          "modified": "2025-07-13T09:58:04.824370",
+          "is_test": true,
+          "language": "python",
+          "functions": [
+            {
+              "name": "test_base_model_creation",
+              "line": 28,
+              "is_async": false
+            },
+            {
+              "name": "test_base_model_custom_id",
+              "line": 44,
+              "is_async": false
+            },
+            {
+              "name": "test_base_model_to_dict",
+              "line": 54,
+              "is_async": false
+            },
+            {
+              "name": "test_base_model_from_dict",
+              "line": 70,
+              "is_async": false
+            },
+            {
+              "name": "test_event_creation_minimal",
+              "line": 94,
+              "is_async": false
+            },
+            {
+              "name": "test_event_creation_full",
+              "line": 110,
+              "is_async": false
+            },
+            {
+              "name": "test_event_validation_title_required",
+              "line": 149,
+              "is_async": false
+            },
+            {
+              "name": "test_event_location_validation",
+              "line": 154,
+              "is_async": false
+            },
+            {
+              "name": "test_event_time_validation",
+              "line": 169,
+              "is_async": false
+            },
+            {
+              "name": "test_event_to_dict",
+              "line": 177,
+              "is_async": false
+            },
+            {
+              "name": "test_event_from_dict",
+              "line": 192,
+              "is_async": false
+            },
+            {
+              "name": "test_user_profile_creation_minimal",
+              "line": 216,
+              "is_async": false
+            },
+            {
+              "name": "test_user_profile_creation_full",
+              "line": 230,
+              "is_async": false
+            },
+            {
+              "name": "test_user_profile_email_validation",
+              "line": 257,
+              "is_async": false
+            },
+            {
+              "name": "test_user_profile_role_validation",
+              "line": 267,
+              "is_async": false
+            },
+            {
+              "name": "test_user_profile_has_role",
+              "line": 285,
+              "is_async": false
+            },
+            {
+              "name": "test_user_profile_add_role",
+              "line": 297,
+              "is_async": false
+            },
+            {
+              "name": "test_user_profile_remove_role",
+              "line": 312,
+              "is_async": false
+            },
+            {
+              "name": "test_feedback_creation_minimal",
+              "line": 332,
+              "is_async": false
+            },
+            {
+              "name": "test_feedback_creation_full",
+              "line": 348,
+              "is_async": false
+            },
+            {
+              "name": "test_feedback_rating_validation",
+              "line": 370,
+              "is_async": false
+            },
+            {
+              "name": "test_feedback_content_validation",
+              "line": 399,
+              "is_async": false
+            },
+            {
+              "name": "test_feedback_approve",
+              "line": 426,
+              "is_async": false
+            },
+            {
+              "name": "test_feedback_reject",
+              "line": 439,
+              "is_async": false
+            },
+            {
+              "name": "test_event_with_user_profile",
+              "line": 494,
+              "is_async": false
+            },
+            {
+              "name": "test_feedback_with_event",
+              "line": 501,
+              "is_async": false
+            },
+            {
+              "name": "test_model_serialization_roundtrip",
+              "line": 508,
+              "is_async": false
+            }
+          ],
+          "classes": [
+            {
+              "name": "TestBaseModel",
+              "line": 25
+            },
+            {
+              "name": "TestEvent",
+              "line": 91
+            },
+            {
+              "name": "TestUserProfile",
+              "line": 213
+            },
+            {
+              "name": "TestFeedback",
+              "line": 329
+            },
+            {
+              "name": "TestModelIntegrations",
+              "line": 491
+            },
+            {
+              "name": "TestModel",
+              "line": 31
+            },
+            {
+              "name": "TestModel",
+              "line": 46
+            },
+            {
+              "name": "TestModel",
+              "line": 56
+            },
+            {
+              "name": "TestModel",
+              "line": 72
+            }
+          ],
+          "imports": [
+            "pytest",
+            "datetime",
+            "unittest.mock",
+            "typing",
+            "sys",
+            "os",
+            "data_models",
+            "shared_models"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        },
+        {
+          "name": "test_services.py",
+          "path": "tests/unit/test_services.py",
+          "size": 24987,
+          "modified": "2025-07-13T09:58:04.824370",
+          "is_test": true,
+          "language": "python",
+          "functions": [
+            {
+              "name": "test_service_initialization",
+              "line": 30,
+              "is_async": false
+            },
+            {
+              "name": "test_get_document_success",
+              "line": 41,
+              "is_async": false
+            },
+            {
+              "name": "test_get_document_not_found",
+              "line": 71,
+              "is_async": false
+            },
+            {
+              "name": "test_set_document_success",
+              "line": 87,
+              "is_async": false
+            },
+            {
+              "name": "test_set_document_failure",
+              "line": 112,
+              "is_async": false
+            },
+            {
+              "name": "test_update_document_success",
+              "line": 129,
+              "is_async": false
+            },
+            {
+              "name": "test_delete_document_success",
+              "line": 151,
+              "is_async": false
+            },
+            {
+              "name": "test_query_documents_success",
+              "line": 168,
+              "is_async": false
+            },
+            {
+              "name": "test_query_with_multiple_conditions",
+              "line": 195,
+              "is_async": false
+            },
+            {
+              "name": "test_batch_operations",
+              "line": 219,
+              "is_async": false
+            },
+            {
+              "name": "test_transaction_operations",
+              "line": 247,
+              "is_async": false
+            },
+            {
+              "name": "test_create_event",
+              "line": 277,
+              "is_async": false
+            },
+            {
+              "name": "test_get_events_by_category",
+              "line": 298,
+              "is_async": false
+            },
+            {
+              "name": "test_get_events_by_location",
+              "line": 315,
+              "is_async": false
+            },
+            {
+              "name": "test_update_event_status",
+              "line": 338,
+              "is_async": false
+            },
+            {
+              "name": "test_get_event_statistics",
+              "line": 355,
+              "is_async": false
+            },
+            {
+              "name": "test_create_user_profile",
+              "line": 410,
+              "is_async": false
+            },
+            {
+              "name": "test_get_user_by_email",
+              "line": 434,
+              "is_async": false
+            },
+            {
+              "name": "test_update_user_preferences",
+              "line": 454,
+              "is_async": false
+            },
+            {
+              "name": "test_deactivate_user",
+              "line": 474,
+              "is_async": false
+            },
+            {
+              "name": "test_create_feedback",
+              "line": 500,
+              "is_async": false
+            },
+            {
+              "name": "test_get_feedback_by_event",
+              "line": 521,
+              "is_async": false
+            },
+            {
+              "name": "test_moderate_feedback",
+              "line": 548,
+              "is_async": false
+            },
+            {
+              "name": "test_calculate_feedback_metrics",
+              "line": 567,
+              "is_async": false
+            },
+            {
+              "name": "test_event_with_user_integration",
+              "line": 647,
+              "is_async": false
+            },
+            {
+              "name": "test_feedback_with_event_integration",
+              "line": 666,
+              "is_async": false
+            },
+            {
+              "name": "test_transaction_func",
+              "line": 254,
+              "is_async": false
+            }
+          ],
+          "classes": [
+            {
+              "name": "TestFirestoreService",
+              "line": 21
+            },
+            {
+              "name": "TestEventService",
+              "line": 268
+            },
+            {
+              "name": "TestUserProfileService",
+              "line": 402
+            },
+            {
+              "name": "TestFeedbackService",
+              "line": 492
+            },
+            {
+              "name": "TestServiceIntegration",
+              "line": 644
+            }
+          ],
+          "imports": [
+            "pytest",
+            "unittest.mock",
+            "datetime",
+            "typing",
+            "json",
+            "sys",
+            "os",
+            "data_models.services.firestore_service",
+            "data_models"
+          ],
+          "dependencies": [],
+          "api_endpoints": [],
+          "ui_selectors": [],
+          "potential_issues": []
+        }
+      ],
+      "subdirectories": [],
+      "total_files": 4,
+      "test_files": 4
+    }
+  },
+  "obsolete_tests": [],
+  "broken_tests": [],
+  "redundant_tests": [
+    {
+      "endpoint": "\"/api/v1/events\"",
+      "files": [
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py"
+      ],
+      "recommendation": "Consolidate tests for \"/api/v1/events\""
+    },
+    {
+      "endpoint": "\"/api/v1/events/{event_id}\"",
+      "files": [
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py"
+      ],
+      "recommendation": "Consolidate tests for \"/api/v1/events/{event_id}\""
+    },
+    {
+      "endpoint": "\"/api/v1/events/{event_id}/feedback\"",
+      "files": [
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py"
+      ],
+      "recommendation": "Consolidate tests for \"/api/v1/events/{event_id}/feedback\""
+    },
+    {
+      "endpoint": "\"/api/v1/analytics/trends\"",
+      "files": [
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py"
+      ],
+      "recommendation": "Consolidate tests for \"/api/v1/analytics/trends\""
+    },
+    {
+      "endpoint": "\"/api/v1/analytics/kpis\"",
+      "files": [
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py"
+      ],
+      "recommendation": "Consolidate tests for \"/api/v1/analytics/kpis\""
+    },
+    {
+      "endpoint": "\"/api/v1/events?category=infrastructure\"",
+      "files": [
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py"
+      ],
+      "recommendation": "Consolidate tests for \"/api/v1/events?category=infrastructure\""
+    },
+    {
+      "endpoint": "\"/api/v1/events?limit=1&offset=0\"",
+      "files": [
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py"
+      ],
+      "recommendation": "Consolidate tests for \"/api/v1/events?limit=1&offset=0\""
+    },
+    {
+      "endpoint": "\"/api/v1/events/event-1\"",
+      "files": [
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py"
+      ],
+      "recommendation": "Consolidate tests for \"/api/v1/events/event-1\""
+    },
+    {
+      "endpoint": "\"/api/v1/events/non-existent\"",
+      "files": [
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py"
+      ],
+      "recommendation": "Consolidate tests for \"/api/v1/events/non-existent\""
+    },
+    {
+      "endpoint": "\"/api/v1/events/event-1/feedback\"",
+      "files": [
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py"
+      ],
+      "recommendation": "Consolidate tests for \"/api/v1/events/event-1/feedback\""
+    },
+    {
+      "endpoint": "\"/api/v1/analytics/trends?category=infrastructure&date_range=month\"",
+      "files": [
+        "tests/integration/test_api_endpoints.py",
+        "tests/integration/test_api_endpoints.py"
+      ],
+      "recommendation": "Consolidate tests for \"/api/v1/analytics/trends?category=infrastructure&date_range=month\""
+    }
+  ],
+  "valid_tests": [],
+  "recommendations": [
+    "Consolidate 11 redundant test groups",
+    "Migrate valuable tests from tests/e2e-legacy/ to e2e-tests/",
+    "Consolidate Jest and pytest configurations",
+    "Implement automated test relevance checking",
+    "Set up test coverage reporting",
+    "Create test maintenance automation"
+  ]
+}
