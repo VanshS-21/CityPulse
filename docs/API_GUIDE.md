@@ -1,39 +1,32 @@
 # CityPulse API Guide
 
-**Version**: 0.1.0
-**Base URL**: `[Your CityPulse URL]`
-**Authentication**: Bearer Token (Firebase Auth)
+- *Version**: 0.1.0
+- *Base URL**: `[Your CityPulse URL]`- *Authentication**: Bearer Token (Firebase Auth)
 
 ## 📚 Related Documentation
 
-- **[Architecture](./ARCHITECTURE.md)** - System architecture and design
-- **[Database Schema](./DATABASE_SCHEMA.md)** - Database structure and relationships
-- **[Security Operations](./SECURITY_OPERATIONS.md)** - Authentication and security procedures
-- **[Deployment Guide](./DEPLOYMENT.md)** - API deployment and configuration
-- **[Troubleshooting](./TROUBLESHOOTING.md)** - Common API issues and solutions
-
----
+-  **[Architecture](./ARCHITECTURE.md)**- System architecture and design
+-**[Database Schema](./DATABASE_SCHEMA.md)**- Database structure and relationships
+-**[Security Operations](./SECURITY_OPERATIONS.md)**- Authentication and security procedures
+-**[Deployment Guide](./DEPLOYMENT.md)**- API deployment and configuration
+-**[Troubleshooting](./TROUBLESHOOTING.md)**- Common API issues and solutions
 
 ## Table of Contents
 
-1. [Quick Start](#quick-start)
-2. [Authentication](#authentication)
-3. [Events API](#events-api)
-4. [Users API](#users-api)
-5. [Feedback API](#feedback-api)
-6. [Analytics API](#analytics-api)
-7. [Code Examples](#code-examples)
-8. [Error Handling](#error-handling)
-9. [Rate Limiting](#rate-limiting)
-10. [SDKs and Libraries](#sdks-and-libraries)
-
----
+1.  [Quick Start](#quick-start)
+1.  [Authentication](#authentication)
+1.  [Events API](#events-api)
+1.  [Users API](#users-api)
+1.  [Feedback API](#feedback-api)
+1.  [Analytics API](#analytics-api)
+1.  [Code Examples](#code-examples)
+1.  [Error Handling](#error-handling)
+1.  [Rate Limiting](#rate-limiting)
+1.  [SDKs and Libraries](#sdks-and-libraries)
 
 ## Quick Start
 
-### 🚀 5-Minute Integration
-
-```javascript
+### 🚀 5-Minute Integration```javascript
 // 1. Install the SDK
 npm install @citypulse/api-client
 
@@ -53,27 +46,27 @@ const events = await client.events.list({
 
 console.log('Recent traffic events:', events.data);
 ```text
+
 ### 📋 Prerequisites
 
-- **API Key**: Obtain from CityPulse Developer Console
-- **Authentication**: Firebase Auth token for user-specific operations
-- **Rate Limits**: 1000 requests/hour for free tier
-
----
+-**API Key**: Obtain from CityPulse Developer Console
+-  **Authentication**: Firebase Auth token for user-specific operations
+-  **Rate Limits**: 1000 requests/hour for free tier
 
 ## Authentication
 
 ### 🔐 API Key Authentication
 
-**For public data access (read-only)**:
+- *For public data access (read-only)**:
 
 ```bash
 curl -H "X-API-Key: your-api-key" \
   [Your CityPulse URL]
 ```text
+
 ### 🎫 Bearer Token Authentication
 
-**For user-specific operations**:
+- *For user-specific operations**:
 
 ```javascript
 // Get Firebase Auth token
@@ -91,6 +84,7 @@ const response = await fetch('/api/v1/events', {
   }
 });
 ```text
+
 ### 🔑 Authentication Flow
 
 ```mermaid
@@ -98,29 +92,33 @@ sequenceDiagram
     participant Client
     participant Firebase
     participant CityPulse API
-    
+
     Client->>Firebase: Login with credentials
     Firebase->>Client: Return ID token
     Client->>CityPulse API: Request with Bearer token
     CityPulse API->>Firebase: Verify token
     Firebase->>CityPulse API: Token valid
     CityPulse API->>Client: Return data
-```text
----
+
+## ```text
 
 ## Events API
 
 ### 📍 List Events
 
-**Endpoint**: `GET /events`
+- *Endpoint**: `GET /events`
 
 ```bash
+
 curl -H "X-API-Key: your-api-key" \
   "[Your CityPulse URL]?category=traffic&limit=10"
+
 ```text
-**Parameters**:
+
+- *Parameters**:
 
 ```typescript
+
 interface EventListParams {
   category?: 'traffic' | 'safety' | 'civic' | 'weather' | 'social';
   severity?: 'low' | 'medium' | 'high' | 'critical';
@@ -135,13 +133,15 @@ interface EventListParams {
   start_date?: string; // ISO 8601
   end_date?: string;   // ISO 8601
 }
+
 ```text
-**Response**:
+
+- *Response**:
 
 ```json
+
 {
-  "data": [
-    {
+  "data": [{
       "id": "evt_123456",
       "title": "Traffic Accident on Main St",
       "description": "Multi-vehicle accident blocking two lanes",
@@ -158,8 +158,7 @@ interface EventListParams {
       "ai_summary": "Traffic disruption expected for 2-3 hours",
       "created_at": "2025-01-15T14:32:00Z",
       "updated_at": "2025-01-15T14:35:00Z"
-    }
-  ],
+    }],
   "pagination": {
     "total": 156,
     "limit": 10,
@@ -167,13 +166,13 @@ interface EventListParams {
     "has_more": true
   }
 }
+
 ```text
+
 ### 📝 Create Event
 
-**Endpoint**: `POST /events`  
-**Authentication**: Required
+- *Endpoint**: `POST /events`- *Authentication**: Required```javascript
 
-```javascript
 const newEvent = await fetch('/api/v1/events', {
   method: 'POST',
   headers: {
@@ -198,18 +197,24 @@ const newEvent = await fetch('/api/v1/events', {
 
 const event = await newEvent.json();
 console.log('Created event:', event.data.id);
+
 ```text
+
 ### 🔍 Get Event Details
 
-**Endpoint**: `GET /events/{eventId}`
+- *Endpoint**: `GET /events/{eventId}`
 
 ```bash
+
 curl -H "X-API-Key: your-api-key" \
   [Your CityPulse URL]_123456
+
 ```text
-**Response**:
+
+- *Response**:
 
 ```json
+
 {
   "data": {
     "id": "evt_123456",
@@ -239,13 +244,13 @@ curl -H "X-API-Key: your-api-key" \
     "updated_at": "2025-01-15T14:35:00Z"
   }
 }
+
 ```text
+
 ### ✏️ Update Event
 
-**Endpoint**: `PUT /events/{eventId}`  
-**Authentication**: Required (Authority/Admin only)
+- *Endpoint**: `PUT /events/{eventId}`- *Authentication**: Required (Authority/Admin only)```javascript
 
-```javascript
 const updateEvent = await fetch(`/api/v1/events/${eventId}`, {
   method: 'PUT',
   headers: {
@@ -260,27 +265,23 @@ const updateEvent = await fetch(`/api/v1/events/${eventId}`, {
     }
   })
 });
-```text
----
+
+## ```text 2
 
 ## Users API
 
 ### 👤 Get User Profile
 
-**Endpoint**: `GET /users/me`  
-**Authentication**: Required
-
-```javascript
+- *Endpoint**: `GET /users/me`- *Authentication**: Required```javascript
 const profile = await fetch('/api/v1/users/me', {
   headers: {
-    'Authorization': `Bearer ${token}`
-  }
+    'Authorization': `Bearer ${token}`}
 });
 
 const userData = await profile.json();
-console.log('User profile:', userData.data);
-```text
-**Response**:
+console.log('User profile:', userData.data);```text
+
+- *Response**:
 
 ```json
 {
@@ -305,12 +306,10 @@ console.log('User profile:', userData.data);
   }
 }
 ```text
+
 ### ⚙️ Update User Preferences
 
-**Endpoint**: `PATCH /users/me`  
-**Authentication**: Required
-
-```javascript
+- *Endpoint**: `PATCH /users/me`- *Authentication**: Required```javascript
 const updatePreferences = await fetch('/api/v1/users/me', {
   method: 'PATCH',
   headers: {
@@ -329,17 +328,15 @@ const updatePreferences = await fetch('/api/v1/users/me', {
     }
   })
 });
-```text
----
+
+## ```text 3
 
 ## Feedback API
 
 ### 💬 Submit Feedback
 
-**Endpoint**: `POST /feedback`  
-**Authentication**: Required
+- *Endpoint**: `POST /feedback`- *Authentication**: Required```javascript
 
-```javascript
 const feedback = await fetch('/api/v1/feedback', {
   method: 'POST',
   headers: {
@@ -358,23 +355,23 @@ const feedback = await fetch('/api/v1/feedback', {
     corrected_category: 'traffic'
   })
 });
+
 ```text
+
 ### 📋 List User Feedback
 
-**Endpoint**: `GET /feedback`  
-**Authentication**: Required
+- *Endpoint**: `GET /feedback`- *Authentication**: Required```bash
 
-```bash
 curl -H "Authorization: Bearer your-token" \
   "[Your CityPulse URL]?status=open"
-```text
----
+
+## ```text 4
 
 ## Analytics API
 
 ### 📊 Get Event Trends
 
-**Endpoint**: `GET /analytics/trends`
+- *Endpoint**: `GET /analytics/trends`
 
 ```javascript
 const trends = await fetch('/api/v1/analytics/trends?' + new URLSearchParams({
@@ -390,7 +387,8 @@ const trends = await fetch('/api/v1/analytics/trends?' + new URLSearchParams({
 
 const trendData = await trends.json();
 ```text
-**Response**:
+
+- *Response**:
 
 ```json
 {
@@ -401,8 +399,7 @@ const trendData = await trends.json();
       "end": "2025-01-15T23:59:59Z"
     },
     "granularity": "daily",
-    "metrics": [
-      {
+    "metrics": [{
         "date": "2025-01-01",
         "event_count": 23,
         "avg_severity": 2.1,
@@ -413,8 +410,7 @@ const trendData = await trends.json();
         "event_count": 31,
         "avg_severity": 2.3,
         "resolution_time_avg": 2.8
-      }
-    ],
+      }],
     "summary": {
       "total_events": 387,
       "avg_daily_events": 25.8,
@@ -422,28 +418,28 @@ const trendData = await trends.json();
     }
   }
 }
-```text
----
+
+## ```text 5
 
 ## Code Examples
 
 ### 🔄 Real-time Event Streaming
 
 ```javascript
+
 // Using Server-Sent Events
 const eventSource = new EventSource(
   '[Your CityPulse URL]?category=traffic',
   {
     headers: {
-      'Authorization': `Bearer ${token}`
-    }
+      'Authorization': `Bearer ${token}`}
   }
 );
 
 eventSource.onmessage = (event) => {
   const eventData = JSON.parse(event.data);
   console.log('New event:', eventData);
-  
+
   // Update UI with new event
   updateMapMarker(eventData);
 };
@@ -451,11 +447,12 @@ eventSource.onmessage = (event) => {
 eventSource.onerror = (error) => {
   console.error('Stream error:', error);
   // Implement reconnection logic
-};
-```text
+};```text
+
 ### 📱 Mobile Integration (React Native)
 
 ```javascript
+
 import { CityPulseClient } from '@citypulse/react-native';
 
 const client = new CityPulseClient({
@@ -466,7 +463,7 @@ const client = new CityPulseClient({
 const getUserLocationEvents = async () => {
   try {
     const location = await getCurrentLocation();
-    
+
     const events = await client.events.list({
       location: {
         lat: location.latitude,
@@ -476,16 +473,19 @@ const getUserLocationEvents = async () => {
       status: 'active',
       limit: 20
     });
-    
+
     return events.data;
   } catch (error) {
     console.error('Error fetching events:', error);
   }
 };
+
 ```text
+
 ### 🌐 Web Integration (React)
 
 ```jsx
+
 import React, { useState, useEffect } from 'react';
 import { useCityPulse } from '@citypulse/react';
 
@@ -502,8 +502,8 @@ const EventMap = () => {
   return (
     <div className="event-map">
       {events.map(event => (
-        <EventMarker 
-          key={event.id} 
+        <EventMarker
+          key={event.id}
           event={event}
           onClick={() => showEventDetails(event)}
         />
@@ -511,10 +511,13 @@ const EventMap = () => {
     </div>
   );
 };
+
 ```text
+
 ### 🔍 Advanced Filtering
 
 ```javascript
+
 // Complex query with multiple filters
 const complexQuery = {
   filters: {
@@ -538,16 +541,14 @@ const complexQuery = {
       }
     ]
   },
-  sort: [
-    { field: 'severity', order: 'desc' },
-    { field: 'created_at', order: 'desc' }
-  ],
+  sort: [{ field: 'severity', order: 'desc' },
+    { field: 'created_at', order: 'desc' }],
   limit: 50
 };
 
 const events = await client.events.search(complexQuery);
-```text
----
+
+## ```text 6
 
 ## Error Handling
 
@@ -558,31 +559,28 @@ const events = await client.events.search(complexQuery);
   "error": {
     "code": "VALIDATION_ERROR",
     "message": "Invalid request parameters",
-    "details": [
-      {
+    "details": [{
         "field": "category",
         "message": "Must be one of: traffic, safety, civic, weather, social"
-      }
-    ],
+      }],
     "request_id": "req_abc123"
   }
 }
 ```text
+
 ### 🔧 Common Error Codes
 
 | Code | HTTP Status | Description |
 |------|-------------|-------------|
-| `INVALID_API_KEY` | 401 | API key missing or invalid |
-| `UNAUTHORIZED` | 401 | Authentication required |
-| `FORBIDDEN` | 403 | Insufficient permissions |
-| `NOT_FOUND` | 404 | Resource not found |
-| `VALIDATION_ERROR` | 400 | Invalid request parameters |
-| `RATE_LIMIT_EXCEEDED` | 429 | Too many requests |
-| `INTERNAL_ERROR` | 500 | Server error |
+| `INVALID_API_KEY`| 401 | API key missing or invalid |
+|`UNAUTHORIZED`| 401 | Authentication required |
+|`FORBIDDEN`| 403 | Insufficient permissions |
+|`NOT_FOUND`| 404 | Resource not found |
+|`VALIDATION_ERROR`| 400 | Invalid request parameters |
+|`RATE_LIMIT_EXCEEDED`| 429 | Too many requests |
+|`INTERNAL_ERROR`| 500 | Server error |
 
-### 🛠️ Error Handling Best Practices
-
-```javascript
+### 🛠️ Error Handling Best Practices```javascript
 const handleApiCall = async (apiCall) => {
   try {
     const response = await apiCall();
@@ -591,19 +589,19 @@ const handleApiCall = async (apiCall) => {
     switch (error.code) {
       case 'RATE_LIMIT_EXCEEDED':
         // Implement exponential backoff
-        await delay(error.retry_after * 1000);
+        await delay(error.retry_after *1000);
         return handleApiCall(apiCall);
-        
+
       case 'UNAUTHORIZED':
         // Refresh auth token
         await refreshAuthToken();
         return handleApiCall(apiCall);
-        
+
       case 'VALIDATION_ERROR':
         // Show user-friendly validation errors
         showValidationErrors(error.details);
         break;
-        
+
       default:
         // Log error and show generic message
         console.error('API Error:', error);
@@ -611,8 +609,8 @@ const handleApiCall = async (apiCall) => {
     }
   }
 };
-```text
----
+
+## ```text 7
 
 ## Rate Limiting
 
@@ -628,34 +626,38 @@ const handleApiCall = async (apiCall) => {
 ### 🔄 Rate Limit Headers
 
 ```text
+
 X-RateLimit-Limit: 1000
 X-RateLimit-Remaining: 999
 X-RateLimit-Reset: 1642694400
 Retry-After: 3600
+
 ```text
+
 ### ⏱️ Handling Rate Limits
 
 ```javascript
+
 const makeRequestWithRetry = async (url, options, maxRetries = 3) => {
   for (let i = 0; i < maxRetries; i++) {
     try {
       const response = await fetch(url, options);
-      
+
       if (response.status === 429) {
         const retryAfter = response.headers.get('Retry-After');
-        await delay(retryAfter * 1000);
+        await delay(retryAfter* 1000);
         continue;
       }
-      
+
       return response;
     } catch (error) {
       if (i === maxRetries - 1) throw error;
-      await delay(Math.pow(2, i) * 1000); // Exponential backoff
+      await delay(Math.pow(2, i) *1000); // Exponential backoff
     }
   }
 };
-```text
----
+
+## ```text 8
 
 ## SDKs and Libraries
 
@@ -663,37 +665,33 @@ const makeRequestWithRetry = async (url, options, maxRetries = 3) => {
 
 ```bash
 
-# JavaScript/TypeScript
+## JavaScript/TypeScript
 
 npm install @citypulse/api-client
 
-# React
+## React
 
 npm install @citypulse/react
 
-# React Native
+## React Native
 
 npm install @citypulse/react-native
 
-# Python
+## Python
 
 pip install citypulse-python
 
-# PHP
+## PHP
 
 composer require citypulse/php-sdk
 
-# Java
+## Java
 
 implementation 'com.citypulse:java-sdk:1.0.0'
 ```text
-### 🔗 Community Libraries
 
-- **Go**: `github.com/community/citypulse-go`
-- **Ruby**: `gem install citypulse-ruby`
-- **C#**: `NuGet: CityPulse.NET`
-- **Swift**: `github.com/community/citypulse-swift`
+## 🔗 Community Libraries
 
----
+-**Go**: `github.com/community/citypulse-go`-  **Ruby**:`gem install citypulse-ruby`-  **C#**:`NuGet: CityPulse.NET`-  **Swift**:`github.com/community/citypulse-swift`
 
-*For more examples and detailed API reference, visit our [Developer Portal]([Your CityPulse URL]).*
+- For more examples and detailed API reference, visit our [Developer Portal]([Your CityPulse URL]).*

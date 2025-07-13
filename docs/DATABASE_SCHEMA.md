@@ -1,21 +1,20 @@
 # CityPulse Database Schema Documentation
 
-**Version**: 1.0.0  
-**Last Updated**: July 9, 2025
-**Database Systems**: Firestore (Real-time) + BigQuery (Analytics)  
-
----
+- *Version**: 1.0.0
+- *Last Updated**: July 9, 2025
+- *Database Systems**: Firestore (Real-time) + BigQuery (Analytics)
 
 ## Overview
 
-CityPulse uses a **hybrid database architecture** combining Firestore for real-time operations and BigQuery for analytics. This design optimizes for both low-latency user interactions and complex analytical queries.
+CityPulse uses a **hybrid database architecture**combining Firestore for real-time operations and BigQuery for
+analytics. This design optimizes for both low-latency user interactions and complex analytical queries.
 
 ### Architecture Pattern
 
 ```text
 User Actions → Firestore (Real-time) → Pub/Sub → BigQuery (Analytics)
-```text
----
+
+## ```text
 
 ## 1. Firestore Schema
 
@@ -23,21 +22,22 @@ User Actions → Firestore (Real-time) → Pub/Sub → BigQuery (Analytics)
 
 | Collection | Purpose | Document Count | Real-time |
 |------------|---------|----------------|-----------|
-| `events` | City events and incidents | ~10K/month | ✅ Yes |
-| `user_profiles` | User account information | ~1K users | ✅ Yes |
-| `user_feedback` | User feedback and ratings | ~5K/month | ✅ Yes |
+| `events`| City events and incidents | ~10K/month | ✅ Yes |
+|`user_profiles`| User account information | ~1K users | ✅ Yes |
+|`user_feedback`| User feedback and ratings | ~5K/month | ✅ Yes |
 
 ### 1.2 Event Collection
 
-**Collection Path**: `/events/{eventId}`
+-*Collection Path**:`/events/{eventId}`
 
 ```typescript
+
 interface Event {
   // Core Fields
   id?: string;                    // Auto-generated document ID
   title: string;                  // Event title (required)
   description?: string;           // Detailed description
-  
+
   // Location Data
   location?: {
     latitude: number;             // GPS coordinates
@@ -45,38 +45,41 @@ interface Event {
     address?: string;             // Human-readable address
     ward?: string;                // Administrative division
   };
-  
+
   // Temporal Data
   start_time: Timestamp;          // Event start time
   end_time?: Timestamp;           // Event end time (optional)
   created_at: Timestamp;          // Document creation
   updated_at: Timestamp;          // Last modification
-  
+
   // Classification
   category?: EventCategory;       // TRAFFIC | SAFETY | CIVIC | WEATHER | SOCIAL
   severity?: EventSeverity;       // LOW | MEDIUM | HIGH | CRITICAL
   source?: EventSource;           // CITIZEN | OFFICIAL | SENSOR | SOCIAL_MEDIA
   status: EventStatus;            // ACTIVE | RESOLVED | MONITORING | ARCHIVED
-  
+
   // User Association
   user_id?: string;               // Reporting user ID
-  
+
   // AI Processing
   ai_summary?: string;            // AI-generated summary
   ai_category?: string;           // AI-determined category
   ai_image_tags?: string[];       // AI-extracted image tags
   ai_generated_image_url?: string; // AI-generated visualization
-  
+
   // Metadata
   metadata: Record<string, any>;  // Flexible additional data
 }
+
 ```text
-**Enums**:
+
+- *Enums**:
 
 ```typescript
+
 enum EventCategory {
   TRAFFIC = "traffic",
-  SAFETY = "safety", 
+  SAFETY = "safety",
   CIVIC = "civic",
   WEATHER = "weather",
   SOCIAL = "social"
@@ -84,7 +87,7 @@ enum EventCategory {
 
 enum EventSeverity {
   LOW = "low",
-  MEDIUM = "medium", 
+  MEDIUM = "medium",
   HIGH = "high",
   CRITICAL = "critical"
 }
@@ -92,7 +95,7 @@ enum EventSeverity {
 enum EventSource {
   CITIZEN = "citizen",
   OFFICIAL = "official",
-  SENSOR = "sensor", 
+  SENSOR = "sensor",
   SOCIAL_MEDIA = "social_media"
 }
 
@@ -102,110 +105,116 @@ enum EventStatus {
   MONITORING = "monitoring",
   ARCHIVED = "archived"
 }
-```text
-**Indexes**:
 
-- Composite: `(category, status, start_time)`
-- Composite: `(severity, status, created_at)`
-- Single: `user_id`, `status`, `category`
-- Geospatial: `location` (for proximity queries)
+```text
+
+- *Indexes**:
+
+-  Composite: `(category, status, start_time)`-  Composite:`(severity, status, created_at)`-  Single:`user_id`, `status`, `category`-  Geospatial:`location`(for proximity queries)
 
 ### 1.3 User Profile Collection
 
-**Collection Path**: `/user_profiles/{userId}`
+- *Collection Path**:`/user_profiles/{userId}`
 
 ```typescript
+
 interface UserProfile {
   // Identity
   user_id: string;                // Firebase Auth UID (document ID)
   email?: string;                 // User email
   display_name?: string;          // Public display name
   photo_url?: string;             // Profile picture URL
-  
+
   // Preferences
   preferences: {
     alert_categories: EventCategory[];
     notification_radius: number;   // Kilometers
     language: string;             // Locale preference
   };
-  
+
   // Notification Settings
   notification_settings: {
     email: boolean;
     push: boolean;
     in_app: boolean;
   };
-  
+
   // Authorization
   roles: UserRole[];              // USER | MODERATOR | ADMIN
   is_active: boolean;             // Account status
-  
+
   // Activity Tracking
   last_login?: Timestamp;
   created_at: Timestamp;
   updated_at: Timestamp;
 }
+
 ```text
-**Enums**:
+
+- *Enums**:
 
 ```typescript
+
 enum UserRole {
   USER = "user",
-  MODERATOR = "moderator", 
+  MODERATOR = "moderator",
   ADMIN = "admin"
 }
+
 ```text
-**Indexes**:
 
-- Single: `roles`, `is_active`, `last_login`
-- Composite: `(roles, is_active)`
+- *Indexes**:
 
-### 1.4 Feedback Collection
+-  Single: `roles`, `is_active`, `last_login`-  Composite:`(roles, is_active)`### 1.4 Feedback Collection
 
-**Collection Path**: `/user_feedback/{feedbackId}`
+- *Collection Path**:`/user_feedback/{feedbackId}`
 
 ```typescript
+
 interface Feedback {
   // Core Fields
   id?: string;                    // Auto-generated
   user_id: string;                // Submitting user
-  
+
   // Content
   type: FeedbackType;             // BUG | FEATURE_REQUEST | GENERAL | etc.
   title?: string;                 // Brief title
   description: string;            // Detailed feedback
-  
+
   // Management
   status: FeedbackStatus;         // OPEN | IN_REVIEW | RESOLVED | etc.
   assigned_to?: string;           // Admin user ID
   admin_notes?: string;           // Internal notes
   resolution_date?: Timestamp;
-  
+
   // Relationships
   related_entity?: {
     type: string;                 // "event" | "user" | etc.
     id: string;                   // Related entity ID
   };
-  
+
   // AI Feedback Specific
   ai_accuracy_rating?: number;    // 1-5 rating
   corrected_category?: string;
   corrected_summary?: string;
-  
+
   // Metadata
   metadata: Record<string, any>;
   created_at: Timestamp;
   updated_at: Timestamp;
 }
+
 ```text
-**Enums**:
+
+- *Enums**:
 
 ```typescript
+
 enum FeedbackType {
   BUG = "bug",
   FEATURE_REQUEST = "feature_request",
   GENERAL = "general",
-  DATA_ISSUE = "data_issue", 
+  DATA_ISSUE = "data_issue",
   AI_CORRECTION = "ai_correction",
   OTHER = "other"
 }
@@ -217,78 +226,78 @@ enum FeedbackStatus {
   WONT_FIX = "wont_fix",
   DUPLICATE = "duplicate"
 }
-```text
----
+
+## ```text 2
 
 ## 2. BigQuery Schema
 
 ### 2.1 Events Analytics Table
 
-**Table**: `city_intelligence.events`
+- *Table**: `city_intelligence.events`
 
 ```sql
 CREATE TABLE city_intelligence.events (
-  -- Primary Keys
+
+  - - Primary Keys
   event_id STRING NOT NULL,
-  
-  -- Event Details
+
+  - - Event Details
   event_type STRING NOT NULL,
   title STRING,
   description STRING,
-  
-  -- Location
+
+  - - Location
   location_lat FLOAT64,
   location_lng FLOAT64,
   ward_name STRING,
-  
-  -- Temporal
+
+  - - Temporal
   timestamp TIMESTAMP NOT NULL,
   end_timestamp TIMESTAMP,
-  
-  -- Classification
+
+  - - Classification
   source_type STRING NOT NULL,
   severity_level STRING,
   status STRING,
-  
-  -- Analytics
+
+  - - Analytics
   cluster_id STRING,
   confidence_score FLOAT64,
   sentiment_score FLOAT64,
-  
-  -- Arrays
+
+  - - Arrays
   tags ARRAY<STRING>,
   media_urls ARRAY<STRING>,
-  
-  -- AI Processing
+
+  - - AI Processing
   ai_summary STRING,
   ai_category STRING,
   ai_image_tags ARRAY<STRING>,
-  
-  -- Metadata
+
+  - - Metadata
   user_id STRING,
   metadata JSON,
-  
-  -- Audit
+
+  - - Audit
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
 )
 PARTITION BY DATE(timestamp)
 CLUSTER BY ward_name, event_type, severity_level;
 ```text
-**Partitioning Strategy**:
 
-- **Partition Field**: `DATE(timestamp)`
-- **Retention**: 7 years (configurable)
-- **Benefits**: Query performance, cost optimization
+- *Partitioning Strategy**:
 
-**Clustering Strategy**:
+-  **Partition Field**: `DATE(timestamp)`-  **Retention**: 7 years (configurable)
+-  **Benefits**: Query performance, cost optimization
 
-- **Cluster Fields**: `ward_name`, `event_type`, `severity_level`
-- **Benefits**: Improved query performance for common filters
+- *Clustering Strategy**:
+
+-  **Cluster Fields**:`ward_name`, `event_type`, `severity_level`-  **Benefits**: Improved query performance for common filters
 
 ### 2.2 User Analytics Table
 
-**Table**: `city_intelligence.user_analytics`
+- *Table**:`city_intelligence.user_analytics`
 
 ```sql
 CREATE TABLE city_intelligence.user_analytics (
@@ -309,19 +318,20 @@ CREATE TABLE city_intelligence.user_analytics (
 )
 PARTITION BY DATE(timestamp)
 CLUSTER BY user_id, action_type;
-```text
----
+
+## ```text 3
 
 ## 3. Data Relationships
 
 ### 3.1 Entity Relationship Diagram
 
 ```mermaid
+
 erDiagram
     UserProfile ||--o{ Event : reports
     UserProfile ||--o{ Feedback : submits
     Event ||--o{ Feedback : receives
-    
+
     UserProfile {
         string user_id PK
         string email
@@ -330,7 +340,7 @@ erDiagram
         boolean is_active
         timestamp created_at
     }
-    
+
     Event {
         string id PK
         string title
@@ -342,7 +352,7 @@ erDiagram
         enum status
         string user_id FK
     }
-    
+
     Feedback {
         string id PK
         string user_id FK
@@ -352,53 +362,54 @@ erDiagram
         object related_entity
         timestamp created_at
     }
+
 ```text
+
 ### 3.2 Data Flow
 
 ```mermaid
+
 graph LR
     A[User Action] --> B[Firestore Write]
     B --> C[Cloud Function Trigger]
     C --> D[Pub/Sub Message]
     D --> E[Dataflow Pipeline]
     E --> F[BigQuery Insert]
-    
+
     B --> G[Real-time UI Update]
     F --> H[Analytics Dashboard]
-```text
----
+
+## ```text 4
 
 ## 4. Performance Considerations
 
 ### 4.1 Firestore Optimization
 
-**Read Optimization**:
+- *Read Optimization**:
 
-- Use composite indexes for complex queries
-- Implement pagination for large result sets
-- Cache frequently accessed data
+-  Use composite indexes for complex queries
+-  Implement pagination for large result sets
+-  Cache frequently accessed data
 
-**Write Optimization**:
+- *Write Optimization**:
 
-- Batch writes when possible
-- Use transactions for data consistency
-- Implement optimistic locking
+-  Batch writes when possible
+-  Use transactions for data consistency
+-  Implement optimistic locking
 
 ### 4.2 BigQuery Optimization
 
-**Query Optimization**:
+- *Query Optimization**:
 
-- Use partitioning for time-based queries
-- Leverage clustering for common filters
-- Implement materialized views for complex aggregations
+-  Use partitioning for time-based queries
+-  Leverage clustering for common filters
+-  Implement materialized views for complex aggregations
 
-**Cost Optimization**:
+- *Cost Optimization**:
 
-- Use appropriate data types
-- Implement data lifecycle policies
-- Monitor query costs and optimize expensive queries
-
----
+-  Use appropriate data types
+-  Implement data lifecycle policies
+-  Monitor query costs and optimize expensive queries
 
 ## 5. Security and Access Control
 
@@ -413,96 +424,91 @@ service cloud.firestore {
       allow read: if true;
       allow write: if request.auth != null;
     }
-    
+
     // User profiles: Users can only access their own
     match /user_profiles/{userId} {
       allow read, write: if request.auth != null && request.auth.uid == userId;
     }
-    
+
     // Feedback: Users can read/write their own, admins can read all
     match /user_feedback/{feedbackId} {
-      allow read, write: if request.auth != null && 
-        (request.auth.uid == resource.data.user_id || 
+      allow read, write: if request.auth != null &&
+        (request.auth.uid == resource.data.user_id ||
          'admin' in request.auth.token.roles);
     }
   }
 }
 ```text
+
 ### 5.2 BigQuery Access Control
 
-**IAM Roles**:
+- *IAM Roles**:
 
-- `bigquery.dataViewer`: Read-only access for analysts
-- `bigquery.dataEditor`: Write access for data pipelines
-- `bigquery.admin`: Full access for administrators
-
----
+-  `bigquery.dataViewer`: Read-only access for analysts
+-  `bigquery.dataEditor`: Write access for data pipelines
+-  `bigquery.admin`: Full access for administrators
 
 ## 6. Migration and Versioning
 
 ### 6.1 Schema Evolution Strategy
 
-**Firestore**:
+- *Firestore**:
 
-- Additive changes only (new fields)
-- Use optional fields for backward compatibility
-- Implement data migration functions for breaking changes
+-  Additive changes only (new fields)
+-  Use optional fields for backward compatibility
+-  Implement data migration functions for breaking changes
 
-**BigQuery**:
+- *BigQuery**:
 
-- Use `ALTER TABLE` for schema changes
-- Implement versioned table names for major changes
-- Maintain backward compatibility views
+-  Use `ALTER TABLE` for schema changes
+-  Implement versioned table names for major changes
+-  Maintain backward compatibility views
 
 ### 6.2 Migration Procedures
 
-1. **Plan Migration**: Document changes and impact
-2. **Test in Staging**: Validate migration scripts
-3. **Backup Data**: Create snapshots before migration
-4. **Execute Migration**: Run migration during low-traffic periods
-5. **Validate Results**: Verify data integrity post-migration
-6. **Monitor Performance**: Check for performance impacts
-
----
+1.  **Plan Migration**: Document changes and impact
+1.  **Test in Staging**: Validate migration scripts
+1.  **Backup Data**: Create snapshots before migration
+1.  **Execute Migration**: Run migration during low-traffic periods
+1.  **Validate Results**: Verify data integrity post-migration
+1.  **Monitor Performance**: Check for performance impacts
 
 ## 7. Monitoring and Maintenance
 
 ### 7.1 Health Metrics
 
-**Firestore**:
+- *Firestore**:
 
-- Read/write operations per second
-- Document count per collection
-- Index usage statistics
-- Error rates and latency
+-  Read/write operations per second
+-  Document count per collection
+-  Index usage statistics
+-  Error rates and latency
 
-**BigQuery**:
+- *BigQuery**:
 
-- Query performance metrics
-- Storage usage and costs
-- Slot utilization
-- Data freshness
+-  Query performance metrics
+-  Storage usage and costs
+-  Slot utilization
+-  Data freshness
 
 ### 7.2 Maintenance Tasks
 
-**Daily**:
+- *Daily**:
 
-- Monitor error rates and performance
-- Check data pipeline health
-- Validate data quality
+-  Monitor error rates and performance
+-  Check data pipeline health
+-  Validate data quality
 
-**Weekly**:
+- *Weekly**:
 
-- Review storage usage and costs
-- Analyze query performance
-- Update indexes if needed
+-  Review storage usage and costs
+-  Analyze query performance
+-  Update indexes if needed
 
-**Monthly**:
+- *Monthly**:
 
-- Review and optimize expensive queries
-- Clean up old data per retention policies
-- Update documentation for schema changes
+-  Review and optimize expensive queries
+-  Clean up old data per retention policies
+-  Update documentation for schema changes
 
----
-
-*This schema documentation provides the foundation for understanding and working with CityPulse data structures.*
+- This schema documentation provides the foundation for understanding and working with CityPulse data structures.*

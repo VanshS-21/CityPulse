@@ -1,22 +1,18 @@
 # CityPulse Security Operations Guide
 
-**Version**: 0.1.0
-**Last Updated**: July 13, 2025
-**Classification**: Internal Use Only
-**Target Audience**: Security Engineers, DevOps, System Administrators
-
----
+- *Version**: 0.1.0
+- *Last Updated**: July 13, 2025
+- *Classification**: Internal Use Only
+- *Target Audience**: Security Engineers, DevOps, System Administrators
 
 ## Table of Contents
 
-1. [Security Overview](#security-overview)
-2. [Access Control Management](#access-control-management)
-3. [Security Monitoring](#security-monitoring)
-4. [Incident Response](#incident-response)
-5. [Vulnerability Management](#vulnerability-management)
-6. [Data Protection](#data-protection)
-
----
+1.  [Security Overview](#security-overview)
+1.  [Access Control Management](#access-control-management)
+1.  [Security Monitoring](#security-monitoring)
+1.  [Incident Response](#incident-response)
+1.  [Vulnerability Management](#vulnerability-management)
+1.  [Data Protection](#data-protection)
 
 ## Security Overview
 
@@ -69,17 +65,16 @@ graph TB
     BQ --> KMS
     CS --> KMS
 ```text
+
 ### 🎯 Security Objectives
 
 | Objective | Target | Measurement |
 |-----------|--------|-------------|
-| **Confidentiality** | 100% | Data encryption at rest and in transit |
-| **Integrity** | 99.99% | Data validation and checksums |
-| **Availability** | 99.9% | Uptime with DDoS protection |
-| **Authentication** | 100% | Multi-factor authentication |
-| **Authorization** | 100% | Role-based access control |
-
----
+| **Confidentiality**| 100% | Data encryption at rest and in transit |
+|**Integrity**| 99.99% | Data validation and checksums |
+|**Availability**| 99.9% | Uptime with DDoS protection |
+|**Authentication**| 100% | Multi-factor authentication |
+|**Authorization** | 100% | Role-based access control |
 
 ## Access Control Management
 
@@ -89,66 +84,73 @@ graph TB
 
 ```yaml
 
-# IAM Role Definitions
+## IAM Role Definitions
 
 roles:
   citizen:
     permissions:
 
-      - events:read
-      - events:create
-      - feedback:create
-      - profile:read
-      - profile:update
+      -  events:read
+      -  events:create
+      -  feedback:create
+      -  profile:read
+      -  profile:update
 
   authority:
     permissions:
 
-      - events:read
-      - events:update
-      - events:assign
-      - analytics:read
-      - users:read_limited
+      -  events:read
+      -  events:update
+      -  events:assign
+      -  analytics:read
+      -  users:read_limited
 
   admin:
     permissions:
 
-      - "*:*"  # Full access
+      -  "*:*"  # Full access
     restrictions:
 
-      - require_mfa: true
-      - ip_whitelist: ["10.0.0.0/8", "192.168.1.0/24"]
-      - session_timeout: 3600  # 1 hour
+      -  require_mfa: true
+      -  ip_whitelist: ["10.0.0.0/8", "192.168.1.0/24"]
+      -  session_timeout: 3600  # 1 hour
 ```text
-#### Service Account Management
+
+## Service Account Management
 
 ```bash
-#!/bin/bash
 
-# Service account creation and management
+## !/bin/bash
 
-# Create service account for API
+## Service account creation and management
+
+## Create service account for API
 
 gcloud iam service-accounts create citypulse-api \
-  --description="CityPulse API service account" \
-  --display-name="CityPulse API"
 
-# Grant minimal required permissions
+  - -description="CityPulse API service account" \
+  - -display-name="CityPulse API"
 
-gcloud projects add-iam-policy-binding citypulse-project \
-  --member="serviceAccount:citypulse-api@citypulse-project.iam.gserviceaccount.com" \
-  --role="roles/datastore.user"
+## Grant minimal required permissions
 
 gcloud projects add-iam-policy-binding citypulse-project \
-  --member="serviceAccount:citypulse-api@citypulse-project.iam.gserviceaccount.com" \
-  --role="roles/bigquery.dataEditor"
 
-# Create and download key (store securely)
+  - -member="serviceAccount:citypulse-api@citypulse-project.iam.gserviceaccount.com" \
+  - -role="roles/datastore.user"
+
+gcloud projects add-iam-policy-binding citypulse-project \
+
+  - -member="serviceAccount:citypulse-api@citypulse-project.iam.gserviceaccount.com" \
+  - -role="roles/bigquery.dataEditor"
+
+## Create and download key (store securely)
 
 gcloud iam service-accounts keys create ./keys/citypulse-api-key.json \
-  --iam-account=citypulse-api@citypulse-project.iam.gserviceaccount.com
+
+  - -iam-account=citypulse-api@citypulse-project.iam.gserviceaccount.com
 ```text
-#### Multi-Factor Authentication (MFA)
+
+## Multi-Factor Authentication (MFA)
 
 ```javascript
 // Implement MFA for admin users
@@ -188,6 +190,7 @@ const requireMFA = (requiredRole) => {
   };
 };
 ```text
+
 ### 🔐 API Security
 
 #### Rate Limiting and Throttling
@@ -209,7 +212,7 @@ const apiLimiter = rateLimit({
     client: redisClient,
     prefix: 'rl:api:'
   }),
-  windowMs: 15 * 60 * 1000, // 15 minutes
+  windowMs: 15 *60* 1000, // 15 minutes
   max: 1000, // Limit each IP to 1000 requests per windowMs
   message: 'Too many requests from this IP',
   standardHeaders: true,
@@ -221,7 +224,7 @@ const authLimiter = rateLimit({
     client: redisClient,
     prefix: 'rl:auth:'
   }),
-  windowMs: 15 * 60 * 1000,
+  windowMs: 15 *60* 1000,
   max: 5, // Limit auth attempts
   skipSuccessfulRequests: true
 });
@@ -230,6 +233,7 @@ const authLimiter = rateLimit({
 app.use('/api/', apiLimiter);
 app.use('/auth/', authLimiter);
 ```text
+
 #### Input Validation and Sanitization
 
 ```javascript
@@ -285,8 +289,8 @@ const handleValidationErrors = (req, res, next) => {
   }
   next();
 };
-```text
----
+
+## ```text
 
 ## Security Monitoring
 
@@ -296,7 +300,7 @@ const handleValidationErrors = (req, res, next) => {
 
 ```yaml
 
-# Fluentd configuration for security log collection
+## Fluentd configuration for security log collection
 
 apiVersion: v1
 kind: ConfigMap
@@ -327,19 +331,21 @@ data:
       vm_id citypulse-security
       vm_name citypulse-security-vm
     </match>
+
 ```text
-#### Intrusion Detection
+
+## Intrusion Detection
 
 ```python
 
-# Anomaly detection for security events
+## Anomaly detection for security events
 
 import pandas as pd
 from sklearn.ensemble import IsolationForest
 import logging
 
 class SecurityAnomalyDetector:
-    def __init__(self):
+    def **init**(self):
         self.model = IsolationForest(contamination=0.1, random_state=42)
         self.is_trained = False
 
@@ -359,7 +365,7 @@ class SecurityAnomalyDetector:
         anomaly_scores = self.model.decision_function(features)
         anomalies = self.model.predict(features)
 
-        # Flag anomalies (score = -1)
+## Flag anomalies (score = -1)
         anomalous_requests = current_traffic[anomalies == -1]
 
         if len(anomalous_requests) > 0:
@@ -369,14 +375,12 @@ class SecurityAnomalyDetector:
 
     def extract_features(self, traffic_data):
         """Extract features for anomaly detection"""
-        return traffic_data[[
-            'request_rate',
+        return traffic_data[['request_rate',
             'response_time',
             'error_rate',
             'unique_ips',
             'payload_size',
-            'geographic_diversity'
-        ]]
+            'geographic_diversity']]
 
     def alert_security_team(self, anomalies):
         """Send alerts for detected anomalies"""
@@ -387,12 +391,15 @@ class SecurityAnomalyDetector:
             'details': anomalies.to_dict('records')
         }
 
-        # Send to monitoring system
+## Send to monitoring system
         logging.critical(f"Security anomaly detected: {alert_data}")
+
 ```text
-#### Real-time Threat Detection
+
+## Real-time Threat Detection
 
 ```javascript
+
 // Real-time threat detection middleware
 const geoip = require('geoip-lite');
 const useragent = require('useragent');
@@ -459,18 +466,16 @@ const isKnownMaliciousIP = (ip) => {
 };
 
 const isSuspiciousUserAgent = (userAgent) => {
-  const suspiciousPatterns = [
-    /sqlmap/i,
+  const suspiciousPatterns = [/sqlmap/i,
     /nikto/i,
     /nmap/i,
     /masscan/i,
-    /python-requests/i
-  ];
+    /python-requests/i];
 
   return suspiciousPatterns.some(pattern => pattern.test(userAgent));
 };
-```text
----
+
+## ```text 2
 
 ## Incident Response
 
@@ -480,7 +485,7 @@ const isSuspiciousUserAgent = (userAgent) => {
 
 ```yaml
 
-# Incident severity levels
+## Incident severity levels
 
 severity_levels:
   P1_CRITICAL:
@@ -489,9 +494,9 @@ severity_levels:
     escalation: "Immediate C-level notification"
     examples:
 
-      - "Complete system outage"
-      - "Data breach with PII exposure"
-      - "Successful unauthorized access"
+      -  "Complete system outage"
+      -  "Data breach with PII exposure"
+      -  "Successful unauthorized access"
 
   P2_HIGH:
     description: "Significant functionality impaired"
@@ -499,9 +504,9 @@ severity_levels:
     escalation: "Security team lead notification"
     examples:
 
-      - "Authentication system down"
-      - "Suspected intrusion attempt"
-      - "DDoS attack in progress"
+      -  "Authentication system down"
+      -  "Suspected intrusion attempt"
+      -  "DDoS attack in progress"
 
   P3_MEDIUM:
     description: "Minor functionality impaired"
@@ -509,9 +514,9 @@ severity_levels:
     escalation: "On-call engineer notification"
     examples:
 
-      - "Elevated error rates"
-      - "Suspicious activity detected"
-      - "Non-critical service degradation"
+      -  "Elevated error rates"
+      -  "Suspicious activity detected"
+      -  "Non-critical service degradation"
 
   P4_LOW:
     description: "Minimal impact or informational"
@@ -519,11 +524,12 @@ severity_levels:
     escalation: "Standard ticket queue"
     examples:
 
-      - "Security scan alerts"
-      - "Policy violations"
-      - "Routine security events"
+      -  "Security scan alerts"
+      -  "Policy violations"
+      -  "Routine security events"
 ```text
-#### Incident Response Workflow
+
+## Incident Response Workflow
 
 ```mermaid
 flowchart TD
@@ -546,83 +552,89 @@ flowchart TD
     J --> N[Update Procedures]
     N --> O[Close Incident]
 ```text
-#### Incident Response Playbooks
+
+### Incident Response Playbooks
 
 ```bash
-#!/bin/bash
 
-# Security Incident Response Playbook
+## !/bin/bash 2
 
-# P1 Critical Incident Response
+## Security Incident Response Playbook
+
+## P1 Critical Incident Response
 
 respond_to_critical_incident() {
     echo "CRITICAL INCIDENT DETECTED - Initiating response"
 
-    # 1. Immediate containment
+## 1. Immediate containment
     echo "Step 1: Immediate containment"
 
-    # Isolate affected systems
+## Isolate affected systems
     kubectl scale deployment citypulse-api --replicas=0
 
-    # Block suspicious IPs at firewall level
+## Block suspicious IPs at firewall level
     gcloud compute firewall-rules create block-suspicious-ips \
-        --action=DENY \
-        --rules=tcp,udp \
-        --source-ranges="$SUSPICIOUS_IP_LIST"
 
-    # 2. Notify incident team
+        - -action=DENY \
+        - -rules=tcp,udp \
+        - -source-ranges="$SUSPICIOUS_IP_LIST"
+
+## 2. Notify incident team
     echo "Step 2: Notifying incident team"
     curl -X POST "$SLACK_WEBHOOK" \
-        -H 'Content-type: application/json' \
-        --data '{"text":"🚨 CRITICAL SECURITY INCIDENT - All hands on deck!"}'
 
-    # 3. Preserve evidence
+        - H 'Content-type: application/json' \
+        - -data '{"text":"🚨 CRITICAL SECURITY INCIDENT - All hands on deck!"}'
+
+## 3. Preserve evidence
     echo "Step 3: Preserving evidence"
 
-    # Create snapshots of affected systems
+## Create snapshots of affected systems
     gcloud compute disks snapshot citypulse-api-disk \
-        --snapshot-names="incident-$(date +%Y%m%d-%H%M%S)" \
-        --zone=us-central1-a
 
-    # Export logs
+        - -snapshot-names="incident-$(date +%Y%m%d-%H%M%S)" \
+        - -zone=us-central1-a
+
+## Export logs
     gcloud logging read "timestamp>=\"$(date -d '1 hour ago' --iso-8601)\"" \
-        --format=json > "incident-logs-$(date +%Y%m%d-%H%M%S).json"
 
-    # 4. Begin investigation
+        - -format=json > "incident-logs-$(date +%Y%m%d-%H%M%S).json"
+
+## 4. Begin investigation
     echo "Step 4: Beginning investigation"
 
-    # Analyze recent access logs
+## Analyze recent access logs
     grep -E "(FAILED|ERROR|UNAUTHORIZED)" /var/log/citypulse/access.log | tail -100
 
-    # Check for unusual network activity
+## Check for unusual network activity
     netstat -tuln | grep LISTEN
 
     echo "Critical incident response initiated. Continue with detailed investigation."
 }
 
-# Data Breach Response
+## Data Breach Response
 
 respond_to_data_breach() {
     echo "DATA BREACH DETECTED - Initiating breach response"
 
-    # 1. Immediate containment
-    # Revoke all API keys
+## 1. Immediate containment 2
+## Revoke all API keys
     python scripts/revoke_all_api_keys.py
 
-    # 2. Legal and compliance notification
-    # Notify legal team within 1 hour
+## 2. Legal and compliance notification
+## Notify legal team within 1 hour
     echo "Notifying legal team and preparing breach notifications"
 
-    # 3. User notification preparation
-    # Prepare user notification templates
+## 3. User notification preparation
+## Prepare user notification templates
     echo "Preparing user breach notifications"
 
-    # 4. Regulatory compliance
-    # GDPR requires notification within 72 hours
+## 4. Regulatory compliance
+## GDPR requires notification within 72 hours
     echo "Initiating regulatory notification process"
 }
-```text
----
+
+## ```text 3
 
 ## Vulnerability Management
 
@@ -632,7 +644,7 @@ respond_to_data_breach() {
 
 ```yaml
 
-# GitHub Actions security scanning workflow
+## GitHub Actions security scanning workflow
 
 name: Security Scan
 on:
@@ -642,16 +654,16 @@ on:
     branches: [main]
   schedule:
 
-    - cron: '0 2 * * *'  # Daily at 2 AM
+    -  cron: '0 2 * * *'  # Daily at 2 AM
 
 jobs:
   security-scan:
     runs-on: ubuntu-latest
     steps:
 
-    - uses: actions/checkout@v3
+    -  uses: actions/checkout@v3
 
-    - name: Run Trivy vulnerability scanner
+    -  name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
         scan-type: 'fs'
@@ -659,28 +671,31 @@ jobs:
         format: 'sarif'
         output: 'trivy-results.sarif'
 
-    - name: Upload Trivy scan results
+    -  name: Upload Trivy scan results
       uses: github/codeql-action/upload-sarif@v2
       with:
         sarif_file: 'trivy-results.sarif'
 
-    - name: Run Snyk security scan
+    -  name: Run Snyk security scan
       uses: snyk/actions/node@master
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
         args: --severity-threshold=high
 
-    - name: Run OWASP ZAP scan
+    -  name: Run OWASP ZAP scan
       uses: zaproxy/action-full-scan@v0.4.0
       with:
         target: '[Your CityPulse URL]'
         rules_file_name: '.zap/rules.tsv'
         cmd_options: '-a'
+
 ```text
-#### Dependency Vulnerability Management
+
+## Dependency Vulnerability Management
 
 ```javascript
+
 // Automated dependency vulnerability checking
 const { execSync } = require('child_process');
 const fs = require('fs');
@@ -767,7 +782,7 @@ class VulnerabilityManager {
   checkThresholds(vulnerabilities) {
     for (const [severity, threshold] of Object.entries(this.vulnerabilityThresholds)) {
       if (vulnerabilities[severity].length > threshold) {
-        console.error(`${severity} vulnerability threshold exceeded: ${vulnerabilities[severity].length} > ${threshold}`);
+console.error(`${severity} vulnerability threshold exceeded: ${vulnerabilities[severity].length} > ${threshold}`);
         return true;
       }
     }
@@ -790,13 +805,16 @@ class VulnerabilityManager {
     console.log('Vulnerability report generated: ./reports/vulnerability-report.json');
   }
 }
+
 ```text
+
 ### 🔧 Patch Management
 
 ```bash
-#!/bin/bash
 
-# Automated patch management system
+## !/bin/bash 3
+
+## Automated patch management system
 
 PATCH_LOG="/var/log/citypulse/patch-management.log"
 MAINTENANCE_WINDOW="02:00-04:00"
@@ -807,7 +825,7 @@ log_message() {
 
 check_maintenance_window() {
     current_hour=$(date '+%H')
-    if [[ $current_hour -ge 2 && $current_hour -lt 4 ]]; then
+    if [[$current_hour -ge 2 && $current_hour -lt 4]]; then
         return 0  # In maintenance window
     else
         return 1  # Outside maintenance window
@@ -817,16 +835,16 @@ check_maintenance_window() {
 update_system_packages() {
     log_message "Starting system package updates"
 
-    # Update package lists
+## Update package lists
     apt-get update
 
-    # Get list of upgradeable packages
+## Get list of upgradeable packages
     upgradeable=$(apt list --upgradeable 2>/dev/null | grep -v "WARNING" | wc -l)
 
-    if [[ $upgradeable -gt 1 ]]; then
+    if [[$upgradeable -gt 1]]; then
         log_message "Found $upgradeable packages to update"
 
-        # Apply security updates only
+## Apply security updates only
         unattended-upgrade --dry-run
 
         if check_maintenance_window; then
@@ -843,18 +861,18 @@ update_system_packages() {
 update_container_images() {
     log_message "Checking for container image updates"
 
-    # Get current image versions
+## Get current image versions
     current_images=$(kubectl get deployments -o jsonpath='{.items[*].spec.template.spec.containers[*].image}')
 
-    # Check for updates (simplified - would integrate with registry API)
+## Check for updates (simplified - would integrate with registry API)
     for image in $current_images; do
         log_message "Checking updates for image: $image"
 
-        # Pull latest image info
+## Pull latest image info
         latest_digest=$(docker manifest inspect "$image:latest" | jq -r '.config.digest')
         current_digest=$(docker inspect "$image" | jq -r '.[0].RepoDigests[0]')
 
-        if [[ "$latest_digest" != "$current_digest" ]]; then
+        if [["$latest_digest" != "$current_digest"]]; then
             log_message "Update available for $image"
 
             if check_maintenance_window; then
@@ -866,36 +884,36 @@ update_container_images() {
     done
 }
 
-# Main patch management routine
+## Main patch management routine
 
 main() {
     log_message "Starting patch management cycle"
 
-    # Check for system updates
+## Check for system updates
     update_system_packages
 
-    # Check for container updates
+## Check for container updates
     update_container_images
 
-    # Verify system health after updates
+## Verify system health after updates
     if systemctl is-active --quiet citypulse-api; then
         log_message "System health check passed"
     else
         log_message "ERROR: System health check failed"
-        # Trigger rollback procedures
+## Trigger rollback procedures
         kubectl rollout undo deployment/citypulse-api
     fi
 
     log_message "Patch management cycle completed"
 }
 
-# Run if called directly
+## Run if called directly
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
     main "$@"
 fi
-```text
----
+
+## ```text 4
 
 ## Data Protection
 
@@ -905,7 +923,7 @@ fi
 
 ```python
 
-# Data encryption utilities
+## Data encryption utilities
 
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
@@ -914,7 +932,7 @@ import base64
 import os
 
 class DataEncryption:
-    def __init__(self, password: str = None):
+    def **init**(self, password: str = None):
         if password:
             self.key = self._derive_key_from_password(password)
         else:
@@ -947,12 +965,12 @@ class DataEncryption:
         else:
             key = Fernet.generate_key()
 
-            # Store key securely (in production, use KMS)
+## Store key securely (in production, use KMS)
             os.makedirs(os.path.dirname(key_file), exist_ok=True)
             with open(key_file, 'wb') as f:
                 f.write(key)
 
-            # Set secure permissions
+## Set secure permissions
             os.chmod(key_file, 0o600)
 
             return key
@@ -968,10 +986,10 @@ class DataEncryption:
         decrypted_data = self.cipher_suite.decrypt(encrypted_bytes)
         return decrypted_data.decode()
 
-# Usage in application
+## Usage in application
 
 class SecureUserProfile:
-    def __init__(self):
+    def **init**(self):
         self.encryption = DataEncryption()
 
     def store_sensitive_data(self, user_id: str, sensitive_data: dict):
@@ -984,7 +1002,7 @@ class SecureUserProfile:
             else:
                 encrypted_data[key] = value
 
-        # Store in database
+## Store in database
         return self._save_to_database(user_id, encrypted_data)
 
     def retrieve_sensitive_data(self, user_id: str) -> dict:
@@ -1000,17 +1018,18 @@ class SecureUserProfile:
 
         return decrypted_data
 ```text
-#### Key Management with Google Cloud KMS
+
+## Key Management with Google Cloud KMS
 
 ```python
 
-# Google Cloud KMS integration
+## Google Cloud KMS integration
 
 from google.cloud import kms
 import base64
 
 class CloudKMSManager:
-    def __init__(self, project_id: str, location: str, key_ring: str, key_name: str):
+    def **init**(self, project_id: str, location: str, key_ring: str, key_name: str):
         self.client = kms.KeyManagementServiceClient()
         self.key_name = self.client.crypto_key_path(
             project_id, location, key_ring, key_name
@@ -1048,17 +1067,18 @@ class CloudKMSManager:
 
         return response.name
 ```text
-### 🛡️ Data Loss Prevention (DLP)
+
+## 🛡️ Data Loss Prevention (DLP)
 
 ```python
 
-# Data Loss Prevention implementation
+## Data Loss Prevention implementation
 
 import re
 from typing import List, Dict, Any
 
 class DLPScanner:
-    def __init__(self):
+    def **init**(self):
         self.patterns = {
             'email': r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b',
             'phone': r'\b\d{3}-\d{3}-\d{4}\b|\b\(\d{3}\)\s*\d{3}-\d{4}\b',
@@ -1100,14 +1120,14 @@ class DLPScanner:
 
         for key, value in data.items():
             if isinstance(value, str):
-                # Scan for sensitive data
+## Scan for sensitive data
                 findings = self.scan_text(value)
 
                 if findings:
-                    # Log potential data leak
+## Log potential data leak
                     self._log_dlp_finding(key, findings)
 
-                    # Sanitize if necessary
+## Sanitize if necessary
                     if key not in ['email', 'phone']:  # These fields should contain this data
                         value = self.sanitize_text(value)
 
@@ -1123,7 +1143,8 @@ class DLPScanner:
 
         logger = logging.getLogger('dlp')
         logger.warning(f"Sensitive data detected in field '{field}': {findings}")
-```text
----
 
-*This security operations guide provides comprehensive procedures for maintaining the security posture of the CityPulse platform.*
+## ```text 5
+
+- This security operations guide provides comprehensive procedures for maintaining the security posture of the CityPulse
+platform.*

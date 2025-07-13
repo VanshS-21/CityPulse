@@ -6,52 +6,52 @@ This directory contains all credential management files and documentation for th
 
 | File | Purpose | Security Level |
 |------|---------|----------------|
-| `citypulse-credentials.env` | Master credentials template | 🔒 **NEVER COMMIT** |
-| `setup-credentials.js` | Interactive setup script | ✅ Safe to commit |
-| `README.md` | This documentation | ✅ Safe to commit |
+| `citypulse-credentials.env`| Master credentials template | 🔒 **NEVER COMMIT**|
+|`setup-credentials.js`| Interactive setup script | ✅ Safe to commit |
+|`README.md`| This documentation | ✅ Safe to commit |
 
 ## 🚀 Quick Start
 
-### 1. Initial Setup
+### 1. Initial Setup```bash
 
-```bash
-
-# Navigate to credentials directory
+## Navigate to credentials directory
 
 cd credentials
 
-# Run the interactive setup
+## Run the interactive setup
 
 node setup-credentials.js
 
-# Follow the prompts to:
+## Follow the prompts to
 
-# - Setup Firebase credentials
+## - Setup Firebase credentials
 
-# - Setup Google Cloud credentials  
+## - Setup Google Cloud credentials
 
-# - Generate secure secrets
+## - Generate secure secrets
 
-# - Copy to .env.local
+## - Copy to .env.local
 
 ```text
-### 2. Manual Setup
+
+## 2. Manual Setup
 
 ```bash
 
-# Copy the template
+## Copy the template
 
 cp citypulse-credentials.env ../.env.local
 
-# Edit with your actual values
+## Edit with your actual values
 
 nano ../.env.local
 ```text
+
 ## 🔥 Firebase Credentials Setup
 
-### Required Firebase Configuration:
+### Required Firebase Configuration
 
-1. **Web App Config** (Public - frontend safe):
+1.**Web App Config**(Public - frontend safe):
    ```env
    NEXT_PUBLIC_FIREBASE_API_KEY="your_api_key"
    NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN="citypulse-21.firebaseapp.com"
@@ -59,54 +59,35 @@ nano ../.env.local
    NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET="citypulse-21.appspot.com"
    NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID="123456789012"
    NEXT_PUBLIC_FIREBASE_APP_ID="1:123456789012:web:abcdef123456"
-   ```
-
-2. **Service Account** (Private - server-side only):
-   ```env
+   ```1.**Service Account**(Private - server-side only):```env
    FIREBASE_SERVICE_ACCOUNT_KEY_PATH="./citypulse-21-8fd96b025d3c.json"
-   ```
+   ```### How to Get Firebase Credentials
 
-### How to Get Firebase Credentials:
+#### Web App Configuration
 
-#### Web App Configuration:
+1.  Go to [Firebase Console](https://console.firebase.google.com/)
+1.  Select your project:`citypulse-21`1.  Go to**Project Settings**>**General**1.  Scroll to**Your apps**section
+1.  Click on the web app or create one
+1.  Copy the config object values
 
-1. Go to [Firebase Console](https://console.firebase.google.com/)
-2. Select your project: `citypulse-21`
-3. Go to **Project Settings** > **General**
-4. Scroll to **Your apps** section
-5. Click on the web app or create one
-6. Copy the config object values
+#### Service Account Key
 
-#### Service Account Key:
+1.  Go to**Project Settings**>**Service Accounts**1.  Click**Generate new private key**1.  Download the JSON file
+1.  Place it in your project root as`citypulse-21-8fd96b025d3c.json`## ☁️ Google Cloud Platform Setup
 
-1. Go to **Project Settings** > **Service Accounts**
-2. Click **Generate new private key**
-3. Download the JSON file
-4. Place it in your project root as `citypulse-21-8fd96b025d3c.json`
-
-## ☁️ Google Cloud Platform Setup
-
-### Required GCP Configuration:
-
-```env
+### Required GCP Configuration```env
 GCP_PROJECT_ID="citypulse-21"
 GOOGLE_CLOUD_REGION="us-central1"
 GOOGLE_APPLICATION_CREDENTIALS="./citypulse-21-8fd96b025d3c.json"
 ```text
-### Required APIs to Enable:
 
-1. **Firebase Admin SDK API**
-2. **Cloud Firestore API**
-3. **BigQuery API**
-4. **Pub/Sub API**
-5. **Cloud Storage API**
-6. **Identity and Access Management (IAM) API**
+### Required APIs to Enable
 
-### How to Enable APIs:
+1.**Firebase Admin SDK API**1.**Cloud Firestore API**1.**BigQuery API**1.**Pub/Sub API**1.**Cloud Storage API**1.**Identity and Access Management (IAM) API**### How to Enable APIs
 
 ```bash
 
-# Using gcloud CLI
+## Using gcloud CLI
 
 gcloud services enable firebase.googleapis.com
 gcloud services enable firestore.googleapis.com
@@ -115,52 +96,54 @@ gcloud services enable pubsub.googleapis.com
 gcloud services enable storage.googleapis.com
 gcloud services enable iam.googleapis.com
 ```text
+
 Or manually in [Google Cloud Console](https://console.cloud.google.com/apis/library).
 
 ## 🗺️ Google Maps Setup
 
-### Required for Maps Functionality:
+### Required for Maps Functionality
 
 ```env
 NEXT_PUBLIC_GOOGLE_MAPS_API_KEY="your_maps_api_key"
 ```text
-### How to Get Maps API Key:
 
-1. Go to [Google Cloud Console](https://console.cloud.google.com/)
-2. Navigate to **APIs & Services** > **Credentials**
-3. Click **Create Credentials** > **API Key**
-4. Restrict the key to specific APIs:
-   - Maps JavaScript API
-   - Geocoding API
-   - Places API
+### How to Get Maps API Key
+
+1.  Go to [Google Cloud Console](https://console.cloud.google.com/)
+1.  Navigate to**APIs & Services**>**Credentials**1.  Click**Create Credentials**>**API Key**1.  Restrict the key to specific APIs:
+  -  Maps JavaScript API
+  -  Geocoding API
+  -  Places API
 
 ## 🤖 AI Services Setup
 
-### Google Gemini AI:
+### Google Gemini AI
 
 ```env
 GEMINI_API_KEY="your_gemini_api_key"
 ```text
-### How to Get Gemini API Key:
 
-1. Go to [Google AI Studio](https://makersuite.google.com/)
-2. Create an API key
-3. Copy the key to your credentials
+### How to Get Gemini API Key
+
+1.  Go to [Google AI Studio](https://makersuite.google.com/)
+1.  Create an API key
+1.  Copy the key to your credentials
 
 ## 📧 Email Services Setup
 
-### SendGrid Configuration:
+### SendGrid Configuration
 
 ```env
 SENDGRID_API_KEY="your_sendgrid_api_key"
 SENDGRID_FROM_EMAIL="noreply@citypulse.com"
 ```text
-### How to Setup SendGrid:
 
-1. Create account at [SendGrid](https://sendgrid.com/)
-2. Go to **Settings** > **API Keys**
-3. Create a new API key with full access
-4. Verify your sender email domain
+### How to Setup SendGrid
+
+1.  Create account at [SendGrid](https://sendgrid.com/)
+1.  Go to**Settings**>**API Keys**
+1.  Create a new API key with full access
+1.  Verify your sender email domain
 
 ## 🔐 Security Best Practices
 
@@ -168,173 +151,184 @@ SENDGRID_FROM_EMAIL="noreply@citypulse.com"
 
 ```bash
 
-# Development
+## Development
 
 .env.local
 
-# Staging  
+## Staging
 
 .env.staging
 
-# Production
+## Production
 
 .env.production
 ```text
-### 2. Never Commit Credentials
+
+## 2. Never Commit Credentials
 
 ```gitignore
 
-# Add to .gitignore
+## Add to .gitignore
 
 .env*
-*credentials*
-*.json
+
+- credentials*- .json
 !credentials/README.md
 !credentials/setup-credentials.js
 ```text
-### 3. Rotate Credentials Regularly
 
-- **API Keys**: Every 90 days
-- **Service Account Keys**: Every 6 months
-- **JWT Secrets**: Every 30 days
+## 3. Rotate Credentials Regularly
+
+-**API Keys**: Every 90 days
+-  **Service Account Keys**: Every 6 months
+-  **JWT Secrets**: Every 30 days
 
 ### 4. Use Least Privilege Access
 
-- Grant minimum required permissions
-- Use service accounts for server-side operations
-- Restrict API keys to specific services
+-  Grant minimum required permissions
+-  Use service accounts for server-side operations
+-  Restrict API keys to specific services
 
 ## 🚀 Deployment Configuration
 
-### Vercel Deployment:
+### Vercel Deployment
 
 ```bash
 
-# Set environment variables
+## Set environment variables
 
 vercel env add NEXT_PUBLIC_FIREBASE_API_KEY
 vercel env add FIREBASE_SERVICE_ACCOUNT_KEY
 
-# ... add all required variables
+## ... add all required variables
 
 ```text
-### Netlify Deployment:
+
+## Netlify Deployment
 
 ```bash
 
-# Set environment variables in Netlify dashboard
+## Set environment variables in Netlify dashboard
 
-# Site Settings > Environment Variables
+## Site Settings > Environment Variables
 
 ```text
-### Docker Deployment:
+
+## Docker Deployment
 
 ```dockerfile
 
-# Use environment variables
+## Use environment variables
 
 ENV NEXT_PUBLIC_FIREBASE_API_KEY=${NEXT_PUBLIC_FIREBASE_API_KEY}
 ENV FIREBASE_SERVICE_ACCOUNT_KEY=${FIREBASE_SERVICE_ACCOUNT_KEY}
 ```text
+
 ## 🧪 Testing Credentials
 
-### Validate Setup:
+### Validate Setup
 
 ```bash
 
-# Run validation script
+## Run validation script
 
 node credentials/setup-credentials.js
 
-# Choose option 2: Validate existing credentials
+## Choose option 2: Validate existing credentials
 
 ```text
-### Test Firebase Connection:
+
+## Test Firebase Connection
 
 ```bash
 
-# Test Firebase Admin SDK
+## Test Firebase Admin SDK
 
 npm run test:firebase
 ```text
-### Test API Endpoints:
+
+## Test API Endpoints
 
 ```bash
 
-# Test authentication
+## Test authentication
 
-curl -X GET http://localhost:3000/api/v1/auth
+curl -X GET <http://localhost:3000/api/v1/auth>
 
-# Test with credentials
+## Test with credentials
 
-curl -X POST http://localhost:3000/api/v1/auth \
-  -H "Content-Type: application/json" \
-  -d '{"action":"register","email":"test@citypulse.com","password":"Password123!","name":"Test User"}'
+curl -X POST <http://localhost:3000/api/v1/auth> \
+
+  - H "Content-Type: application/json" \
+  - d '{"action":"register","email":"test@citypulse.com","password":"Password123!","name":"Test User"}'
 ```text
+
 ## 🆘 Troubleshooting
 
-### Common Issues:
+### Common Issues
 
 #### 1. Firebase Permission Denied
 
 ```bash
 Error: Caller does not have required permission
 ```text
-**Solution**: Add `Service Usage Consumer` role to service account
 
-#### 2. Invalid Service Account Key
+- *Solution**: Add `Service Usage Consumer`role to service account
 
-```bash
+#### 2. Invalid Service Account Key```bash
 Error: Invalid JSON format
 ```text
-**Solution**: Re-download service account key from Firebase Console
+
+- *Solution**: Re-download service account key from Firebase Console
 
 #### 3. API Key Restrictions
 
 ```bash
 Error: This API key is not authorized
 ```text
-**Solution**: Check API key restrictions in Google Cloud Console
+
+- *Solution**: Check API key restrictions in Google Cloud Console
 
 #### 4. CORS Issues
 
 ```bash
 Error: CORS policy blocked
 ```text
-**Solution**: Add your domain to Firebase Auth authorized domains
 
-### Getting Help:
+- *Solution**: Add your domain to Firebase Auth authorized domains
 
-1. Check the [Firebase Documentation](https://firebase.google.com/docs)
-2. Review [Google Cloud Documentation](https://cloud.google.com/docs)
-3. Check project issues on GitHub
-4. Contact the development team
+### Getting Help
+
+1.  Check the [Firebase Documentation](https://firebase.google.com/docs)
+1.  Review [Google Cloud Documentation](https://cloud.google.com/docs)
+1.  Check project issues on GitHub
+1.  Contact the development team
 
 ## 📋 Credentials Checklist
 
-### ✅ Required for Basic Functionality:
+### ✅ Required for Basic Functionality
 
-- [ ] Firebase Web App Config
-- [ ] Firebase Service Account Key
-- [ ] GCP Project ID and Region
-- [ ] JWT Secret
-- [ ] App URL
+-  [ ] Firebase Web App Config
+-  [ ] Firebase Service Account Key
+-  [ ] GCP Project ID and Region
+-  [ ] JWT Secret
+-  [ ] App URL
 
-### ✅ Required for Full Functionality:
+### ✅ Required for Full Functionality
 
-- [ ] Google Maps API Key
-- [ ] Gemini AI API Key
-- [ ] SendGrid API Key
-- [ ] Analytics Tracking IDs
-- [ ] Social Media API Keys
+-  [ ] Google Maps API Key
+-  [ ] Gemini AI API Key
+-  [ ] SendGrid API Key
+-  [ ] Analytics Tracking IDs
+-  [ ] Social Media API Keys
 
-### ✅ Required for Production:
+### ✅ Required for Production
 
-- [ ] Production Firebase Project
-- [ ] Production GCP Project
-- [ ] SSL Certificates
-- [ ] Domain Configuration
-- [ ] Monitoring and Logging
+-  [ ] Production Firebase Project
+-  [ ] Production GCP Project
+-  [ ] SSL Certificates
+-  [ ] Domain Configuration
+-  [ ] Monitoring and Logging
 
 ## 🔄 Credential Rotation Schedule
 
@@ -345,6 +339,4 @@ Error: CORS policy blocked
 | Service Accounts | Bi-annually | Set reminder |
 | OAuth Secrets | Annually | Set reminder |
 
----
-
-#### 🔒 Remember: Security is everyone's responsibility. Keep credentials secure and never share them publicly!
+### 🔒 Remember: Security is everyone's responsibility. Keep credentials secure and never share them publicly
