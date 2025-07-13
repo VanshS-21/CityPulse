@@ -21,16 +21,16 @@ describe('API Routing Integration Tests', () => {
   })
 
   describe('Next.js Rewrite Configuration', () => {
-    test('should verify rewrite configuration exists', () => {
-      const nextConfig = require('../../next.config.js')
-      expect(nextConfig.rewrites).toBeDefined()
-      expect(typeof nextConfig.rewrites).toBe('function')
+    test('should verify rewrite configuration exists', async () => {
+      const nextConfig = await import('../../next.config')
+      expect(nextConfig.default.rewrites).toBeDefined()
+      expect(typeof nextConfig.default.rewrites).toBe('function')
     })
 
     test('should verify rewrite rules are correct', async () => {
-      const nextConfig = require('../../next.config.js')
-      const rewrites = await nextConfig.rewrites()
-      
+      const nextConfig = await import('../../next.config')
+      const rewrites = await nextConfig.default.rewrites()
+
       expect(rewrites).toEqual([
         {
           source: '/api/v1/:path*',
