@@ -33,8 +33,8 @@ describe('API Routing Integration Tests', () => {
       
       expect(rewrites).toEqual([
         {
-          source: '/api/:path*',
-          destination: '/v1/:path*'
+          source: '/api/v1/:path*',
+          destination: '/api/:path*'
         }
       ])
     })
@@ -67,21 +67,21 @@ describe('API Routing Integration Tests', () => {
   })
 
   describe('Routing Logic Verification', () => {
-    test('should validate that rewrite transforms /api to /v1', () => {
+    test('should validate that rewrite transforms /api/v1 to /api', () => {
       // This test verifies the logical transformation
-      // In a real app, /api/v1/events would be rewritten to /v1/events
+      // In our app, /api/v1/events is rewritten to /api/events
       const apiPath = '/api/v1/events'
-      const expectedRewritePath = apiPath.replace('/api', '')
+      const expectedRewritePath = apiPath.replace('/v1', '')
       
-      expect(expectedRewritePath).toBe('/v1/events')
+      expect(expectedRewritePath).toBe('/api/events')
     })
 
     test('should validate path parameter handling', () => {
       // Test that complex paths are handled correctly
       const complexApiPath = '/api/v1/users/123/profile'
-      const expectedRewritePath = complexApiPath.replace('/api', '')
+      const expectedRewritePath = complexApiPath.replace('/v1', '')
       
-      expect(expectedRewritePath).toBe('/v1/users/123/profile')
+      expect(expectedRewritePath).toBe('/api/users/123/profile')
     })
   })
 })

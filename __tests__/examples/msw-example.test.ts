@@ -57,7 +57,7 @@ const handlers = [
 
   // Mock POST request
   http.post('*/v1/auth/login', async ({ request }) => {
-    const credentials = await request.json()
+    const credentials = await request.json() as { email: string; password: string }
     
     // You can add validation logic here
     if (credentials.email === 'test@example.com') {
