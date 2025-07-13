@@ -1,0 +1,77 @@
+{
+  "timestamp": "2025-07-13T11:40:45.369383",
+  "project_root": ".",
+  "test_directories": {
+    "e2e-tests/": {
+      "path": "e2e-tests",
+      "exists": true,
+      "files": [
+        {
+          "name": "assessment-report-20250713-101531.json",
+          "path": "e2e-tests/legacy-cleanup/assessment-report-20250713-101531.json",
+          "size": 494,
+          "modified": "2025-07-13T11:05:25.544076",
+          "is_test": false,
+          "language": "json"
+        },
+        {
+          "name": "api-tests.json",
+          "path": "e2e-tests/reports/api-tests.json",
+          "size": 197,
+          "modified": "2025-07-13T11:05:25.544076",
+          "is_test": false,
+          "language": "json"
+        },
+        {
+          "name": "e2e-test-report-20250713-101607.html",
+          "path": "e2e-tests/reports/e2e-test-report-20250713-101607.html",
+          "size": 1928,
+          "modified": "2025-07-13T11:05:25.544076",
+          "is_test": false,
+          "language": "unknown"
+        },
+        {
+          "name": "e2e-test-report-20250713-101607.json",
+          "path": "e2e-tests/reports/e2e-test-report-20250713-101607.json",
+          "size": 553,
+          "modified": "2025-07-13T11:05:25.544076",
+          "is_test": false,
+          "language": "json"
+        },
+        {
+          "name": "performance-tests.json",
+          "path": "e2e-tests/reports/performance-tests.json",
+          "size": 196,
+          "modified": "2025-07-13T11:05:25.544076",
+          "is_test": false,
+          "language": "json"
+        },
+        {
+          "name": "security-tests.json",
+          "path": "e2e-tests/reports/security-tests.json",
+          "size": 196,
+          "modified": "2025-07-13T11:05:25.544076",
+          "is_test": false,
+          "language": "json"
+        }
+      ],
+      "subdirectories": [
+        "legacy-cleanup",
+        "reports"
+      ],
+      "total_files": 6,
+      "test_files": 0
+    }
+  },
+  "obsolete_tests": [],
+  "broken_tests": [],
+  "redundant_tests": [],
+  "valid_tests": [],
+  "recommendations": [
+    "Migrate valuable tests from tests/e2e-legacy/ to e2e-tests/",
+    "Consolidate Jest and pytest configurations",
+    "Implement automated test relevance checking",
+    "Set up test coverage reporting",
+    "Create test maintenance automation"
+  ]
+}

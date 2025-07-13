@@ -1,0 +1,3872 @@
+{
+  "summary": {
+    "total_files": 184,
+    "python_files": 110,
+    "typescript_files": 76,
+    "connectivity_score": 80.98,
+    "average_complexity": 7.9,
+    "max_complexity": 56,
+    "total_issues": 22
+  },
+  "issues": {
+    "orphaned_files": 14,
+    "complexity_issues": 8,
+    "circular_dependencies": 0,
+    "all_issues": [
+      {
+        "type": "orphaned_file",
+        "severity": "medium",
+        "file": "server/setup.py",
+        "message": "File has minimal connections (deps: 1, dependents: 0)"
+      },
+      {
+        "type": "orphaned_file",
+        "severity": "medium",
+        "file": "server/data_models/utils/pipeline_args.py",
+        "message": "File has minimal connections (deps: 1, dependents: 0)"
+      },
+      {
+        "type": "orphaned_file",
+        "severity": "medium",
+        "file": "next.config.ts",
+        "message": "File has minimal connections (deps: 1, dependents: 0)"
+      },
+      {
+        "type": "orphaned_file",
+        "severity": "medium",
+        "file": "__tests__/firebase-config.test.ts",
+        "message": "File has minimal connections (deps: 1, dependents: 0)"
+      },
+      {
+        "type": "orphaned_file",
+        "severity": "medium",
+        "file": "__tests__/integration/api-routing.test.ts",
+        "message": "File has minimal connections (deps: 1, dependents: 0)"
+      },
+      {
+        "type": "orphaned_file",
+        "severity": "medium",
+        "file": "src/hooks/use-toast.ts",
+        "message": "File has minimal connections (deps: 1, dependents: 0)"
+      },
+      {
+        "type": "orphaned_file",
+        "severity": "medium",
+        "file": "src/styles/tokens.ts",
+        "message": "File has minimal connections (deps: 0, dependents: 0)"
+      },
+      {
+        "type": "orphaned_file",
+        "severity": "medium",
+        "file": "src/utils/constants.ts",
+        "message": "File has minimal connections (deps: 1, dependents: 0)"
+      },
+      {
+        "type": "orphaned_file",
+        "severity": "medium",
+        "file": "src/lib/config.ts",
+        "message": "File has minimal connections (deps: 0, dependents: 0)"
+      },
+      {
+        "type": "orphaned_file",
+        "severity": "medium",
+        "file": "src/components/ui/aspect-ratio.tsx",
+        "message": "File has minimal connections (deps: 1, dependents: 0)"
+      },
+      {
+        "type": "orphaned_file",
+        "severity": "medium",
+        "file": "src/components/ui/collapsible.tsx",
+        "message": "File has minimal connections (deps: 1, dependents: 0)"
+      },
+      {
+        "type": "orphaned_file",
+        "severity": "medium",
+        "file": "src/components/ui/skeleton.tsx",
+        "message": "File has minimal connections (deps: 1, dependents: 0)"
+      },
+      {
+        "type": "orphaned_file",
+        "severity": "medium",
+        "file": "src/components/ui/toaster.tsx",
+        "message": "File has minimal connections (deps: 1, dependents: 0)"
+      },
+      {
+        "type": "orphaned_file",
+        "severity": "medium",
+        "file": "src/hooks/use-mobile.tsx",
+        "message": "File has minimal connections (deps: 1, dependents: 0)"
+      },
+      {
+        "type": "high_complexity",
+        "severity": "high",
+        "file": "e2e-tests/legacy-cleanup/assessment-tool.py",
+        "complexity": 48,
+        "average": 7.9021739130434785,
+        "message": "Complexity 48 is 6.1x average"
+      },
+      {
+        "type": "high_complexity",
+        "severity": "high",
+        "file": "scripts/setup-testing-tools.py",
+        "complexity": 42,
+        "average": 7.9021739130434785,
+        "message": "Complexity 42 is 5.3x average"
+      },
+      {
+        "type": "high_complexity",
+        "severity": "high",
+        "file": "scripts/analyze-codebase-integration.py",
+        "complexity": 40,
+        "average": 7.9021739130434785,
+        "message": "Complexity 40 is 5.1x average"
+      },
+      {
+        "type": "high_complexity",
+        "severity": "high",
+        "file": "server/health_check.py",
+        "complexity": 40,
+        "average": 7.9021739130434785,
+        "message": "Complexity 40 is 5.1x average"
+      },
+      {
+        "type": "high_complexity",
+        "severity": "high",
+        "file": "server/shared_models.py",
+        "complexity": 56,
+        "average": 7.9021739130434785,
+        "message": "Complexity 56 is 7.1x average"
+      },
+      {
+        "type": "high_complexity",
+        "severity": "high",
+        "file": "server/shared_services.py",
+        "complexity": 44,
+        "average": 7.9021739130434785,
+        "message": "Complexity 44 is 5.6x average"
+      },
+      {
+        "type": "high_complexity",
+        "severity": "high",
+        "file": "server/legacy-api/services/analytics_service.py",
+        "complexity": 40,
+        "average": 7.9021739130434785,
+        "message": "Complexity 40 is 5.1x average"
+      },
+      {
+        "type": "high_complexity",
+        "severity": "high",
+        "file": "tests/e2e-legacy/utils/test_helpers.py",
+        "complexity": 48,
+        "average": 7.9021739130434785,
+        "message": "Complexity 48 is 6.1x average"
+      }
+    ]
+  },
+  "metrics": {
+    "file_metrics": {
+      "main.py": {
+        "lines": 62,
+        "imports": 7,
+        "functions": 2,
+        "classes": 0,
+        "complexity": 3
+      },
+      "e2e-tests/__init__.py": {
+        "lines": 1,
+        "imports": 0,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "e2e-tests/core/__init__.py": {
+        "lines": 1,
+        "imports": 0,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "e2e-tests/core/api-integration/__init__.py": {
+        "lines": 1,
+        "imports": 0,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "e2e-tests/core/api-integration/base_api_test.py": {
+        "lines": 391,
+        "imports": 8,
+        "functions": 6,
+        "classes": 3,
+        "complexity": 34
+      },
+      "e2e-tests/core/data-pipeline/__init__.py": {
+        "lines": 1,
+        "imports": 0,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "e2e-tests/core/data-pipeline/pipeline_e2e_test.py": {
+        "lines": 338,
+        "imports": 10,
+        "functions": 5,
+        "classes": 1,
+        "complexity": 33
+      },
+      "e2e-tests/features/__init__.py": {
+        "lines": 1,
+        "imports": 0,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "e2e-tests/features/data-pipeline/test_pipeline_e2e.py": {
+        "lines": 375,
+        "imports": 7,
+        "functions": 1,
+        "classes": 7,
+        "complexity": 19
+      },
+      "e2e-tests/features/data-pipeline/__init__.py": {
+        "lines": 1,
+        "imports": 0,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "e2e-tests/features/events-management/__init__.py": {
+        "lines": 1,
+        "imports": 0,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "e2e-tests/features/events-management/test_events_api.py": {
+        "lines": 310,
+        "imports": 6,
+        "functions": 4,
+        "classes": 8,
+        "complexity": 14
+      },
+      "e2e-tests/legacy-cleanup/assessment-tool.py": {
+        "lines": 417,
+        "imports": 9,
+        "functions": 15,
+        "classes": 1,
+        "complexity": 48
+      },
+      "e2e-tests/legacy-cleanup/__init__.py": {
+        "lines": 1,
+        "imports": 0,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "e2e-tests/utils/test-runner.py": {
+        "lines": 442,
+        "imports": 10,
+        "functions": 6,
+        "classes": 1,
+        "complexity": 21
+      },
+      "e2e-tests/utils/__init__.py": {
+        "lines": 1,
+        "imports": 0,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "scripts/setup-testing-tools.py": {
+        "lines": 463,
+        "imports": 8,
+        "functions": 12,
+        "classes": 1,
+        "complexity": 42
+      },
+      "scripts/verify-tools.py": {
+        "lines": 133,
+        "imports": 4,
+        "functions": 4,
+        "classes": 0,
+        "complexity": 11
+      },
+      "scripts/analyze-codebase-integration.py": {
+        "lines": 339,
+        "imports": 9,
+        "functions": 14,
+        "classes": 1,
+        "complexity": 40
+      },
+      "scripts/fix-integration-issues.py": {
+        "lines": 258,
+        "imports": 5,
+        "functions": 8,
+        "classes": 1,
+        "complexity": 30
+      },
+      "scripts/__init__.py": {
+        "lines": 1,
+        "imports": 0,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "server/health_check.py": {
+        "lines": 642,
+        "imports": 14,
+        "functions": 4,
+        "classes": 4,
+        "complexity": 40
+      },
+      "server/setup.py": {
+        "lines": 15,
+        "imports": 1,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 2
+      },
+      "server/shared_api_utils.py": {
+        "lines": 275,
+        "imports": 7,
+        "functions": 17,
+        "classes": 2,
+        "complexity": 14
+      },
+      "server/shared_config.py": {
+        "lines": 412,
+        "imports": 5,
+        "functions": 33,
+        "classes": 8,
+        "complexity": 18
+      },
+      "server/shared_exceptions.py": {
+        "lines": 519,
+        "imports": 4,
+        "functions": 12,
+        "classes": 9,
+        "complexity": 22
+      },
+      "server/shared_models.py": {
+        "lines": 478,
+        "imports": 5,
+        "functions": 21,
+        "classes": 26,
+        "complexity": 56
+      },
+      "server/shared_services.py": {
+        "lines": 401,
+        "imports": 12,
+        "functions": 26,
+        "classes": 1,
+        "complexity": 44
+      },
+      "server/__init__.py": {
+        "lines": 1,
+        "imports": 0,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "server/data_models/__init__.py": {
+        "lines": 45,
+        "imports": 4,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "server/data_models/setup_bigquery_tables.py": {
+        "lines": 114,
+        "imports": 5,
+        "functions": 4,
+        "classes": 0,
+        "complexity": 9
+      },
+      "server/data_models/validate_schemas.py": {
+        "lines": 131,
+        "imports": 3,
+        "functions": 6,
+        "classes": 1,
+        "complexity": 21
+      },
+      "server/data_models/data_ingestion/__init__.py": {
+        "lines": 0,
+        "imports": 0,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "server/data_models/data_ingestion/ai_processing.py": {
+        "lines": 195,
+        "imports": 15,
+        "functions": 4,
+        "classes": 1,
+        "complexity": 22
+      },
+      "server/data_models/data_ingestion/ai_utils.py": {
+        "lines": 124,
+        "imports": 12,
+        "functions": 5,
+        "classes": 0,
+        "complexity": 10
+      },
+      "server/data_models/data_ingestion/base_pipeline.py": {
+        "lines": 296,
+        "imports": 13,
+        "functions": 18,
+        "classes": 4,
+        "complexity": 12
+      },
+      "server/data_models/data_ingestion/citizen_report_pipeline.py": {
+        "lines": 95,
+        "imports": 9,
+        "functions": 3,
+        "classes": 2,
+        "complexity": 2
+      },
+      "server/data_models/data_ingestion/enhanced_error_handling.py": {
+        "lines": 330,
+        "imports": 9,
+        "functions": 16,
+        "classes": 7,
+        "complexity": 17
+      },
+      "server/data_models/data_ingestion/iot_pipeline.py": {
+        "lines": 80,
+        "imports": 8,
+        "functions": 3,
+        "classes": 2,
+        "complexity": 2
+      },
+      "server/data_models/data_ingestion/official_feeds_pipeline.py": {
+        "lines": 58,
+        "imports": 6,
+        "functions": 2,
+        "classes": 2,
+        "complexity": 2
+      },
+      "server/data_models/data_ingestion/optimized_pipeline.py": {
+        "lines": 509,
+        "imports": 15,
+        "functions": 18,
+        "classes": 7,
+        "complexity": 32
+      },
+      "server/data_models/data_ingestion/social_media_pipeline.py": {
+        "lines": 147,
+        "imports": 11,
+        "functions": 8,
+        "classes": 4,
+        "complexity": 5
+      },
+      "server/data_models/firestore_models/__init__.py": {
+        "lines": 40,
+        "imports": 3,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "server/data_models/services/firestore_service.py": {
+        "lines": 165,
+        "imports": 4,
+        "functions": 12,
+        "classes": 2,
+        "complexity": 6
+      },
+      "server/data_models/services/__init__.py": {
+        "lines": 1,
+        "imports": 0,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "server/data_models/tests/__init__.py": {
+        "lines": 1,
+        "imports": 0,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "server/data_models/tests/common.py": {
+        "lines": 41,
+        "imports": 3,
+        "functions": 4,
+        "classes": 1,
+        "complexity": 1
+      },
+      "server/data_models/tests/conftest.py": {
+        "lines": 19,
+        "imports": 4,
+        "functions": 1,
+        "classes": 0,
+        "complexity": 1
+      },
+      "server/data_models/tests/test_ai_processing.py": {
+        "lines": 69,
+        "imports": 7,
+        "functions": 1,
+        "classes": 1,
+        "complexity": 2
+      },
+      "server/data_models/tests/test_base_pipeline.py": {
+        "lines": 70,
+        "imports": 6,
+        "functions": 2,
+        "classes": 1,
+        "complexity": 2
+      },
+      "server/data_models/tests/test_bigquery_setup.py": {
+        "lines": 109,
+        "imports": 6,
+        "functions": 5,
+        "classes": 0,
+        "complexity": 1
+      },
+      "server/data_models/tests/test_citizen_report_pipeline.py": {
+        "lines": 187,
+        "imports": 11,
+        "functions": 8,
+        "classes": 2,
+        "complexity": 2
+      },
+      "server/data_models/tests/test_firestore_models.py": {
+        "lines": 298,
+        "imports": 4,
+        "functions": 21,
+        "classes": 0,
+        "complexity": 1
+      },
+      "server/data_models/tests/test_schema_validation.py": {
+        "lines": 150,
+        "imports": 3,
+        "functions": 6,
+        "classes": 0,
+        "complexity": 2
+      },
+      "server/data_models/transforms/__init__.py": {
+        "lines": 0,
+        "imports": 0,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "server/data_models/transforms/multimedia_processing.py": {
+        "lines": 100,
+        "imports": 7,
+        "functions": 3,
+        "classes": 1,
+        "complexity": 5
+      },
+      "server/data_models/utils/pipeline_args.py": {
+        "lines": 19,
+        "imports": 1,
+        "functions": 1,
+        "classes": 0,
+        "complexity": 1
+      },
+      "server/data_models/utils/__init__.py": {
+        "lines": 1,
+        "imports": 0,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "server/legacy-api/main.py": {
+        "lines": 237,
+        "imports": 15,
+        "functions": 1,
+        "classes": 0,
+        "complexity": 3
+      },
+      "server/legacy-api/__init__.py": {
+        "lines": 1,
+        "imports": 0,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "server/legacy-api/auth/__init__.py": {
+        "lines": 24,
+        "imports": 2,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "server/legacy-api/auth/firebase_auth.py": {
+        "lines": 171,
+        "imports": 10,
+        "functions": 3,
+        "classes": 1,
+        "complexity": 21
+      },
+      "server/legacy-api/auth/permissions.py": {
+        "lines": 176,
+        "imports": 2,
+        "functions": 5,
+        "classes": 2,
+        "complexity": 13
+      },
+      "server/legacy-api/models/__init__.py": {
+        "lines": 19,
+        "imports": 3,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "server/legacy-api/models/requests.py": {
+        "lines": 136,
+        "imports": 4,
+        "functions": 2,
+        "classes": 11,
+        "complexity": 5
+      },
+      "server/legacy-api/models/responses.py": {
+        "lines": 166,
+        "imports": 4,
+        "functions": 0,
+        "classes": 14,
+        "complexity": 1
+      },
+      "server/legacy-api/routers/__init__.py": {
+        "lines": 6,
+        "imports": 0,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "server/legacy-api/routers/analytics.py": {
+        "lines": 303,
+        "imports": 11,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 26
+      },
+      "server/legacy-api/routers/events.py": {
+        "lines": 323,
+        "imports": 13,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 27
+      },
+      "server/legacy-api/routers/feedback.py": {
+        "lines": 328,
+        "imports": 12,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 25
+      },
+      "server/legacy-api/routers/users.py": {
+        "lines": 265,
+        "imports": 11,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 22
+      },
+      "server/legacy-api/services/__init__.py": {
+        "lines": 8,
+        "imports": 4,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "server/legacy-api/services/analytics_service.py": {
+        "lines": 478,
+        "imports": 10,
+        "functions": 1,
+        "classes": 1,
+        "complexity": 40
+      },
+      "server/legacy-api/services/event_service.py": {
+        "lines": 359,
+        "imports": 10,
+        "functions": 4,
+        "classes": 1,
+        "complexity": 22
+      },
+      "server/legacy-api/services/feedback_service.py": {
+        "lines": 360,
+        "imports": 13,
+        "functions": 2,
+        "classes": 1,
+        "complexity": 20
+      },
+      "server/legacy-api/services/user_service.py": {
+        "lines": 281,
+        "imports": 12,
+        "functions": 2,
+        "classes": 1,
+        "complexity": 20
+      },
+      "server/legacy-api/tests/__init__.py": {
+        "lines": 1,
+        "imports": 0,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "server/legacy-api/tests/test_main.py": {
+        "lines": 177,
+        "imports": 4,
+        "functions": 14,
+        "classes": 2,
+        "complexity": 3
+      },
+      "server/legacy-api/utils/__init__.py": {
+        "lines": 14,
+        "imports": 3,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "server/legacy-api/utils/filtering.py": {
+        "lines": 288,
+        "imports": 5,
+        "functions": 5,
+        "classes": 3,
+        "complexity": 29
+      },
+      "server/legacy-api/utils/pagination.py": {
+        "lines": 161,
+        "imports": 3,
+        "functions": 5,
+        "classes": 4,
+        "complexity": 3
+      },
+      "server/legacy-api/utils/validation.py": {
+        "lines": 212,
+        "imports": 4,
+        "functions": 17,
+        "classes": 1,
+        "complexity": 27
+      },
+      "tests/conftest.py": {
+        "lines": 524,
+        "imports": 12,
+        "functions": 28,
+        "classes": 1,
+        "complexity": 14
+      },
+      "tests/report_generator.py": {
+        "lines": 648,
+        "imports": 8,
+        "functions": 30,
+        "classes": 1,
+        "complexity": 20
+      },
+      "tests/test_ai_processing.py": {
+        "lines": 65,
+        "imports": 9,
+        "functions": 3,
+        "classes": 1,
+        "complexity": 1
+      },
+      "tests/test_runner.py": {
+        "lines": 508,
+        "imports": 10,
+        "functions": 14,
+        "classes": 1,
+        "complexity": 35
+      },
+      "tests/__init__.py": {
+        "lines": 1,
+        "imports": 0,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "tests/e2e-legacy/__init__.py": {
+        "lines": 1,
+        "imports": 0,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "tests/e2e-legacy/publish_to_main_topic.py": {
+        "lines": 44,
+        "imports": 5,
+        "functions": 1,
+        "classes": 0,
+        "complexity": 3
+      },
+      "tests/e2e-legacy/run_tests.py": {
+        "lines": 143,
+        "imports": 6,
+        "functions": 3,
+        "classes": 0,
+        "complexity": 16
+      },
+      "tests/e2e-legacy/simple_pipeline_test.py": {
+        "lines": 142,
+        "imports": 7,
+        "functions": 5,
+        "classes": 1,
+        "complexity": 19
+      },
+      "tests/e2e-legacy/config/__init__.py": {
+        "lines": 1,
+        "imports": 0,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "tests/e2e-legacy/config/test_config.py": {
+        "lines": 201,
+        "imports": 3,
+        "functions": 7,
+        "classes": 5,
+        "complexity": 1
+      },
+      "tests/e2e-legacy/tests/__init__.py": {
+        "lines": 1,
+        "imports": 0,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "tests/e2e-legacy/utils/__init__.py": {
+        "lines": 1,
+        "imports": 0,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "tests/e2e-legacy/utils/data_generators.py": {
+        "lines": 326,
+        "imports": 6,
+        "functions": 8,
+        "classes": 0,
+        "complexity": 19
+      },
+      "tests/e2e-legacy/utils/environment_helpers.py": {
+        "lines": 125,
+        "imports": 3,
+        "functions": 5,
+        "classes": 0,
+        "complexity": 10
+      },
+      "tests/e2e-legacy/utils/gcp_helpers.py": {
+        "lines": 349,
+        "imports": 9,
+        "functions": 16,
+        "classes": 3,
+        "complexity": 26
+      },
+      "tests/e2e-legacy/utils/publish_test_event.py": {
+        "lines": 92,
+        "imports": 7,
+        "functions": 2,
+        "classes": 0,
+        "complexity": 4
+      },
+      "tests/e2e-legacy/utils/test_helpers.py": {
+        "lines": 357,
+        "imports": 7,
+        "functions": 13,
+        "classes": 1,
+        "complexity": 48
+      },
+      "tests/integration/test_api_endpoints.py": {
+        "lines": 624,
+        "imports": 10,
+        "functions": 25,
+        "classes": 4,
+        "complexity": 16
+      },
+      "tests/integration/test_database_operations.py": {
+        "lines": 661,
+        "imports": 12,
+        "functions": 29,
+        "classes": 4,
+        "complexity": 4
+      },
+      "tests/integration/test_external_services.py": {
+        "lines": 614,
+        "imports": 9,
+        "functions": 29,
+        "classes": 5,
+        "complexity": 8
+      },
+      "tests/integration/__init__.py": {
+        "lines": 1,
+        "imports": 0,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "tests/unit/test_basic.py": {
+        "lines": 68,
+        "imports": 3,
+        "functions": 9,
+        "classes": 1,
+        "complexity": 1
+      },
+      "tests/unit/test_data_pipelines.py": {
+        "lines": 547,
+        "imports": 12,
+        "functions": 32,
+        "classes": 6,
+        "complexity": 8
+      },
+      "tests/unit/test_firestore_models.py": {
+        "lines": 543,
+        "imports": 8,
+        "functions": 30,
+        "classes": 9,
+        "complexity": 1
+      },
+      "tests/unit/test_services.py": {
+        "lines": 690,
+        "imports": 9,
+        "functions": 36,
+        "classes": 5,
+        "complexity": 5
+      },
+      "tests/unit/__init__.py": {
+        "lines": 1,
+        "imports": 0,
+        "functions": 0,
+        "classes": 0,
+        "complexity": 1
+      },
+      "next.config.ts": {
+        "lines": 41,
+        "imports": 1,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "__tests__/firebase-config.test.ts": {
+        "lines": 64,
+        "imports": 1,
+        "exports": 0,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 1
+      },
+      "__tests__/examples/msw-example.test.ts": {
+        "lines": 220,
+        "imports": 3,
+        "exports": 0,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 4
+      },
+      "__tests__/integration/api-routing.test.ts": {
+        "lines": 87,
+        "imports": 1,
+        "exports": 0,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 1
+      },
+      "__tests__/setup/msw.ts": {
+        "lines": 78,
+        "imports": 3,
+        "exports": 2,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 2
+      },
+      "src/app/api/v1/analytics/route.ts": {
+        "lines": 182,
+        "imports": 3,
+        "exports": 3,
+        "functions": 3,
+        "interfaces": 0,
+        "complexity": 13
+      },
+      "src/app/api/v1/auth/route.ts": {
+        "lines": 473,
+        "imports": 2,
+        "exports": 3,
+        "functions": 10,
+        "interfaces": 0,
+        "complexity": 23
+      },
+      "src/app/api/v1/events/route.ts": {
+        "lines": 302,
+        "imports": 4,
+        "exports": 5,
+        "functions": 5,
+        "interfaces": 0,
+        "complexity": 15
+      },
+      "src/components/ui/index.ts": {
+        "lines": 258,
+        "imports": 0,
+        "exports": 44,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 2
+      },
+      "src/hooks/use-toast.ts": {
+        "lines": 246,
+        "imports": 1,
+        "exports": 4,
+        "functions": 13,
+        "interfaces": 1,
+        "complexity": 16
+      },
+      "src/hooks/index.ts": {
+        "lines": 3,
+        "imports": 0,
+        "exports": 2,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 1
+      },
+      "src/middleware/auth.ts": {
+        "lines": 179,
+        "imports": 3,
+        "exports": 12,
+        "functions": 10,
+        "interfaces": 2,
+        "complexity": 15
+      },
+      "src/middleware/validation.ts": {
+        "lines": 327,
+        "imports": 3,
+        "exports": 5,
+        "functions": 8,
+        "interfaces": 2,
+        "complexity": 27
+      },
+      "src/services/api/client.ts": {
+        "lines": 215,
+        "imports": 4,
+        "exports": 2,
+        "functions": 0,
+        "interfaces": 1,
+        "complexity": 11
+      },
+      "src/services/firebase/auth.ts": {
+        "lines": 339,
+        "imports": 2,
+        "exports": 6,
+        "functions": 1,
+        "interfaces": 4,
+        "complexity": 7
+      },
+      "src/services/firebase/config.ts": {
+        "lines": 241,
+        "imports": 4,
+        "exports": 4,
+        "functions": 8,
+        "interfaces": 1,
+        "complexity": 19
+      },
+      "src/store/app-store.ts": {
+        "lines": 199,
+        "imports": 3,
+        "exports": 8,
+        "functions": 9,
+        "interfaces": 2,
+        "complexity": 12
+      },
+      "src/store/index.ts": {
+        "lines": 2,
+        "imports": 0,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/styles/tokens.ts": {
+        "lines": 321,
+        "imports": 0,
+        "exports": 11,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 3
+      },
+      "src/types/index.ts": {
+        "lines": 175,
+        "imports": 0,
+        "exports": 18,
+        "functions": 0,
+        "interfaces": 15,
+        "complexity": 0
+      },
+      "src/utils/constants.ts": {
+        "lines": 100,
+        "imports": 1,
+        "exports": 14,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 1
+      },
+      "src/utils/index.ts": {
+        "lines": 2,
+        "imports": 0,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 1
+      },
+      "src/lib/config.ts": {
+        "lines": 46,
+        "imports": 0,
+        "exports": 2,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 2
+      },
+      "src/lib/index.ts": {
+        "lines": 2,
+        "imports": 0,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 1
+      },
+      "src/app/error.tsx": {
+        "lines": 65,
+        "imports": 3,
+        "exports": 1,
+        "functions": 1,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/app/global-error.tsx": {
+        "lines": 54,
+        "imports": 1,
+        "exports": 1,
+        "functions": 1,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/app/layout.tsx": {
+        "lines": 34,
+        "imports": 2,
+        "exports": 3,
+        "functions": 1,
+        "interfaces": 0,
+        "complexity": 1
+      },
+      "src/app/not-found.tsx": {
+        "lines": 40,
+        "imports": 1,
+        "exports": 1,
+        "functions": 1,
+        "interfaces": 0,
+        "complexity": 1
+      },
+      "src/app/page.tsx": {
+        "lines": 10,
+        "imports": 0,
+        "exports": 1,
+        "functions": 1,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/accordion.tsx": {
+        "lines": 57,
+        "imports": 4,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/alert.tsx": {
+        "lines": 59,
+        "imports": 3,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/aspect-ratio.tsx": {
+        "lines": 16,
+        "imports": 1,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 1
+      },
+      "src/components/ui/avatar.tsx": {
+        "lines": 50,
+        "imports": 3,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/badge.tsx": {
+        "lines": 36,
+        "imports": 3,
+        "exports": 2,
+        "functions": 1,
+        "interfaces": 1,
+        "complexity": 0
+      },
+      "src/components/ui/breadcrumb.tsx": {
+        "lines": 115,
+        "imports": 4,
+        "exports": 1,
+        "functions": 2,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/button.tsx": {
+        "lines": 57,
+        "imports": 4,
+        "exports": 2,
+        "functions": 0,
+        "interfaces": 1,
+        "complexity": 0
+      },
+      "src/components/ui/calendar.tsx": {
+        "lines": 213,
+        "imports": 4,
+        "exports": 1,
+        "functions": 2,
+        "interfaces": 0,
+        "complexity": 3
+      },
+      "src/components/ui/card.tsx": {
+        "lines": 76,
+        "imports": 2,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/carousel.tsx": {
+        "lines": 262,
+        "imports": 4,
+        "exports": 1,
+        "functions": 1,
+        "interfaces": 0,
+        "complexity": 6
+      },
+      "src/components/ui/checkbox.tsx": {
+        "lines": 30,
+        "imports": 4,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/collapsible.tsx": {
+        "lines": 20,
+        "imports": 1,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 1
+      },
+      "src/components/ui/command.tsx": {
+        "lines": 153,
+        "imports": 6,
+        "exports": 1,
+        "functions": 2,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/context-menu.tsx": {
+        "lines": 200,
+        "imports": 4,
+        "exports": 1,
+        "functions": 1,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/dialog.tsx": {
+        "lines": 122,
+        "imports": 4,
+        "exports": 1,
+        "functions": 2,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/drawer.tsx": {
+        "lines": 118,
+        "imports": 3,
+        "exports": 1,
+        "functions": 3,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/dropdown-menu.tsx": {
+        "lines": 201,
+        "imports": 4,
+        "exports": 1,
+        "functions": 1,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/form.tsx": {
+        "lines": 178,
+        "imports": 5,
+        "exports": 1,
+        "functions": 1,
+        "interfaces": 0,
+        "complexity": 2
+      },
+      "src/components/ui/hover-card.tsx": {
+        "lines": 29,
+        "imports": 3,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/input.tsx": {
+        "lines": 22,
+        "imports": 2,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/label.tsx": {
+        "lines": 26,
+        "imports": 4,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/menubar.tsx": {
+        "lines": 256,
+        "imports": 4,
+        "exports": 1,
+        "functions": 6,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/navigation-menu.tsx": {
+        "lines": 128,
+        "imports": 5,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/pagination.tsx": {
+        "lines": 117,
+        "imports": 4,
+        "exports": 1,
+        "functions": 5,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/popover.tsx": {
+        "lines": 33,
+        "imports": 3,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/progress.tsx": {
+        "lines": 28,
+        "imports": 3,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/radio-group.tsx": {
+        "lines": 44,
+        "imports": 4,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/resizable.tsx": {
+        "lines": 45,
+        "imports": 3,
+        "exports": 1,
+        "functions": 2,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/scroll-area.tsx": {
+        "lines": 48,
+        "imports": 3,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/select.tsx": {
+        "lines": 159,
+        "imports": 4,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/separator.tsx": {
+        "lines": 31,
+        "imports": 3,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/sheet.tsx": {
+        "lines": 140,
+        "imports": 5,
+        "exports": 1,
+        "functions": 2,
+        "interfaces": 1,
+        "complexity": 0
+      },
+      "src/components/ui/sidebar.tsx": {
+        "lines": 779,
+        "imports": 10,
+        "exports": 1,
+        "functions": 3,
+        "interfaces": 0,
+        "complexity": 11
+      },
+      "src/components/ui/skeleton.tsx": {
+        "lines": 24,
+        "imports": 1,
+        "exports": 1,
+        "functions": 1,
+        "interfaces": 0,
+        "complexity": 1
+      },
+      "src/components/ui/slider.tsx": {
+        "lines": 28,
+        "imports": 3,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/sonner.tsx": {
+        "lines": 31,
+        "imports": 2,
+        "exports": 1,
+        "functions": 1,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/switch.tsx": {
+        "lines": 29,
+        "imports": 3,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 1
+      },
+      "src/components/ui/table.tsx": {
+        "lines": 120,
+        "imports": 2,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/tabs.tsx": {
+        "lines": 55,
+        "imports": 3,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/textarea.tsx": {
+        "lines": 22,
+        "imports": 2,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/toast.tsx": {
+        "lines": 129,
+        "imports": 5,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/toaster.tsx": {
+        "lines": 44,
+        "imports": 1,
+        "exports": 1,
+        "functions": 1,
+        "interfaces": 0,
+        "complexity": 1
+      },
+      "src/components/ui/toggle-group.tsx": {
+        "lines": 61,
+        "imports": 5,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/toggle.tsx": {
+        "lines": 45,
+        "imports": 4,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/components/ui/tooltip.tsx": {
+        "lines": 32,
+        "imports": 3,
+        "exports": 1,
+        "functions": 0,
+        "interfaces": 0,
+        "complexity": 0
+      },
+      "src/hooks/use-mobile.tsx": {
+        "lines": 28,
+        "imports": 1,
+        "exports": 1,
+        "functions": 2,
+        "interfaces": 0,
+        "complexity": 1
+      }
+    },
+    "dependencies": {
+      "main.py": [
+        "datetime",
+        "apache_beam.options.pipeline_options",
+        "dotenv",
+        "logging",
+        "apache_beam",
+        "server.data_models.data_ingestion.iot_pipeline",
+        "os"
+      ],
+      "e2e-tests/__init__.py": [],
+      "e2e-tests/core/__init__.py": [],
+      "e2e-tests/core/api-integration/__init__.py": [],
+      "e2e-tests/core/api-integration/base_api_test.py": [
+        "datetime",
+        "pathlib",
+        "typing",
+        "json",
+        "httpx",
+        "asyncio",
+        "time",
+        "pytest"
+      ],
+      "e2e-tests/core/data-pipeline/__init__.py": [],
+      "e2e-tests/core/data-pipeline/pipeline_e2e_test.py": [
+        "google.cloud",
+        "datetime",
+        "pathlib",
+        "typing",
+        "json",
+        "uuid",
+        "google.api_core",
+        "asyncio",
+        "time",
+        "pytest"
+      ],
+      "e2e-tests/features/__init__.py": [],
+      "e2e-tests/features/data-pipeline/test_pipeline_e2e.py": [
+        "pathlib",
+        "sys",
+        "json",
+        "asyncio",
+        "time",
+        "pytest",
+        "core.data_pipeline.pipeline_e2e_test"
+      ],
+      "e2e-tests/features/data-pipeline/__init__.py": [],
+      "e2e-tests/features/events-management/__init__.py": [],
+      "e2e-tests/features/events-management/test_events_api.py": [
+        "pathlib",
+        "sys",
+        "json",
+        "asyncio",
+        "core.api_integration.base_api_test",
+        "pytest"
+      ],
+      "e2e-tests/legacy-cleanup/assessment-tool.py": [
+        "datetime",
+        "pathlib",
+        "sys",
+        "typing",
+        "json",
+        "subprocess",
+        "re",
+        "ast",
+        "os"
+      ],
+      "e2e-tests/legacy-cleanup/__init__.py": [],
+      "e2e-tests/utils/test-runner.py": [
+        "argparse",
+        "datetime",
+        "pathlib",
+        "sys",
+        "typing",
+        "json",
+        "subprocess",
+        "concurrent.futures",
+        "asyncio",
+        "time"
+      ],
+      "e2e-tests/utils/__init__.py": [],
+      "scripts/setup-testing-tools.py": [
+        "pathlib",
+        "sys",
+        "typing",
+        "subprocess",
+        "json",
+        "logging",
+        "platform",
+        "os"
+      ],
+      "scripts/verify-tools.py": [
+        "subprocess",
+        "os",
+        "pathlib",
+        "sys"
+      ],
+      "scripts/analyze-codebase-integration.py": [
+        "pathlib",
+        "sys",
+        "typing",
+        "json",
+        "collections",
+        "subprocess",
+        "re",
+        "ast",
+        "os"
+      ],
+      "scripts/fix-integration-issues.py": [
+        "pathlib",
+        "typing",
+        "json",
+        "shutil",
+        "os"
+      ],
+      "scripts/__init__.py": [],
+      "server/health_check.py": [
+        "dataclasses",
+        "shared_config",
+        "enum",
+        "google.cloud",
+        "google.cloud.exceptions",
+        "datetime",
+        "typing",
+        "fastapi",
+        "logging",
+        "fastapi.responses",
+        "asyncio",
+        "time",
+        "psutil",
+        "shared_services"
+      ],
+      "server/setup.py": [
+        "setuptools"
+      ],
+      "server/shared_api_utils.py": [
+        "shared_exceptions",
+        "typing",
+        "fastapi",
+        "logging",
+        "functools",
+        "fastapi.responses",
+        "auth.permissions"
+      ],
+      "server/shared_config.py": [
+        "dataclasses",
+        "pathlib",
+        "typing",
+        "logging",
+        "os"
+      ],
+      "server/shared_exceptions.py": [
+        "typing",
+        "enum",
+        "logging",
+        "pydantic"
+      ],
+      "server/shared_models.py": [
+        "enum",
+        "datetime",
+        "pydantic",
+        "typing",
+        "uuid"
+      ],
+      "server/shared_services.py": [
+        "data_models.firestore_models",
+        "data_models.services.firestore_service",
+        "shared_exceptions",
+        "data_models.firestore_models.base_model",
+        "shared_config",
+        "threading",
+        "google.cloud",
+        "google.cloud.exceptions",
+        "datetime",
+        "contextlib",
+        "typing",
+        "logging"
+      ],
+      "server/__init__.py": [],
+      "server/data_models/__init__.py": [
+        "services.firestore_service",
+        "os",
+        "shared_models",
+        "sys"
+      ],
+      "server/data_models/setup_bigquery_tables.py": [
+        "argparse",
+        "google.cloud",
+        "json",
+        "google.oauth2",
+        "os"
+      ],
+      "server/data_models/validate_schemas.py": [
+        "json",
+        "os",
+        "sys"
+      ],
+      "server/data_models/data_ingestion/__init__.py": [],
+      "server/data_models/data_ingestion/ai_processing.py": [
+        "requests",
+        "aiohttp",
+        "shared_config",
+        "google.cloud",
+        "mimetypes",
+        "sys",
+        "json",
+        "logging",
+        "vertexai.generative_models",
+        "vertexai",
+        "google.api_core",
+        "asyncio",
+        "apache_beam",
+        "os",
+        "vertexai.preview.vision_models"
+      ],
+      "server/data_models/data_ingestion/ai_utils.py": [
+        "requests",
+        "shared_config",
+        "sys",
+        "mimetypes",
+        "json",
+        "logging",
+        "typing",
+        "vertexai.generative_models",
+        "vertexai",
+        "google.api_core",
+        "os",
+        "vertexai.preview.vision_models"
+      ],
+      "server/data_models/data_ingestion/base_pipeline.py": [
+        "apache_beam.pvalue",
+        "data_models.services.firestore_service",
+        "data_models",
+        "shared_config",
+        "datetime",
+        "apache_beam.options.pipeline_options",
+        "sys",
+        "pydantic",
+        "json",
+        "logging",
+        "google.api_core",
+        "apache_beam",
+        "os"
+      ],
+      "server/data_models/data_ingestion/citizen_report_pipeline.py": [
+        "data_models.utils.pipeline_args",
+        "shared_config",
+        "data_models.data_ingestion.base_pipeline",
+        "sys",
+        "data_models.transforms.multimedia_processing",
+        "logging",
+        "apache_beam",
+        "data_models.data_ingestion.ai_processing",
+        "os"
+      ],
+      "server/data_models/data_ingestion/enhanced_error_handling.py": [
+        "apache_beam.pvalue",
+        "datetime",
+        "apache_beam.metrics",
+        "pydantic",
+        "typing",
+        "json",
+        "logging",
+        "apache_beam",
+        "time"
+      ],
+      "server/data_models/data_ingestion/iot_pipeline.py": [
+        "data_models.utils.pipeline_args",
+        "shared_config",
+        "data_models.data_ingestion.base_pipeline",
+        "sys",
+        "logging",
+        "apache_beam",
+        "data_models.data_ingestion.ai_processing",
+        "os"
+      ],
+      "server/data_models/data_ingestion/official_feeds_pipeline.py": [
+        "data_models.utils.pipeline_args",
+        "data_models.data_ingestion.base_pipeline",
+        "shared_config",
+        "sys",
+        "logging",
+        "os"
+      ],
+      "server/data_models/data_ingestion/optimized_pipeline.py": [
+        "apache_beam.pvalue",
+        "enhanced_error_handling",
+        "dataclasses",
+        "shared_config",
+        "datetime",
+        "apache_beam.metrics",
+        "sys",
+        "typing",
+        "json",
+        "logging",
+        "apache_beam.options.pipeline_options",
+        "apache_beam",
+        "time",
+        "os",
+        "hashlib"
+      ],
+      "server/data_models/data_ingestion/social_media_pipeline.py": [
+        "apache_beam.pvalue",
+        "data_models.utils.pipeline_args",
+        "data_models.data_ingestion.base_pipeline",
+        "google.cloud",
+        "pydantic",
+        "json",
+        "logging",
+        "data_models.core",
+        "google.api_core",
+        "apache_beam",
+        "data_models.firestore_models.event"
+      ],
+      "server/data_models/firestore_models/__init__.py": [
+        "os",
+        "shared_models",
+        "sys"
+      ],
+      "server/data_models/services/firestore_service.py": [
+        "typing",
+        "google.cloud",
+        "datetime",
+        "pydantic"
+      ],
+      "server/data_models/services/__init__.py": [],
+      "server/data_models/tests/__init__.py": [],
+      "server/data_models/tests/common.py": [
+        "apache_beam.testing.test_pipeline",
+        "unittest.mock",
+        "unittest"
+      ],
+      "server/data_models/tests/conftest.py": [
+        "pytest",
+        "unittest.mock",
+        "pathlib",
+        "sys"
+      ],
+      "server/data_models/tests/test_ai_processing.py": [
+        "apache_beam.testing.util",
+        "data_models.tests.common",
+        "unittest.mock",
+        "apache_beam",
+        "data_models.data_ingestion.ai_processing",
+        "data_models.firestore_models.event",
+        "unittest"
+      ],
+      "server/data_models/tests/test_base_pipeline.py": [
+        "apache_beam.testing.util",
+        "data_models.data_ingestion.base_pipeline",
+        "data_models.tests.common",
+        "apache_beam",
+        "data_models.firestore_models.event",
+        "unittest"
+      ],
+      "server/data_models/tests/test_bigquery_setup.py": [
+        "data_models",
+        "google.api_core.exceptions",
+        "unittest.mock",
+        "json",
+        "pytest",
+        "google.cloud.bigquery"
+      ],
+      "server/data_models/tests/test_citizen_report_pipeline.py": [
+        "apache_beam.testing.util",
+        "requests",
+        "data_models.tests.common",
+        "unittest.mock",
+        "apache_beam.options.pipeline_options",
+        "data_models.transforms.multimedia_processing",
+        "apache_beam",
+        "data_models.data_ingestion.citizen_report_pipeline",
+        "data_models.data_ingestion.ai_processing",
+        "data_models.firestore_models.event",
+        "unittest"
+      ],
+      "server/data_models/tests/test_firestore_models.py": [
+        "pytest",
+        "unittest.mock",
+        "datetime",
+        "data_models"
+      ],
+      "server/data_models/tests/test_schema_validation.py": [
+        "json",
+        "pytest",
+        "data_models"
+      ],
+      "server/data_models/transforms/__init__.py": [],
+      "server/data_models/transforms/multimedia_processing.py": [
+        "requests",
+        "io",
+        "google.cloud",
+        "logging",
+        "google.api_core",
+        "apache_beam",
+        "data_models.firestore_models.event"
+      ],
+      "server/data_models/utils/pipeline_args.py": [
+        "argparse"
+      ],
+      "server/data_models/utils/__init__.py": [],
+      "server/legacy-api/main.py": [
+        "uvicorn",
+        "routers",
+        "auth.firebase_auth",
+        "utils.validation",
+        "shared_exceptions",
+        "fastapi.middleware.trustedhost",
+        "contextlib",
+        "typing",
+        "sys",
+        "logging",
+        "fastapi",
+        "fastapi.responses",
+        "fastapi.middleware.cors",
+        "fastapi.openapi.utils",
+        "os"
+      ],
+      "server/legacy-api/__init__.py": [],
+      "server/legacy-api/auth/__init__.py": [
+        "permissions",
+        "firebase_auth"
+      ],
+      "server/legacy-api/auth/firebase_auth.py": [
+        "starlette.middleware.base",
+        "firebase_admin",
+        "starlette.responses",
+        "permissions",
+        "typing",
+        "fastapi",
+        "logging",
+        "functools",
+        "fastapi.security",
+        "os"
+      ],
+      "server/legacy-api/auth/permissions.py": [
+        "typing",
+        "enum"
+      ],
+      "server/legacy-api/models/__init__.py": [
+        "os",
+        "shared_exceptions",
+        "sys"
+      ],
+      "server/legacy-api/models/requests.py": [
+        "typing",
+        "enum",
+        "datetime",
+        "pydantic"
+      ],
+      "server/legacy-api/models/responses.py": [
+        "typing",
+        "enum",
+        "datetime",
+        "pydantic"
+      ],
+      "server/legacy-api/routers/__init__.py": [],
+      "server/legacy-api/routers/analytics.py": [
+        "shared_exceptions",
+        "models.responses",
+        "datetime",
+        "sys",
+        "typing",
+        "auth",
+        "logging",
+        "fastapi",
+        "services.analytics_service",
+        "auth.permissions",
+        "os"
+      ],
+      "server/legacy-api/routers/events.py": [
+        "shared_exceptions",
+        "services.event_service",
+        "utils.pagination",
+        "sys",
+        "typing",
+        "fastapi",
+        "logging",
+        "auth",
+        "fastapi.responses",
+        "shared_models",
+        "auth.permissions",
+        "utils.filtering",
+        "os"
+      ],
+      "server/legacy-api/routers/feedback.py": [
+        "models.requests",
+        "shared_exceptions",
+        "models.responses",
+        "utils.pagination",
+        "services.feedback_service",
+        "sys",
+        "typing",
+        "auth",
+        "logging",
+        "fastapi",
+        "auth.permissions",
+        "os"
+      ],
+      "server/legacy-api/routers/users.py": [
+        "models.requests",
+        "shared_exceptions",
+        "services.user_service",
+        "models.responses",
+        "sys",
+        "typing",
+        "auth",
+        "logging",
+        "fastapi",
+        "auth.permissions",
+        "os"
+      ],
+      "server/legacy-api/services/__init__.py": [
+        "user_service",
+        "feedback_service",
+        "analytics_service",
+        "event_service"
+      ],
+      "server/legacy-api/services/analytics_service.py": [
+        "shared_exceptions",
+        "shared_config",
+        "google.cloud",
+        "models.responses",
+        "datetime",
+        "sys",
+        "typing",
+        "logging",
+        "os",
+        "shared_services"
+      ],
+      "server/legacy-api/services/event_service.py": [
+        "shared_exceptions",
+        "shared_config",
+        "utils.pagination",
+        "sys",
+        "typing",
+        "logging",
+        "shared_models",
+        "utils.filtering",
+        "os",
+        "shared_services"
+      ],
+      "server/legacy-api/services/feedback_service.py": [
+        "models.requests",
+        "shared_exceptions",
+        "shared_config",
+        "models.responses",
+        "datetime",
+        "utils.pagination",
+        "sys",
+        "typing",
+        "logging",
+        "uuid",
+        "shared_models",
+        "os",
+        "shared_services"
+      ],
+      "server/legacy-api/services/user_service.py": [
+        "models.requests",
+        "shared_exceptions",
+        "firebase_admin",
+        "shared_config",
+        "models.responses",
+        "datetime",
+        "sys",
+        "typing",
+        "logging",
+        "shared_models",
+        "os",
+        "shared_services"
+      ],
+      "server/legacy-api/tests/__init__.py": [],
+      "server/legacy-api/tests/test_main.py": [
+        "main",
+        "pytest",
+        "unittest.mock",
+        "fastapi.testclient"
+      ],
+      "server/legacy-api/utils/__init__.py": [
+        "filtering",
+        "pagination",
+        "validation"
+      ],
+      "server/legacy-api/utils/filtering.py": [
+        "enum",
+        "datetime",
+        "pydantic",
+        "typing",
+        "fastapi"
+      ],
+      "server/legacy-api/utils/pagination.py": [
+        "typing",
+        "fastapi",
+        "pydantic"
+      ],
+      "server/legacy-api/utils/validation.py": [
+        "re",
+        "pydantic",
+        "datetime",
+        "typing"
+      ],
+      "tests/conftest.py": [
+        "datetime",
+        "unittest.mock",
+        "typing",
+        "json",
+        "tempfile",
+        "logging",
+        "fastapi.testclient",
+        "main",
+        "playwright.async_api",
+        "asyncio",
+        "pytest",
+        "os"
+      ],
+      "tests/report_generator.py": [
+        "argparse",
+        "datetime",
+        "pathlib",
+        "typing",
+        "json",
+        "logging",
+        "time",
+        "os"
+      ],
+      "tests/test_ai_processing.py": [
+        "data_models.tests.common",
+        "unittest.mock",
+        "apache_beam.options.pipeline_options",
+        "sys",
+        "json",
+        "data_models.core",
+        "apache_beam",
+        "data_models.data_ingestion.ai_processing",
+        "os"
+      ],
+      "tests/test_runner.py": [
+        "argparse",
+        "datetime",
+        "pathlib",
+        "sys",
+        "typing",
+        "subprocess",
+        "json",
+        "logging",
+        "time",
+        "os"
+      ],
+      "tests/__init__.py": [],
+      "tests/e2e-legacy/__init__.py": [],
+      "tests/e2e-legacy/publish_to_main_topic.py": [
+        "google.cloud",
+        "datetime",
+        "json",
+        "logging",
+        "utils.data_generators"
+      ],
+      "tests/e2e-legacy/run_tests.py": [
+        "argparse",
+        "pathlib",
+        "sys",
+        "utils.environment_helpers",
+        "subprocess",
+        "os"
+      ],
+      "tests/e2e-legacy/simple_pipeline_test.py": [
+        "google.cloud",
+        "datetime",
+        "typing",
+        "json",
+        "logging",
+        "google.api_core",
+        "time"
+      ],
+      "tests/e2e-legacy/config/__init__.py": [],
+      "tests/e2e-legacy/config/test_config.py": [
+        "typing",
+        "utils.environment_helpers",
+        "dataclasses"
+      ],
+      "tests/e2e-legacy/tests/__init__.py": [],
+      "tests/e2e-legacy/utils/__init__.py": [],
+      "tests/e2e-legacy/utils/data_generators.py": [
+        "datetime",
+        "typing",
+        "json",
+        "uuid",
+        "faker",
+        "random"
+      ],
+      "tests/e2e-legacy/utils/environment_helpers.py": [
+        "typing",
+        "os",
+        "sys"
+      ],
+      "tests/e2e-legacy/utils/gcp_helpers.py": [
+        "google.cloud",
+        "google.cloud.exceptions",
+        "typing",
+        "json",
+        "uuid",
+        "logging",
+        "subprocess",
+        "google.api_core",
+        "time"
+      ],
+      "tests/e2e-legacy/utils/publish_test_event.py": [
+        "data_models.core.config",
+        "google.cloud",
+        "datetime",
+        "sys",
+        "json",
+        "time",
+        "os"
+      ],
+      "tests/e2e-legacy/utils/test_helpers.py": [
+        "datetime",
+        "contextlib",
+        "typing",
+        "json",
+        "logging",
+        "subprocess",
+        "time"
+      ],
+      "tests/integration/test_api_endpoints.py": [
+        "datetime",
+        "unittest.mock",
+        "typing",
+        "json",
+        "fastapi",
+        "fastapi.testclient",
+        "httpx",
+        "fastapi.security",
+        "asyncio",
+        "pytest"
+      ],
+      "tests/integration/test_database_operations.py": [
+        "data_models.firestore_models",
+        "data_models.services.firestore_service",
+        "google.cloud",
+        "google.cloud.firestore_v1.base_query",
+        "datetime",
+        "unittest.mock",
+        "typing",
+        "json",
+        "google.api_core",
+        "asyncio",
+        "pytest",
+        "data_models.firestore_models.event"
+      ],
+      "tests/integration/test_external_services.py": [
+        "google.cloud",
+        "datetime",
+        "unittest.mock",
+        "typing",
+        "json",
+        "google.api_core",
+        "base64",
+        "asyncio",
+        "pytest"
+      ],
+      "tests/integration/__init__.py": [],
+      "tests/unit/test_basic.py": [
+        "pytest",
+        "os",
+        "sys"
+      ],
+      "tests/unit/test_data_pipelines.py": [
+        "data_models.data_ingestion.enhanced_error_handling",
+        "apache_beam.testing.util",
+        "unittest.mock",
+        "datetime",
+        "sys",
+        "typing",
+        "json",
+        "apache_beam.testing.test_pipeline",
+        "data_models.data_ingestion.optimized_pipeline",
+        "apache_beam",
+        "pytest",
+        "os"
+      ],
+      "tests/unit/test_firestore_models.py": [
+        "data_models",
+        "datetime",
+        "unittest.mock",
+        "sys",
+        "typing",
+        "shared_models",
+        "pytest",
+        "os"
+      ],
+      "tests/unit/test_services.py": [
+        "data_models.services.firestore_service",
+        "data_models",
+        "datetime",
+        "unittest.mock",
+        "sys",
+        "typing",
+        "json",
+        "pytest",
+        "os"
+      ],
+      "tests/unit/__init__.py": [],
+      "next.config.ts": [
+        "next"
+      ],
+      "__tests__/firebase-config.test.ts": [
+        "../src/services/firebase/config"
+      ],
+      "__tests__/examples/msw-example.test.ts": [
+        "@/utils/constants",
+        "msw",
+        "msw/node"
+      ],
+      "__tests__/integration/api-routing.test.ts": [
+        "@/utils/constants"
+      ],
+      "__tests__/setup/msw.ts": [
+        "@/utils/constants",
+        "msw",
+        "msw/node"
+      ],
+      "src/app/api/v1/analytics/route.ts": [
+        "next/server",
+        "@/lib/api-utils",
+        "@/middleware/auth"
+      ],
+      "src/app/api/v1/auth/route.ts": [
+        "next/server",
+        "@/lib/validation"
+      ],
+      "src/app/api/v1/events/route.ts": [
+        "next/server",
+        "@/lib/api-utils",
+        "@/lib/validation",
+        "@/middleware/auth"
+      ],
+      "src/components/ui/index.ts": [],
+      "src/hooks/use-toast.ts": [
+        "react"
+      ],
+      "src/hooks/index.ts": [],
+      "src/middleware/auth.ts": [
+        "next/server",
+        "@/lib/api-utils",
+        "@/lib/firebase-admin"
+      ],
+      "src/middleware/validation.ts": [
+        "next/server",
+        "zod",
+        "@/lib/validation"
+      ],
+      "src/services/api/client.ts": [
+        "@/lib/config",
+        "@/utils/constants",
+        "axios",
+        "@/lib/error-handler"
+      ],
+      "src/services/firebase/auth.ts": [
+        "./config",
+        "@/lib/api-gateway"
+      ],
+      "src/services/firebase/config.ts": [
+        "firebase/app",
+        "firebase/firestore",
+        "firebase/storage",
+        "firebase/auth"
+      ],
+      "src/store/app-store.ts": [
+        "zustand/middleware",
+        "zustand",
+        "zustand/middleware/immer"
+      ],
+      "src/store/index.ts": [],
+      "src/styles/tokens.ts": [],
+      "src/types/index.ts": [],
+      "src/utils/constants.ts": [
+        "@/lib/config"
+      ],
+      "src/utils/index.ts": [],
+      "src/lib/config.ts": [],
+      "src/lib/index.ts": [],
+      "src/app/error.tsx": [
+        "react",
+        "next/link",
+        "@/lib/error-handler"
+      ],
+      "src/app/global-error.tsx": [
+        "@/lib/error-handler"
+      ],
+      "src/app/layout.tsx": [
+        "next",
+        "./globals.css"
+      ],
+      "src/app/not-found.tsx": [
+        "next/link"
+      ],
+      "src/app/page.tsx": [],
+      "src/components/ui/accordion.tsx": [
+        "react",
+        "@radix-ui/react-accordion",
+        "@/lib/utils",
+        "lucide-react"
+      ],
+      "src/components/ui/alert.tsx": [
+        "react",
+        "@/lib/utils",
+        "class-variance-authority"
+      ],
+      "src/components/ui/aspect-ratio.tsx": [
+        "@radix-ui/react-aspect-ratio"
+      ],
+      "src/components/ui/avatar.tsx": [
+        "@radix-ui/react-avatar",
+        "react",
+        "@/lib/utils"
+      ],
+      "src/components/ui/badge.tsx": [
+        "react",
+        "@/lib/utils",
+        "class-variance-authority"
+      ],
+      "src/components/ui/breadcrumb.tsx": [
+        "react",
+        "@radix-ui/react-slot",
+        "@/lib/utils",
+        "lucide-react"
+      ],
+      "src/components/ui/button.tsx": [
+        "react",
+        "@radix-ui/react-slot",
+        "@/lib/utils",
+        "class-variance-authority"
+      ],
+      "src/components/ui/calendar.tsx": [
+        "react",
+        "@/lib/utils",
+        "@/components/ui/button",
+        "react-day-picker"
+      ],
+      "src/components/ui/card.tsx": [
+        "react",
+        "@/lib/utils"
+      ],
+      "src/components/ui/carousel.tsx": [
+        "react",
+        "@/lib/utils",
+        "@/components/ui/button",
+        "lucide-react"
+      ],
+      "src/components/ui/checkbox.tsx": [
+        "react",
+        "@/lib/utils",
+        "@radix-ui/react-checkbox",
+        "lucide-react"
+      ],
+      "src/components/ui/collapsible.tsx": [
+        "@radix-ui/react-collapsible"
+      ],
+      "src/components/ui/command.tsx": [
+        "@radix-ui/react-dialog",
+        "@/components/ui/dialog",
+        "react",
+        "lucide-react",
+        "cmdk",
+        "@/lib/utils"
+      ],
+      "src/components/ui/context-menu.tsx": [
+        "lucide-react",
+        "react",
+        "@/lib/utils",
+        "@radix-ui/react-context-menu"
+      ],
+      "src/components/ui/dialog.tsx": [
+        "react",
+        "@/lib/utils",
+        "@radix-ui/react-dialog",
+        "lucide-react"
+      ],
+      "src/components/ui/drawer.tsx": [
+        "react",
+        "@/lib/utils",
+        "vaul"
+      ],
+      "src/components/ui/dropdown-menu.tsx": [
+        "react",
+        "@/lib/utils",
+        "@radix-ui/react-dropdown-menu",
+        "lucide-react"
+      ],
+      "src/components/ui/form.tsx": [
+        "@radix-ui/react-label",
+        "react",
+        "@/components/ui/label",
+        "@radix-ui/react-slot",
+        "@/lib/utils"
+      ],
+      "src/components/ui/hover-card.tsx": [
+        "react",
+        "@radix-ui/react-hover-card",
+        "@/lib/utils"
+      ],
+      "src/components/ui/input.tsx": [
+        "react",
+        "@/lib/utils"
+      ],
+      "src/components/ui/label.tsx": [
+        "react",
+        "@radix-ui/react-label",
+        "@/lib/utils",
+        "class-variance-authority"
+      ],
+      "src/components/ui/menubar.tsx": [
+        "react",
+        "@/lib/utils",
+        "@radix-ui/react-menubar",
+        "lucide-react"
+      ],
+      "src/components/ui/navigation-menu.tsx": [
+        "react",
+        "@radix-ui/react-navigation-menu",
+        "lucide-react",
+        "@/lib/utils",
+        "class-variance-authority"
+      ],
+      "src/components/ui/pagination.tsx": [
+        "react",
+        "@/lib/utils",
+        "@/components/ui/button",
+        "lucide-react"
+      ],
+      "src/components/ui/popover.tsx": [
+        "react",
+        "@radix-ui/react-popover",
+        "@/lib/utils"
+      ],
+      "src/components/ui/progress.tsx": [
+        "react",
+        "@radix-ui/react-progress",
+        "@/lib/utils"
+      ],
+      "src/components/ui/radio-group.tsx": [
+        "react",
+        "@radix-ui/react-radio-group",
+        "@/lib/utils",
+        "lucide-react"
+      ],
+      "src/components/ui/resizable.tsx": [
+        "react-resizable-panels",
+        "@/lib/utils",
+        "lucide-react"
+      ],
+      "src/components/ui/scroll-area.tsx": [
+        "react",
+        "@radix-ui/react-scroll-area",
+        "@/lib/utils"
+      ],
+      "src/components/ui/select.tsx": [
+        "react",
+        "@radix-ui/react-select",
+        "@/lib/utils",
+        "lucide-react"
+      ],
+      "src/components/ui/separator.tsx": [
+        "react",
+        "@radix-ui/react-separator",
+        "@/lib/utils"
+      ],
+      "src/components/ui/sheet.tsx": [
+        "@radix-ui/react-dialog",
+        "react",
+        "lucide-react",
+        "@/lib/utils",
+        "class-variance-authority"
+      ],
+      "src/components/ui/sidebar.tsx": [
+        "@/components/ui/button",
+        "@/components/ui/input",
+        "react",
+        "@/hooks/use-mobile",
+        "lucide-react",
+        "@/components/ui/separator",
+        "@radix-ui/react-slot",
+        "@/components/ui/skeleton",
+        "@/lib/utils",
+        "class-variance-authority"
+      ],
+      "src/components/ui/skeleton.tsx": [
+        "@/lib/utils"
+      ],
+      "src/components/ui/slider.tsx": [
+        "react",
+        "@radix-ui/react-slider",
+        "@/lib/utils"
+      ],
+      "src/components/ui/sonner.tsx": [
+        "next-themes",
+        "sonner"
+      ],
+      "src/components/ui/switch.tsx": [
+        "react",
+        "@/lib/utils",
+        "@radix-ui/react-switch"
+      ],
+      "src/components/ui/table.tsx": [
+        "react",
+        "@/lib/utils"
+      ],
+      "src/components/ui/tabs.tsx": [
+        "@radix-ui/react-tabs",
+        "react",
+        "@/lib/utils"
+      ],
+      "src/components/ui/textarea.tsx": [
+        "react",
+        "@/lib/utils"
+      ],
+      "src/components/ui/toast.tsx": [
+        "react",
+        "@radix-ui/react-toast",
+        "lucide-react",
+        "@/lib/utils",
+        "class-variance-authority"
+      ],
+      "src/components/ui/toaster.tsx": [
+        "@/hooks/use-toast"
+      ],
+      "src/components/ui/toggle-group.tsx": [
+        "@radix-ui/react-toggle-group",
+        "@/components/ui/toggle",
+        "react",
+        "@/lib/utils",
+        "class-variance-authority"
+      ],
+      "src/components/ui/toggle.tsx": [
+        "react",
+        "@radix-ui/react-toggle",
+        "@/lib/utils",
+        "class-variance-authority"
+      ],
+      "src/components/ui/tooltip.tsx": [
+        "react",
+        "@radix-ui/react-tooltip",
+        "@/lib/utils"
+      ],
+      "src/hooks/use-mobile.tsx": [
+        "react"
+      ]
+    },
+    "reverse_dependencies": {
+      "datetime": [
+        "server/shared_models.py",
+        "tests/unit/test_firestore_models.py",
+        "server/data_models/data_ingestion/enhanced_error_handling.py",
+        "tests/e2e-legacy/utils/test_helpers.py",
+        "server/legacy-api/services/analytics_service.py",
+        "server/data_models/data_ingestion/optimized_pipeline.py",
+        "server/data_models/services/firestore_service.py",
+        "e2e-tests/utils/test-runner.py",
+        "e2e-tests/core/api-integration/base_api_test.py",
+        "server/data_models/tests/test_firestore_models.py",
+        "tests/integration/test_database_operations.py",
+        "server/legacy-api/models/requests.py",
+        "tests/test_runner.py",
+        "server/legacy-api/models/responses.py",
+        "tests/e2e-legacy/simple_pipeline_test.py",
+        "main.py",
+        "server/legacy-api/services/feedback_service.py",
+        "server/shared_services.py",
+        "tests/report_generator.py",
+        "e2e-tests/legacy-cleanup/assessment-tool.py",
+        "tests/integration/test_external_services.py",
+        "server/legacy-api/utils/filtering.py",
+        "tests/unit/test_data_pipelines.py",
+        "server/legacy-api/utils/validation.py",
+        "tests/conftest.py",
+        "tests/e2e-legacy/utils/publish_test_event.py",
+        "server/legacy-api/services/user_service.py",
+        "tests/e2e-legacy/publish_to_main_topic.py",
+        "server/health_check.py",
+        "e2e-tests/core/data-pipeline/pipeline_e2e_test.py",
+        "server/data_models/data_ingestion/base_pipeline.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/e2e-legacy/utils/data_generators.py",
+        "tests/unit/test_services.py",
+        "server/legacy-api/routers/analytics.py"
+      ],
+      "apache_beam.options.pipeline_options": [
+        "tests/test_ai_processing.py",
+        "server/data_models/tests/test_citizen_report_pipeline.py",
+        "server/data_models/data_ingestion/base_pipeline.py",
+        "main.py",
+        "server/data_models/data_ingestion/optimized_pipeline.py"
+      ],
+      "dotenv": [
+        "main.py"
+      ],
+      "logging": [
+        "server/legacy-api/routers/events.py",
+        "server/data_models/data_ingestion/enhanced_error_handling.py",
+        "tests/e2e-legacy/utils/test_helpers.py",
+        "server/data_models/data_ingestion/iot_pipeline.py",
+        "server/legacy-api/services/analytics_service.py",
+        "server/data_models/data_ingestion/optimized_pipeline.py",
+        "server/legacy-api/routers/users.py",
+        "server/data_models/data_ingestion/social_media_pipeline.py",
+        "tests/test_runner.py",
+        "server/data_models/data_ingestion/citizen_report_pipeline.py",
+        "tests/e2e-legacy/simple_pipeline_test.py",
+        "main.py",
+        "server/shared_exceptions.py",
+        "server/legacy-api/services/feedback_service.py",
+        "server/legacy-api/main.py",
+        "server/shared_services.py",
+        "server/shared_api_utils.py",
+        "tests/report_generator.py",
+        "server/legacy-api/services/event_service.py",
+        "server/shared_config.py",
+        "server/legacy-api/routers/feedback.py",
+        "tests/conftest.py",
+        "server/data_models/data_ingestion/ai_utils.py",
+        "server/legacy-api/services/user_service.py",
+        "server/data_models/data_ingestion/official_feeds_pipeline.py",
+        "tests/e2e-legacy/publish_to_main_topic.py",
+        "server/legacy-api/auth/firebase_auth.py",
+        "server/health_check.py",
+        "tests/e2e-legacy/utils/gcp_helpers.py",
+        "server/data_models/data_ingestion/ai_processing.py",
+        "server/data_models/data_ingestion/base_pipeline.py",
+        "scripts/setup-testing-tools.py",
+        "server/data_models/transforms/multimedia_processing.py",
+        "server/legacy-api/routers/analytics.py"
+      ],
+      "apache_beam": [
+        "server/data_models/tests/test_ai_processing.py",
+        "tests/test_ai_processing.py",
+        "server/data_models/data_ingestion/social_media_pipeline.py",
+        "server/data_models/data_ingestion/enhanced_error_handling.py",
+        "server/data_models/data_ingestion/citizen_report_pipeline.py",
+        "server/data_models/data_ingestion/ai_processing.py",
+        "server/data_models/tests/test_citizen_report_pipeline.py",
+        "server/data_models/data_ingestion/base_pipeline.py",
+        "main.py",
+        "server/data_models/data_ingestion/iot_pipeline.py",
+        "tests/unit/test_data_pipelines.py",
+        "server/data_models/tests/test_base_pipeline.py",
+        "server/data_models/transforms/multimedia_processing.py",
+        "server/data_models/data_ingestion/optimized_pipeline.py"
+      ],
+      "server.data_models.data_ingestion.iot_pipeline": [
+        "main.py"
+      ],
+      "os": [
+        "scripts/fix-integration-issues.py",
+        "server/legacy-api/routers/events.py",
+        "tests/unit/test_firestore_models.py",
+        "server/data_models/data_ingestion/iot_pipeline.py",
+        "server/legacy-api/services/analytics_service.py",
+        "server/data_models/data_ingestion/optimized_pipeline.py",
+        "server/legacy-api/routers/users.py",
+        "server/data_models/firestore_models/__init__.py",
+        "tests/test_runner.py",
+        "server/legacy-api/models/__init__.py",
+        "server/data_models/data_ingestion/citizen_report_pipeline.py",
+        "main.py",
+        "tests/e2e-legacy/utils/environment_helpers.py",
+        "tests/e2e-legacy/run_tests.py",
+        "server/legacy-api/services/feedback_service.py",
+        "server/legacy-api/main.py",
+        "scripts/analyze-codebase-integration.py",
+        "tests/report_generator.py",
+        "tests/test_ai_processing.py",
+        "server/legacy-api/services/event_service.py",
+        "e2e-tests/legacy-cleanup/assessment-tool.py",
+        "server/shared_config.py",
+        "tests/unit/test_data_pipelines.py",
+        "server/legacy-api/routers/feedback.py",
+        "tests/conftest.py",
+        "scripts/verify-tools.py",
+        "server/data_models/setup_bigquery_tables.py",
+        "tests/e2e-legacy/utils/publish_test_event.py",
+        "server/data_models/data_ingestion/ai_utils.py",
+        "server/legacy-api/services/user_service.py",
+        "server/data_models/data_ingestion/official_feeds_pipeline.py",
+        "server/legacy-api/auth/firebase_auth.py",
+        "tests/unit/test_basic.py",
+        "server/data_models/data_ingestion/ai_processing.py",
+        "server/data_models/validate_schemas.py",
+        "server/data_models/data_ingestion/base_pipeline.py",
+        "server/data_models/__init__.py",
+        "scripts/setup-testing-tools.py",
+        "tests/unit/test_services.py",
+        "server/legacy-api/routers/analytics.py"
+      ],
+      "pathlib": [
+        "scripts/fix-integration-issues.py",
+        "server/data_models/tests/conftest.py",
+        "tests/test_runner.py",
+        "e2e-tests/core/data-pipeline/pipeline_e2e_test.py",
+        "e2e-tests/legacy-cleanup/assessment-tool.py",
+        "scripts/analyze-codebase-integration.py",
+        "server/shared_config.py",
+        "scripts/verify-tools.py",
+        "e2e-tests/features/events-management/test_events_api.py",
+        "scripts/setup-testing-tools.py",
+        "e2e-tests/features/data-pipeline/test_pipeline_e2e.py",
+        "tests/e2e-legacy/run_tests.py",
+        "e2e-tests/utils/test-runner.py",
+        "e2e-tests/core/api-integration/base_api_test.py",
+        "tests/report_generator.py"
+      ],
+      "typing": [
+        "scripts/fix-integration-issues.py",
+        "server/shared_models.py",
+        "server/legacy-api/routers/events.py",
+        "tests/unit/test_firestore_models.py",
+        "server/data_models/data_ingestion/enhanced_error_handling.py",
+        "tests/e2e-legacy/utils/test_helpers.py",
+        "server/legacy-api/services/analytics_service.py",
+        "server/data_models/data_ingestion/optimized_pipeline.py",
+        "server/data_models/services/firestore_service.py",
+        "e2e-tests/utils/test-runner.py",
+        "e2e-tests/core/api-integration/base_api_test.py",
+        "server/legacy-api/routers/users.py",
+        "tests/integration/test_database_operations.py",
+        "server/legacy-api/auth/permissions.py",
+        "server/legacy-api/models/requests.py",
+        "server/legacy-api/utils/pagination.py",
+        "server/legacy-api/models/responses.py",
+        "tests/test_runner.py",
+        "tests/e2e-legacy/simple_pipeline_test.py",
+        "tests/e2e-legacy/utils/environment_helpers.py",
+        "server/shared_exceptions.py",
+        "server/legacy-api/services/feedback_service.py",
+        "server/legacy-api/main.py",
+        "scripts/analyze-codebase-integration.py",
+        "server/shared_services.py",
+        "server/shared_api_utils.py",
+        "tests/report_generator.py",
+        "server/legacy-api/services/event_service.py",
+        "e2e-tests/legacy-cleanup/assessment-tool.py",
+        "tests/integration/test_external_services.py",
+        "server/shared_config.py",
+        "server/legacy-api/utils/filtering.py",
+        "tests/unit/test_data_pipelines.py",
+        "server/legacy-api/routers/feedback.py",
+        "server/legacy-api/utils/validation.py",
+        "tests/conftest.py",
+        "tests/e2e-legacy/config/test_config.py",
+        "server/data_models/data_ingestion/ai_utils.py",
+        "server/legacy-api/services/user_service.py",
+        "server/legacy-api/auth/firebase_auth.py",
+        "server/health_check.py",
+        "tests/e2e-legacy/utils/gcp_helpers.py",
+        "e2e-tests/core/data-pipeline/pipeline_e2e_test.py",
+        "tests/integration/test_api_endpoints.py",
+        "scripts/setup-testing-tools.py",
+        "tests/e2e-legacy/utils/data_generators.py",
+        "tests/unit/test_services.py",
+        "server/legacy-api/routers/analytics.py"
+      ],
+      "json": [
+        "scripts/fix-integration-issues.py",
+        "server/data_models/data_ingestion/enhanced_error_handling.py",
+        "server/data_models/tests/test_bigquery_setup.py",
+        "tests/e2e-legacy/utils/test_helpers.py",
+        "e2e-tests/features/events-management/test_events_api.py",
+        "e2e-tests/features/data-pipeline/test_pipeline_e2e.py",
+        "server/data_models/data_ingestion/optimized_pipeline.py",
+        "server/data_models/tests/test_schema_validation.py",
+        "e2e-tests/utils/test-runner.py",
+        "e2e-tests/core/api-integration/base_api_test.py",
+        "tests/integration/test_database_operations.py",
+        "server/data_models/data_ingestion/social_media_pipeline.py",
+        "tests/test_runner.py",
+        "tests/e2e-legacy/simple_pipeline_test.py",
+        "scripts/analyze-codebase-integration.py",
+        "tests/report_generator.py",
+        "tests/test_ai_processing.py",
+        "e2e-tests/legacy-cleanup/assessment-tool.py",
+        "tests/integration/test_external_services.py",
+        "tests/unit/test_data_pipelines.py",
+        "tests/conftest.py",
+        "server/data_models/setup_bigquery_tables.py",
+        "tests/e2e-legacy/utils/publish_test_event.py",
+        "server/data_models/data_ingestion/ai_utils.py",
+        "tests/e2e-legacy/publish_to_main_topic.py",
+        "tests/e2e-legacy/utils/gcp_helpers.py",
+        "e2e-tests/core/data-pipeline/pipeline_e2e_test.py",
+        "server/data_models/data_ingestion/ai_processing.py",
+        "server/data_models/validate_schemas.py",
+        "server/data_models/data_ingestion/base_pipeline.py",
+        "tests/integration/test_api_endpoints.py",
+        "scripts/setup-testing-tools.py",
+        "tests/e2e-legacy/utils/data_generators.py",
+        "tests/unit/test_services.py"
+      ],
+      "httpx": [
+        "e2e-tests/core/api-integration/base_api_test.py",
+        "tests/integration/test_api_endpoints.py"
+      ],
+      "asyncio": [
+        "tests/integration/test_database_operations.py",
+        "server/health_check.py",
+        "e2e-tests/core/data-pipeline/pipeline_e2e_test.py",
+        "server/data_models/data_ingestion/ai_processing.py",
+        "tests/integration/test_external_services.py",
+        "tests/conftest.py",
+        "tests/integration/test_api_endpoints.py",
+        "e2e-tests/features/events-management/test_events_api.py",
+        "e2e-tests/features/data-pipeline/test_pipeline_e2e.py",
+        "e2e-tests/utils/test-runner.py",
+        "e2e-tests/core/api-integration/base_api_test.py"
+      ],
+      "time": [
+        "server/health_check.py",
+        "tests/test_runner.py",
+        "tests/e2e-legacy/utils/gcp_helpers.py",
+        "server/data_models/data_ingestion/enhanced_error_handling.py",
+        "e2e-tests/core/data-pipeline/pipeline_e2e_test.py",
+        "tests/e2e-legacy/simple_pipeline_test.py",
+        "tests/e2e-legacy/utils/test_helpers.py",
+        "e2e-tests/features/data-pipeline/test_pipeline_e2e.py",
+        "server/data_models/data_ingestion/optimized_pipeline.py",
+        "tests/e2e-legacy/utils/publish_test_event.py",
+        "e2e-tests/utils/test-runner.py",
+        "e2e-tests/core/api-integration/base_api_test.py",
+        "tests/report_generator.py"
+      ],
+      "pytest": [
+        "tests/integration/test_database_operations.py",
+        "server/data_models/tests/conftest.py",
+        "tests/unit/test_basic.py",
+        "server/data_models/tests/test_bigquery_setup.py",
+        "e2e-tests/core/data-pipeline/pipeline_e2e_test.py",
+        "tests/integration/test_external_services.py",
+        "tests/unit/test_data_pipelines.py",
+        "tests/conftest.py",
+        "tests/integration/test_api_endpoints.py",
+        "e2e-tests/features/events-management/test_events_api.py",
+        "e2e-tests/features/data-pipeline/test_pipeline_e2e.py",
+        "server/legacy-api/tests/test_main.py",
+        "tests/unit/test_services.py",
+        "server/data_models/tests/test_schema_validation.py",
+        "e2e-tests/core/api-integration/base_api_test.py",
+        "server/data_models/tests/test_firestore_models.py",
+        "tests/unit/test_firestore_models.py"
+      ],
+      "google.cloud": [
+        "tests/integration/test_database_operations.py",
+        "server/data_models/data_ingestion/social_media_pipeline.py",
+        "server/health_check.py",
+        "tests/e2e-legacy/utils/gcp_helpers.py",
+        "e2e-tests/core/data-pipeline/pipeline_e2e_test.py",
+        "server/data_models/data_ingestion/ai_processing.py",
+        "tests/e2e-legacy/simple_pipeline_test.py",
+        "tests/integration/test_external_services.py",
+        "server/data_models/setup_bigquery_tables.py",
+        "server/legacy-api/services/analytics_service.py",
+        "server/data_models/transforms/multimedia_processing.py",
+        "server/data_models/services/firestore_service.py",
+        "tests/e2e-legacy/utils/publish_test_event.py",
+        "tests/e2e-legacy/publish_to_main_topic.py",
+        "server/shared_services.py"
+      ],
+      "uuid": [
+        "server/shared_models.py",
+        "tests/e2e-legacy/utils/gcp_helpers.py",
+        "e2e-tests/core/data-pipeline/pipeline_e2e_test.py",
+        "tests/e2e-legacy/utils/data_generators.py",
+        "server/legacy-api/services/feedback_service.py"
+      ],
+      "google.api_core": [
+        "tests/integration/test_database_operations.py",
+        "server/data_models/data_ingestion/social_media_pipeline.py",
+        "tests/e2e-legacy/utils/gcp_helpers.py",
+        "e2e-tests/core/data-pipeline/pipeline_e2e_test.py",
+        "server/data_models/data_ingestion/ai_processing.py",
+        "tests/e2e-legacy/simple_pipeline_test.py",
+        "tests/integration/test_external_services.py",
+        "server/data_models/data_ingestion/base_pipeline.py",
+        "server/data_models/transforms/multimedia_processing.py",
+        "server/data_models/data_ingestion/ai_utils.py"
+      ],
+      "sys": [
+        "server/legacy-api/routers/events.py",
+        "tests/unit/test_firestore_models.py",
+        "server/data_models/data_ingestion/iot_pipeline.py",
+        "e2e-tests/features/events-management/test_events_api.py",
+        "server/legacy-api/services/analytics_service.py",
+        "e2e-tests/features/data-pipeline/test_pipeline_e2e.py",
+        "server/data_models/data_ingestion/optimized_pipeline.py",
+        "e2e-tests/utils/test-runner.py",
+        "server/legacy-api/routers/users.py",
+        "server/data_models/firestore_models/__init__.py",
+        "server/data_models/tests/conftest.py",
+        "tests/test_runner.py",
+        "server/legacy-api/models/__init__.py",
+        "server/data_models/data_ingestion/citizen_report_pipeline.py",
+        "tests/e2e-legacy/utils/environment_helpers.py",
+        "tests/e2e-legacy/run_tests.py",
+        "server/legacy-api/services/feedback_service.py",
+        "server/legacy-api/main.py",
+        "scripts/analyze-codebase-integration.py",
+        "tests/test_ai_processing.py",
+        "server/legacy-api/services/event_service.py",
+        "e2e-tests/legacy-cleanup/assessment-tool.py",
+        "tests/unit/test_data_pipelines.py",
+        "server/legacy-api/routers/feedback.py",
+        "scripts/verify-tools.py",
+        "tests/e2e-legacy/utils/publish_test_event.py",
+        "server/data_models/data_ingestion/ai_utils.py",
+        "server/legacy-api/services/user_service.py",
+        "server/data_models/data_ingestion/official_feeds_pipeline.py",
+        "tests/unit/test_basic.py",
+        "server/data_models/data_ingestion/ai_processing.py",
+        "server/data_models/validate_schemas.py",
+        "server/data_models/data_ingestion/base_pipeline.py",
+        "server/data_models/__init__.py",
+        "scripts/setup-testing-tools.py",
+        "tests/unit/test_services.py",
+        "server/legacy-api/routers/analytics.py"
+      ],
+      "core.data_pipeline.pipeline_e2e_test": [
+        "e2e-tests/features/data-pipeline/test_pipeline_e2e.py"
+      ],
+      "core.api_integration.base_api_test": [
+        "e2e-tests/features/events-management/test_events_api.py"
+      ],
+      "subprocess": [
+        "tests/test_runner.py",
+        "tests/e2e-legacy/utils/gcp_helpers.py",
+        "tests/e2e-legacy/utils/test_helpers.py",
+        "e2e-tests/legacy-cleanup/assessment-tool.py",
+        "scripts/analyze-codebase-integration.py",
+        "scripts/verify-tools.py",
+        "scripts/setup-testing-tools.py",
+        "tests/e2e-legacy/run_tests.py",
+        "e2e-tests/utils/test-runner.py"
+      ],
+      "re": [
+        "e2e-tests/legacy-cleanup/assessment-tool.py",
+        "scripts/analyze-codebase-integration.py",
+        "server/legacy-api/utils/validation.py"
+      ],
+      "ast": [
+        "e2e-tests/legacy-cleanup/assessment-tool.py",
+        "scripts/analyze-codebase-integration.py"
+      ],
+      "argparse": [
+        "tests/test_runner.py",
+        "server/data_models/setup_bigquery_tables.py",
+        "server/data_models/utils/pipeline_args.py",
+        "tests/e2e-legacy/run_tests.py",
+        "e2e-tests/utils/test-runner.py",
+        "tests/report_generator.py"
+      ],
+      "concurrent.futures": [
+        "e2e-tests/utils/test-runner.py"
+      ],
+      "platform": [
+        "scripts/setup-testing-tools.py"
+      ],
+      "collections": [
+        "scripts/analyze-codebase-integration.py"
+      ],
+      "shutil": [
+        "scripts/fix-integration-issues.py"
+      ],
+      "dataclasses": [
+        "server/data_models/data_ingestion/optimized_pipeline.py",
+        "tests/e2e-legacy/config/test_config.py",
+        "server/shared_config.py",
+        "server/health_check.py"
+      ],
+      "shared_config": [
+        "server/health_check.py",
+        "server/legacy-api/services/event_service.py",
+        "server/data_models/data_ingestion/citizen_report_pipeline.py",
+        "server/data_models/data_ingestion/ai_processing.py",
+        "server/data_models/data_ingestion/base_pipeline.py",
+        "server/data_models/data_ingestion/iot_pipeline.py",
+        "server/legacy-api/services/user_service.py",
+        "server/legacy-api/services/analytics_service.py",
+        "server/legacy-api/services/feedback_service.py",
+        "server/data_models/data_ingestion/optimized_pipeline.py",
+        "server/data_models/data_ingestion/ai_utils.py",
+        "server/data_models/data_ingestion/official_feeds_pipeline.py",
+        "server/shared_services.py"
+      ],
+      "enum": [
+        "server/shared_models.py",
+        "server/legacy-api/models/requests.py",
+        "server/legacy-api/auth/permissions.py",
+        "server/health_check.py",
+        "server/legacy-api/models/responses.py",
+        "server/legacy-api/utils/filtering.py",
+        "server/shared_exceptions.py"
+      ],
+      "google.cloud.exceptions": [
+        "server/health_check.py",
+        "server/shared_services.py",
+        "tests/e2e-legacy/utils/gcp_helpers.py"
+      ],
+      "fastapi": [
+        "server/legacy-api/routers/events.py",
+        "server/legacy-api/auth/firebase_auth.py",
+        "server/health_check.py",
+        "server/legacy-api/utils/pagination.py",
+        "server/legacy-api/utils/filtering.py",
+        "server/legacy-api/routers/feedback.py",
+        "tests/integration/test_api_endpoints.py",
+        "server/legacy-api/main.py",
+        "server/shared_api_utils.py",
+        "server/legacy-api/routers/users.py",
+        "server/legacy-api/routers/analytics.py"
+      ],
+      "fastapi.responses": [
+        "server/legacy-api/routers/events.py",
+        "server/legacy-api/main.py",
+        "server/health_check.py",
+        "server/shared_api_utils.py"
+      ],
+      "psutil": [
+        "server/health_check.py"
+      ],
+      "shared_services": [
+        "server/health_check.py",
+        "server/legacy-api/services/event_service.py",
+        "server/legacy-api/services/analytics_service.py",
+        "server/legacy-api/services/feedback_service.py",
+        "server/legacy-api/services/user_service.py"
+      ],
+      "setuptools": [
+        "server/setup.py"
+      ],
+      "shared_exceptions": [
+        "server/legacy-api/routers/events.py",
+        "server/legacy-api/models/__init__.py",
+        "server/legacy-api/services/event_service.py",
+        "server/legacy-api/routers/feedback.py",
+        "server/legacy-api/services/user_service.py",
+        "server/legacy-api/services/analytics_service.py",
+        "server/legacy-api/services/feedback_service.py",
+        "server/legacy-api/main.py",
+        "server/legacy-api/routers/users.py",
+        "server/shared_api_utils.py",
+        "server/shared_services.py",
+        "server/legacy-api/routers/analytics.py"
+      ],
+      "functools": [
+        "server/legacy-api/auth/firebase_auth.py",
+        "server/shared_api_utils.py"
+      ],
+      "auth.permissions": [
+        "server/legacy-api/routers/events.py",
+        "server/legacy-api/routers/feedback.py",
+        "server/shared_api_utils.py",
+        "server/legacy-api/routers/users.py",
+        "server/legacy-api/routers/analytics.py"
+      ],
+      "pydantic": [
+        "server/shared_models.py",
+        "server/data_models/data_ingestion/social_media_pipeline.py",
+        "server/legacy-api/models/requests.py",
+        "server/legacy-api/utils/pagination.py",
+        "server/legacy-api/models/responses.py",
+        "server/data_models/data_ingestion/enhanced_error_handling.py",
+        "server/legacy-api/utils/filtering.py",
+        "server/data_models/data_ingestion/base_pipeline.py",
+        "server/legacy-api/utils/validation.py",
+        "server/shared_exceptions.py",
+        "server/data_models/services/firestore_service.py"
+      ],
+      "data_models.firestore_models": [
+        "tests/integration/test_database_operations.py",
+        "server/shared_services.py"
+      ],
+      "data_models.services.firestore_service": [
+        "tests/unit/test_services.py",
+        "tests/integration/test_database_operations.py",
+        "server/shared_services.py",
+        "server/data_models/data_ingestion/base_pipeline.py"
+      ],
+      "data_models.firestore_models.base_model": [
+        "server/shared_services.py"
+      ],
+      "threading": [
+        "server/shared_services.py"
+      ],
+      "contextlib": [
+        "tests/e2e-legacy/utils/test_helpers.py",
+        "server/legacy-api/main.py",
+        "server/shared_services.py"
+      ],
+      "services.firestore_service": [
+        "server/data_models/__init__.py"
+      ],
+      "shared_models": [
+        "server/legacy-api/routers/events.py",
+        "server/data_models/firestore_models/__init__.py",
+        "server/legacy-api/services/event_service.py",
+        "server/data_models/__init__.py",
+        "server/legacy-api/services/feedback_service.py",
+        "server/legacy-api/services/user_service.py",
+        "tests/unit/test_firestore_models.py"
+      ],
+      "google.oauth2": [
+        "server/data_models/setup_bigquery_tables.py"
+      ],
+      "requests": [
+        "server/data_models/data_ingestion/ai_processing.py",
+        "server/data_models/data_ingestion/ai_utils.py",
+        "server/data_models/tests/test_citizen_report_pipeline.py",
+        "server/data_models/transforms/multimedia_processing.py"
+      ],
+      "aiohttp": [
+        "server/data_models/data_ingestion/ai_processing.py"
+      ],
+      "mimetypes": [
+        "server/data_models/data_ingestion/ai_processing.py",
+        "server/data_models/data_ingestion/ai_utils.py"
+      ],
+      "vertexai.generative_models": [
+        "server/data_models/data_ingestion/ai_processing.py",
+        "server/data_models/data_ingestion/ai_utils.py"
+      ],
+      "vertexai": [
+        "server/data_models/data_ingestion/ai_processing.py",
+        "server/data_models/data_ingestion/ai_utils.py"
+      ],
+      "vertexai.preview.vision_models": [
+        "server/data_models/data_ingestion/ai_processing.py",
+        "server/data_models/data_ingestion/ai_utils.py"
+      ],
+      "apache_beam.pvalue": [
+        "server/data_models/data_ingestion/enhanced_error_handling.py",
+        "server/data_models/data_ingestion/social_media_pipeline.py",
+        "server/data_models/data_ingestion/optimized_pipeline.py",
+        "server/data_models/data_ingestion/base_pipeline.py"
+      ],
+      "data_models": [
+        "server/data_models/tests/test_bigquery_setup.py",
+        "server/data_models/data_ingestion/base_pipeline.py",
+        "tests/unit/test_services.py",
+        "server/data_models/tests/test_schema_validation.py",
+        "server/data_models/tests/test_firestore_models.py",
+        "tests/unit/test_firestore_models.py"
+      ],
+      "data_models.utils.pipeline_args": [
+        "server/data_models/data_ingestion/iot_pipeline.py",
+        "server/data_models/data_ingestion/citizen_report_pipeline.py",
+        "server/data_models/data_ingestion/social_media_pipeline.py",
+        "server/data_models/data_ingestion/official_feeds_pipeline.py"
+      ],
+      "data_models.data_ingestion.base_pipeline": [
+        "server/data_models/data_ingestion/social_media_pipeline.py",
+        "server/data_models/data_ingestion/citizen_report_pipeline.py",
+        "server/data_models/data_ingestion/iot_pipeline.py",
+        "server/data_models/tests/test_base_pipeline.py",
+        "server/data_models/data_ingestion/official_feeds_pipeline.py"
+      ],
+      "data_models.transforms.multimedia_processing": [
+        "server/data_models/data_ingestion/citizen_report_pipeline.py",
+        "server/data_models/tests/test_citizen_report_pipeline.py"
+      ],
+      "data_models.data_ingestion.ai_processing": [
+        "server/data_models/tests/test_ai_processing.py",
+        "tests/test_ai_processing.py",
+        "server/data_models/data_ingestion/citizen_report_pipeline.py",
+        "server/data_models/tests/test_citizen_report_pipeline.py",
+        "server/data_models/data_ingestion/iot_pipeline.py"
+      ],
+      "apache_beam.metrics": [
+        "server/data_models/data_ingestion/enhanced_error_handling.py",
+        "server/data_models/data_ingestion/optimized_pipeline.py"
+      ],
+      "enhanced_error_handling": [
+        "server/data_models/data_ingestion/optimized_pipeline.py"
+      ],
+      "hashlib": [
+        "server/data_models/data_ingestion/optimized_pipeline.py"
+      ],
+      "data_models.core": [
+        "tests/test_ai_processing.py",
+        "server/data_models/data_ingestion/social_media_pipeline.py"
+      ],
+      "data_models.firestore_models.event": [
+        "server/data_models/tests/test_ai_processing.py",
+        "tests/integration/test_database_operations.py",
+        "server/data_models/data_ingestion/social_media_pipeline.py",
+        "server/data_models/tests/test_citizen_report_pipeline.py",
+        "server/data_models/tests/test_base_pipeline.py",
+        "server/data_models/transforms/multimedia_processing.py"
+      ],
+      "apache_beam.testing.test_pipeline": [
+        "server/data_models/tests/common.py",
+        "tests/unit/test_data_pipelines.py"
+      ],
+      "unittest.mock": [
+        "server/data_models/tests/test_ai_processing.py",
+        "tests/test_ai_processing.py",
+        "server/data_models/tests/conftest.py",
+        "tests/integration/test_database_operations.py",
+        "server/data_models/tests/test_bigquery_setup.py",
+        "tests/integration/test_external_services.py",
+        "server/data_models/tests/common.py",
+        "server/data_models/tests/test_citizen_report_pipeline.py",
+        "tests/conftest.py",
+        "tests/integration/test_api_endpoints.py",
+        "tests/unit/test_data_pipelines.py",
+        "server/legacy-api/tests/test_main.py",
+        "tests/unit/test_services.py",
+        "server/data_models/tests/test_firestore_models.py",
+        "tests/unit/test_firestore_models.py"
+      ],
+      "unittest": [
+        "server/data_models/tests/test_ai_processing.py",
+        "server/data_models/tests/common.py",
+        "server/data_models/tests/test_base_pipeline.py",
+        "server/data_models/tests/test_citizen_report_pipeline.py"
+      ],
+      "apache_beam.testing.util": [
+        "server/data_models/tests/test_ai_processing.py",
+        "tests/unit/test_data_pipelines.py",
+        "server/data_models/tests/test_base_pipeline.py",
+        "server/data_models/tests/test_citizen_report_pipeline.py"
+      ],
+      "data_models.tests.common": [
+        "server/data_models/tests/test_ai_processing.py",
+        "tests/test_ai_processing.py",
+        "server/data_models/tests/test_base_pipeline.py",
+        "server/data_models/tests/test_citizen_report_pipeline.py"
+      ],
+      "google.api_core.exceptions": [
+        "server/data_models/tests/test_bigquery_setup.py"
+      ],
+      "google.cloud.bigquery": [
+        "server/data_models/tests/test_bigquery_setup.py"
+      ],
+      "data_models.data_ingestion.citizen_report_pipeline": [
+        "server/data_models/tests/test_citizen_report_pipeline.py"
+      ],
+      "io": [
+        "server/data_models/transforms/multimedia_processing.py"
+      ],
+      "uvicorn": [
+        "server/legacy-api/main.py"
+      ],
+      "routers": [
+        "server/legacy-api/main.py"
+      ],
+      "auth.firebase_auth": [
+        "server/legacy-api/main.py"
+      ],
+      "utils.validation": [
+        "server/legacy-api/main.py"
+      ],
+      "fastapi.middleware.trustedhost": [
+        "server/legacy-api/main.py"
+      ],
+      "fastapi.middleware.cors": [
+        "server/legacy-api/main.py"
+      ],
+      "fastapi.openapi.utils": [
+        "server/legacy-api/main.py"
+      ],
+      "permissions": [
+        "server/legacy-api/auth/firebase_auth.py",
+        "server/legacy-api/auth/__init__.py"
+      ],
+      "firebase_auth": [
+        "server/legacy-api/auth/__init__.py"
+      ],
+      "starlette.middleware.base": [
+        "server/legacy-api/auth/firebase_auth.py"
+      ],
+      "firebase_admin": [
+        "server/legacy-api/services/user_service.py",
+        "server/legacy-api/auth/firebase_auth.py"
+      ],
+      "starlette.responses": [
+        "server/legacy-api/auth/firebase_auth.py"
+      ],
+      "fastapi.security": [
+        "server/legacy-api/auth/firebase_auth.py",
+        "tests/integration/test_api_endpoints.py"
+      ],
+      "models.responses": [
+        "server/legacy-api/routers/feedback.py",
+        "server/legacy-api/services/analytics_service.py",
+        "server/legacy-api/services/feedback_service.py",
+        "server/legacy-api/services/user_service.py",
+        "server/legacy-api/routers/users.py",
+        "server/legacy-api/routers/analytics.py"
+      ],
+      "auth": [
+        "server/legacy-api/routers/events.py",
+        "server/legacy-api/routers/feedback.py",
+        "server/legacy-api/routers/users.py",
+        "server/legacy-api/routers/analytics.py"
+      ],
+      "services.analytics_service": [
+        "server/legacy-api/routers/analytics.py"
+      ],
+      "services.event_service": [
+        "server/legacy-api/routers/events.py"
+      ],
+      "utils.pagination": [
+        "server/legacy-api/routers/events.py",
+        "server/legacy-api/services/feedback_service.py",
+        "server/legacy-api/services/event_service.py",
+        "server/legacy-api/routers/feedback.py"
+      ],
+      "utils.filtering": [
+        "server/legacy-api/routers/events.py",
+        "server/legacy-api/services/event_service.py"
+      ],
+      "models.requests": [
+        "server/legacy-api/services/user_service.py",
+        "server/legacy-api/routers/users.py",
+        "server/legacy-api/services/feedback_service.py",
+        "server/legacy-api/routers/feedback.py"
+      ],
+      "services.feedback_service": [
+        "server/legacy-api/routers/feedback.py"
+      ],
+      "services.user_service": [
+        "server/legacy-api/routers/users.py"
+      ],
+      "user_service": [
+        "server/legacy-api/services/__init__.py"
+      ],
+      "feedback_service": [
+        "server/legacy-api/services/__init__.py"
+      ],
+      "analytics_service": [
+        "server/legacy-api/services/__init__.py"
+      ],
+      "event_service": [
+        "server/legacy-api/services/__init__.py"
+      ],
+      "main": [
+        "server/legacy-api/tests/test_main.py",
+        "tests/conftest.py"
+      ],
+      "fastapi.testclient": [
+        "tests/integration/test_api_endpoints.py",
+        "server/legacy-api/tests/test_main.py",
+        "tests/conftest.py"
+      ],
+      "filtering": [
+        "server/legacy-api/utils/__init__.py"
+      ],
+      "pagination": [
+        "server/legacy-api/utils/__init__.py"
+      ],
+      "validation": [
+        "server/legacy-api/utils/__init__.py"
+      ],
+      "tempfile": [
+        "tests/conftest.py"
+      ],
+      "playwright.async_api": [
+        "tests/conftest.py"
+      ],
+      "utils.data_generators": [
+        "tests/e2e-legacy/publish_to_main_topic.py"
+      ],
+      "utils.environment_helpers": [
+        "tests/e2e-legacy/config/test_config.py",
+        "tests/e2e-legacy/run_tests.py"
+      ],
+      "faker": [
+        "tests/e2e-legacy/utils/data_generators.py"
+      ],
+      "random": [
+        "tests/e2e-legacy/utils/data_generators.py"
+      ],
+      "data_models.core.config": [
+        "tests/e2e-legacy/utils/publish_test_event.py"
+      ],
+      "google.cloud.firestore_v1.base_query": [
+        "tests/integration/test_database_operations.py"
+      ],
+      "base64": [
+        "tests/integration/test_external_services.py"
+      ],
+      "data_models.data_ingestion.enhanced_error_handling": [
+        "tests/unit/test_data_pipelines.py"
+      ],
+      "data_models.data_ingestion.optimized_pipeline": [
+        "tests/unit/test_data_pipelines.py"
+      ],
+      "next": [
+        "src/app/layout.tsx",
+        "next.config.ts"
+      ],
+      "../src/services/firebase/config": [
+        "__tests__/firebase-config.test.ts"
+      ],
+      "@/utils/constants": [
+        "__tests__/setup/msw.ts",
+        "__tests__/examples/msw-example.test.ts",
+        "src/services/api/client.ts",
+        "__tests__/integration/api-routing.test.ts"
+      ],
+      "msw": [
+        "__tests__/setup/msw.ts",
+        "__tests__/examples/msw-example.test.ts"
+      ],
+      "msw/node": [
+        "__tests__/setup/msw.ts",
+        "__tests__/examples/msw-example.test.ts"
+      ],
+      "next/server": [
+        "src/app/api/v1/auth/route.ts",
+        "src/app/api/v1/analytics/route.ts",
+        "src/middleware/auth.ts",
+        "src/app/api/v1/events/route.ts",
+        "src/middleware/validation.ts"
+      ],
+      "@/lib/api-utils": [
+        "src/app/api/v1/analytics/route.ts",
+        "src/middleware/auth.ts",
+        "src/app/api/v1/events/route.ts"
+      ],
+      "@/middleware/auth": [
+        "src/app/api/v1/analytics/route.ts",
+        "src/app/api/v1/events/route.ts"
+      ],
+      "@/lib/validation": [
+        "src/app/api/v1/auth/route.ts",
+        "src/middleware/validation.ts",
+        "src/app/api/v1/events/route.ts"
+      ],
+      "react": [
+        "src/app/error.tsx",
+        "src/components/ui/accordion.tsx",
+        "src/components/ui/navigation-menu.tsx",
+        "src/components/ui/toggle.tsx",
+        "src/components/ui/scroll-area.tsx",
+        "src/components/ui/alert.tsx",
+        "src/components/ui/progress.tsx",
+        "src/components/ui/sidebar.tsx",
+        "src/components/ui/sheet.tsx",
+        "src/components/ui/textarea.tsx",
+        "src/components/ui/toggle-group.tsx",
+        "src/components/ui/dropdown-menu.tsx",
+        "src/hooks/use-toast.ts",
+        "src/components/ui/slider.tsx",
+        "src/components/ui/label.tsx",
+        "src/components/ui/toast.tsx",
+        "src/components/ui/command.tsx",
+        "src/components/ui/badge.tsx",
+        "src/components/ui/card.tsx",
+        "src/components/ui/popover.tsx",
+        "src/components/ui/input.tsx",
+        "src/components/ui/separator.tsx",
+        "src/components/ui/switch.tsx",
+        "src/components/ui/breadcrumb.tsx",
+        "src/components/ui/menubar.tsx",
+        "src/components/ui/select.tsx",
+        "src/components/ui/dialog.tsx",
+        "src/components/ui/form.tsx",
+        "src/components/ui/table.tsx",
+        "src/components/ui/carousel.tsx",
+        "src/components/ui/tooltip.tsx",
+        "src/hooks/use-mobile.tsx",
+        "src/components/ui/button.tsx",
+        "src/components/ui/tabs.tsx",
+        "src/components/ui/pagination.tsx",
+        "src/components/ui/radio-group.tsx",
+        "src/components/ui/calendar.tsx",
+        "src/components/ui/checkbox.tsx",
+        "src/components/ui/hover-card.tsx",
+        "src/components/ui/context-menu.tsx",
+        "src/components/ui/avatar.tsx",
+        "src/components/ui/drawer.tsx"
+      ],
+      "@/lib/firebase-admin": [
+        "src/middleware/auth.ts"
+      ],
+      "zod": [
+        "src/middleware/validation.ts"
+      ],
+      "@/lib/config": [
+        "src/utils/constants.ts",
+        "src/services/api/client.ts"
+      ],
+      "axios": [
+        "src/services/api/client.ts"
+      ],
+      "@/lib/error-handler": [
+        "src/app/error.tsx",
+        "src/app/global-error.tsx",
+        "src/services/api/client.ts"
+      ],
+      "./config": [
+        "src/services/firebase/auth.ts"
+      ],
+      "@/lib/api-gateway": [
+        "src/services/firebase/auth.ts"
+      ],
+      "firebase/app": [
+        "src/services/firebase/config.ts"
+      ],
+      "firebase/firestore": [
+        "src/services/firebase/config.ts"
+      ],
+      "firebase/storage": [
+        "src/services/firebase/config.ts"
+      ],
+      "firebase/auth": [
+        "src/services/firebase/config.ts"
+      ],
+      "zustand/middleware": [
+        "src/store/app-store.ts"
+      ],
+      "zustand": [
+        "src/store/app-store.ts"
+      ],
+      "zustand/middleware/immer": [
+        "src/store/app-store.ts"
+      ],
+      "next/link": [
+        "src/app/error.tsx",
+        "src/app/not-found.tsx"
+      ],
+      "./globals.css": [
+        "src/app/layout.tsx"
+      ],
+      "@radix-ui/react-accordion": [
+        "src/components/ui/accordion.tsx"
+      ],
+      "@/lib/utils": [
+        "src/components/ui/accordion.tsx",
+        "src/components/ui/navigation-menu.tsx",
+        "src/components/ui/toggle.tsx",
+        "src/components/ui/scroll-area.tsx",
+        "src/components/ui/alert.tsx",
+        "src/components/ui/progress.tsx",
+        "src/components/ui/sidebar.tsx",
+        "src/components/ui/sheet.tsx",
+        "src/components/ui/textarea.tsx",
+        "src/components/ui/toggle-group.tsx",
+        "src/components/ui/dropdown-menu.tsx",
+        "src/components/ui/slider.tsx",
+        "src/components/ui/label.tsx",
+        "src/components/ui/toast.tsx",
+        "src/components/ui/skeleton.tsx",
+        "src/components/ui/command.tsx",
+        "src/components/ui/badge.tsx",
+        "src/components/ui/card.tsx",
+        "src/components/ui/popover.tsx",
+        "src/components/ui/input.tsx",
+        "src/components/ui/separator.tsx",
+        "src/components/ui/switch.tsx",
+        "src/components/ui/breadcrumb.tsx",
+        "src/components/ui/menubar.tsx",
+        "src/components/ui/select.tsx",
+        "src/components/ui/dialog.tsx",
+        "src/components/ui/form.tsx",
+        "src/components/ui/table.tsx",
+        "src/components/ui/carousel.tsx",
+        "src/components/ui/tooltip.tsx",
+        "src/components/ui/resizable.tsx",
+        "src/components/ui/button.tsx",
+        "src/components/ui/tabs.tsx",
+        "src/components/ui/pagination.tsx",
+        "src/components/ui/radio-group.tsx",
+        "src/components/ui/calendar.tsx",
+        "src/components/ui/checkbox.tsx",
+        "src/components/ui/hover-card.tsx",
+        "src/components/ui/context-menu.tsx",
+        "src/components/ui/avatar.tsx",
+        "src/components/ui/drawer.tsx"
+      ],
+      "lucide-react": [
+        "src/components/ui/accordion.tsx",
+        "src/components/ui/breadcrumb.tsx",
+        "src/components/ui/dropdown-menu.tsx",
+        "src/components/ui/navigation-menu.tsx",
+        "src/components/ui/menubar.tsx",
+        "src/components/ui/select.tsx",
+        "src/components/ui/dialog.tsx",
+        "src/components/ui/pagination.tsx",
+        "src/components/ui/carousel.tsx",
+        "src/components/ui/radio-group.tsx",
+        "src/components/ui/toast.tsx",
+        "src/components/ui/checkbox.tsx",
+        "src/components/ui/command.tsx",
+        "src/components/ui/sidebar.tsx",
+        "src/components/ui/resizable.tsx",
+        "src/components/ui/context-menu.tsx",
+        "src/components/ui/sheet.tsx"
+      ],
+      "class-variance-authority": [
+        "src/components/ui/toggle-group.tsx",
+        "src/components/ui/navigation-menu.tsx",
+        "src/components/ui/toggle.tsx",
+        "src/components/ui/label.tsx",
+        "src/components/ui/alert.tsx",
+        "src/components/ui/toast.tsx",
+        "src/components/ui/badge.tsx",
+        "src/components/ui/sheet.tsx",
+        "src/components/ui/sidebar.tsx",
+        "src/components/ui/button.tsx"
+      ],
+      "@radix-ui/react-aspect-ratio": [
+        "src/components/ui/aspect-ratio.tsx"
+      ],
+      "@radix-ui/react-avatar": [
+        "src/components/ui/avatar.tsx"
+      ],
+      "@radix-ui/react-slot": [
+        "src/components/ui/breadcrumb.tsx",
+        "src/components/ui/form.tsx",
+        "src/components/ui/button.tsx",
+        "src/components/ui/sidebar.tsx"
+      ],
+      "@/components/ui/button": [
+        "src/components/ui/calendar.tsx",
+        "src/components/ui/pagination.tsx",
+        "src/components/ui/carousel.tsx",
+        "src/components/ui/sidebar.tsx"
+      ],
+      "react-day-picker": [
+        "src/components/ui/calendar.tsx"
+      ],
+      "@radix-ui/react-checkbox": [
+        "src/components/ui/checkbox.tsx"
+      ],
+      "@radix-ui/react-collapsible": [
+        "src/components/ui/collapsible.tsx"
+      ],
+      "@radix-ui/react-dialog": [
+        "src/components/ui/dialog.tsx",
+        "src/components/ui/command.tsx",
+        "src/components/ui/sheet.tsx"
+      ],
+      "@/components/ui/dialog": [
+        "src/components/ui/command.tsx"
+      ],
+      "cmdk": [
+        "src/components/ui/command.tsx"
+      ],
+      "@radix-ui/react-context-menu": [
+        "src/components/ui/context-menu.tsx"
+      ],
+      "vaul": [
+        "src/components/ui/drawer.tsx"
+      ],
+      "@radix-ui/react-dropdown-menu": [
+        "src/components/ui/dropdown-menu.tsx"
+      ],
+      "@radix-ui/react-label": [
+        "src/components/ui/form.tsx",
+        "src/components/ui/label.tsx"
+      ],
+      "@/components/ui/label": [
+        "src/components/ui/form.tsx"
+      ],
+      "@radix-ui/react-hover-card": [
+        "src/components/ui/hover-card.tsx"
+      ],
+      "@radix-ui/react-menubar": [
+        "src/components/ui/menubar.tsx"
+      ],
+      "@radix-ui/react-navigation-menu": [
+        "src/components/ui/navigation-menu.tsx"
+      ],
+      "@radix-ui/react-popover": [
+        "src/components/ui/popover.tsx"
+      ],
+      "@radix-ui/react-progress": [
+        "src/components/ui/progress.tsx"
+      ],
+      "@radix-ui/react-radio-group": [
+        "src/components/ui/radio-group.tsx"
+      ],
+      "react-resizable-panels": [
+        "src/components/ui/resizable.tsx"
+      ],
+      "@radix-ui/react-scroll-area": [
+        "src/components/ui/scroll-area.tsx"
+      ],
+      "@radix-ui/react-select": [
+        "src/components/ui/select.tsx"
+      ],
+      "@radix-ui/react-separator": [
+        "src/components/ui/separator.tsx"
+      ],
+      "@/components/ui/input": [
+        "src/components/ui/sidebar.tsx"
+      ],
+      "@/hooks/use-mobile": [
+        "src/components/ui/sidebar.tsx"
+      ],
+      "@/components/ui/separator": [
+        "src/components/ui/sidebar.tsx"
+      ],
+      "@/components/ui/skeleton": [
+        "src/components/ui/sidebar.tsx"
+      ],
+      "@radix-ui/react-slider": [
+        "src/components/ui/slider.tsx"
+      ],
+      "next-themes": [
+        "src/components/ui/sonner.tsx"
+      ],
+      "sonner": [
+        "src/components/ui/sonner.tsx"
+      ],
+      "@radix-ui/react-switch": [
+        "src/components/ui/switch.tsx"
+      ],
+      "@radix-ui/react-tabs": [
+        "src/components/ui/tabs.tsx"
+      ],
+      "@radix-ui/react-toast": [
+        "src/components/ui/toast.tsx"
+      ],
+      "@/hooks/use-toast": [
+        "src/components/ui/toaster.tsx"
+      ],
+      "@radix-ui/react-toggle-group": [
+        "src/components/ui/toggle-group.tsx"
+      ],
+      "@/components/ui/toggle": [
+        "src/components/ui/toggle-group.tsx"
+      ],
+      "@radix-ui/react-toggle": [
+        "src/components/ui/toggle.tsx"
+      ],
+      "@radix-ui/react-tooltip": [
+        "src/components/ui/tooltip.tsx"
+      ]
+    }
+  }
+}

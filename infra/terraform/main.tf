@@ -2,18 +2,25 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = "4.85.0"
+      version = "~> 5.0"
     }
     google-beta = {
       source  = "hashicorp/google-beta"
-      version = "4.85.0"
+      version = "~> 5.0"
     }
     random = {
       source  = "hashicorp/random"
-      version = "3.1.0"
+      version = "~> 3.1"
     }
   }
   required_version = ">= 1.0.0"
+
+  # Backend configuration for state management
+  # Uncomment after initial bucket creation
+  # backend "gcs" {
+  #   bucket = "citypulse-tf-state"
+  #   prefix = "terraform/state"
+  # }
 }
 
 resource "random_pet" "suffix" {
@@ -34,10 +41,11 @@ resource "google_storage_bucket" "staging" {
 
 # Configure the Google Cloud providers
 provider "google" {
-  credentials = file("../keys/citypulse-21-90f84cb134a2.json")
-  project     = var.project_id
-  region      = var.region
-  zone        = var.zone
+  # Use Application Default Credentials (ADC) for authentication
+  # Run: gcloud auth application-default login
+  project = var.project_id
+  region  = var.region
+  zone    = var.zone
 }
 
 output "gcs_temp_bucket" {
@@ -49,8 +57,9 @@ output "gcs_staging_bucket" {
 }
 
 provider "google-beta" {
-  credentials = file("../keys/citypulse-21-90f84cb134a2.json")
-  project     = var.project_id
-  region      = var.region
-  zone        = var.zone
+  # Use Application Default Credentials (ADC) for authentication
+  # Run: gcloud auth application-default login
+  project = var.project_id
+  region  = var.region
+  zone    = var.zone
 }

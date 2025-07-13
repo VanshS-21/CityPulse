@@ -1,0 +1,234 @@
+{
+  "development": {
+    "name": "Development Environment",
+    "frontend": {
+      "baseUrl": "http://localhost:3000",
+      "apiPrefix": "/api/v1"
+    },
+    "backend": {
+      "baseUrl": "http://localhost:8000",
+      "apiPrefix": "/v1"
+    },
+    "database": {
+      "firestore": {
+        "projectId": "citypulse-dev",
+        "emulator": true,
+        "emulatorHost": "localhost:8080"
+      },
+      "bigquery": {
+        "projectId": "citypulse-dev",
+        "datasetId": "citypulse_test_data",
+        "location": "US"
+      }
+    },
+    "gcp": {
+      "projectId": "citypulse-dev",
+      "region": "us-central1",
+      "pubsub": {
+        "topicPrefix": "test-",
+        "subscriptionPrefix": "test-sub-"
+      },
+      "dataflow": {
+        "jobPrefix": "test-job-",
+        "tempLocation": "gs://citypulse-dev-temp/dataflow-temp",
+        "stagingLocation": "gs://citypulse-dev-temp/dataflow-staging"
+      }
+    },
+    "auth": {
+      "firebase": {
+        "apiKey": "test-api-key",
+        "authDomain": "citypulse-dev.firebaseapp.com",
+        "projectId": "citypulse-dev"
+      },
+      "testUsers": {
+        "citizen": {
+          "email": "citizen@test.com",
+          "password": "testpass123",
+          "uid": "test-citizen-uid",
+          "roles": ["citizen"]
+        },
+        "authority": {
+          "email": "authority@test.com",
+          "password": "testpass123",
+          "uid": "test-authority-uid",
+          "roles": ["citizen", "authority"]
+        },
+        "admin": {
+          "email": "admin@test.com",
+          "password": "testpass123",
+          "uid": "test-admin-uid",
+          "roles": ["citizen", "authority", "admin"]
+        }
+      }
+    },
+    "timeouts": {
+      "api": 10000,
+      "dataflow": 300000,
+      "bigquery": 60000,
+      "ui": 30000
+    },
+    "retries": {
+      "api": 3,
+      "dataflow": 2,
+      "bigquery": 3
+    }
+  },
+  "staging": {
+    "name": "Staging Environment",
+    "frontend": {
+      "baseUrl": "https://staging.citypulse.com",
+      "apiPrefix": "/api/v1"
+    },
+    "backend": {
+      "baseUrl": "https://api-staging.citypulse.com",
+      "apiPrefix": "/v1"
+    },
+    "database": {
+      "firestore": {
+        "projectId": "citypulse-staging",
+        "emulator": false
+      },
+      "bigquery": {
+        "projectId": "citypulse-staging",
+        "datasetId": "citypulse_staging_data",
+        "location": "US"
+      }
+    },
+    "gcp": {
+      "projectId": "citypulse-staging",
+      "region": "us-central1",
+      "pubsub": {
+        "topicPrefix": "staging-",
+        "subscriptionPrefix": "staging-sub-"
+      },
+      "dataflow": {
+        "jobPrefix": "staging-job-",
+        "tempLocation": "gs://citypulse-staging-temp/dataflow-temp",
+        "stagingLocation": "gs://citypulse-staging-temp/dataflow-staging"
+      }
+    },
+    "auth": {
+      "firebase": {
+        "apiKey": "staging-api-key",
+        "authDomain": "citypulse-staging.firebaseapp.com",
+        "projectId": "citypulse-staging"
+      },
+      "testUsers": {
+        "citizen": {
+          "email": "staging-citizen@test.com",
+          "password": "stagingpass123",
+          "uid": "staging-citizen-uid",
+          "roles": ["citizen"]
+        },
+        "authority": {
+          "email": "staging-authority@test.com",
+          "password": "stagingpass123",
+          "uid": "staging-authority-uid",
+          "roles": ["citizen", "authority"]
+        },
+        "admin": {
+          "email": "staging-admin@test.com",
+          "password": "stagingpass123",
+          "uid": "staging-admin-uid",
+          "roles": ["citizen", "authority", "admin"]
+        }
+      }
+    },
+    "timeouts": {
+      "api": 15000,
+      "dataflow": 600000,
+      "bigquery": 120000,
+      "ui": 45000
+    },
+    "retries": {
+      "api": 3,
+      "dataflow": 2,
+      "bigquery": 3
+    }
+  },
+  "production": {
+    "name": "Production Environment",
+    "frontend": {
+      "baseUrl": "https://citypulse.com",
+      "apiPrefix": "/api/v1"
+    },
+    "backend": {
+      "baseUrl": "https://api.citypulse.com",
+      "apiPrefix": "/v1"
+    },
+    "database": {
+      "firestore": {
+        "projectId": "citypulse-prod",
+        "emulator": false
+      },
+      "bigquery": {
+        "projectId": "citypulse-prod",
+        "datasetId": "citypulse_production_data",
+        "location": "US"
+      }
+    },
+    "gcp": {
+      "projectId": "citypulse-prod",
+      "region": "us-central1",
+      "pubsub": {
+        "topicPrefix": "prod-",
+        "subscriptionPrefix": "prod-sub-"
+      },
+      "dataflow": {
+        "jobPrefix": "prod-job-",
+        "tempLocation": "gs://citypulse-prod-temp/dataflow-temp",
+        "stagingLocation": "gs://citypulse-prod-temp/dataflow-staging"
+      }
+    },
+    "auth": {
+      "firebase": {
+        "apiKey": "prod-api-key",
+        "authDomain": "citypulse.firebaseapp.com",
+        "projectId": "citypulse-prod"
+      },
+      "testUsers": {
+        "readonly": {
+          "email": "readonly@citypulse.com",
+          "password": "readonly123",
+          "uid": "prod-readonly-uid",
+          "roles": ["citizen"]
+        }
+      }
+    },
+    "timeouts": {
+      "api": 20000,
+      "dataflow": 900000,
+      "bigquery": 180000,
+      "ui": 60000
+    },
+    "retries": {
+      "api": 5,
+      "dataflow": 3,
+      "bigquery": 5
+    }
+  },
+  "test": {
+    "name": "Test Environment",
+    "extends": "development",
+    "overrides": {
+      "database": {
+        "firestore": {
+          "emulator": true,
+          "emulatorHost": "localhost:8080"
+        },
+        "bigquery": {
+          "datasetId": "citypulse_e2e_test_data"
+        }
+      },
+      "gcp": {
+        "pubsub": {
+          "topicPrefix": "e2e-test-",
+          "subscriptionPrefix": "e2e-test-sub-"
+        },
+        "dataflow": {
+          "jobPrefix": "e2e-test-job-"
+        }
+      }
+    }
+  }
+}
