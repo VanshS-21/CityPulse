@@ -1,0 +1,40 @@
+{
+  "timestamp": "Sun Jul 13 11:32:22 UTC 2025",
+  "fixes_applied": [
+    "Added integration documentation to src/styles/tokens.ts",
+    "Added integration documentation to src/utils/constants.ts",
+    "Added integration documentation to src/lib/config.ts",
+    "Added integration documentation to src/components/ui/aspect-ratio.tsx",
+    "Added integration documentation to src/components/ui/collapsible.tsx",
+    "Added integration documentation to src/components/ui/skeleton.tsx",
+    "Added integration documentation to src/components/ui/toaster.tsx",
+    "Added integration documentation to src/hooks/use-mobile.tsx",
+    "Created e2e-tests/utils/__init__.py",
+    "Created e2e-tests/legacy-cleanup/__init__.py",
+    "Created tests/__init__.py",
+    "Created server/data_models/services/__init__.py",
+    "Created e2e-tests/features/data-pipeline/__init__.py",
+    "Created server/__init__.py",
+    "Created tests/unit/__init__.py",
+    "Created scripts/__init__.py",
+    "Created tests/integration/__init__.py",
+    "Created server/legacy-api/__init__.py",
+    "Created server/data_models/utils/__init__.py",
+    "Created src/hooks/index.ts",
+    "Created src/utils/index.ts",
+    "Created src/lib/index.ts"
+  ],
+  "recommendations": [
+    "Review files marked with integration documentation",
+    "Consider consolidating related functionality",
+    "Add more cross-module imports where appropriate",
+    "Create shared utility modules for common functionality",
+    "Implement proper dependency injection patterns"
+  ],
+  "next_steps": [
+    "Run integration analysis again to measure improvements",
+    "Review and test all modified files",
+    "Update documentation to reflect new structure",
+    "Consider architectural refactoring for highly complex files"
+  ]
+}

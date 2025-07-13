@@ -12,7 +12,11 @@ resource "google_project_service" "services" {
     "firestore.googleapis.com",
     "storage.googleapis.com",
     "aiplatform.googleapis.com",
-    "iam.googleapis.com"
+    "iam.googleapis.com",
+    "cloudkms.googleapis.com",
+    "compute.googleapis.com",
+    "monitoring.googleapis.com",
+    "logging.googleapis.com"
   ])
 
   service = each.key
