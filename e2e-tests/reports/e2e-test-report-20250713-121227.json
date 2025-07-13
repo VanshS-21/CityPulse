@@ -1,0 +1,792 @@
+{
+  "environment": "test",
+  "start_time": "2025-07-13T12:12:24.239422",
+  "end_time": "2025-07-13T12:12:27.898678",
+  "duration": 3.659254550933838,
+  "suites": {
+    "api_tests": {
+      "name": "API Integration Tests",
+      "status": "failed",
+      "tests": [
+        {
+          "nodeid": "features/events-management/test_events_api.py::TestEventsAPI::test_create_event_success",
+          "lineno": 60,
+          "outcome": "passed",
+          "keywords": [
+            "test_create_event_success",
+            "asyncio",
+            "pytestmark",
+            "TestEventsAPI",
+            "test_events_api.py",
+            "e2e",
+            "api",
+            "events",
+            "events-management",
+            "features",
+            "e2e-tests",
+            ""
+          ],
+          "setup": {
+            "duration": 0.04473056999995606,
+            "outcome": "passed"
+          },
+          "call": {
+            "duration": 0.00032246000000668573,
+            "outcome": "passed"
+          },
+          "teardown": {
+            "duration": 0.00024073700024018763,
+            "outcome": "passed"
+          }
+        },
+        {
+          "nodeid": "features/events-management/test_events_api.py::TestEventsAPI::test_create_event_validation_error",
+          "lineno": 69,
+          "outcome": "passed",
+          "keywords": [
+            "test_create_event_validation_error",
+            "asyncio",
+            "pytestmark",
+            "TestEventsAPI",
+            "test_events_api.py",
+            "e2e",
+            "api",
+            "events",
+            "events-management",
+            "features",
+            "e2e-tests",
+            ""
+          ],
+          "setup": {
+            "duration": 0.000290563999897131,
+            "outcome": "passed"
+          },
+          "call": {
+            "duration": 0.00018382100006419932,
+            "outcome": "passed"
+          },
+          "teardown": {
+            "duration": 0.00022247500010053045,
+            "outcome": "passed"
+          }
+        },
+        {
+          "nodeid": "features/events-management/test_events_api.py::TestEventsAPI::test_get_events_pagination",
+          "lineno": 78,
+          "outcome": "passed",
+          "keywords": [
+            "test_get_events_pagination",
+            "asyncio",
+            "pytestmark",
+            "TestEventsAPI",
+            "test_events_api.py",
+            "e2e",
+            "api",
+            "events",
+            "events-management",
+            "features",
+            "e2e-tests",
+            ""
+          ],
+          "setup": {
+            "duration": 0.0002478659998814692,
+            "outcome": "passed"
+          },
+          "call": {
+            "duration": 0.00022866300014356966,
+            "outcome": "passed"
+          },
+          "teardown": {
+            "duration": 0.00018213699968328,
+            "outcome": "passed"
+          }
+        },
+        {
+          "nodeid": "features/events-management/test_events_api.py::TestEventsAPIIntegration::test_complete_event_lifecycle",
+          "lineno": 91,
+          "outcome": "failed",
+          "keywords": [
+            "test_complete_event_lifecycle",
+            "asyncio",
+            "pytestmark",
+            "TestEventsAPIIntegration",
+            "test_events_api.py",
+            "e2e",
+            "api",
+            "events",
+            "events-management",
+            "features",
+            "e2e-tests",
+            ""
+          ],
+          "setup": {
+            "duration": 0.0002575680000518332,
+            "outcome": "passed"
+          },
+          "call": {
+            "duration": 0.00023538699997516233,
+            "outcome": "failed",
+            "crash": {
+              "path": "/mnt/persist/workspace/e2e-tests/features/events-management/test_events_api.py",
+              "lineno": 114,
+              "message": "Failed: Complete event lifecycle test failed: 'APITestBase' object has no attribute 'create_test_event'"
+            },
+            "traceback": [
+              {
+                "path": "features/events-management/test_events_api.py",
+                "lineno": 114,
+                "message": "Failed"
+              }
+            ],
+            "longrepr": "self = <test_events_api.TestEventsAPIIntegration object at 0x7fbda261a490>\n\n    @pytest.mark.asyncio\n    async def test_complete_event_lifecycle(self):\n        \"\"\"Test complete event lifecycle from creation to cleanup.\"\"\"\n        test = APITestBase()\n        await test.setup_client()\n    \n        try:\n            # Authenticate as citizen\n            await test.authenticate_user(\"citizen\")\n    \n            # Create test event\n            event_data = test.test_data[\"events\"][\"validEvent\"]\n>           created_event = await test.create_test_event(event_data)\n                                  ^^^^^^^^^^^^^^^^^^^^^^\nE           AttributeError: 'APITestBase' object has no attribute 'create_test_event'\n\nfeatures/events-management/test_events_api.py:104: AttributeError\n\nDuring handling of the above exception, another exception occurred:\n\nself = <test_events_api.TestEventsAPIIntegration object at 0x7fbda261a490>\n\n    @pytest.mark.asyncio\n    async def test_complete_event_lifecycle(self):\n        \"\"\"Test complete event lifecycle from creation to cleanup.\"\"\"\n        test = APITestBase()\n        await test.setup_client()\n    \n        try:\n            # Authenticate as citizen\n            await test.authenticate_user(\"citizen\")\n    \n            # Create test event\n            event_data = test.test_data[\"events\"][\"validEvent\"]\n            created_event = await test.create_test_event(event_data)\n    \n            assert \"id\" in created_event\n            assert created_event[\"title\"] == event_data[\"title\"]\n            assert created_event[\"category\"] == event_data[\"category\"]\n    \n            # Cleanup\n            await test.cleanup_test_event(created_event[\"id\"])\n    \n        except Exception as e:\n>           pytest.fail(f\"Complete event lifecycle test failed: {str(e)}\")\nE           Failed: Complete event lifecycle test failed: 'APITestBase' object has no attribute 'create_test_event'\n\nfeatures/events-management/test_events_api.py:114: Failed"
+          },
+          "teardown": {
+            "duration": 0.0003182139998898492,
+            "outcome": "passed"
+          }
+        },
+        {
+          "nodeid": "features/events-management/test_events_api.py::TestEventsAPIIntegration::test_event_authentication_flows",
+          "lineno": 117,
+          "outcome": "passed",
+          "keywords": [
+            "test_event_authentication_flows",
+            "asyncio",
+            "pytestmark",
+            "TestEventsAPIIntegration",
+            "test_events_api.py",
+            "e2e",
+            "api",
+            "events",
+            "events-management",
+            "features",
+            "e2e-tests",
+            ""
+          ],
+          "setup": {
+            "duration": 0.0002497760001460847,
+            "outcome": "passed"
+          },
+          "call": {
+            "duration": 0.000224408999656589,
+            "outcome": "passed"
+          },
+          "teardown": {
+            "duration": 0.0001974430001610017,
+            "outcome": "passed"
+          }
+        },
+        {
+          "nodeid": "features/events-management/test_events_api.py::TestEventsAPIPerformance::test_api_response_times",
+          "lineno": 152,
+          "outcome": "failed",
+          "keywords": [
+            "test_api_response_times",
+            "asyncio",
+            "pytestmark",
+            "TestEventsAPIPerformance",
+            "test_events_api.py",
+            "e2e",
+            "api",
+            "events",
+            "events-management",
+            "features",
+            "e2e-tests",
+            ""
+          ],
+          "setup": {
+            "duration": 0.00022416100000555161,
+            "outcome": "passed"
+          },
+          "call": {
+            "duration": 0.00023962800014487584,
+            "outcome": "failed",
+            "crash": {
+              "path": "/mnt/persist/workspace/e2e-tests/features/events-management/test_events_api.py",
+              "lineno": 174,
+              "message": "Failed: Performance test failed: 'APITestBase' object has no attribute 'generate_performance_report'"
+            },
+            "traceback": [
+              {
+                "path": "features/events-management/test_events_api.py",
+                "lineno": 174,
+                "message": "Failed"
+              }
+            ],
+            "longrepr": "self = <test_events_api.TestEventsAPIPerformance object at 0x7fbda26251d0>\n\n    @pytest.mark.asyncio\n    async def test_api_response_times(self):\n        \"\"\"Test API response times are within acceptable limits.\"\"\"\n        test = APITestBase()\n        await test.setup_client()\n    \n        try:\n            await test.authenticate_user(\"citizen\")\n    \n            # Test GET /events response time\n            response = await test.make_request(\"GET\", \"/events\")\n    \n            # Check performance metrics\n>           metrics = test.generate_performance_report()\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE           AttributeError: 'APITestBase' object has no attribute 'generate_performance_report'\n\nfeatures/events-management/test_events_api.py:166: AttributeError\n\nDuring handling of the above exception, another exception occurred:\n\nself = <test_events_api.TestEventsAPIPerformance object at 0x7fbda26251d0>\n\n    @pytest.mark.asyncio\n    async def test_api_response_times(self):\n        \"\"\"Test API response times are within acceptable limits.\"\"\"\n        test = APITestBase()\n        await test.setup_client()\n    \n        try:\n            await test.authenticate_user(\"citizen\")\n    \n            # Test GET /events response time\n            response = await test.make_request(\"GET\", \"/events\")\n    \n            # Check performance metrics\n            metrics = test.generate_performance_report()\n    \n            if metrics.get(\"average_response_time\", 0) > 2.0:  # 2 second threshold\n                pytest.fail(f\"API response time too slow: {metrics['average_response_time']}s\")\n    \n            assert response.status_code == 200\n    \n        except Exception as e:\n>           pytest.fail(f\"Performance test failed: {str(e)}\")\nE           Failed: Performance test failed: 'APITestBase' object has no attribute 'generate_performance_report'\n\nfeatures/events-management/test_events_api.py:174: Failed"
+          },
+          "teardown": {
+            "duration": 0.00022493599999506841,
+            "outcome": "passed"
+          }
+        },
+        {
+          "nodeid": "features/events-management/test_events_api.py::TestEventsAPIErrorHandling::test_invalid_event_id",
+          "lineno": 181,
+          "outcome": "failed",
+          "keywords": [
+            "test_invalid_event_id",
+            "asyncio",
+            "pytestmark",
+            "TestEventsAPIErrorHandling",
+            "test_events_api.py",
+            "e2e",
+            "api",
+            "events",
+            "events-management",
+            "features",
+            "e2e-tests",
+            ""
+          ],
+          "setup": {
+            "duration": 0.00023830600002838764,
+            "outcome": "passed"
+          },
+          "call": {
+            "duration": 0.0001860440002019459,
+            "outcome": "failed",
+            "crash": {
+              "path": "/mnt/persist/workspace/e2e-tests/features/events-management/test_events_api.py",
+              "lineno": 199,
+              "message": "Failed: Error handling test failed: 'APITestBase' object has no attribute 'validate_error_response'"
+            },
+            "traceback": [
+              {
+                "path": "features/events-management/test_events_api.py",
+                "lineno": 199,
+                "message": "Failed"
+              }
+            ],
+            "longrepr": "self = <test_events_api.TestEventsAPIErrorHandling object at 0x7fbda2625210>\n\n    @pytest.mark.asyncio\n    async def test_invalid_event_id(self):\n        \"\"\"Test handling of invalid event IDs.\"\"\"\n        test = APITestBase()\n        await test.setup_client()\n    \n        try:\n            await test.authenticate_user(\"citizen\")\n    \n            # Test with invalid event ID\n            response = await test.make_request(\"GET\", \"/events/invalid-id\")\n            assert response.status_code == 404\n    \n            # Validate error response structure\n>           assert test.validate_error_response(response, 404, [\"error\", \"message\"])\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE           AttributeError: 'APITestBase' object has no attribute 'validate_error_response'\n\nfeatures/events-management/test_events_api.py:196: AttributeError\n\nDuring handling of the above exception, another exception occurred:\n\nself = <test_events_api.TestEventsAPIErrorHandling object at 0x7fbda2625210>\n\n    @pytest.mark.asyncio\n    async def test_invalid_event_id(self):\n        \"\"\"Test handling of invalid event IDs.\"\"\"\n        test = APITestBase()\n        await test.setup_client()\n    \n        try:\n            await test.authenticate_user(\"citizen\")\n    \n            # Test with invalid event ID\n            response = await test.make_request(\"GET\", \"/events/invalid-id\")\n            assert response.status_code == 404\n    \n            # Validate error response structure\n            assert test.validate_error_response(response, 404, [\"error\", \"message\"])\n    \n        except Exception as e:\n>           pytest.fail(f\"Error handling test failed: {str(e)}\")\nE           Failed: Error handling test failed: 'APITestBase' object has no attribute 'validate_error_response'\n\nfeatures/events-management/test_events_api.py:199: Failed"
+          },
+          "teardown": {
+            "duration": 0.0002273810000588128,
+            "outcome": "passed"
+          }
+        },
+        {
+          "nodeid": "features/events-management/test_events_api.py::TestEventsAPIErrorHandling::test_malformed_request_data",
+          "lineno": 202,
+          "outcome": "failed",
+          "keywords": [
+            "test_malformed_request_data",
+            "asyncio",
+            "pytestmark",
+            "TestEventsAPIErrorHandling",
+            "test_events_api.py",
+            "e2e",
+            "api",
+            "events",
+            "events-management",
+            "features",
+            "e2e-tests",
+            ""
+          ],
+          "setup": {
+            "duration": 0.00023366699997495743,
+            "outcome": "passed"
+          },
+          "call": {
+            "duration": 0.00034972299999935785,
+            "outcome": "failed",
+            "crash": {
+              "path": "/mnt/persist/workspace/e2e-tests/features/events-management/test_events_api.py",
+              "lineno": 220,
+              "message": "Failed: Malformed data test failed: assert 200 == 400\n +  where 200 = <test_events_api.APITestBase.make_request.<locals>.MockResponse object at 0x7fbda2504910>.status_code"
+            },
+            "traceback": [
+              {
+                "path": "features/events-management/test_events_api.py",
+                "lineno": 220,
+                "message": "Failed"
+              }
+            ],
+            "longrepr": "self = <test_events_api.TestEventsAPIErrorHandling object at 0x7fbda2626250>\n\n    @pytest.mark.asyncio\n    async def test_malformed_request_data(self):\n        \"\"\"Test handling of malformed request data.\"\"\"\n        test = APITestBase()\n        await test.setup_client()\n    \n        try:\n            await test.authenticate_user(\"citizen\")\n    \n            # Test with malformed JSON\n            malformed_data = {\"title\": \"\", \"invalid_field\": \"test\"}\n            response = await test.make_request(\"POST\", \"/events\", data=malformed_data)\n    \n>           assert response.status_code == 400\nE           assert 200 == 400\nE            +  where 200 = <test_events_api.APITestBase.make_request.<locals>.MockResponse object at 0x7fbda2504910>.status_code\n\nfeatures/events-management/test_events_api.py:216: AssertionError\n\nDuring handling of the above exception, another exception occurred:\n\nself = <test_events_api.TestEventsAPIErrorHandling object at 0x7fbda2626250>\n\n    @pytest.mark.asyncio\n    async def test_malformed_request_data(self):\n        \"\"\"Test handling of malformed request data.\"\"\"\n        test = APITestBase()\n        await test.setup_client()\n    \n        try:\n            await test.authenticate_user(\"citizen\")\n    \n            # Test with malformed JSON\n            malformed_data = {\"title\": \"\", \"invalid_field\": \"test\"}\n            response = await test.make_request(\"POST\", \"/events\", data=malformed_data)\n    \n            assert response.status_code == 400\n            assert test.validate_error_response(response, 400)\n    \n        except Exception as e:\n>           pytest.fail(f\"Malformed data test failed: {str(e)}\")\nE           Failed: Malformed data test failed: assert 200 == 400\nE            +  where 200 = <test_events_api.APITestBase.make_request.<locals>.MockResponse object at 0x7fbda2504910>.status_code\n\nfeatures/events-management/test_events_api.py:220: Failed"
+          },
+          "teardown": {
+            "duration": 0.0002481169999555277,
+            "outcome": "passed"
+          }
+        },
+        {
+          "nodeid": "features/events-management/test_events_api.py::TestEventsAPISmoke::test_events_endpoint_accessible",
+          "lineno": 254,
+          "outcome": "passed",
+          "keywords": [
+            "test_events_endpoint_accessible",
+            "asyncio",
+            "smoke",
+            "pytestmark",
+            "TestEventsAPISmoke",
+            "test_events_api.py",
+            "e2e",
+            "api",
+            "events",
+            "events-management",
+            "features",
+            "e2e-tests",
+            ""
+          ],
+          "setup": {
+            "duration": 0.00022115000001576846,
+            "outcome": "passed"
+          },
+          "call": {
+            "duration": 0.00016845600021042628,
+            "outcome": "passed"
+          },
+          "teardown": {
+            "duration": 0.00016277300028377795,
+            "outcome": "passed"
+          }
+        },
+        {
+          "nodeid": "features/events-management/test_events_api.py::TestEventsAPISmoke::test_authentication_works",
+          "lineno": 271,
+          "outcome": "passed",
+          "keywords": [
+            "test_authentication_works",
+            "asyncio",
+            "smoke",
+            "pytestmark",
+            "TestEventsAPISmoke",
+            "test_events_api.py",
+            "e2e",
+            "api",
+            "events",
+            "events-management",
+            "features",
+            "e2e-tests",
+            ""
+          ],
+          "setup": {
+            "duration": 0.00020472500000323635,
+            "outcome": "passed"
+          },
+          "call": {
+            "duration": 0.0001601129997652606,
+            "outcome": "passed"
+          },
+          "teardown": {
+            "duration": 0.00024766099977568956,
+            "outcome": "passed"
+          }
+        }
+      ],
+      "summary": {
+        "passed": 6,
+        "failed": 4,
+        "total": 10,
+        "collected": 20,
+        "deselected": 10
+      },
+      "duration": 0.14510226249694824
+    },
+    "pipeline_tests": {
+      "name": "Data Pipeline Tests",
+      "status": "failed",
+      "tests": [
+        {
+          "nodeid": "features/data-pipeline/test_pipeline_e2e.py::TestDataPipelineBasic::test_pipeline_setup",
+          "lineno": 79,
+          "outcome": "passed",
+          "keywords": [
+            "test_pipeline_setup",
+            "asyncio",
+            "pytestmark",
+            "TestDataPipelineBasic",
+            "test_pipeline_e2e.py",
+            "e2e",
+            "pipeline",
+            "gcp",
+            "data-pipeline",
+            "features",
+            "e2e-tests",
+            ""
+          ],
+          "setup": {
+            "duration": 0.02176032999977906,
+            "outcome": "passed"
+          },
+          "call": {
+            "duration": 0.00026188199990428984,
+            "outcome": "passed"
+          },
+          "teardown": {
+            "duration": 0.00032245900001726113,
+            "outcome": "passed"
+          }
+        },
+        {
+          "nodeid": "features/data-pipeline/test_pipeline_e2e.py::TestDataPipelineBasic::test_test_resource_creation",
+          "lineno": 97,
+          "outcome": "passed",
+          "keywords": [
+            "test_test_resource_creation",
+            "asyncio",
+            "pytestmark",
+            "TestDataPipelineBasic",
+            "test_pipeline_e2e.py",
+            "e2e",
+            "pipeline",
+            "gcp",
+            "data-pipeline",
+            "features",
+            "e2e-tests",
+            ""
+          ],
+          "setup": {
+            "duration": 0.00027293699986330466,
+            "outcome": "passed"
+          },
+          "call": {
+            "duration": 0.0001945750000231783,
+            "outcome": "passed"
+          },
+          "teardown": {
+            "duration": 0.00021872300021641422,
+            "outcome": "passed"
+          }
+        },
+        {
+          "nodeid": "features/data-pipeline/test_pipeline_e2e.py::TestPubSubIntegration::test_message_publishing",
+          "lineno": 124,
+          "outcome": "passed",
+          "keywords": [
+            "test_message_publishing",
+            "asyncio",
+            "pytestmark",
+            "TestPubSubIntegration",
+            "test_pipeline_e2e.py",
+            "e2e",
+            "pipeline",
+            "gcp",
+            "data-pipeline",
+            "features",
+            "e2e-tests",
+            ""
+          ],
+          "setup": {
+            "duration": 0.00024156400013453094,
+            "outcome": "passed"
+          },
+          "call": {
+            "duration": 0.00022842499993203091,
+            "outcome": "passed"
+          },
+          "teardown": {
+            "duration": 0.00017835199969340465,
+            "outcome": "passed"
+          }
+        },
+        {
+          "nodeid": "features/data-pipeline/test_pipeline_e2e.py::TestPubSubIntegration::test_bulk_message_publishing",
+          "lineno": 151,
+          "outcome": "failed",
+          "keywords": [
+            "test_bulk_message_publishing",
+            "asyncio",
+            "pytestmark",
+            "TestPubSubIntegration",
+            "test_pipeline_e2e.py",
+            "e2e",
+            "pipeline",
+            "gcp",
+            "data-pipeline",
+            "features",
+            "e2e-tests",
+            ""
+          ],
+          "setup": {
+            "duration": 0.00029096500020386884,
+            "outcome": "passed"
+          },
+          "call": {
+            "duration": 0.00023399000019708183,
+            "outcome": "failed",
+            "crash": {
+              "path": "/mnt/persist/workspace/e2e-tests/features/data-pipeline/test_pipeline_e2e.py",
+              "lineno": 182,
+              "message": "Failed: Bulk message publishing test failed: 'trafficEvent'"
+            },
+            "traceback": [
+              {
+                "path": "features/data-pipeline/test_pipeline_e2e.py",
+                "lineno": 182,
+                "message": "Failed"
+              }
+            ],
+            "longrepr": "self = <test_pipeline_e2e.TestPubSubIntegration object at 0x7f174b72ad90>\n\n    @pytest.mark.asyncio\n    async def test_bulk_message_publishing(self):\n        \"\"\"Test publishing multiple messages to Pub/Sub.\"\"\"\n        test = DataPipelineE2ETest()\n    \n        try:\n            await test.setup_clients()\n    \n            # Create test topic\n            topic_path = await test.create_test_topic()\n    \n            # Publish multiple test messages\n            test_events = [\n                test.test_data[\"events\"][\"validEvent\"],\n>               test.test_data[\"events\"][\"trafficEvent\"],\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                test.test_data[\"events\"][\"environmentalEvent\"]\n            ]\nE           KeyError: 'trafficEvent'\n\nfeatures/data-pipeline/test_pipeline_e2e.py:166: KeyError\n\nDuring handling of the above exception, another exception occurred:\n\nself = <test_pipeline_e2e.TestPubSubIntegration object at 0x7f174b72ad90>\n\n    @pytest.mark.asyncio\n    async def test_bulk_message_publishing(self):\n        \"\"\"Test publishing multiple messages to Pub/Sub.\"\"\"\n        test = DataPipelineE2ETest()\n    \n        try:\n            await test.setup_clients()\n    \n            # Create test topic\n            topic_path = await test.create_test_topic()\n    \n            # Publish multiple test messages\n            test_events = [\n                test.test_data[\"events\"][\"validEvent\"],\n                test.test_data[\"events\"][\"trafficEvent\"],\n                test.test_data[\"events\"][\"environmentalEvent\"]\n            ]\n    \n            message_ids = []\n            for event in test_events:\n                message_id = await test.publish_test_message(topic_path, event)\n                message_ids.append(message_id)\n    \n            assert len(message_ids) == 3\n            assert len(test.test_messages) == 3\n    \n            # Verify all messages have unique IDs\n            assert len(set(message_ids)) == 3\n    \n        except Exception as e:\n>           pytest.fail(f\"Bulk message publishing test failed: {str(e)}\")\nE           Failed: Bulk message publishing test failed: 'trafficEvent'\n\nfeatures/data-pipeline/test_pipeline_e2e.py:182: Failed"
+          },
+          "teardown": {
+            "duration": 0.0002127120001205185,
+            "outcome": "passed"
+          }
+        },
+        {
+          "nodeid": "features/data-pipeline/test_pipeline_e2e.py::TestBigQueryIntegration::test_bigquery_data_validation",
+          "lineno": 189,
+          "outcome": "failed",
+          "keywords": [
+            "test_bigquery_data_validation",
+            "asyncio",
+            "pytestmark",
+            "TestBigQueryIntegration",
+            "test_pipeline_e2e.py",
+            "e2e",
+            "pipeline",
+            "gcp",
+            "data-pipeline",
+            "features",
+            "e2e-tests",
+            ""
+          ],
+          "setup": {
+            "duration": 0.00034880799967140774,
+            "outcome": "passed"
+          },
+          "call": {
+            "duration": 1.0016323610002473,
+            "outcome": "failed",
+            "crash": {
+              "path": "/mnt/persist/workspace/e2e-tests/features/data-pipeline/test_pipeline_e2e.py",
+              "lineno": 222,
+              "message": "Failed: BigQuery validation test failed: assert False is True"
+            },
+            "traceback": [
+              {
+                "path": "features/data-pipeline/test_pipeline_e2e.py",
+                "lineno": 222,
+                "message": "Failed"
+              }
+            ],
+            "longrepr": "self = <test_pipeline_e2e.TestBigQueryIntegration object at 0x7f174b72b950>\n\n    @pytest.mark.asyncio\n    async def test_bigquery_data_validation(self):\n        \"\"\"Test BigQuery data validation functionality.\"\"\"\n        test = DataPipelineE2ETest()\n    \n        try:\n            await test.setup_clients()\n    \n            # Create test topic and publish message\n            topic_path = await test.create_test_topic()\n            test_message = test.test_data[\"events\"][\"validEvent\"]\n            await test.publish_test_message(topic_path, test_message)\n    \n            # Test data validation (with mock data since we don't have real pipeline)\n            expected_records = [test_message]\n    \n            # This would normally wait for pipeline processing\n            # For now, we'll test the validation logic itself\n            try:\n                # This will timeout since no real pipeline is running\n                # But it tests the validation framework\n                result = await asyncio.wait_for(\n                    test.validate_bigquery_data(\"events\", expected_records),\n                    timeout=5.0\n                )\n                # If we get here, validation worked (unlikely without real pipeline)\n>               assert result is True\nE               assert False is True\n\nfeatures/data-pipeline/test_pipeline_e2e.py:216: AssertionError\n\nDuring handling of the above exception, another exception occurred:\n\nself = <test_pipeline_e2e.TestBigQueryIntegration object at 0x7f174b72b950>\n\n    @pytest.mark.asyncio\n    async def test_bigquery_data_validation(self):\n        \"\"\"Test BigQuery data validation functionality.\"\"\"\n        test = DataPipelineE2ETest()\n    \n        try:\n            await test.setup_clients()\n    \n            # Create test topic and publish message\n            topic_path = await test.create_test_topic()\n            test_message = test.test_data[\"events\"][\"validEvent\"]\n            await test.publish_test_message(topic_path, test_message)\n    \n            # Test data validation (with mock data since we don't have real pipeline)\n            expected_records = [test_message]\n    \n            # This would normally wait for pipeline processing\n            # For now, we'll test the validation logic itself\n            try:\n                # This will timeout since no real pipeline is running\n                # But it tests the validation framework\n                result = await asyncio.wait_for(\n                    test.validate_bigquery_data(\"events\", expected_records),\n                    timeout=5.0\n                )\n                # If we get here, validation worked (unlikely without real pipeline)\n                assert result is True\n            except asyncio.TimeoutError:\n                # Expected - no real pipeline running\n                pass\n    \n        except Exception as e:\n>           pytest.fail(f\"BigQuery validation test failed: {str(e)}\")\nE           Failed: BigQuery validation test failed: assert False is True\n\nfeatures/data-pipeline/test_pipeline_e2e.py:222: Failed"
+          },
+          "teardown": {
+            "duration": 0.0003182079999533016,
+            "outcome": "passed"
+          }
+        },
+        {
+          "nodeid": "features/data-pipeline/test_pipeline_e2e.py::TestPipelineE2EFlow::test_complete_pipeline_flow",
+          "lineno": 229,
+          "outcome": "passed",
+          "keywords": [
+            "test_complete_pipeline_flow",
+            "slow",
+            "asyncio",
+            "pytestmark",
+            "TestPipelineE2EFlow",
+            "test_pipeline_e2e.py",
+            "e2e",
+            "pipeline",
+            "gcp",
+            "data-pipeline",
+            "features",
+            "e2e-tests",
+            ""
+          ],
+          "setup": {
+            "duration": 0.00030202600009943126,
+            "outcome": "passed"
+          },
+          "call": {
+            "duration": 0.00018236999994769576,
+            "outcome": "passed"
+          },
+          "teardown": {
+            "duration": 0.00020340199989732355,
+            "outcome": "passed"
+          }
+        },
+        {
+          "nodeid": "features/data-pipeline/test_pipeline_e2e.py::TestPipelineErrorHandling::test_invalid_message_handling",
+          "lineno": 251,
+          "outcome": "passed",
+          "keywords": [
+            "test_invalid_message_handling",
+            "asyncio",
+            "pytestmark",
+            "TestPipelineErrorHandling",
+            "test_pipeline_e2e.py",
+            "e2e",
+            "pipeline",
+            "gcp",
+            "data-pipeline",
+            "features",
+            "e2e-tests",
+            ""
+          ],
+          "setup": {
+            "duration": 0.00023547000000689877,
+            "outcome": "passed"
+          },
+          "call": {
+            "duration": 0.00027007800008505,
+            "outcome": "passed"
+          },
+          "teardown": {
+            "duration": 0.00016132299970195163,
+            "outcome": "passed"
+          }
+        },
+        {
+          "nodeid": "features/data-pipeline/test_pipeline_e2e.py::TestPipelineErrorHandling::test_resource_cleanup",
+          "lineno": 274,
+          "outcome": "passed",
+          "keywords": [
+            "test_resource_cleanup",
+            "asyncio",
+            "pytestmark",
+            "TestPipelineErrorHandling",
+            "test_pipeline_e2e.py",
+            "e2e",
+            "pipeline",
+            "gcp",
+            "data-pipeline",
+            "features",
+            "e2e-tests",
+            ""
+          ],
+          "setup": {
+            "duration": 0.00021203100004640874,
+            "outcome": "passed"
+          },
+          "call": {
+            "duration": 0.00016872799960765406,
+            "outcome": "passed"
+          },
+          "teardown": {
+            "duration": 0.00017330099990431336,
+            "outcome": "passed"
+          }
+        },
+        {
+          "nodeid": "features/data-pipeline/test_pipeline_e2e.py::TestPipelineSmoke::test_gcp_clients_initialization",
+          "lineno": 303,
+          "outcome": "passed",
+          "keywords": [
+            "test_gcp_clients_initialization",
+            "asyncio",
+            "smoke",
+            "pytestmark",
+            "TestPipelineSmoke",
+            "test_pipeline_e2e.py",
+            "e2e",
+            "pipeline",
+            "gcp",
+            "data-pipeline",
+            "features",
+            "e2e-tests",
+            ""
+          ],
+          "setup": {
+            "duration": 0.00024334099998668535,
+            "outcome": "passed"
+          },
+          "call": {
+            "duration": 0.00018619599995872704,
+            "outcome": "passed"
+          },
+          "teardown": {
+            "duration": 0.00015409000025101705,
+            "outcome": "passed"
+          }
+        },
+        {
+          "nodeid": "features/data-pipeline/test_pipeline_e2e.py::TestPipelineSmoke::test_configuration_loading",
+          "lineno": 325,
+          "outcome": "failed",
+          "keywords": [
+            "test_configuration_loading",
+            "asyncio",
+            "smoke",
+            "pytestmark",
+            "TestPipelineSmoke",
+            "test_pipeline_e2e.py",
+            "e2e",
+            "pipeline",
+            "gcp",
+            "data-pipeline",
+            "features",
+            "e2e-tests",
+            ""
+          ],
+          "setup": {
+            "duration": 0.0002498120002201176,
+            "outcome": "passed"
+          },
+          "call": {
+            "duration": 0.0002816460000758525,
+            "outcome": "failed",
+            "crash": {
+              "path": "/mnt/persist/workspace/e2e-tests/features/data-pipeline/test_pipeline_e2e.py",
+              "lineno": 343,
+              "message": "Failed: Configuration loading smoke test failed: assert 'database' in {'gcp': {'projectId': 'test-project'}}\n +  where {'gcp': {'projectId': 'test-project'}} = <test_pipeline_e2e.DataPipelineE2ETest object at 0x7f174b632f50>.config"
+            },
+            "traceback": [
+              {
+                "path": "features/data-pipeline/test_pipeline_e2e.py",
+                "lineno": 343,
+                "message": "Failed"
+              }
+            ],
+            "longrepr": "self = <test_pipeline_e2e.TestPipelineSmoke object at 0x7f174b73da10>\n\n    @pytest.mark.smoke\n    @pytest.mark.asyncio\n    async def test_configuration_loading(self):\n        \"\"\"Smoke test: Configuration can be loaded.\"\"\"\n        test = DataPipelineE2ETest()\n    \n        try:\n            # Test configuration loading\n            assert test.config is not None\n            assert \"gcp\" in test.config\n>           assert \"database\" in test.config\nE           AssertionError: assert 'database' in {'gcp': {'projectId': 'test-project'}}\nE            +  where {'gcp': {'projectId': 'test-project'}} = <test_pipeline_e2e.DataPipelineE2ETest object at 0x7f174b632f50>.config\n\nfeatures/data-pipeline/test_pipeline_e2e.py:336: AssertionError\n\nDuring handling of the above exception, another exception occurred:\n\nself = <test_pipeline_e2e.TestPipelineSmoke object at 0x7f174b73da10>\n\n    @pytest.mark.smoke\n    @pytest.mark.asyncio\n    async def test_configuration_loading(self):\n        \"\"\"Smoke test: Configuration can be loaded.\"\"\"\n        test = DataPipelineE2ETest()\n    \n        try:\n            # Test configuration loading\n            assert test.config is not None\n            assert \"gcp\" in test.config\n            assert \"database\" in test.config\n    \n            # Test data loading\n            assert test.test_data is not None\n            assert \"events\" in test.test_data\n    \n        except Exception as e:\n>           pytest.fail(f\"Configuration loading smoke test failed: {str(e)}\")\nE           Failed: Configuration loading smoke test failed: assert 'database' in {'gcp': {'projectId': 'test-project'}}\nE            +  where {'gcp': {'projectId': 'test-project'}} = <test_pipeline_e2e.DataPipelineE2ETest object at 0x7f174b632f50>.config\n\nfeatures/data-pipeline/test_pipeline_e2e.py:343: Failed"
+          },
+          "teardown": {
+            "duration": 0.000256370999977662,
+            "outcome": "passed"
+          }
+        }
+      ],
+      "summary": {
+        "passed": 7,
+        "failed": 3,
+        "total": 10,
+        "collected": 20,
+        "deselected": 10
+      },
+      "duration": 1.0960121154785156
+    },
+    "frontend_tests": {
+      "name": "Frontend Integration Tests",
+      "status": "failed",
+      "tests": [],
+      "summary": {
+        "total": 0,
+        "passed": 0,
+        "failed": 0
+      },
+      "duration": 0,
+      "note": "Minimal frontend testing - full implementation pending"
+    },
+    "performance_tests": {
+      "name": "Performance Tests",
+      "status": "failed",
+      "tests": [],
+      "summary": {},
+      "duration": 0,
+      "metrics": {
+        "api_response_times": {},
+        "throughput": {},
+        "error_rates": {}
+      }
+    },
+    "security_tests": {
+      "name": "Security Tests",
+      "status": "failed",
+      "tests": [],
+      "summary": {},
+      "duration": 0
+    }
+  },
+  "summary": {
+    "total_tests": 20,
+    "passed": 13,
+    "failed": 7,
+    "skipped": 0,
+    "errors": 0
+  },
+  "performance_metrics": {},
+  "coverage_report": {}
+}
