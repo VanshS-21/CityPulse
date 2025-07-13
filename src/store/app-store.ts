@@ -1,32 +1,61 @@
 import { create } from 'zustand'
-import { devtools, persist } from 'zustand/middleware'
+import { devtools, persist, subscribeWithSelector } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
 
-// Types for the store
-interface User {
+// Enhanced types for React 19 compatibility
+export interface User {
   id: string
   name: string
   email: string
   role: 'citizen' | 'admin' | 'moderator'
+  avatar?: string
+  preferences?: {
+    notifications: boolean
+    theme: 'light' | 'dark' | 'system'
+    language: string
+  }
+  metadata?: Record<string, any>
 }
 
-interface AppState {
+export interface Notification {
+  id: string
+  type: 'info' | 'success' | 'warning' | 'error'
+  title?: string
+  message: string
+  timestamp: number
+  duration?: number
+  action?: {
+    label: string
+    onClick: () => void
+  }
+  persistent?: boolean
+}
+
+export interface AppState {
   // User state
   user: User | null
   isAuthenticated: boolean
-  
+
   // UI state
   theme: 'light' | 'dark' | 'system'
   sidebarOpen: boolean
   loading: boolean
-  
+  loadingStates: Record<string, boolean>
+
   // App state
-  notifications: Array<{
-    id: string
-    type: 'info' | 'success' | 'warning' | 'error'
-    message: string
-    timestamp: number
-  }>
+  notifications: Notification[]
+
+  // Connection state
+  isOnline: boolean
+  lastSyncTime: number | null
+
+  // Performance tracking for React 19
+  performanceMetrics: {
+    pageLoadTime?: number
+    apiResponseTimes: Record<string, number[]>
+    errorCount: number
+    renderCount: number
+  }
   
   // Actions
   setUser: (user: User | null) => void
