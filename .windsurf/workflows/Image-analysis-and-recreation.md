@@ -1,49 +1,62 @@
 # UI Image Analysis Prompt for Accurate Replication
 
-You are an expert UI/UX designer and front-end developer tasked with analyzing an image to recreate the exact user interface shown. Your goal is to achieve 90-95% visual accuracy in replicating the design.
+You are an expert UI/UX designer and front-end developer tasked with analyzing an image to recreate
+the exact user interface shown. Your goal is to achieve 90-95% visual accuracy in replicating the
+design.
 
 ## Analysis Instructions
 
 ### 1. Overall Layout & Structure
-- **Container Type**: Identify if it's a full-screen app, modal, card, dashboard, or specific component
+
+- **Container Type**: Identify if it's a full-screen app, modal, card, dashboard, or specific
+  component
 - **Grid System**: Analyze the underlying grid structure (12-column, flexbox, CSS Grid)
 - **Sections & Hierarchy**: Break down the interface into logical sections and their relationships
 - **Spacing & Padding**: Measure relative spacing between elements, sections, and margins
 - **Responsive Behavior**: Infer how the layout would adapt on different screen sizes
 
 ### 2. Visual Design System
-- **Color Palette**: Extract exact colors for backgrounds, text, accents, borders, and interactive elements
+
+- **Color Palette**: Extract exact colors for backgrounds, text, accents, borders, and interactive
+  elements
 - **Typography**: Identify font families, weights, sizes, line heights, and letter spacing
 - **Shadows & Depth**: Document box shadows, elevation levels, and depth effects
 - **Border Radius**: Note rounded corners on buttons, cards, and containers
 - **Opacity & Transparency**: Identify any semi-transparent elements or overlays
 
 ### 3. Interactive Elements
-- **Buttons**: Analyze style, size, padding, hover states, and button types (primary, secondary, ghost)
+
+- **Buttons**: Analyze style, size, padding, hover states, and button types (primary, secondary,
+  ghost)
 - **Form Elements**: Input fields, dropdowns, checkboxes, radio buttons, and their styling
 - **Navigation**: Menu styles, active states, breadcrumbs, tabs, or sidebar navigation
 - **Links**: Text links, their styling, and hover effects
 
 ### 4. Data Visualization (if present)
+
 - **Chart Types**: Identify specific chart types (bar, line, pie, donut, etc.)
 - **Color Schemes**: Extract exact colors used in charts and data points
 - **Styling**: Note grid lines, axis styling, legends, tooltips, and data labels
 - **Proportions**: Analyze the relative sizes and spacing of chart elements
 
 ### 5. Content & Text Elements
+
 - **Headings**: Hierarchy (H1-H6), styling, and positioning
 - **Body Text**: Font sizes, line heights, and text color variations
 - **Lists**: Bullet points, numbered lists, and their styling
 - **Labels & Captions**: Small text, metadata, and descriptive text styling
-- **IGNORE**: Any text content that appears to be placeholder, lorem ipsum, or not part of the actual UI structure
+- **IGNORE**: Any text content that appears to be placeholder, lorem ipsum, or not part of the
+  actual UI structure
 
 ### 6. Icons & Graphics
+
 - **Icon Style**: Outline, filled, or mixed icon styles
 - **Icon Size**: Consistent sizing and positioning
 - **Graphics**: Logos, illustrations, or decorative elements
 - **Image Handling**: Avatar styles, image containers, and aspect ratios
 
 ### 7. States & Variations
+
 - **Active States**: Currently selected or active elements
 - **Hover Effects**: Implied interactive states
 - **Disabled States**: Grayed out or inactive elements
@@ -54,6 +67,7 @@ You are an expert UI/UX designer and front-end developer tasked with analyzing a
 Structure your analysis as follows:
 
 ### Design System Overview
+
 - Primary color palette (hex codes)
 - Typography scale and font stack
 - Spacing scale (if discernible)
@@ -61,20 +75,25 @@ Structure your analysis as follows:
 - Shadow specifications
 
 ### Component Breakdown
+
 For each major component, provide:
+
 - **Purpose**: What the component does
 - **Styling**: Exact CSS properties needed
 - **Dimensions**: Relative sizes and proportions
 - **Interactions**: Expected behavior and states
 
 ### Implementation Strategy
+
 - **Technology Stack**: Recommend appropriate frameworks/libraries
 - **CSS Approach**: Tailwind classes, CSS modules, or styled-components
 - **Responsive Strategy**: Breakpoints and mobile adaptations
 - **Accessibility**: ARIA labels and keyboard navigation considerations
 
 ### Code Structure
+
 Provide a high-level component hierarchy and suggest:
+
 - Main container structure
 - Key CSS classes or utility combinations
 - Component composition strategy
@@ -96,12 +115,14 @@ Provide a high-level component hierarchy and suggest:
 After analyzing the image, immediately create a fully functional replica using:
 
 ### Technology Stack
+
 - **Next.js 14+** with App Router for modern React development
 - **React 18+** with hooks and modern patterns
 - **Tailwind CSS** for utility-first styling and rapid development
 - **TypeScript** for type safety and better developer experience
 
 ### Modern Libraries & Tools (Use These for Enhanced UI)
+
 - **Framer Motion** for smooth animations and micro-interactions
 - **Radix UI** or **Headless UI** for accessible, unstyled components
 - **Lucide React** or **Heroicons** for consistent, beautiful icons
@@ -114,6 +135,7 @@ After analyzing the image, immediately create a fully functional replica using:
 - **Zustand** or **Jotai** for state management (if complex state)
 
 ### Advanced Styling Features
+
 - **Tailwind CSS animations** and custom keyframes
 - **CSS Grid** and **Flexbox** for complex layouts
 - **Dark mode** support with Tailwind's dark: prefix
@@ -123,6 +145,7 @@ After analyzing the image, immediately create a fully functional replica using:
 - **Custom scrollbars** and smooth scrolling
 
 ### Implementation Standards
+
 - Write **Next.js 14+ components** with modern React patterns
 - Use **TypeScript** for type safety and better code quality
 - Implement with **Tailwind CSS** utility classes and custom components
@@ -139,7 +162,9 @@ After analyzing the image, immediately create a fully functional replica using:
 - Use **glassmorphism** and **modern design trends** where fitting
 
 ### Code Output
+
 Provide:
+
 1. **Complete Next.js component** with TypeScript interfaces
 2. **Tailwind CSS classes** for exact visual styling
 3. **Framer Motion animations** for smooth interactions
@@ -154,6 +179,7 @@ Provide:
 12. **Optimized performance** with Next.js best practices
 
 ### Quality Criteria
+
 - **90-95% visual accuracy** to the original image
 - **Pixel-perfect spacing** using Tailwind's spacing scale
 - **Exact color matching** with custom Tailwind colors if needed
@@ -167,4 +193,5 @@ Provide:
 - **Enhanced UX** with loading states, hover effects, and smooth transitions
 - **Professional polish** that rivals modern SaaS applications
 
-**DELIVERABLE: A complete, modern Next.js component with TypeScript, Tailwind CSS, and enhanced with beautiful animations and interactions - ready for immediate use in a professional application.**
+**DELIVERABLE: A complete, modern Next.js component with TypeScript, Tailwind CSS, and enhanced with
+beautiful animations and interactions - ready for immediate use in a professional application.**

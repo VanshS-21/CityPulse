@@ -1,13 +1,14 @@
 # CityPulse User Guide
 
-- *Welcome to CityPulse**- Your comprehensive platform for urban issue reporting and city intelligence.
+- \*Welcome to CityPulse\*\*- Your comprehensive platform for urban issue reporting and city
+  intelligence.
 
 ## 📚 Related Documentation
 
--**[FAQ](./FAQ.md)**- Frequently asked questions and quick answers
--**[API Guide](./API_GUIDE.md)**- For developers integrating with CityPulse
--**[Troubleshooting](./TROUBLESHOOTING.md)**- Detailed issue resolution guide
--**[Architecture](./ARCHITECTURE.md)**- Understanding how CityPulse works
+- **[FAQ](./FAQ.md)**- Frequently asked questions and quick answers
+- **[API Guide](./API_GUIDE.md)**- For developers integrating with CityPulse
+- **[Troubleshooting](./TROUBLESHOOTING.md)**- Detailed issue resolution guide
+- **[Architecture](./ARCHITECTURE.md)**- Understanding how CityPulse works
 
 ## Table of Contents
 
@@ -24,42 +25,45 @@
 
 ### 🚀 Quick Start (5 Minutes)
 
-1.**Access CityPulse**: Visit your organization's CityPulse deployment URL
-1.  **Create Account**: Sign up with email or social login
-1.  **Set Location**: Allow location access for personalized alerts
-1.  **Explore Dashboard**: View real-time city events on the map
-1.  **Report Issue**: Click "Report Issue" to submit your first report
+1. **Access CityPulse**: Visit your organization's CityPulse deployment URL
+1. **Create Account**: Sign up with email or social login
+1. **Set Location**: Allow location access for personalized alerts
+1. **Explore Dashboard**: View real-time city events on the map
+1. **Report Issue**: Click "Report Issue" to submit your first report
 
 ### 📱 System Requirements
 
-- *Web Application**:
+- \*Web Application\*\*:
 
--  Modern browser (Chrome 90+, Firefox 88+, Safari 14+)
--  Internet connection
--  Location services (optional but recommended)
+- Modern browser (Chrome 90+, Firefox 88+, Safari 14+)
+- Internet connection
+- Location services (optional but recommended)
 
-- *Mobile Application**(Coming Soon):
+- \*Mobile Application\*\*(Coming Soon):
 
--  iOS 14+ or Android 8+
--  Camera access for photo/video reports
--  GPS for location-based features
+- iOS 14+ or Android 8+
+- Camera access for photo/video reports
+- GPS for location-based features
 
 ## User Roles
 
-### 👤**Citizen**-  Report urban issues and incidents
--  View real-time city events
--  Receive personalized alerts
--  Provide feedback on resolutions
+### 👤**Citizen**- Report urban issues and incidents
 
-### 🏛️**Authority**-  Monitor city-wide events
--  Manage incident responses
--  Access analytics and trends
--  Update event statuses
+- View real-time city events
+- Receive personalized alerts
+- Provide feedback on resolutions
 
-### ⚙️**Administrator**-  Configure system settings
--  Manage user accounts and roles
--  Access comprehensive analytics
--  Maintain data quality
+### 🏛️**Authority**- Monitor city-wide events
+
+- Manage incident responses
+- Access analytics and trends
+- Update event statuses
+
+### ⚙️**Administrator**- Configure system settings
+
+- Manage user accounts and roles
+- Access comprehensive analytics
+- Maintain data quality
 
 ## Citizen Guide
 
@@ -67,13 +71,13 @@
 
 #### Step 1: Access Report Form
 
--  Click**"Report Issue"**button on dashboard
--  Or use quick report from map view
--  Mobile: Use floating action button
+- Click**"Report Issue"**button on dashboard
+- Or use quick report from map view
+- Mobile: Use floating action button
 
 #### Step 2: Provide Details
 
-```text
+````text
 Required Information:
 ✅ Issue Title (brief description)
 ✅ Location (auto-detected or manual)
@@ -88,34 +92,34 @@ Optional Information:
 
 #### Step 3: Submit and Track
 
--  Review information before submitting
--  Receive confirmation with tracking ID
--  Get updates on resolution progress
+-   Review information before submitting
+-   Receive confirmation with tracking ID
+-   Get updates on resolution progress
 
 ### 🗺️ Using the Map Dashboard
 
 #### Interactive Features
 
--**Zoom**: Mouse wheel or pinch gestures
--  **Filter**: Toggle event categories on/off
--  **Details**: Click markers for event information
--  **Search**: Find specific locations or events
+- **Zoom**: Mouse wheel or pinch gestures
+-   **Filter**: Toggle event categories on/off
+-   **Details**: Click markers for event information
+-   **Search**: Find specific locations or events
 
 #### Map Layers
 
--  **Events**: Real-time incident markers
--  **Heatmap**: Density visualization
--  **Boundaries**: Administrative divisions
--  **Traffic**: Live traffic conditions (if available)
+-   **Events**: Real-time incident markers
+-   **Heatmap**: Density visualization
+-   **Boundaries**: Administrative divisions
+-   **Traffic**: Live traffic conditions (if available)
 
 ### 🔔 Managing Notifications
 
 #### Notification Types
 
--  **Real-time Alerts**: Immediate incident notifications
--  **Daily Digest**: Summary of area activities
--  **Resolution Updates**: Status changes on your reports
--  **Community Updates**: Important announcements
+-   **Real-time Alerts**: Immediate incident notifications
+-   **Daily Digest**: Summary of area activities
+-   **Resolution Updates**: Status changes on your reports
+-   **Community Updates**: Important announcements
 
 #### Customization Options
 
@@ -143,17 +147,17 @@ Delivery Methods:
 
 #### Your Activity
 
--  **Reports Submitted**: Track your contributions
--  **Status Updates**: Monitor resolution progress
--  **Impact Score**: See your community contribution
--  **Badges**: Earn recognition for active participation
+-   **Reports Submitted**: Track your contributions
+-   **Status Updates**: Monitor resolution progress
+-   **Impact Score**: See your community contribution
+-   **Badges**: Earn recognition for active participation
 
 #### Analytics
 
--  **Neighborhood Trends**: Local issue patterns
--  **Response Times**: Average resolution speeds
--  **Category Breakdown**: Most common issue types
--  **Seasonal Patterns**: Time-based analysis
+-   **Neighborhood Trends**: Local issue patterns
+-   **Response Times**: Average resolution speeds
+-   **Category Breakdown**: Most common issue types
+-   **Seasonal Patterns**: Time-based analysis
 
 ## Authority Guide
 
@@ -161,10 +165,10 @@ Delivery Methods:
 
 #### Dashboard Overview
 
--  **Active Incidents**: Requires immediate attention
--  **Pending Review**: New reports awaiting triage
--  **In Progress**: Currently being addressed
--  **Recently Resolved**: Completed within 24 hours
+-   **Active Incidents**: Requires immediate attention
+-   **Pending Review**: New reports awaiting triage
+-   **In Progress**: Currently being addressed
+-   **Recently Resolved**: Completed within 24 hours
 
 #### Incident Workflow
 
@@ -194,19 +198,19 @@ Delivery Methods:
 
 #### Status Management
 
--  **Update Status**: Change incident status with notes
--  **Add Comments**: Internal notes and public updates
--  **Attach Media**: Evidence photos and documentation
--  **Assign Teams**: Route to appropriate departments
+-   **Update Status**: Change incident status with notes
+-   **Add Comments**: Internal notes and public updates
+-   **Attach Media**: Evidence photos and documentation
+-   **Assign Teams**: Route to appropriate departments
 
 ### 📈 Analytics and Reporting
 
 #### Real-time Dashboards
 
--  **City Overview**: High-level metrics and trends
--  **Department Performance**: Response time analytics
--  **Geographic Analysis**: Hotspot identification
--  **Trend Analysis**: Pattern recognition and forecasting
+-   **City Overview**: High-level metrics and trends
+-   **Department Performance**: Response time analytics
+-   **Geographic Analysis**: Hotspot identification
+-   **Trend Analysis**: Pattern recognition and forecasting
 
 #### Report Generation
 
@@ -228,10 +232,10 @@ Custom Reports:
 
 #### Alert Settings
 
--  **Escalation Rules**: Automatic priority escalation
--  **Notification Routing**: Department-specific alerts
--  **SLA Monitoring**: Service level agreement tracking
--  **Integration Setup**: External system connections
+-   **Escalation Rules**: Automatic priority escalation
+-   **Notification Routing**: Department-specific alerts
+-   **SLA Monitoring**: Service level agreement tracking
+-   **Integration Setup**: External system connections
 
 ## Administrator Guide
 
@@ -251,10 +255,10 @@ User Operations:
 
 #### Role Management
 
--  **Role Definition**: Create custom roles with specific permissions
--  **Permission Matrix**: Fine-grained access control
--  **Bulk Operations**: Mass user updates and imports
--  **Audit Trail**: Track all administrative actions
+-   **Role Definition**: Create custom roles with specific permissions
+-   **Permission Matrix**: Fine-grained access control
+-   **Bulk Operations**: Mass user updates and imports
+-   **Audit Trail**: Track all administrative actions
 
 ### ⚙️ System Configuration
 
@@ -278,19 +282,19 @@ Integration Settings:
 
 #### Data Management
 
--  **Data Quality**: Monitor and maintain data integrity
--  **Backup Management**: Schedule and verify backups
--  **Performance Monitoring**: System health and optimization
--  **Security Audits**: Regular security assessments
+-   **Data Quality**: Monitor and maintain data integrity
+-   **Backup Management**: Schedule and verify backups
+-   **Performance Monitoring**: System health and optimization
+-   **Security Audits**: Regular security assessments
 
 ### 📊 Advanced Analytics
 
 #### Business Intelligence
 
--  **Executive Dashboards**: High-level KPIs and metrics
--  **Predictive Analytics**: Trend forecasting and modeling
--  **Performance Benchmarking**: Comparative analysis
--  **ROI Analysis**: Platform value measurement
+-   **Executive Dashboards**: High-level KPIs and metrics
+-   **Predictive Analytics**: Trend forecasting and modeling
+-   **Performance Benchmarking**: Comparative analysis
+-   **ROI Analysis**: Platform value measurement
 
 #### Data Export
 
@@ -309,32 +313,32 @@ Export Formats:
 
 #### Intelligent Processing
 
--  **Auto-categorization**: AI determines issue categories
--  **Sentiment Analysis**: Emotional tone assessment
--  **Image Recognition**: Automatic tagging of photos
--  **Duplicate Detection**: Identify similar reports
+-   **Auto-categorization**: AI determines issue categories
+-   **Sentiment Analysis**: Emotional tone assessment
+-   **Image Recognition**: Automatic tagging of photos
+-   **Duplicate Detection**: Identify similar reports
 
 #### Predictive Analytics
 
--  **Trend Forecasting**: Predict future issue patterns
--  **Resource Planning**: Optimize resource allocation
--  **Risk Assessment**: Identify potential problem areas
--  **Performance Optimization**: Suggest improvements
+-   **Trend Forecasting**: Predict future issue patterns
+-   **Resource Planning**: Optimize resource allocation
+-   **Risk Assessment**: Identify potential problem areas
+-   **Performance Optimization**: Suggest improvements
 
 ### 🔄 Real-time Features
 
 #### Live Updates
 
--  **Event Streaming**: Real-time incident updates
--  **Status Changes**: Instant notification of changes
--  **Collaborative Editing**: Multiple users can update simultaneously
--  **Live Chat**: Direct communication between users and authorities
+-   **Event Streaming**: Real-time incident updates
+-   **Status Changes**: Instant notification of changes
+-   **Collaborative Editing**: Multiple users can update simultaneously
+-   **Live Chat**: Direct communication between users and authorities
 
 #### Synchronization
 
--  **Multi-device Sync**: Consistent experience across devices
--  **Offline Support**: Continue working without internet
--  **Conflict Resolution**: Handle simultaneous edits gracefully
+-   **Multi-device Sync**: Consistent experience across devices
+-   **Offline Support**: Continue working without internet
+-   **Conflict Resolution**: Handle simultaneous edits gracefully
 
 ## Best Practices
 
@@ -384,17 +388,17 @@ Export Formats:
 
 #### Data Protection
 
--  **Personal Information**: Minimize sharing of personal details
--  **Location Privacy**: Use approximate locations when possible
--  **Photo Guidelines**: Avoid including people's faces
--  **Sensitive Information**: Don't share confidential details
+-   **Personal Information**: Minimize sharing of personal details
+-   **Location Privacy**: Use approximate locations when possible
+-   **Photo Guidelines**: Avoid including people's faces
+-   **Sensitive Information**: Don't share confidential details
 
 #### Account Security
 
--  **Strong Passwords**: Use complex, unique passwords
--  **Two-Factor Authentication**: Enable 2FA when available
--  **Regular Updates**: Keep contact information current
--  **Suspicious Activity**: Report unusual account activity
+-   **Strong Passwords**: Use complex, unique passwords
+-   **Two-Factor Authentication**: Enable 2FA when available
+-   **Regular Updates**: Keep contact information current
+-   **Suspicious Activity**: Report unusual account activity
 
 ## Troubleshooting
 
@@ -449,32 +453,33 @@ Solutions:
 
 #### Support Channels
 
--  **Help Center**: Contact your system administrator for support resources
--  **Email Support**: Contact your system administrator for support contact
--  **Live Chat**: Available through your organization's support system
--  **Community Forum**: Check with your organization for internal community resources
+-   **Help Center**: Contact your system administrator for support resources
+-   **Email Support**: Contact your system administrator for support contact
+-   **Live Chat**: Available through your organization's support system
+-   **Community Forum**: Check with your organization for internal community resources
 
 #### Response Times
 
--  **Critical Issues**: Within 2 hours
--  **General Support**: Within 24 hours
--  **Feature Requests**: Within 1 week
--  **Bug Reports**: Within 48 hours
+-   **Critical Issues**: Within 2 hours
+-   **General Support**: Within 24 hours
+-   **Feature Requests**: Within 1 week
+-   **Bug Reports**: Within 48 hours
 
 ## Next Steps
 
 ### 🎓 Advanced Training
 
--  **Webinar Series**: Monthly training sessions
--  **Video Tutorials**: Step-by-step guides
--  **Best Practices Workshop**: Quarterly sessions
--  **User Conference**: Annual CityPulse summit
+-   **Webinar Series**: Monthly training sessions
+-   **Video Tutorials**: Step-by-step guides
+-   **Best Practices Workshop**: Quarterly sessions
+-   **User Conference**: Annual CityPulse summit
 
 ### 🔄 Stay Updated
 
--  **Release Notes**: New feature announcements
--  **Newsletter**: Monthly platform updates
--  **Social Media**: Follow @CityPulse for news
--  **Blog**: Technical insights and case studies
+-   **Release Notes**: New feature announcements
+-   **Newsletter**: Monthly platform updates
+-   **Social Media**: Follow @CityPulse for news
+-   **Blog**: Technical insights and case studies
 
-- For additional help or feedback, please contact our support team. We're here to help you make the most of CityPulse!*
+-  For additional help or feedback, please contact our support team. We're here to help you make the most of CityPulse!*
+````

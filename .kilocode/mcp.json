@@ -22,17 +22,11 @@
     },
     "sequentialthinking": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-sequential-thinking"
-      ]
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
     },
     "tavily": {
       "command": "npx",
-      "args": [
-        "-y",
-        "tavily-mcp@0.2.3"
-      ],
+      "args": ["-y", "tavily-mcp@0.2.3"],
       "env": {
         "TAVILY_API_KEY": ""
       }

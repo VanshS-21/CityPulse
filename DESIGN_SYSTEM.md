@@ -2,41 +2,38 @@
 
 ## 🎨 Overview
 
-The CityPulse Design System is a comprehensive collection of reusable components, design tokens, and guidelines that
-ensures consistency and efficiency across the entire urban intelligence platform.
+The CityPulse Design System is a comprehensive collection of reusable components, design tokens, and
+guidelines that ensures consistency and efficiency across the entire urban intelligence platform.
 
 ## 🎯 Design Principles
 
-### **Trust & Reliability**-  Clear visual hierarchy
+### **Trust & Reliability**- Clear visual hierarchy
 
--   Consistent interaction patterns
--   Accessible design standards
--   Professional appearance
+-     Consistent interaction patterns
+-     Accessible design standards
+-     Professional appearance
 
-### **Data Clarity**-  Clean information architecture
+### **Data Clarity**- Clean information architecture
 
--   Readable typography
--   Meaningful use of color
--   Efficient data visualization
+-     Readable typography
+-     Meaningful use of color
+-     Efficient data visualization
 
-### **Urban Intelligence**-  Modern, tech-forward aesthetic
+### **Urban Intelligence**- Modern, tech-forward aesthetic
 
--   City-inspired color palette
--   Scalable components
--   Responsive design
+-     City-inspired color palette
+-     Scalable components
+-     Responsive design
 
 ## 🏗️ Architecture
 
 ### **Atomic Design Structure**```text
 
-Design System
-├── Tokens/         # Design tokens (colors, spacing, typography)
-├── Base/          # Foundational components (Button, Input, Card)
-├── Composite/     # Complex components (Forms, Navigation)
-├── Patterns/      # Common UI patterns and templates
-└── Guidelines/    # Usage guidelines and best practices
+Design System ├── Tokens/ # Design tokens (colors, spacing, typography) ├── Base/ # Foundational
+components (Button, Input, Card) ├── Composite/ # Complex components (Forms, Navigation) ├──
+Patterns/ # Common UI patterns and templates └── Guidelines/ # Usage guidelines and best practices
 
-```text
+````text
 
 ## 🎨 Design Tokens
 
@@ -60,25 +57,25 @@ primary-950: #172554
 
 ### Semantic Colors
 
-- **Success**: Green palette for positive actions and states
--   **Warning**: Amber palette for caution and attention
--   **Error**: Red palette for errors and destructive actions
--   **Info**: Blue palette for informational content
+-   **Success**: Green palette for positive actions and states
+-     **Warning**: Amber palette for caution and attention
+-     **Error**: Red palette for errors and destructive actions
+-     **Info**: Blue palette for informational content
 
 #### Urban Theme Colors
 
--   **Sky**: `#0ea5e9`- Open spaces and clarity
--   **Ocean**:`#0284c7`- Depth and reliability
--   **Forest**:`#059669`- Growth and sustainability
--   **Sunset**:`#ea580c`- Energy and warmth
--   **Night**:`#1e293b`- Professional and elegant
--   **Dawn**:`#fbbf24`- Innovation and opportunity
+-     **Sky**: `#0ea5e9`- Open spaces and clarity
+-     **Ocean**:`#0284c7`- Depth and reliability
+-     **Forest**:`#059669`- Growth and sustainability
+-     **Sunset**:`#ea580c`- Energy and warmth
+-     **Night**:`#1e293b`- Professional and elegant
+-     **Dawn**:`#fbbf24`- Innovation and opportunity
 
 ### **Typography Scale**#### Font Families
 
-- **Sans**: Inter (primary), system fonts
--   **Mono**: JetBrains Mono, Fira Code (code/data)
--   **Display**: Inter (headings)
+-   **Sans**: Inter (primary), system fonts
+-     **Mono**: JetBrains Mono, Fira Code (code/data)
+-     **Display**: Inter (headings)
 
 #### Font Sizes```scss
 
@@ -133,23 +130,23 @@ glow-lg:  High emphasis
 
 ### **Button**#### Variants
 
--   `primary`- Main brand color, primary actions
-- `secondary`- Subtle background, secondary actions
-- `success`- Green, positive actions
-- `warning`- Amber, cautionary actions
-- `destructive`- Red, dangerous actions
-- `outline`- Bordered style
-- `ghost`- Minimal style
-- `link`- Link appearance
-- `urban`- Urban theme variant
+-     `primary`- Main brand color, primary actions
+-   `secondary`- Subtle background, secondary actions
+-   `success`- Green, positive actions
+-   `warning`- Amber, cautionary actions
+-   `destructive`- Red, dangerous actions
+-   `outline`- Bordered style
+-   `ghost`- Minimal style
+-   `link`- Link appearance
+-   `urban`- Urban theme variant
 
 ### Sizes
 
-- `xs`- 24px height, compact spaces
-- `sm`- 32px height, tight layouts
-- `md`- 40px height, standard use
-- `lg`- 44px height, prominent actions
-- `xl`- 48px height, hero actions
+-   `xs`- 24px height, compact spaces
+-   `sm`- 32px height, tight layouts
+-   `md`- 40px height, standard use
+-   `lg`- 44px height, prominent actions
+-   `xl`- 48px height, hero actions
 
 #### Usage```tsx
 
@@ -169,18 +166,18 @@ glow-lg:  High emphasis
 
 ### **Input**#### Variants 2
 
--   `default`- Standard input style
-- `success`- Success state
-- `warning`- Warning state
-- `error`- Error state
+-     `default`- Standard input style
+-   `success`- Success state
+-   `warning`- Warning state
+-   `error`- Error state
 
 #### Features
 
--   Label support
--   Helper text
--   Error messages
--   Left/right icons
--   Left/right addons
+-     Label support
+-     Helper text
+-     Error messages
+-     Left/right icons
+-     Left/right addons
 
 #### Usage 2```tsx
 
@@ -199,20 +196,20 @@ glow-lg:  High emphasis
 
 ### **Card**#### Variants 3
 
--   `default`- Standard card
-- `elevated`- Increased shadow
-- `outlined`- Emphasized border
-- `filled`- Background fill
-- `urban`- Urban theme styling
+-     `default`- Standard card
+-   `elevated`- Increased shadow
+-   `outlined`- Emphasized border
+-   `filled`- Background fill
+-   `urban`- Urban theme styling
 
 #### Anatomy
 
-- `Card`- Container
-- `CardHeader`- Header section
-- `CardTitle`- Title text
-- `CardDescription`- Subtitle text
-- `CardContent`- Main content
-- `CardFooter`- Footer actions
+-   `Card`- Container
+-   `CardHeader`- Header section
+-   `CardTitle`- Title text
+-   `CardDescription`- Subtitle text
+-   `CardContent`- Main content
+-   `CardFooter`- Footer actions
 
 #### Usage 3```tsx
 
@@ -233,19 +230,19 @@ glow-lg:  High emphasis
 
 ### **Badge**#### Variants 4
 
--   `default`- Primary badge
-- `secondary`- Secondary style
-- `success`- Success indicator
-- `warning`- Warning indicator
-- `error`- Error indicator
-- `outline`- Outlined style
-- `urban`- Urban theme
+-     `default`- Primary badge
+-   `secondary`- Secondary style
+-   `success`- Success indicator
+-   `warning`- Warning indicator
+-   `error`- Error indicator
+-   `outline`- Outlined style
+-   `urban`- Urban theme
 
 #### Features 2
 
--   Icon support
--   Removable badges
--   Multiple sizes
+-     Icon support
+-     Removable badges
+-     Multiple sizes
 
 #### Usage 4```tsx
 
@@ -272,24 +269,24 @@ xl:  1280px  // Extra large devices
 
 ### **Container Sizes**-  Responsive containers with proper margins
 
--   Max-width constraints for readability
--   Consistent padding across breakpoints
+-     Max-width constraints for readability
+-     Consistent padding across breakpoints
 
 ## 🎭 Animation System
 
 ### **Transitions**-  `fade-in`- 200ms fade in
 
-- `fade-out`- 200ms fade out
-- `slide-in`- 300ms slide in from top
-- `slide-out`- 300ms slide out to top
-- `bounce-in`- 500ms bounce entrance
-- `scale-in`- 200ms scale entrance
+-   `fade-out`- 200ms fade out
+-   `slide-in`- 300ms slide in from top
+-   `slide-out`- 300ms slide out to top
+-   `bounce-in`- 500ms bounce entrance
+-   `scale-in`- 200ms scale entrance
 
 ### **Timing Functions**-`ease`- Standard easing
 
-- `ease-in`- Acceleration
-- `ease-out`- Deceleration
-- `ease-in-out` - Acceleration then deceleration
+-   `ease-in`- Acceleration
+-   `ease-out`- Deceleration
+-   `ease-in-out` - Acceleration then deceleration
 
 ## 🔧 Implementation
 
@@ -351,56 +348,57 @@ function Component({ className, variant }) {
 
 ### **Component Usage**1.**Use design system components first**before creating custom ones
 
-1. **Follow variant patterns**for consistent behavior
-1. **Compose components**instead of modifying base styles
-1. **Test accessibility**with keyboard navigation and screen readers
+1.  **Follow variant patterns**for consistent behavior
+1.  **Compose components**instead of modifying base styles
+1.  **Test accessibility**with keyboard navigation and screen readers
 
 ### **Color Usage**1.**Use semantic colors**for status and actions
 
-1. **Maintain contrast ratios**for accessibility (WCAG AA: 4.5:1)
-1. **Test in different lighting**conditions
-1. **Consider color blindness**when using color alone for meaning
+1.  **Maintain contrast ratios**for accessibility (WCAG AA: 4.5:1)
+1.  **Test in different lighting**conditions
+1.  **Consider color blindness**when using color alone for meaning
 
 ### **Typography**1.**Use consistent scales**from the typography system
 
-1. **Maintain readable line heights**(1.4-1.6 for body text)
-1. **Limit font weights**to 3-4 per project
-1. **Test readability**at different sizes
+1.  **Maintain readable line heights**(1.4-1.6 for body text)
+1.  **Limit font weights**to 3-4 per project
+1.  **Test readability**at different sizes
 
 ### **Spacing**1.**Use the spacing scale**instead of arbitrary values
 
-1. **Be consistent**with margins and padding
-1. **Create rhythm**with consistent vertical spacing
-1. **Use relative units**for scalability
+1.  **Be consistent**with margins and padding
+1.  **Create rhythm**with consistent vertical spacing
+1.  **Use relative units**for scalability
 
 ## 🧪 Testing
 
 ### **Component Testing**-  Unit tests for component behavior
 
--   Visual regression tests for styling
--   Accessibility tests with axe-core
--   Interactive tests with user events
+-     Visual regression tests for styling
+-     Accessibility tests with axe-core
+-     Interactive tests with user events
 
 ### **Design System Validation**-  Token usage validation
 
--   Component variant testing
--   Cross-browser compatibility
--   Mobile responsiveness
+-     Component variant testing
+-     Cross-browser compatibility
+-     Mobile responsiveness
 
 ## 📚 Resources
 
 ### **Tools Used**-**Tailwind CSS**- Utility-first CSS framework
 
-- **Class Variance Authority**- Component variant management
-- **Radix UI**- Accessible component primitives
-- **Lucide React**- Icon system
-- **TypeScript**- Type safety
+-   **Class Variance Authority**- Component variant management
+-   **Radix UI**- Accessible component primitives
+-   **Lucide React**- Icon system
+-   **TypeScript**- Type safety
 
 ### **Inspiration**-  Material Design 3
 
--   Apple Human Interface Guidelines
--   Ant Design
--   Chakra UI
--   Tailwind UI
+-     Apple Human Interface Guidelines
+-     Ant Design
+-     Chakra UI
+-     Tailwind UI
 
-- *CityPulse Design System** - Building consistent, accessible, and beautiful urban intelligence interfaces 🏙️
+-   *CityPulse Design System** - Building consistent, accessible, and beautiful urban intelligence interfaces 🏙️
+````

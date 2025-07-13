@@ -1,6 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { withErrorHandler, forwardToBackend, getQueryParams, createBackendHeaders, createErrorResponse, createSuccessResponse, handleOptions } from '@/lib/api-utils'
-import { optionalAuth, requireAuth, requireModerator, getCorsHeaders, AuthenticatedUser } from '@/middleware/auth'
+import {
+  withErrorHandler,
+  forwardToBackend,
+  getQueryParams,
+  createBackendHeaders,
+  createErrorResponse,
+  createSuccessResponse,
+  handleOptions,
+} from '@/lib/api-utils'
+import {
+  optionalAuth,
+  requireAuth,
+  requireModerator,
+  getCorsHeaders,
+  AuthenticatedUser,
+} from '@/middleware/auth'
 
 /**
  * Analytics API Route Handler
@@ -19,10 +33,19 @@ export async function GET(request: NextRequest) {
 
     // Define public and protected endpoints
     const publicEndpoints = ['public/summary', 'events/by-category']
-    const protectedEndpoints = ['kpis', 'trends', 'events/by-location', 'performance', 'detailed']
+    const protectedEndpoints = [
+      'kpis',
+      'trends',
+      'events/by-location',
+      'performance',
+      'detailed',
+    ]
 
     // Check if endpoint is valid
-    if (!publicEndpoints.includes(endpoint) && !protectedEndpoints.includes(endpoint)) {
+    if (
+      !publicEndpoints.includes(endpoint) &&
+      !protectedEndpoints.includes(endpoint)
+    ) {
       return NextResponse.json(
         { error: 'Invalid analytics endpoint', success: false },
         { status: 400 }
@@ -75,20 +98,22 @@ export async function GET(request: NextRequest) {
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}))
       return NextResponse.json(
-        { 
-          error: errorData.detail || 'Failed to fetch analytics', 
-          success: false 
+        {
+          error: errorData.detail || 'Failed to fetch analytics',
+          success: false,
         },
         { status: response.status }
       )
     }
 
     const data = await response.json()
-    return NextResponse.json({
-      success: true,
-      data: data
-    }, { headers: getCorsHeaders() })
-
+    return NextResponse.json(
+      {
+        success: true,
+        data: data,
+      },
+      { headers: getCorsHeaders() }
+    )
   } catch (error) {
     console.error('Analytics API error:', error)
     return NextResponse.json(
@@ -126,9 +151,10 @@ export async function POST(request: NextRequest) {
       timestamp: new Date().toISOString(),
       source: 'web_frontend',
       user_agent: request.headers.get('User-Agent') || '',
-      ip_address: request.headers.get('X-Forwarded-For') ||
-                  request.headers.get('X-Real-IP') ||
-                  'unknown',
+      ip_address:
+        request.headers.get('X-Forwarded-For') ||
+        request.headers.get('X-Real-IP') ||
+        'unknown',
       user_id: user.uid,
       user_role: user.role,
     }
@@ -148,20 +174,22 @@ export async function POST(request: NextRequest) {
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}))
       return NextResponse.json(
-        { 
-          error: errorData.detail || 'Failed to submit analytics event', 
-          success: false 
+        {
+          error: errorData.detail || 'Failed to submit analytics event',
+          success: false,
         },
         { status: response.status }
       )
     }
 
     const data = await response.json()
-    return NextResponse.json({
-      success: true,
-      data: data
-    }, { headers: getCorsHeaders() })
-
+    return NextResponse.json(
+      {
+        success: true,
+        data: data,
+      },
+      { headers: getCorsHeaders() }
+    )
   } catch (error) {
     console.error('Analytics submission error:', error)
     return NextResponse.json(

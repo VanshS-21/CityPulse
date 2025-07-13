@@ -1,1 +1,9 @@
-{"created": 1752409061.39315, "duration": 0.009234905242919922, "exitcode": 4, "root": "/mnt/persist/workspace/e2e-tests", "environment": {}, "summary": {"total": 0, "collected": 0}, "tests": []}
+{
+  "created": 1752409061.39315,
+  "duration": 0.009234905242919922,
+  "exitcode": 4,
+  "root": "/mnt/persist/workspace/e2e-tests",
+  "environment": {},
+  "summary": { "total": 0, "collected": 0 },
+  "tests": []
+}

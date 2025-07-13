@@ -13,33 +13,50 @@ import { API_ENDPOINTS } from '@/utils/constants'
 
 // Advanced mock that simulates MSW's request processing capabilities
 class MockRequestProcessor {
-  private handlers: Map<string, (req: MockRequest) => MockResponse | Promise<MockResponse>> = new Map()
+  private handlers: Map<
+    string,
+    (req: MockRequest) => MockResponse | Promise<MockResponse>
+  > = new Map()
 
   // Simulate MSW's http.get() registration
-  get(pattern: string, handler: (req: MockRequest) => MockResponse | Promise<MockResponse>) {
+  get(
+    pattern: string,
+    handler: (req: MockRequest) => MockResponse | Promise<MockResponse>
+  ) {
     this.handlers.set(`GET:${pattern}`, handler)
   }
 
   // Simulate MSW's http.post() registration
-  post(pattern: string, handler: (req: MockRequest) => MockResponse | Promise<MockResponse>) {
+  post(
+    pattern: string,
+    handler: (req: MockRequest) => MockResponse | Promise<MockResponse>
+  ) {
     this.handlers.set(`POST:${pattern}`, handler)
   }
 
   // Process request like MSW does - extract params, parse body, etc.
-  async processRequest(method: string, url: string, options?: RequestInit): Promise<MockResponse> {
+  async processRequest(
+    method: string,
+    url: string,
+    options?: RequestInit
+  ): Promise<MockResponse> {
     const urlObj = new URL(url)
 
     // Find matching handler (simplified pattern matching)
     for (const [key, handler] of this.handlers) {
       const [handlerMethod, ...patternParts] = key.split(':')
-      const pattern = patternParts.join(':')  // Rejoin in case pattern contains ':'
+      const pattern = patternParts.join(':') // Rejoin in case pattern contains ':'
 
-      if (handlerMethod === method && this.matchesPattern(urlObj.pathname, pattern)) {
+      if (
+        handlerMethod === method &&
+        this.matchesPattern(urlObj.pathname, pattern)
+      ) {
         const mockRequest: MockRequest = {
           method,
           url,
           params: this.extractParams(urlObj.pathname, pattern),
-          json: async () => options?.body ? JSON.parse(options.body as string) : {},
+          json: async () =>
+            options?.body ? JSON.parse(options.body as string) : {},
           headers: new Headers(options?.headers),
         }
         return await handler(mockRequest)
@@ -47,15 +64,17 @@ class MockRequestProcessor {
     }
 
     const availableHandlers = Array.from(this.handlers.keys())
-    throw new Error(`No handler found for ${method} ${urlObj.pathname}. Available: ${availableHandlers.join(', ')}`)
+    throw new Error(
+      `No handler found for ${method} ${urlObj.pathname}. Available: ${availableHandlers.join(', ')}`
+    )
   }
 
   public matchesPattern(path: string, pattern: string): boolean {
     // Simple pattern matching (MSW does this more sophisticatedly)
     // Convert pattern like "*/v1/users/:id" to regex
     let regex = pattern
-      .replace(/\*/g, '.*')  // * becomes .*
-      .replace(/:(\w+)/g, '([^/]+)')  // :id becomes ([^/]+)
+      .replace(/\*/g, '.*') // * becomes .*
+      .replace(/:(\w+)/g, '([^/]+)') // :id becomes ([^/]+)
 
     // For patterns starting with *, we need to handle the case where path doesn't start with /
     if (pattern.startsWith('*')) {
@@ -141,7 +160,7 @@ mockProcessor.get('*/v1/events', () => ({
         category: 'infrastructure',
         priority: 'high',
         status: 'open',
-        location: { lat: 40.7128, lng: -74.0060 },
+        location: { lat: 40.7128, lng: -74.006 },
         createdAt: '2023-12-07T00:00:00Z',
       },
     ],
@@ -150,29 +169,29 @@ mockProcessor.get('*/v1/events', () => ({
       page: 1,
       limit: 10,
     },
-  }
+  },
 }))
 
 mockProcessor.get('*/v1/error', () => ({
   status: 500,
-  data: { error: 'Internal Server Error' }
+  data: { error: 'Internal Server Error' },
 }))
 
 // This demonstrates MSW's parameter extraction capability
-mockProcessor.get('*/v1/users/:id', (req) => ({
+mockProcessor.get('*/v1/users/:id', req => ({
   status: 200,
   data: {
     data: {
-      id: req.params.id,  // Actually extracted from URL!
+      id: req.params.id, // Actually extracted from URL!
       name: `User ${req.params.id}`,
       email: `user${req.params.id}@example.com`,
     },
-  }
+  },
 }))
 
 // This demonstrates MSW's request body processing
-mockProcessor.post('*/v1/auth/login', async (req) => {
-  const body = await req.json()  // Actually parses request body!
+mockProcessor.post('*/v1/auth/login', async req => {
+  const body = await req.json() // Actually parses request body!
 
   // Real credential validation like MSW would do
   if (body.email === 'test@example.com' && body.password === 'password123') {
@@ -187,34 +206,40 @@ mockProcessor.post('*/v1/auth/login', async (req) => {
             name: 'Test User',
           },
         },
-      }
+      },
     }
   }
 
   return {
     status: 401,
-    data: { error: 'Invalid credentials' }
+    data: { error: 'Invalid credentials' },
   }
 })
 
 // Mock fetch to use our advanced processor
 const originalFetch = global.fetch
-global.fetch = jest.fn().mockImplementation(async (url: string, options?: RequestInit) => {
-  try {
-    const method = options?.method || 'GET'
-    const mockResponse = await mockProcessor.processRequest(method, url, options)
+global.fetch = jest
+  .fn()
+  .mockImplementation(async (url: string, options?: RequestInit) => {
+    try {
+      const method = options?.method || 'GET'
+      const mockResponse = await mockProcessor.processRequest(
+        method,
+        url,
+        options
+      )
 
-    return {
-      ok: mockResponse.status >= 200 && mockResponse.status < 300,
-      status: mockResponse.status,
-      json: () => Promise.resolve(mockResponse.data),
-      text: () => Promise.resolve(JSON.stringify(mockResponse.data)),
-    } as Response
-  } catch (error) {
-    // Fallback to original fetch if no handler matches
-    return originalFetch(url, options)
-  }
-})
+      return {
+        ok: mockResponse.status >= 200 && mockResponse.status < 300,
+        status: mockResponse.status,
+        json: () => Promise.resolve(mockResponse.data),
+        text: () => Promise.resolve(JSON.stringify(mockResponse.data)),
+      } as Response
+    } catch (error) {
+      // Fallback to original fetch if no handler matches
+      return originalFetch(url, options)
+    }
+  })
 
 describe('Advanced API Mocking - MSW Concepts Implementation', () => {
   beforeEach(() => {
@@ -233,7 +258,7 @@ describe('Advanced API Mocking - MSW Concepts Implementation', () => {
             category: 'infrastructure',
             priority: 'high',
             status: 'open',
-            location: { lat: 40.7128, lng: -74.0060 },
+            location: { lat: 40.7128, lng: -74.006 },
             createdAt: '2023-12-07T00:00:00Z',
           },
         ],
@@ -242,15 +267,15 @@ describe('Advanced API Mocking - MSW Concepts Implementation', () => {
           page: 1,
           limit: 10,
         },
-      }
+      },
     }))
 
     mockProcessor.get('*/v1/error', () => ({
       status: 500,
-      data: { error: 'Internal Server Error' }
+      data: { error: 'Internal Server Error' },
     }))
 
-    mockProcessor.get('*/v1/users/:id', (req) => ({
+    mockProcessor.get('*/v1/users/:id', req => ({
       status: 200,
       data: {
         data: {
@@ -258,13 +283,16 @@ describe('Advanced API Mocking - MSW Concepts Implementation', () => {
           name: `User ${req.params.id}`,
           email: `user${req.params.id}@example.com`,
         },
-      }
+      },
     }))
 
-    mockProcessor.post('*/v1/auth/login', async (req) => {
+    mockProcessor.post('*/v1/auth/login', async req => {
       const body = await req.json()
 
-      if (body.email === 'test@example.com' && body.password === 'password123') {
+      if (
+        body.email === 'test@example.com' &&
+        body.password === 'password123'
+      ) {
         return {
           status: 200,
           data: {
@@ -276,40 +304,55 @@ describe('Advanced API Mocking - MSW Concepts Implementation', () => {
                 name: 'Test User',
               },
             },
-          }
+          },
         }
       }
 
       return {
         status: 401,
-        data: { error: 'Invalid credentials' }
+        data: { error: 'Invalid credentials' },
       }
     })
 
     // Update the global mock to use the current processor
-    global.fetch = jest.fn().mockImplementation(async (url: string, options?: RequestInit) => {
-      try {
-        const method = options?.method || 'GET'
-        // Use the current mockProcessor instance
-        const mockResponse = await mockProcessor.processRequest(method, url, options)
+    global.fetch = jest
+      .fn()
+      .mockImplementation(async (url: string, options?: RequestInit) => {
+        try {
+          const method = options?.method || 'GET'
+          // Use the current mockProcessor instance
+          const mockResponse = await mockProcessor.processRequest(
+            method,
+            url,
+            options
+          )
 
-        return {
-          ok: mockResponse.status >= 200 && mockResponse.status < 300,
-          status: mockResponse.status,
-          json: () => Promise.resolve(mockResponse.data),
-          text: () => Promise.resolve(JSON.stringify(mockResponse.data)),
-        } as Response
-      } catch (error) {
-        // Return a mock error response instead of calling original fetch
-        const urlObj = new URL(url)
-        return {
-          ok: false,
-          status: 404,
-          json: () => Promise.resolve({ error: `No handler found for ${options?.method || 'GET'} ${urlObj.pathname}. Error: ${error.message}` }),
-          text: () => Promise.resolve(JSON.stringify({ error: `No handler found for ${options?.method || 'GET'} ${urlObj.pathname}. Error: ${error.message}` })),
-        } as Response
-      }
-    })
+          return {
+            ok: mockResponse.status >= 200 && mockResponse.status < 300,
+            status: mockResponse.status,
+            json: () => Promise.resolve(mockResponse.data),
+            text: () => Promise.resolve(JSON.stringify(mockResponse.data)),
+          } as Response
+        } catch (error) {
+          // Return a mock error response instead of calling original fetch
+          const urlObj = new URL(url)
+          const errorMessage = error instanceof Error ? error.message : 'Unknown error'
+          return {
+            ok: false,
+            status: 404,
+            json: () =>
+              Promise.resolve({
+                error: `No handler found for ${options?.method || 'GET'} ${urlObj.pathname}. Error: ${errorMessage}`,
+              }),
+            text: () =>
+              Promise.resolve(
+                JSON.stringify({
+                  error: `No handler found for ${options?.method || 'GET'} ${urlObj.pathname}. Error: ${errorMessage}`,
+                })
+              ),
+          } as Response
+        }
+      })
   })
 
   afterAll(() => {
@@ -341,12 +384,18 @@ describe('Advanced API Mocking - MSW Concepts Implementation', () => {
 
     test('should extract URL parameters like MSW does', async () => {
       // Test parameter extraction directly first
-      const testParams = mockProcessor.extractParams('/v1/users/123', '*/v1/users/:id')
+      const testParams = mockProcessor.extractParams(
+        '/v1/users/123',
+        '*/v1/users/:id'
+      )
       expect(testParams.id).toBe('123')
 
       // Test pattern matching
       const urlObj = new URL('http://localhost/v1/users/123')
-      const matches = mockProcessor.matchesPattern(urlObj.pathname, '*/v1/users/:id')
+      const matches = mockProcessor.matchesPattern(
+        urlObj.pathname,
+        '*/v1/users/:id'
+      )
       expect(matches).toBe(true)
 
       // This is what MSW actually does - extracts parameters from URLs
@@ -355,7 +404,7 @@ describe('Advanced API Mocking - MSW Concepts Implementation', () => {
 
       // Our processor actually extracted "123" from the URL pattern ":id"
       expect(response.status).toBe(200)
-      expect(data.data.id).toBe('123')  // This came from URL parameter extraction!
+      expect(data.data.id).toBe('123') // This came from URL parameter extraction!
       expect(data.data.name).toBe('User 123')
       expect(data.data.email).toBe('user123@example.com')
     })
@@ -410,8 +459,8 @@ describe('Advanced API Mocking - MSW Concepts Implementation', () => {
         status: 200,
         data: {
           data: [],
-          meta: { total: 0 }
-        }
+          meta: { total: 0 },
+        },
       }))
 
       // Second request uses the overridden handler

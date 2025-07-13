@@ -1,32 +1,31 @@
 # 🏗️ CityPulse: Architecture Enhancement Recommendations
 
-- *Report Date**: July 7, 2025
-- *Workflow**: Step 3 - Code Enhancement with Web Research
-- *Focus**: Architecture and Design Patterns
+- \*Report Date\*\*: July 7, 2025
+- \*Workflow\*\*: Step 3 - Code Enhancement with Web Research
+- \*Focus\*\*: Architecture and Design Patterns
 
 ## Executive Summary
 
-Based on comprehensive research of 2024-2025 best practices for Apache Beam, Next.js 15, and Google Cloud Platform, this
-report provides specific architectural enhancements to improve CityPulse's scalability, maintainability, and
-performance.
+Based on comprehensive research of 2024-2025 best practices for Apache Beam, Next.js 15, and Google
+Cloud Platform, this report provides specific architectural enhancements to improve CityPulse's
+scalability, maintainability, and performance.
 
 ### Key Enhancement Areas
 
--  ✅ **Modern Apache Beam Patterns**- Implement latest pipeline optimization techniques
--  ✅**Next.js 15 Architecture**- Leverage React 19 and hybrid rendering strategies
--  ✅**GCP Security Hardening**- Apply latest security best practices
--  ✅**Microservices Patterns**- Enhance modularity and scalability
--  ✅**Event-Driven Architecture**- Improve real-time processing capabilities
+- ✅ **Modern Apache Beam Patterns**- Implement latest pipeline optimization techniques
+- ✅**Next.js 15 Architecture**- Leverage React 19 and hybrid rendering strategies
+- ✅**GCP Security Hardening**- Apply latest security best practices
+- ✅**Microservices Patterns**- Enhance modularity and scalability
+- ✅**Event-Driven Architecture**- Improve real-time processing capabilities
 
 ## 🔧 Apache Beam Pipeline Enhancements
 
-### 1.**Advanced Error Handling with Dead Letter Queues**-*Current State**: Basic error handling in `base_pipeline.py`- *Enhancement**: Implement comprehensive dead letter queue pattern```python
+### 1.**Advanced Error Handling with Dead Letter Queues**-*Current State\*\*: Basic error handling in `base_pipeline.py`- *Enhancement\*\*: Implement comprehensive dead letter queue pattern```python
 
 ## Enhanced dead letter queue implementation
 
-class EnhancedDeadLetterHandler(beam.DoFn):
-    def **init**(self, error_table_spec):
-        self.error_table_spec = error_table_spec
+class EnhancedDeadLetterHandler(beam.DoFn): def **init**(self, error_table_spec):
+self.error_table_spec = error_table_spec
 
     def process(self, element, error_info=None):
         """Enhanced error processing with detailed metadata"""
@@ -35,15 +34,17 @@ class EnhancedDeadLetterHandler(beam.DoFn):
             'error_message': str(error_info) if error_info else 'Unknown error',
             'error_timestamp': datetime.utcnow().isoformat(),
             'pipeline_name': self.pipeline_name,
-            'error_type': type(error_info).**name** if error_info else 'UnknownError',
+            'error_type': type(error_info).**name**if error_info else 'UnknownError',
             'retry_count': getattr(element, 'retry_count', 0),
             'processing_stage': getattr(element, 'processing_stage', 'unknown')
         }
         yield error_record
-```text
 
-## 2. **Streaming Optimization with Windowing**-*Current State**: Basic 60-second fixed windows
-- *Enhancement**: Implement adaptive windowing strategies
+````text
+
+## 2.**Streaming Optimization with Windowing**-*Current State**: Basic 60-second fixed windows
+
+-  *Enhancement**: Implement adaptive windowing strategies
 
 ```python
 
@@ -59,6 +60,7 @@ def create_adaptive_window(data_volume_threshold=1000):
 ## Session-based windowing for related events
 
 session_window = window.Sessions(gap=300)  # 5-minute session gap
+
 ```text
 
 ## 3. **Performance Optimization Patterns**-*Enhancement**: Implement fusion optimization and batching
@@ -84,7 +86,9 @@ class BatchedAPICall(beam.DoFn):
 
     def process_batch(self, batch):
         """Process batch of elements with single API call"""
+
 ## Implement batched API processing
+
         pass
 
 ## ```text
@@ -92,7 +96,8 @@ class BatchedAPICall(beam.DoFn):
 ## ⚛️ Next.js 15 Architecture Enhancements
 
 ### 1. **Hybrid Rendering Strategy Implementation**-*Current State**: Basic Next.js setup
-- *Enhancement**: Implement strategic rendering patterns
+
+-  *Enhancement**: Implement strategic rendering patterns
 
 ```typescript
 
@@ -129,7 +134,8 @@ export const revalidate = 60; // Revalidate every 60 seconds
 ```text
 
 ### 2. **Server Actions Enhancement**-*Current State**: Basic server action in submit-report
-- *Enhancement**: Comprehensive server action patterns
+
+-  *Enhancement**: Comprehensive server action patterns
 
 ```typescript
 
@@ -221,7 +227,8 @@ export const useDashboardStore = create<DashboardState>()(
 ## 🔒 GCP Security Enhancements
 
 ### 1. **Enhanced IAM and Service Account Management**-*Current State**: Basic service account setup
-- *Enhancement**: Implement principle of least privilege
+
+-  *Enhancement**: Implement principle of least privilege
 
 ```hcl
 
@@ -255,6 +262,7 @@ resource "google_service_account" "ai_processor" {
   account_id   = "citypulse-ai-processor"
   display_name = "CityPulse AI Processing Service Account"
 }
+
 ```text
 
 ## 2. **Network Security Hardening**-*Enhancement**: Implement VPC and private networking
@@ -275,6 +283,7 @@ resource "google_compute_subnetwork" "dataflow_subnet" {
   network       = google_compute_network.citypulse_vpc.id
 
 ## Enable private Google access
+
   private_ip_google_access = true
 }
 
@@ -395,7 +404,7 @@ export class APIGateway {
   }
 }
 
-##```text 4
+## ```text 4
 
 ## 📊 Performance Monitoring Enhancements
 
@@ -415,10 +424,13 @@ class MetricsCollector(beam.DoFn):
         start_time = time.time()
 
         try:
+
 ## Process element
+
             result = self.process_element(element)
 
 ## Record success metrics
+
             self.counter.inc()
             processing_time = (time.time() - start_time) *1000  # ms
             self.distribution.update(processing_time)
@@ -426,7 +438,9 @@ class MetricsCollector(beam.DoFn):
             yield result
 
         except Exception as e:
+
 ## Record error metrics
+
             error_counter = Metrics.counter(self.**class**, f'{self.metric_name}_errors')
             error_counter.inc()
             raise
@@ -460,21 +474,22 @@ class MetricsCollector(beam.DoFn):
 
 ### Performance Improvements
 
--**50% reduction**in pipeline processing latency
--**30% improvement**in frontend load times
--**90% reduction**in error rates through better handling
+- **50% reduction**in pipeline processing latency
+- **30% improvement**in frontend load times
+- **90% reduction**in error rates through better handling
 
 ### Security Enhancements
 
--**Zero-trust architecture**implementation
--**Principle of least privilege**across all services
--**Enhanced audit logging**and monitoring
+- **Zero-trust architecture**implementation
+- **Principle of least privilege**across all services
+- **Enhanced audit logging**and monitoring
 
 ### Maintainability Benefits
 
--**Modular microservices**architecture
--**Improved code reusability**through design patterns
--**Better separation of concerns**across components
+- **Modular microservices**architecture
+- **Improved code reusability**through design patterns
+- **Better separation of concerns**across components
 
--*Next Steps**: Begin implementation with Phase 1 core architecture enhancements, focusing on the most impactful
+- *Next Steps**: Begin implementation with Phase 1 core architecture enhancements, focusing on the most impactful
 improvements first.
+````

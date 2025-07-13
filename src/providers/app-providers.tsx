@@ -5,7 +5,13 @@
 
 'use client'
 
-import React, { ReactNode, useEffect, Suspense, startTransition, use } from 'react'
+import React, {
+  ReactNode,
+  useEffect,
+  Suspense,
+  startTransition,
+  use,
+} from 'react'
 import { ThemeProvider } from 'next-themes'
 import { Toaster } from '@/components/ui/sonner'
 import { ErrorBoundary } from '@/lib/error-handling'
@@ -19,19 +25,26 @@ function PerformanceProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     // Use React 19 scheduler for performance monitoring
     startTransition(() => {
-      if (typeof window !== 'undefined' && window.performance && window.performance.timing) {
+      if (
+        typeof window !== 'undefined' &&
+        window.performance &&
+        window.performance.timing
+      ) {
         const timing = window.performance.timing
-        const loadTime = timing.loadEventEnd && timing.navigationStart
-          ? timing.loadEventEnd - timing.navigationStart
-          : 0
-        
+        const loadTime =
+          timing.loadEventEnd && timing.navigationStart
+            ? timing.loadEventEnd - timing.navigationStart
+            : 0
+
         if (loadTime > 0) {
           const { addPerformanceMetric } = useAppStore.getState()
           addPerformanceMetric?.('page_load', loadTime)
-          
+
           logger.info('Page load performance', {
             loadTime,
-            domContentLoaded: window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart,
+            domContentLoaded:
+              window.performance.timing.domContentLoadedEventEnd -
+              window.performance.timing.navigationStart,
           })
         }
       }
@@ -43,7 +56,7 @@ function PerformanceProvider({ children }: { children: ReactNode }) {
 
 // Enhanced Network Status Provider with React 19 patterns
 function NetworkStatusProvider({ children }: { children: ReactNode }) {
-  const setOnlineStatus = useAppStore((state) => state.setOnlineStatus)
+  const setOnlineStatus = useAppStore(state => state.setOnlineStatus)
 
   useEffect(() => {
     const handleOnline = () => {
@@ -77,15 +90,16 @@ function NetworkStatusProvider({ children }: { children: ReactNode }) {
 
 // React 19 optimized notification provider
 function NotificationProvider({ children }: { children: ReactNode }) {
-  const notifications = useAppStore((state) => state.notifications)
-  const removeNotification = useAppStore((state) => state.removeNotification)
+  const notifications = useAppStore(state => state.notifications)
+  const removeNotification = useAppStore(state => state.removeNotification)
 
   useEffect(() => {
     // Use React 19 concurrent features for notification management
-    notifications.forEach((notification) => {
+    notifications.forEach(notification => {
       if (!notification.persistent && notification.duration) {
-        const timeRemaining = notification.duration - (Date.now() - notification.timestamp)
-        
+        const timeRemaining =
+          notification.duration - (Date.now() - notification.timestamp)
+
         if (timeRemaining > 0) {
           setTimeout(() => {
             startTransition(() => {
@@ -105,7 +119,7 @@ function NotificationProvider({ children }: { children: ReactNode }) {
     <>
       {children}
       <Toaster
-        position="top-right"
+        position='top-right'
         expand={true}
         richColors
         closeButton
@@ -134,9 +148,13 @@ function ErrorTrackingProvider({ children }: { children: ReactNode }) {
 
     const handleUnhandledRejection = (event: PromiseRejectionEvent) => {
       startTransition(() => {
-        logger.error('Unhandled promise rejection', new Error(String(event.reason)), {
-          reason: event.reason,
-        })
+        logger.error(
+          'Unhandled promise rejection',
+          new Error(String(event.reason)),
+          {
+            reason: event.reason,
+          }
+        )
       })
     }
 
@@ -158,7 +176,7 @@ function DevToolsProvider({ children }: { children: ReactNode }) {
     if (config.isDevelopment) {
       startTransition(() => {
         // Add development helpers to window
-        (window as any).__CITYPULSE_DEV__ = {
+        ;(window as any).__CITYPULSE_DEV__ = {
           config,
           logger,
           stores: {
@@ -190,10 +208,10 @@ function DevToolsProvider({ children }: { children: ReactNode }) {
 // React 19 Suspense wrapper with enhanced loading
 function SuspenseWrapper({ children }: { children: ReactNode }) {
   return (
-    <Suspense 
+    <Suspense
       fallback={
-        <div className="flex items-center justify-center min-h-screen">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+        <div className='flex items-center justify-center min-h-screen'>
+          <div className='animate-spin rounded-full h-32 w-32 border-b-2 border-primary'></div>
         </div>
       }
     >
@@ -211,8 +229,8 @@ export function AppProviders({ children }: AppProvidersProps) {
   return (
     <ErrorBoundary>
       <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
+        attribute='class'
+        defaultTheme='system'
         enableSystem={true}
         disableTransitionOnChange={false}
       >
@@ -223,9 +241,7 @@ export function AppProviders({ children }: AppProvidersProps) {
                 <ErrorTrackingProvider>
                   <NotificationProvider>
                     <DevToolsProvider>
-                      <ErrorBoundary>
-                        {children}
-                      </ErrorBoundary>
+                      <ErrorBoundary>{children}</ErrorBoundary>
                     </DevToolsProvider>
                   </NotificationProvider>
                 </ErrorTrackingProvider>
@@ -239,18 +255,20 @@ export function AppProviders({ children }: AppProvidersProps) {
 }
 
 // Feature provider with React 19 patterns
-export function FeatureProvider({ 
-  children, 
-  feature 
-}: { 
+export function FeatureProvider({
+  children,
+  feature,
+}: {
   children: ReactNode
-  feature: keyof typeof config.features 
+  feature: keyof typeof config.features
 }) {
   if (!config.features[feature]) {
     return null
   }
 
-  return <Suspense fallback={<div>Loading feature...</div>}>{children}</Suspense>
+  return (
+    <Suspense fallback={<div>Loading feature...</div>}>{children}</Suspense>
+  )
 }
 
 // HOC for feature gating with React 19
@@ -280,7 +298,7 @@ export function useFeatureFlag(feature: keyof typeof config.features) {
 // Enhanced context hook with React 19 patterns
 export function useAppContext() {
   const appState = useAppStore()
-  
+
   return {
     ...appState,
     config,
@@ -300,9 +318,7 @@ export function TestProviders({ children }: { children: ReactNode }) {
   return (
     <ErrorBoundary>
       <QueryProvider>
-        <Suspense fallback={<div>Loading test...</div>}>
-          {children}
-        </Suspense>
+        <Suspense fallback={<div>Loading test...</div>}>{children}</Suspense>
       </QueryProvider>
     </ErrorBoundary>
   )

@@ -55,11 +55,11 @@ function sanitizeObject(obj: any): any {
   if (typeof obj === 'string') {
     return sanitizeString(obj)
   }
-  
+
   if (Array.isArray(obj)) {
     return obj.map(sanitizeObject)
   }
-  
+
   if (obj && typeof obj === 'object') {
     const sanitized: any = {}
     for (const [key, value] of Object.entries(obj)) {
@@ -67,7 +67,7 @@ function sanitizeObject(obj: any): any {
     }
     return sanitized
   }
-  
+
   return obj
 }
 
@@ -87,20 +87,24 @@ function checkRateLimit(
   const now = Date.now()
   const key = identifier
   const record = rateLimitStore.get(key)
-  
+
   if (!record || now > record.resetTime) {
     // Reset or create new record
     const resetTime = now + windowMs
     rateLimitStore.set(key, { count: 1, resetTime })
     return { allowed: true, remaining: limit - 1, resetTime }
   }
-  
+
   if (record.count >= limit) {
     return { allowed: false, remaining: 0, resetTime: record.resetTime }
   }
-  
+
   record.count++
-  return { allowed: true, remaining: limit - record.count, resetTime: record.resetTime }
+  return {
+    allowed: true,
+    remaining: limit - record.count,
+    resetTime: record.resetTime,
+  }
 }
 
 /**
@@ -111,10 +115,10 @@ function getClientIdentifier(request: NextRequest): string {
   const forwarded = request.headers.get('x-forwarded-for')
   const realIp = request.headers.get('x-real-ip')
   const ip = forwarded?.split(',')[0] || realIp || 'unknown'
-  
+
   // Include user agent for additional uniqueness
   const userAgent = request.headers.get('user-agent') || 'unknown'
-  
+
   return `${ip}:${userAgent.slice(0, 50)}`
 }
 
@@ -139,7 +143,7 @@ export async function validateRequest(
         const body = await request.json()
         const sanitizedBody = sanitizeObject(body)
         const validation = validateData(options.body, sanitizedBody)
-        
+
         if (validation.success) {
           result.data!.body = validation.data
         } else {
@@ -164,7 +168,7 @@ export async function validateRequest(
       const query = Object.fromEntries(searchParams.entries())
       const sanitizedQuery = sanitizeObject(query)
       const validation = validateData(options.query, sanitizedQuery)
-      
+
       if (validation.success) {
         result.data!.query = validation.data
       } else {
@@ -177,7 +181,7 @@ export async function validateRequest(
     if (options.headers) {
       const headers = Object.fromEntries(request.headers.entries())
       const validation = validateData(options.headers, headers)
-      
+
       if (validation.success) {
         result.data!.headers = validation.data
       } else {
@@ -213,7 +217,7 @@ export function createValidationMiddleware(options: ValidationOptions) {
     // Check rate limit
     const clientId = getClientIdentifier(request)
     const rateLimit = checkRateLimit(clientId)
-    
+
     if (!rateLimit.allowed) {
       return NextResponse.json(
         {
@@ -227,7 +231,9 @@ export function createValidationMiddleware(options: ValidationOptions) {
             'X-RateLimit-Limit': '100',
             'X-RateLimit-Remaining': rateLimit.remaining.toString(),
             'X-RateLimit-Reset': rateLimit.resetTime.toString(),
-            'Retry-After': Math.ceil((rateLimit.resetTime - Date.now()) / 1000).toString(),
+            'Retry-After': Math.ceil(
+              (rateLimit.resetTime - Date.now()) / 1000
+            ).toString(),
           },
         }
       )
@@ -235,10 +241,10 @@ export function createValidationMiddleware(options: ValidationOptions) {
 
     // Validate request
     const validation = await validateRequest(request, options)
-    
+
     if (!validation.success) {
       const errorDetails: any = {}
-      
+
       if (validation.errors?.body) {
         errorDetails.body = validation.errors.body.errors
       }
@@ -248,7 +254,7 @@ export function createValidationMiddleware(options: ValidationOptions) {
       if (validation.errors?.headers) {
         errorDetails.headers = validation.errors.headers.errors
       }
-      
+
       return NextResponse.json(
         {
           error: 'Validation failed',
@@ -264,7 +270,7 @@ export function createValidationMiddleware(options: ValidationOptions) {
     if (validation.data) {
       response.headers.set('x-validated-data', JSON.stringify(validation.data))
     }
-    
+
     return response
   }
 }
@@ -278,8 +284,11 @@ export function addSecurityHeaders(response: NextResponse): NextResponse {
   response.headers.set('X-Frame-Options', 'DENY')
   response.headers.set('X-XSS-Protection', '1; mode=block')
   response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
-  response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()')
-  
+  response.headers.set(
+    'Permissions-Policy',
+    'camera=(), microphone=(), geolocation=()'
+  )
+
   // Content Security Policy
   const csp = [
     "default-src 'self'",
@@ -290,9 +299,9 @@ export function addSecurityHeaders(response: NextResponse): NextResponse {
     "connect-src 'self' https://api.citypulse.com",
     "frame-ancestors 'none'",
   ].join('; ')
-  
+
   response.headers.set('Content-Security-Policy', csp)
-  
+
   return response
 }
 
@@ -308,18 +317,25 @@ export function addCorsHeaders(
     'https://citypulse.com',
     'https://www.citypulse.com',
   ]
-  
+
   const requestOrigin = origin || '*'
-  const isAllowed = allowedOrigins.includes(requestOrigin) || requestOrigin === '*'
-  
+  const isAllowed =
+    allowedOrigins.includes(requestOrigin) || requestOrigin === '*'
+
   if (isAllowed) {
     response.headers.set('Access-Control-Allow-Origin', requestOrigin)
   }
-  
-  response.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
-  response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-API-Key')
+
+  response.headers.set(
+    'Access-Control-Allow-Methods',
+    'GET, POST, PUT, DELETE, OPTIONS'
+  )
+  response.headers.set(
+    'Access-Control-Allow-Headers',
+    'Content-Type, Authorization, X-API-Key'
+  )
   response.headers.set('Access-Control-Max-Age', '86400')
-  
+
   return response
 }
 

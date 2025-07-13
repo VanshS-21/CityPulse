@@ -82,7 +82,7 @@ async function handleLogin(authData: any, request: NextRequest) {
     const customToken = await createCustomToken(userData.uid, {
       role: userData.role,
       email: userData.email,
-      name: userData.name
+      name: userData.name,
     })
 
     const response = {
@@ -92,14 +92,18 @@ async function handleLogin(authData: any, request: NextRequest) {
           id: userData.uid,
           email: userData.email,
           name: userData.name,
-          role: userData.role as 'citizen' | 'admin' | 'moderator' | 'authority',
+          role: userData.role as
+            | 'citizen'
+            | 'admin'
+            | 'moderator'
+            | 'authority',
           emailVerified: userData.emailVerified,
           createdAt: new Date(),
           lastLoginAt: new Date(),
         },
         token: customToken,
         expiresIn: 3600, // 1 hour
-      }
+      },
     }
 
     return NextResponse.json(response)
@@ -142,7 +146,7 @@ async function handleRegister(authData: any, request: NextRequest) {
       {
         error: 'Validation failed',
         success: false,
-        message: 'Please check your input data'
+        message: 'Please check your input data',
       },
       { status: 400 }
     )
@@ -171,7 +175,7 @@ async function handleRegister(authData: any, request: NextRequest) {
     const customToken = await createCustomToken(uid, {
       role: 'citizen',
       email: email,
-      name: name
+      name: name,
     })
 
     // Send email verification (optional - can be done client-side)
@@ -196,7 +200,7 @@ async function handleRegister(authData: any, request: NextRequest) {
         },
         token: customToken,
         expiresIn: 3600, // 1 hour
-      }
+      },
     }
 
     return NextResponse.json(response, { status: 201 })
@@ -255,7 +259,7 @@ async function handleLogout(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: 'Logged out successfully'
+      message: 'Logged out successfully',
     })
   } catch (error) {
     console.error('Logout error:', error)
@@ -298,7 +302,7 @@ async function handleTokenRefresh(request: NextRequest) {
     const customToken = await createCustomToken(userData.uid, {
       role: userProfile?.role || userData.role,
       email: userData.email,
-      name: userData.name
+      name: userData.name,
     })
 
     const response = {
@@ -312,15 +316,18 @@ async function handleTokenRefresh(request: NextRequest) {
           name: userData.name,
           role: userProfile?.role || userData.role,
           emailVerified: userData.emailVerified,
-        }
-      }
+        },
+      },
     }
 
     return NextResponse.json(response)
   } catch (error: any) {
     console.error('Token refresh error:', error)
 
-    if (error?.code === 'auth/id-token-expired' || error?.code === 'auth/id-token-revoked') {
+    if (
+      error?.code === 'auth/id-token-expired' ||
+      error?.code === 'auth/id-token-revoked'
+    ) {
       return NextResponse.json(
         { error: 'Token expired or revoked', success: false },
         { status: 401 }
@@ -357,7 +364,7 @@ async function handleTokenVerification(request: NextRequest) {
         {
           success: true,
           data: { valid: false },
-          error: 'Invalid or expired token'
+          error: 'Invalid or expired token',
         },
         { status: 200 }
       )
@@ -376,8 +383,8 @@ async function handleTokenVerification(request: NextRequest) {
           name: userData.name,
           role: userProfile?.role || userData.role,
           emailVerified: userData.emailVerified,
-        }
-      }
+        },
+      },
     }
 
     return NextResponse.json(response)
@@ -387,7 +394,7 @@ async function handleTokenVerification(request: NextRequest) {
       {
         success: true,
         data: { valid: false },
-        error: 'Invalid token'
+        error: 'Invalid token',
       },
       { status: 200 } // Return 200 but with valid: false
     )
@@ -432,8 +439,8 @@ export async function GET(request: NextRequest) {
           emailVerified: userData.emailVerified,
           createdAt: userProfile?.createdAt || new Date(),
           lastLoginAt: new Date(),
-        }
-      }
+        },
+      },
     }
 
     return NextResponse.json(response)

@@ -23,7 +23,9 @@ export interface AuthRequest extends NextRequest {
 /**
  * Verify Firebase ID token and extract user information
  */
-export async function verifyToken(token: string): Promise<AuthenticatedUser | null> {
+export async function verifyToken(
+  token: string
+): Promise<AuthenticatedUser | null> {
   try {
     // Verify the Firebase ID token and get user data
     const userData = await verifyFirebaseToken(token)
@@ -39,7 +41,9 @@ export async function verifyToken(token: string): Promise<AuthenticatedUser | nu
       uid: userData.uid,
       email: userData.email,
       name: userData.name,
-      role: userProfile?.role || userData.role as 'citizen' | 'admin' | 'moderator' | 'authority',
+      role:
+        userProfile?.role ||
+        (userData.role as 'citizen' | 'admin' | 'moderator' | 'authority'),
       emailVerified: userData.emailVerified,
     }
   } catch (error) {
@@ -51,9 +55,11 @@ export async function verifyToken(token: string): Promise<AuthenticatedUser | nu
 /**
  * Authentication middleware - requires valid token
  */
-export async function requireAuth(request: NextRequest): Promise<{ user: AuthenticatedUser } | NextResponse> {
+export async function requireAuth(
+  request: NextRequest
+): Promise<{ user: AuthenticatedUser } | NextResponse> {
   const authHeader = request.headers.get('Authorization')
-  
+
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return NextResponse.json(
       { error: 'Authentication required', success: false },
@@ -78,11 +84,11 @@ export async function requireAuth(request: NextRequest): Promise<{ user: Authent
  * Role-based authorization middleware
  */
 export async function requireRole(
-  request: NextRequest, 
+  request: NextRequest,
   allowedRoles: Array<'citizen' | 'admin' | 'moderator' | 'authority'>
 ): Promise<{ user: AuthenticatedUser } | NextResponse> {
   const authResult = await requireAuth(request)
-  
+
   if (authResult instanceof NextResponse) {
     return authResult // Return error response
   }
@@ -102,30 +108,38 @@ export async function requireRole(
 /**
  * Admin-only middleware
  */
-export async function requireAdmin(request: NextRequest): Promise<{ user: AuthenticatedUser } | NextResponse> {
+export async function requireAdmin(
+  request: NextRequest
+): Promise<{ user: AuthenticatedUser } | NextResponse> {
   return requireRole(request, ['admin'])
 }
 
 /**
  * Authority or Admin middleware
  */
-export async function requireAuthority(request: NextRequest): Promise<{ user: AuthenticatedUser } | NextResponse> {
+export async function requireAuthority(
+  request: NextRequest
+): Promise<{ user: AuthenticatedUser } | NextResponse> {
   return requireRole(request, ['admin', 'authority'])
 }
 
 /**
  * Moderator, Authority, or Admin middleware
  */
-export async function requireModerator(request: NextRequest): Promise<{ user: AuthenticatedUser } | NextResponse> {
+export async function requireModerator(
+  request: NextRequest
+): Promise<{ user: AuthenticatedUser } | NextResponse> {
   return requireRole(request, ['admin', 'authority', 'moderator'])
 }
 
 /**
  * Optional authentication - doesn't fail if no token provided
  */
-export async function optionalAuth(request: NextRequest): Promise<{ user: AuthenticatedUser | null }> {
+export async function optionalAuth(
+  request: NextRequest
+): Promise<{ user: AuthenticatedUser | null }> {
   const authHeader = request.headers.get('Authorization')
-  
+
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return { user: null }
   }
@@ -139,12 +153,15 @@ export async function optionalAuth(request: NextRequest): Promise<{ user: Authen
 /**
  * Check if user owns resource (for user-specific operations)
  */
-export function checkResourceOwnership(user: AuthenticatedUser, resourceUserId: string): boolean {
+export function checkResourceOwnership(
+  user: AuthenticatedUser,
+  resourceUserId: string
+): boolean {
   // Admin can access any resource
   if (user.role === 'admin') {
     return true
   }
-  
+
   // User can only access their own resources
   return user.uid === resourceUserId
 }
@@ -154,7 +171,11 @@ export function checkResourceOwnership(user: AuthenticatedUser, resourceUserId: 
  */
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>()
 
-export function checkRateLimit(identifier: string, maxRequests: number = 100, windowMs: number = 60000): boolean {
+export function checkRateLimit(
+  identifier: string,
+  maxRequests: number = 100,
+  windowMs: number = 60000
+): boolean {
   const now = Date.now()
   const userLimit = rateLimitMap.get(identifier)
 

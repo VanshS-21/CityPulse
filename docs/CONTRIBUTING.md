@@ -1,34 +1,39 @@
 # Contributing to CityPulse
 
-First off, thank you for considering contributing to CityPulse! It's people like you that make CityPulse such a great
-tool. We welcome any form of contribution, from reporting bugs and submitting feedback to writing code and improving
-documentation.
+First off, thank you for considering contributing to CityPulse! It's people like you that make
+CityPulse such a great tool. We welcome any form of contribution, from reporting bugs and submitting
+feedback to writing code and improving documentation.
 
 ## Table of Contents
 
--    [Code of Conduct](#code-of-conduct)
--    [Getting Started](#getting-started)
-    -    [Prerequisites](#prerequisites)
-    -    [Fork & Clone](#fork--clone)
--    [Development Environment Setup](#development-environment-setup)
-    -    [Frontend (Next.js)](#frontend-nextjs)
-    -    [Backend Data Pipelines (Python)](#backend-data-pipelines-python)
-    -    [Backend API Layer (Planned)](#backend-api-layer-planned)
-    -    [Mobile App (Planned)](#mobile-app-planned)
--    [How to Contribute](#how-to-contribute)
-    -    [Reporting Bugs](#reporting-bugs)
-    -    [Suggesting Enhancements](#suggesting-enhancements)
-    -    [Making Code Contributions](#making-code-contributions)
--    [Pull Request Process](#pull-request-process)
--    [Coding Style Guides](#coding-style-guides)
-    -    [TypeScript/JavaScript](#typescriptjavascript)
-    -    [Python](#python)
-    -    [API Design](#api-design)
+-     [Code of Conduct](#code-of-conduct)
+-     [Getting Started](#getting-started)
+
+  -     [Prerequisites](#prerequisites)
+  -     [Fork & Clone](#fork--clone)
+-     [Development Environment Setup](#development-environment-setup)
+
+  -     [Frontend (Next.js)](#frontend-nextjs)
+  -     [Backend Data Pipelines (Python)](#backend-data-pipelines-python)
+  -     [Backend API Layer (Planned)](#backend-api-layer-planned)
+  -     [Mobile App (Planned)](#mobile-app-planned)
+-     [How to Contribute](#how-to-contribute)
+
+  -     [Reporting Bugs](#reporting-bugs)
+  -     [Suggesting Enhancements](#suggesting-enhancements)
+  -     [Making Code Contributions](#making-code-contributions)
+-     [Pull Request Process](#pull-request-process)
+-     [Coding Style Guides](#coding-style-guides)
+
+  -     [TypeScript/JavaScript](#typescriptjavascript)
+  -     [Python](#python)
+  -     [API Design](#api-design)
 
 ## Code of Conduct
 
-This project and everyone participating in it is governed by the [CityPulse Code of Conduct](CODE_OF_CONDUCT.md). By
-participating, you are expected to uphold this code. Please report unacceptable behavior.
+This project and everyone participating in it is governed by the
+[CityPulse Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this
+code. Please report unacceptable behavior.
 
 ## Getting Started
 
@@ -36,22 +41,22 @@ participating, you are expected to uphold this code. Please report unacceptable 
 
 Make sure you have the following tools installed on your system:
 
--    Node.js (v18 or later)
--    Python (v3.11 or later)
--    Terraform (v1.0 or later)
--    Google Cloud SDK (`gcloud`)
--    Flutter SDK (for mobile development)
+-     Node.js (v18 or later)
+-     Python (v3.11 or later)
+-     Terraform (v1.0 or later)
+-     Google Cloud SDK (`gcloud`)
+-     Flutter SDK (for mobile development)
 
 ### Fork & Clone
 
 1.  Fork the repository on GitHub.
-1.  Clone your fork locally: `git clone <https://github.com/your-username/CityPulse.git`>
+1.  Clone your fork locally: `git clone <<https://github.com/your-username/CityPulse.git`>>
 
 ## Development Environment Setup
 
 ### Frontend (Next.js)
 
-```bash
+````bash
 
 ## Navigate to the project root
 
@@ -100,9 +105,12 @@ We welcome suggestions for new features or improvements. Please open an issue to
 
 ### Making Code Contributions
 
-1.  Create a new branch for your feature or bug fix:`git checkout -b feature/your-feature-name`1.  Make your changes, following the coding style guides.
+1.  Create a new branch for your feature or bug fix:`git checkout -b feature/your-feature-name`1. Make your changes,
+following the coding style guides.
+
 1.  Commit your changes with a descriptive commit message.
-1.  Push your branch to your fork:`git push origin feature/your-feature-name`1.  Open a pull request to the`main`branch of the original repository.
+1.  Push your branch to your fork:`git push origin feature/your-feature-name`1. Open a pull request to the`main`branch of
+the original repository.
 
 ## Pull Request Process
 
@@ -127,8 +135,9 @@ We follow the [PEP 8](https://www.python.org/dev/peps/pep-0008/) style guide for
 
 For contributions to the backend API:
 
--  **Specification First**: All new endpoints or changes to existing ones must be documented in the OpenAPI/Swagger
+-   **Specification First**: All new endpoints or changes to existing ones must be documented in the OpenAPI/Swagger
 specification first.
 
--    **RESTful Principles**: Follow RESTful design principles for creating scalable and maintainable APIs.
--    **Security**: Ensure all endpoints have proper authentication and authorization checks.
+-     **RESTful Principles**: Follow RESTful design principles for creating scalable and maintainable APIs.
+-     **Security**: Ensure all endpoints have proper authentication and authorization checks.
+````

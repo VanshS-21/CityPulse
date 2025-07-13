@@ -1,7 +1,6 @@
 import { API_ENDPOINTS, APP_CONFIG } from '@/utils/constants'
 
 describe('API Routing Integration Tests', () => {
-
   describe('Constants Configuration', () => {
     test('should have correct base URL in APP_CONFIG', () => {
       expect(APP_CONFIG.api.baseUrl).toBe('/api/v1')
@@ -34,23 +33,23 @@ describe('API Routing Integration Tests', () => {
       expect(rewrites).toEqual([
         {
           source: '/api/v1/:path*',
-          destination: '/api/:path*'
-        }
+          destination: '/api/:path*',
+        },
       ])
     })
   })
 
-// Note: MSW integration tests would be added here in a more complex setup
+  // Note: MSW integration tests would be added here in a more complex setup
   // For now, we focus on testing the configuration and constants
 
   describe('URL Construction', () => {
     test('should construct URLs correctly using constants', () => {
       const baseUrl = APP_CONFIG.api.baseUrl
       const issuesEndpoint = API_ENDPOINTS.issues
-      
+
       // Test that the endpoint already includes the base URL
       expect(issuesEndpoint).toBe(baseUrl + '/events')
-      
+
       // Test URL construction for full API calls
       const fullUrl = `${baseUrl}/events`
       expect(fullUrl).toBe('/api/v1/events')
@@ -59,7 +58,7 @@ describe('API Routing Integration Tests', () => {
     test('should validate all endpoints follow the same pattern', () => {
       const baseUrl = APP_CONFIG.api.baseUrl
       const endpoints = Object.values(API_ENDPOINTS)
-      
+
       endpoints.forEach(endpoint => {
         expect(endpoint).toMatch(new RegExp(`^${baseUrl.replace('/', '\\/')}/`))
       })
@@ -72,7 +71,7 @@ describe('API Routing Integration Tests', () => {
       // In our app, /api/v1/events is rewritten to /api/events
       const apiPath = '/api/v1/events'
       const expectedRewritePath = apiPath.replace('/v1', '')
-      
+
       expect(expectedRewritePath).toBe('/api/events')
     })
 
@@ -80,7 +79,7 @@ describe('API Routing Integration Tests', () => {
       // Test that complex paths are handled correctly
       const complexApiPath = '/api/v1/users/123/profile'
       const expectedRewritePath = complexApiPath.replace('/v1', '')
-      
+
       expect(expectedRewritePath).toBe('/api/users/123/profile')
     })
   })

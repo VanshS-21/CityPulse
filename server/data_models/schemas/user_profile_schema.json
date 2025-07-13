@@ -20,10 +20,10 @@
       "description": "User's display name"
     },
     {
-        "name": "roles",
-        "type": "STRING",
-        "mode": "REPEATED",
-        "description": "Roles assigned to the user (e.g., user, admin, moderator)"
+      "name": "roles",
+      "type": "STRING",
+      "mode": "REPEATED",
+      "description": "Roles assigned to the user (e.g., user, admin, moderator)"
     },
     {
       "name": "preferences",

@@ -64,7 +64,7 @@ export interface Location {
   zipCode: string
 }
 
-export type IssueCategory = 
+export type IssueCategory =
   | 'infrastructure'
   | 'transportation'
   | 'environment'
@@ -74,7 +74,7 @@ export type IssueCategory =
 
 export type IssuePriority = 'low' | 'medium' | 'high' | 'critical'
 
-export type IssueStatus = 
+export type IssueStatus =
   | 'open'
   | 'in_progress'
   | 'resolved'

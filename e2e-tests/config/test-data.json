@@ -8,7 +8,7 @@
       "priority": "medium",
       "location": {
         "latitude": 40.7128,
-        "longitude": -74.0060,
+        "longitude": -74.006,
         "address": "123 Main Street, New York, NY 10001",
         "ward": "Manhattan District 1"
       },
@@ -17,10 +17,7 @@
         "anonymous": false
       },
       "media": {
-        "images": [
-          "https://example.com/pothole1.jpg",
-          "https://example.com/pothole2.jpg"
-        ],
+        "images": ["https://example.com/pothole1.jpg", "https://example.com/pothole2.jpg"],
         "videos": []
       },
       "tags": ["road", "safety", "urgent"],
@@ -233,45 +230,25 @@
   "categories": {
     "infrastructure": {
       "name": "Infrastructure",
-      "subcategories": [
-        "road_maintenance",
-        "sidewalk_repair",
-        "bridge_issues",
-        "utility_problems"
-      ],
+      "subcategories": ["road_maintenance", "sidewalk_repair", "bridge_issues", "utility_problems"],
       "expectedResponseTime": 48,
       "priority": "medium"
     },
     "traffic": {
       "name": "Traffic",
-      "subcategories": [
-        "signal_malfunction",
-        "congestion",
-        "parking_issues",
-        "road_closure"
-      ],
+      "subcategories": ["signal_malfunction", "congestion", "parking_issues", "road_closure"],
       "expectedResponseTime": 2,
       "priority": "high"
     },
     "environment": {
       "name": "Environment",
-      "subcategories": [
-        "illegal_dumping",
-        "air_quality",
-        "noise_pollution",
-        "water_quality"
-      ],
+      "subcategories": ["illegal_dumping", "air_quality", "noise_pollution", "water_quality"],
       "expectedResponseTime": 72,
       "priority": "medium"
     },
     "safety": {
       "name": "Public Safety",
-      "subcategories": [
-        "street_lighting",
-        "vandalism",
-        "suspicious_activity",
-        "emergency"
-      ],
+      "subcategories": ["street_lighting", "vandalism", "suspicious_activity", "emergency"],
       "expectedResponseTime": 1,
       "priority": "high"
     }
@@ -284,23 +261,11 @@
       "locationSpread": "manhattan"
     },
     "userJourneyComplete": {
-      "steps": [
-        "user_registration",
-        "profile_setup",
-        "event_creation",
-        "event_tracking",
-        "feedback_submission"
-      ],
+      "steps": ["user_registration", "profile_setup", "event_creation", "event_tracking", "feedback_submission"],
       "expectedDuration": "15m"
     },
     "authorityWorkflow": {
-      "steps": [
-        "authority_login",
-        "event_assignment",
-        "status_update",
-        "resolution_confirmation",
-        "report_generation"
-      ],
+      "steps": ["authority_login", "event_assignment", "status_update", "resolution_confirmation", "report_generation"],
       "expectedDuration": "10m"
     }
   }

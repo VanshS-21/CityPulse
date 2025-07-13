@@ -56,14 +56,16 @@ export interface AppState {
     errorCount: number
     renderCount: number
   }
-  
+
   // Actions
   setUser: (user: User | null) => void
   setAuthenticated: (authenticated: boolean) => void
   setTheme: (theme: 'light' | 'dark' | 'system') => void
   setSidebarOpen: (open: boolean) => void
   setLoading: (loading: boolean) => void
-  addNotification: (notification: Omit<Notification, 'id' | 'timestamp'>) => void
+  addNotification: (
+    notification: Omit<Notification, 'id' | 'timestamp'>
+  ) => void
   removeNotification: (id: string) => void
   clearNotifications: () => void
 
@@ -73,18 +75,35 @@ export interface AppState {
 
   // Atomic operations to prevent race conditions
   updateUserProfile: (updates: Partial<User>) => void
-  batchUpdateNotifications: (operations: Array<{
-    type: 'add' | 'remove' | 'clear'
-    notification?: Omit<Notification, 'id' | 'timestamp'>
-    id?: string
-  }>) => void
+  batchUpdateNotifications: (
+    operations: Array<{
+      type: 'add' | 'remove' | 'clear'
+      notification?: Omit<Notification, 'id' | 'timestamp'>
+      id?: string
+    }>
+  ) => void
 
   // Reset function
   reset: () => void
 }
 
 // Initial state
-const initialState: Omit<AppState, 'setUser' | 'setAuthenticated' | 'setTheme' | 'setSidebarOpen' | 'setLoading' | 'addNotification' | 'removeNotification' | 'clearNotifications' | 'addPerformanceMetric' | 'setOnlineStatus' | 'updateUserProfile' | 'batchUpdateNotifications' | 'reset'> = {
+const initialState: Omit<
+  AppState,
+  | 'setUser'
+  | 'setAuthenticated'
+  | 'setTheme'
+  | 'setSidebarOpen'
+  | 'setLoading'
+  | 'addNotification'
+  | 'removeNotification'
+  | 'clearNotifications'
+  | 'addPerformanceMetric'
+  | 'setOnlineStatus'
+  | 'updateUserProfile'
+  | 'batchUpdateNotifications'
+  | 'reset'
+> = {
   user: null,
   isAuthenticated: false,
   theme: 'system',
@@ -97,8 +116,8 @@ const initialState: Omit<AppState, 'setUser' | 'setAuthenticated' | 'setTheme' |
   performanceMetrics: {
     apiResponseTimes: {},
     errorCount: 0,
-    renderCount: 0
-  }
+    renderCount: 0,
+  },
 }
 
 // Create the store with immer for safe mutations
@@ -107,147 +126,163 @@ export const useAppStore = create<AppState>()(
     persist(
       immer((set, get) => ({
         ...initialState,
-        
+
         // User actions with atomic updates
-        setUser: (user) => set((state) => {
-          state.user = user
-          state.isAuthenticated = !!user
-        }),
+        setUser: user =>
+          set(state => {
+            state.user = user
+            state.isAuthenticated = !!user
+          }),
 
-        setAuthenticated: (authenticated) => set((state) => {
-          state.isAuthenticated = authenticated
-          if (!authenticated) {
-            state.user = null
-          }
-        }),
-        
+        setAuthenticated: authenticated =>
+          set(state => {
+            state.isAuthenticated = authenticated
+            if (!authenticated) {
+              state.user = null
+            }
+          }),
+
         // UI actions with immer mutations
-        setTheme: (theme) => set((state) => {
-          state.theme = theme
-        }),
+        setTheme: theme =>
+          set(state => {
+            state.theme = theme
+          }),
 
-        setSidebarOpen: (open) => set((state) => {
-          state.sidebarOpen = open
-        }),
+        setSidebarOpen: open =>
+          set(state => {
+            state.sidebarOpen = open
+          }),
 
-        setLoading: (loading) => set((state) => {
-          state.loading = loading
-        }),
-        
+        setLoading: loading =>
+          set(state => {
+            state.loading = loading
+          }),
+
         // Notification actions with race condition prevention
-        addNotification: (notification) => set((state) => {
-          const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
-          state.notifications.push({
-            ...notification,
-            id,
-            timestamp: Date.now()
-          })
+        addNotification: notification =>
+          set(state => {
+            const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+            state.notifications.push({
+              ...notification,
+              id,
+              timestamp: Date.now(),
+            })
 
-          // Limit notifications to prevent memory issues
-          if (state.notifications.length > 50) {
-            state.notifications = state.notifications.slice(-50)
-          }
-        }),
+            // Limit notifications to prevent memory issues
+            if (state.notifications.length > 50) {
+              state.notifications = state.notifications.slice(-50)
+            }
+          }),
 
-        removeNotification: (id) => set((state) => {
-          const index = state.notifications.findIndex(n => n.id === id)
-          if (index !== -1) {
-            state.notifications.splice(index, 1)
-          }
-        }),
+        removeNotification: id =>
+          set(state => {
+            const index = state.notifications.findIndex(n => n.id === id)
+            if (index !== -1) {
+              state.notifications.splice(index, 1)
+            }
+          }),
 
-        clearNotifications: () => set((state) => {
-          state.notifications = []
-        }),
+        clearNotifications: () =>
+          set(state => {
+            state.notifications = []
+          }),
 
         // Performance metric updates
-        addPerformanceMetric: (key, value) => set((state) => {
-          if (!state.performanceMetrics.apiResponseTimes[key]) {
-            state.performanceMetrics.apiResponseTimes[key] = []
-          }
-          state.performanceMetrics.apiResponseTimes[key].push(value)
-        }),
+        addPerformanceMetric: (key, value) =>
+          set(state => {
+            if (!state.performanceMetrics.apiResponseTimes[key]) {
+              state.performanceMetrics.apiResponseTimes[key] = []
+            }
+            state.performanceMetrics.apiResponseTimes[key].push(value)
+          }),
 
-        setOnlineStatus: (isOnline) => set((state) => {
-          state.isOnline = isOnline
-        }),
+        setOnlineStatus: isOnline =>
+          set(state => {
+            state.isOnline = isOnline
+          }),
 
         // Atomic operations to prevent race conditions
-        updateUserProfile: (updates) => set((state) => {
-          if (state.user) {
-            Object.assign(state.user, updates)
-          }
-        }),
-
-        batchUpdateNotifications: (operations) => set((state) => {
-          operations.forEach(operation => {
-            switch (operation.type) {
-              case 'add':
-                if (operation.notification) {
-                  const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
-                  state.notifications.push({
-                    ...operation.notification,
-                    id,
-                    timestamp: Date.now()
-                  })
-                }
-                break
-              case 'remove':
-                if (operation.id) {
-                  const index = state.notifications.findIndex(n => n.id === operation.id)
-                  if (index !== -1) {
-                    state.notifications.splice(index, 1)
-                  }
-                }
-                break
-              case 'clear':
-                state.notifications = []
-                break
+        updateUserProfile: updates =>
+          set(state => {
+            if (state.user) {
+              Object.assign(state.user, updates)
             }
-          })
+          }),
 
-          // Limit notifications after batch operations
-          if (state.notifications.length > 50) {
-            state.notifications = state.notifications.slice(-50)
-          }
-        }),
+        batchUpdateNotifications: operations =>
+          set(state => {
+            operations.forEach(operation => {
+              switch (operation.type) {
+                case 'add':
+                  if (operation.notification) {
+                    const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+                    state.notifications.push({
+                      ...operation.notification,
+                      id,
+                      timestamp: Date.now(),
+                    })
+                  }
+                  break
+                case 'remove':
+                  if (operation.id) {
+                    const index = state.notifications.findIndex(
+                      n => n.id === operation.id
+                    )
+                    if (index !== -1) {
+                      state.notifications.splice(index, 1)
+                    }
+                  }
+                  break
+                case 'clear':
+                  state.notifications = []
+                  break
+              }
+            })
+
+            // Limit notifications after batch operations
+            if (state.notifications.length > 50) {
+              state.notifications = state.notifications.slice(-50)
+            }
+          }),
 
         // Reset function
-        reset: () => set(() => ({ ...initialState }))
+        reset: () => set(() => ({ ...initialState })),
       })),
       {
         name: 'citypulse-app-store',
-        partialize: (state) => ({
+        partialize: state => ({
           user: state.user,
           isAuthenticated: state.isAuthenticated,
           theme: state.theme,
-          sidebarOpen: state.sidebarOpen
-        })
+          sidebarOpen: state.sidebarOpen,
+        }),
       }
     )
   )
 )
 
 // Selectors for optimized re-renders
-export const useUser = () => useAppStore((state) => state.user)
-export const useIsAuthenticated = () => useAppStore((state) => state.isAuthenticated)
-export const useTheme = () => useAppStore((state) => state.theme)
-export const useSidebarOpen = () => useAppStore((state) => state.sidebarOpen)
-export const useLoading = () => useAppStore((state) => state.loading)
-export const useNotifications = () => useAppStore((state) => state.notifications)
+export const useUser = () => useAppStore(state => state.user)
+export const useIsAuthenticated = () =>
+  useAppStore(state => state.isAuthenticated)
+export const useTheme = () => useAppStore(state => state.theme)
+export const useSidebarOpen = () => useAppStore(state => state.sidebarOpen)
+export const useLoading = () => useAppStore(state => state.loading)
+export const useNotifications = () => useAppStore(state => state.notifications)
 
 // Action selectors
-export const useAppActions = () => useAppStore((state) => ({
-  setUser: state.setUser,
-  setAuthenticated: state.setAuthenticated,
-  setTheme: state.setTheme,
-  setSidebarOpen: state.setSidebarOpen,
-  setLoading: state.setLoading,
-  addNotification: state.addNotification,
-  removeNotification: state.removeNotification,
-  clearNotifications: state.clearNotifications,
-  addPerformanceMetric: state.addPerformanceMetric,
-  updateUserProfile: state.updateUserProfile,
-  batchUpdateNotifications: state.batchUpdateNotifications,
-  reset: state.reset
-}))
+export const useAppActions = () =>
+  useAppStore(state => ({
+    setUser: state.setUser,
+    setAuthenticated: state.setAuthenticated,
+    setTheme: state.setTheme,
+    setSidebarOpen: state.setSidebarOpen,
+    setLoading: state.setLoading,
+    addNotification: state.addNotification,
+    removeNotification: state.removeNotification,
+    clearNotifications: state.clearNotifications,
+    addPerformanceMetric: state.addPerformanceMetric,
+    updateUserProfile: state.updateUserProfile,
+    batchUpdateNotifications: state.batchUpdateNotifications,
+    reset: state.reset,
+  }))

@@ -1,6 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { forwardToBackend, createErrorResponse, createSuccessResponse, withErrorHandler, getQueryParams, createBackendHeaders, handleOptions } from '@/lib/api-utils'
-import { optionalAuth, requireAuth, requireAuthority, getCorsHeaders } from '@/middleware/auth'
+import {
+  forwardToBackend,
+  createErrorResponse,
+  createSuccessResponse,
+  withErrorHandler,
+  getQueryParams,
+  createBackendHeaders,
+  handleOptions,
+} from '@/lib/api-utils'
+import {
+  optionalAuth,
+  requireAuth,
+  requireAuthority,
+  getCorsHeaders,
+} from '@/middleware/auth'
 import { validateData, createIssueFormSchema } from '@/lib/validation'
 
 /**
@@ -33,10 +46,13 @@ export async function GET(request: NextRequest) {
     }
 
     // Forward request to backend
-    const response = await fetch(`${BACKEND_BASE_URL}/v1/events?${new URLSearchParams(params)}`, {
-      method: 'GET',
-      headers,
-    })
+    const response = await fetch(
+      `${BACKEND_BASE_URL}/v1/events?${new URLSearchParams(params)}`,
+      {
+        method: 'GET',
+        headers,
+      }
+    )
 
     if (!response.ok) {
       return NextResponse.json(
@@ -51,7 +67,6 @@ export async function GET(request: NextRequest) {
     const responseHeaders = getCorsHeaders()
 
     return NextResponse.json(data, { headers: responseHeaders })
-
   } catch (error) {
     console.error('Events API error:', error)
     return NextResponse.json(
@@ -82,7 +97,7 @@ export async function POST(request: NextRequest) {
         {
           error: 'Validation failed',
           success: false,
-          message: 'Please check your input data'
+          message: 'Please check your input data',
         },
         { status: 400 }
       )
@@ -109,7 +124,7 @@ export async function POST(request: NextRequest) {
         source: 'web_frontend',
         user_agent: request.headers.get('User-Agent') || '',
         reporter_role: user.role,
-      }
+      },
     }
 
     // Forward request to backend with user context
@@ -127,16 +142,16 @@ export async function POST(request: NextRequest) {
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}))
       return NextResponse.json(
-        { 
-          error: errorData.detail || 'Failed to create event', 
-          success: false 
+        {
+          error: errorData.detail || 'Failed to create event',
+          success: false,
         },
         { status: response.status }
       )
     }
 
     const data = await response.json()
-    
+
     // Transform backend response to frontend format
     const frontendData = {
       success: true,
@@ -162,11 +177,10 @@ export async function POST(request: NextRequest) {
         tags: data.tags || [],
         upvotes: 0,
         downvotes: 0,
-      }
+      },
     }
 
     return NextResponse.json(frontendData, { status: 201 })
-
   } catch (error) {
     console.error('Events creation error:', error)
     return NextResponse.json(
@@ -215,15 +229,17 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json(
         {
           error: errorData.detail || 'Failed to update event',
-          success: false
+          success: false,
         },
         { status: response.status }
       )
     }
 
     const data = await response.json()
-    return NextResponse.json({ success: true, data }, { headers: getCorsHeaders() })
-
+    return NextResponse.json(
+      { success: true, data },
+      { headers: getCorsHeaders() }
+    )
   } catch (error) {
     console.error('Event update error:', error)
     return NextResponse.json(
@@ -271,7 +287,7 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json(
         {
           error: errorData.detail || 'Failed to delete event',
-          success: false
+          success: false,
         },
         { status: response.status }
       )
@@ -281,7 +297,6 @@ export async function DELETE(request: NextRequest) {
       { success: true, message: 'Event deleted successfully' },
       { headers: getCorsHeaders() }
     )
-
   } catch (error) {
     console.error('Event deletion error:', error)
     return NextResponse.json(

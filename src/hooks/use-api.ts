@@ -3,7 +3,13 @@
  * Modern data fetching with concurrent features and optimistic updates
  */
 
-import { useQuery, useMutation, useQueryClient, UseQueryOptions, UseMutationOptions } from '@tanstack/react-query'
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  UseQueryOptions,
+  UseMutationOptions,
+} from '@tanstack/react-query'
 import { startTransition } from 'react'
 import { queryKeys, optimisticUpdates } from '@/lib/react-query'
 import { apiClient } from '@/services/api/client'
@@ -29,14 +35,14 @@ interface PaginatedResponse<T> {
 // React 19 optimized performance tracking
 function usePerformanceTracking() {
   const { addPerformanceMetric } = useAppStore()
-  
+
   return {
     trackApiCall: (endpoint: string, startTime: number) => {
       const duration = performance.now() - startTime
       startTransition(() => {
         addPerformanceMetric?.('api_response_times', duration)
       })
-    }
+    },
   }
 }
 
@@ -46,13 +52,15 @@ export function useEvents(
   options?: Omit<UseQueryOptions<any, ApiError>, 'queryKey' | 'queryFn'>
 ) {
   const { trackApiCall } = usePerformanceTracking()
-  
+
   return useQuery({
     queryKey: queryKeys.events.list(filters || {}),
     queryFn: async () => {
       const startTime = performance.now()
       try {
-        const result = await apiClient.get('/api/v1/events', { params: filters })
+        const result = await apiClient.get('/api/v1/events', {
+          params: filters,
+        })
         trackApiCall('events_list', startTime)
         return result
       } catch (error) {
@@ -70,7 +78,7 @@ export function useEvent(
   options?: Omit<UseQueryOptions<any, ApiError>, 'queryKey' | 'queryFn'>
 ) {
   const { trackApiCall } = usePerformanceTracking()
-  
+
   return useQuery({
     queryKey: queryKeys.events.detail(id),
     queryFn: async () => {
@@ -100,7 +108,7 @@ export function useNearbyEvents(
     queryKey: queryKeys.events.nearby(latitude, longitude, radius),
     queryFn: async () => {
       const result = await apiClient.get('/api/v1/events/nearby', {
-        params: { latitude, longitude, radius }
+        params: { latitude, longitude, radius },
       })
       return result
     },
@@ -115,19 +123,23 @@ export function useCreateEvent(
   options?: UseMutationOptions<any, ApiError, any>
 ) {
   const queryClient = useQueryClient()
-  
+
   return useMutation({
     mutationFn: async (eventData: any) => {
       const result = await apiClient.post('/api/v1/events', eventData)
       return result
     },
-    onMutate: async (newEvent) => {
+    onMutate: async (newEvent: any): Promise<{ tempId: string; optimisticEvent: any }> => {
       // Cancel outgoing refetches
       await queryClient.cancelQueries({ queryKey: queryKeys.events.all })
-      
+
       const tempId = `temp_${Date.now()}`
-      const optimisticEvent = { ...newEvent, id: tempId, createdAt: new Date().toISOString() }
-      
+      const optimisticEvent = {
+        ...newEvent,
+        id: tempId,
+        createdAt: new Date().toISOString(),
+      }
+
       // Optimistically update cache
       queryClient.setQueryData(queryKeys.events.lists(), (old: any) => {
         if (!old) return { events: [optimisticEvent], total: 1 }
@@ -137,7 +149,7 @@ export function useCreateEvent(
           total: old.total + 1,
         }
       })
-      
+
       return { tempId, optimisticEvent }
     },
     onSuccess: (data, variables, context) => {
@@ -160,7 +172,7 @@ export function useUpdateEvent(
   options?: UseMutationOptions<any, ApiError, { id: string; updates: any }>
 ) {
   const queryClient = useQueryClient()
-  
+
   return useMutation({
     mutationFn: async ({ id, updates }) => {
       const result = await apiClient.put(`/api/v1/events/${id}`, updates)
@@ -168,12 +180,12 @@ export function useUpdateEvent(
     },
     onMutate: async ({ id, updates }) => {
       await queryClient.cancelQueries({ queryKey: queryKeys.events.detail(id) })
-      
+
       queryClient.setQueryData(queryKeys.events.detail(id), (old: any) => ({
         ...old,
         ...updates,
       }))
-      
+
       return { id, updates }
     },
     onSuccess: (data, { id }) => {
@@ -213,20 +225,20 @@ export function useUpdateProfile(
 ) {
   const queryClient = useQueryClient()
   const { setUser } = useAppStore()
-  
+
   return useMutation({
     mutationFn: async (updates: any) => {
       const result = await apiClient.put('/api/v1/users/me', updates)
       return result
     },
-    onSuccess: (data) => {
+    onSuccess: data => {
       startTransition(() => {
         queryClient.setQueryData(queryKeys.users.profile(), data)
         setUser?.(data)
         logger.info('Profile updated successfully')
       })
     },
-    onError: (error) => {
+    onError: error => {
       startTransition(() => {
         logger.error('Failed to update profile', error as Error)
       })
@@ -243,7 +255,9 @@ export function useDashboardMetrics(
   return useQuery({
     queryKey: queryKeys.analytics.dashboard(),
     queryFn: async () => {
-      const result = await apiClient.get('/api/v1/analytics/dashboard', { params: filters })
+      const result = await apiClient.get('/api/v1/analytics/dashboard', {
+        params: filters,
+      })
       return result
     },
     staleTime: config.cache.defaultTTL,
@@ -254,7 +268,7 @@ export function useDashboardMetrics(
 // React 19 optimized cache management
 export function useCacheManager() {
   const queryClient = useQueryClient()
-  
+
   return {
     invalidateEvents: () => {
       startTransition(() => {
@@ -288,12 +302,14 @@ export function useCacheManager() {
 // React 19 performance monitoring hook
 export function useApiPerformance() {
   const { performanceMetrics } = useAppStore()
-  
+
   return {
     metrics: performanceMetrics,
     getAverageResponseTime: (endpoint: string) => {
       const times = performanceMetrics.apiResponseTimes[endpoint] || []
-      return times.length > 0 ? times.reduce((a, b) => a + b, 0) / times.length : 0
+      return times.length > 0
+        ? times.reduce((a, b) => a + b, 0) / times.length
+        : 0
     },
     getSlowEndpoints: (threshold = 1000) => {
       return Object.entries(performanceMetrics.apiResponseTimes)

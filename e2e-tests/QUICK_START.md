@@ -8,18 +8,18 @@ This guide will get you up and running with the CityPulse E2E testing framework 
 
 ### Required Software
 
--  **Python 3.11+**(Apache Beam compatibility)
--**Node.js 18+**(for frontend testing)
--**Google Cloud SDK**(for GCP services)
--**Git**(for version control)
+- **Python 3.11+**(Apache Beam compatibility)
+- **Node.js 18+**(for frontend testing)
+- **Google Cloud SDK**(for GCP services)
+- **Git**(for version control)
 
 ### GCP Setup
 
-```bash
+````bash
 
 ## Install Google Cloud SDK
 
-curl <https://sdk.cloud.google.com> | bash
+curl <<https://sdk.cloud.google.com>> | bash
 exec -l $SHELL
 
 ## Authenticate
@@ -147,7 +147,7 @@ npm run reports:generate
 
 npm run reports:serve
 
-## Open <http://localhost:8080> in browser
+## Open <<http://localhost:8080>> in browser
 
 ```text
 
@@ -234,10 +234,10 @@ Edit `config/environments.json`to match your setup:```json
 {
   "development": {
     "frontend": {
-      "baseUrl": "<http://localhost:3000">
+      "baseUrl": "<<http://localhost:3000">>
     },
     "backend": {
-      "baseUrl": "<http://localhost:8000">
+      "baseUrl": "<<http://localhost:8000">>
     },
     "gcp": {
       "projectId": "your-project-id",
@@ -245,6 +245,7 @@ Edit `config/environments.json`to match your setup:```json
     }
   }
 }
+
 ```text
 
 ### Test Data Configuration
@@ -321,7 +322,9 @@ python -m pytest e2e-tests/core/api-integration/test_events.py::test_create_even
 
 ## Getting Help
 
-1.**Check Logs**: Test execution logs are in `reports/`1.  **Review Documentation**: See`README.md`and`IMPLEMENTATION_PLAN.md`1.  **Run Health Check**:`npm run check:health`1.  **Validate Config**:`npm run validate:config`## 📚 Next Steps
+1. **Check Logs**: Test execution logs are in `reports/`1. **Review Documentation**:
+See`README.md`and`IMPLEMENTATION_PLAN.md`1. **Run Health Check**:`npm run check:health`1. **Validate Config**:`npm run
+validate:config`## 📚 Next Steps
 
 ### For Developers
 
@@ -347,21 +350,21 @@ Based on the backend-first development approach:
 
 ### High Priority
 
--  ✅ **API Testing**: Comprehensive backend API validation
--  ✅ **Data Pipeline**: End-to-end data flow testing
--  🚧 **Authentication**: Role-based access control testing
+-   ✅ **API Testing**: Comprehensive backend API validation
+-   ✅ **Data Pipeline**: End-to-end data flow testing
+-   🚧 **Authentication**: Role-based access control testing
 
 ### Medium Priority
 
--  📋 **Performance**: Load testing and benchmarking
--  📋 **Security**: Vulnerability and security testing
--  📋 **Legacy Cleanup**: Consolidate existing tests
+-   📋 **Performance**: Load testing and benchmarking
+-   📋 **Security**: Vulnerability and security testing
+-   📋 **Legacy Cleanup**: Consolidate existing tests
 
 ### Future
 
--  📋 **Frontend**: UI testing when frontend development progresses
--  📋 **Mobile**: Mobile app testing support
--  📋 **Advanced Analytics**: ML/AI testing capabilities
+-   📋 **Frontend**: UI testing when frontend development progresses
+-   📋 **Mobile**: Mobile app testing support
+-   📋 **Advanced Analytics**: ML/AI testing capabilities
 
 ## 💡 Tips for Success
 
@@ -373,11 +376,12 @@ Based on the backend-first development approach:
 
 ## 📞 Support
 
--  **Documentation**: See`docs/` directory
--  **Issues**: Create GitHub issues for bugs
--  **Questions**: Ask in team chat or meetings
--  **Contributions**: Follow contribution guidelines
+-   **Documentation**: See`docs/` directory
+-   **Issues**: Create GitHub issues for bugs
+-   **Questions**: Ask in team chat or meetings
+-   **Contributions**: Follow contribution guidelines
 
 ### Happy Testing! 🧪✨
 
-- This framework evolves with your codebase. Keep tests current and relevant.*
+-  This framework evolves with your codebase. Keep tests current and relevant.*
+````

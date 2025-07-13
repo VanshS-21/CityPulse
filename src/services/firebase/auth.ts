@@ -3,10 +3,10 @@
  * Provides comprehensive authentication functionality with proper error handling
  */
 
-import { 
-  Auth, 
-  User, 
-  signInWithEmailAndPassword, 
+import {
+  Auth,
+  User,
+  signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
@@ -15,7 +15,7 @@ import {
   sendEmailVerification,
   GoogleAuthProvider,
   signInWithPopup,
-  UserCredential
+  UserCredential,
 } from 'firebase/auth'
 import { auth } from './config'
 import { apiGateway } from '@/lib/api-gateway'
@@ -57,7 +57,9 @@ export class FirebaseAuthService {
 
   constructor() {
     if (!auth) {
-      throw new Error('Firebase Auth is not initialized. Please check your Firebase configuration.')
+      throw new Error(
+        'Firebase Auth is not initialized. Please check your Firebase configuration.'
+      )
     }
     this.auth = auth
     this.initializeAuthStateListener()
@@ -67,16 +69,16 @@ export class FirebaseAuthService {
    * Initialize auth state listener
    */
   private initializeAuthStateListener(): void {
-    onAuthStateChanged(this.auth, async (firebaseUser) => {
+    onAuthStateChanged(this.auth, async firebaseUser => {
       if (firebaseUser) {
         try {
           const authUser = await this.transformFirebaseUser(firebaseUser)
           this.currentUser = authUser
-          
+
           // Update API gateway auth token
           const token = await firebaseUser.getIdToken()
           apiGateway.setAuthToken(token)
-          
+
           // Notify listeners
           this.notifyAuthStateListeners(authUser)
         } catch (error) {
@@ -99,10 +101,12 @@ export class FirebaseAuthService {
   private async transformFirebaseUser(firebaseUser: User): Promise<AuthUser> {
     // Get additional user data from backend if available
     let role: 'citizen' | 'admin' | 'moderator' = 'citizen'
-    
+
     try {
       // Try to get user profile from backend
-      const userProfile = await apiGateway.get(`/users/${firebaseUser.uid}`) as any
+      const userProfile = (await apiGateway.get(
+        `/users/${firebaseUser.uid}`
+      )) as any
       role = userProfile.role || 'citizen'
     } catch (error) {
       // If backend call fails, default to citizen role
@@ -116,8 +120,12 @@ export class FirebaseAuthService {
       avatar: firebaseUser.photoURL,
       role,
       emailVerified: firebaseUser.emailVerified,
-      createdAt: firebaseUser.metadata.creationTime ? new Date(firebaseUser.metadata.creationTime) : new Date(),
-      lastLoginAt: firebaseUser.metadata.lastSignInTime ? new Date(firebaseUser.metadata.lastSignInTime) : new Date(),
+      createdAt: firebaseUser.metadata.creationTime
+        ? new Date(firebaseUser.metadata.creationTime)
+        : new Date(),
+      lastLoginAt: firebaseUser.metadata.lastSignInTime
+        ? new Date(firebaseUser.metadata.lastSignInTime)
+        : new Date(),
     }
   }
 
@@ -133,7 +141,7 @@ export class FirebaseAuthService {
    */
   onAuthStateChange(callback: (user: AuthUser | null) => void): () => void {
     this.authStateListeners.push(callback)
-    
+
     // Return unsubscribe function
     return () => {
       const index = this.authStateListeners.indexOf(callback)
@@ -167,12 +175,12 @@ export class FirebaseAuthService {
         credentials.email,
         credentials.password
       )
-      
+
       const authUser = await this.transformFirebaseUser(userCredential.user)
-      
+
       // Track login event
       this.trackAuthEvent('login', authUser.id)
-      
+
       return authUser
     } catch (error: any) {
       throw this.transformFirebaseError(error)
@@ -192,14 +200,14 @@ export class FirebaseAuthService {
 
       // Update user profile with name
       await updateProfile(userCredential.user, {
-        displayName: credentials.name
+        displayName: credentials.name,
       })
 
       // Send email verification
       await sendEmailVerification(userCredential.user)
 
       const authUser = await this.transformFirebaseUser(userCredential.user)
-      
+
       // Create user profile in backend
       try {
         await apiGateway.post('/users', {
@@ -211,10 +219,10 @@ export class FirebaseAuthService {
       } catch (error) {
         console.warn('Could not create user profile in backend:', error)
       }
-      
+
       // Track registration event
       this.trackAuthEvent('register', authUser.id)
-      
+
       return authUser
     } catch (error: any) {
       throw this.transformFirebaseError(error)
@@ -228,12 +236,12 @@ export class FirebaseAuthService {
     try {
       const provider = new GoogleAuthProvider()
       const userCredential = await signInWithPopup(this.auth, provider)
-      
+
       const authUser = await this.transformFirebaseUser(userCredential.user)
-      
+
       // Track login event
       this.trackAuthEvent('google_login', authUser.id)
-      
+
       return authUser
     } catch (error: any) {
       throw this.transformFirebaseError(error)
@@ -247,7 +255,7 @@ export class FirebaseAuthService {
     try {
       const userId = this.currentUser?.id
       await signOut(this.auth)
-      
+
       // Track logout event
       if (userId) {
         this.trackAuthEvent('logout', userId)
@@ -308,13 +316,16 @@ export class FirebaseAuthService {
       'auth/weak-password': 'Password should be at least 6 characters',
       'auth/invalid-email': 'Invalid email address',
       'auth/user-disabled': 'This account has been disabled',
-      'auth/too-many-requests': 'Too many failed attempts. Please try again later',
-      'auth/network-request-failed': 'Network error. Please check your connection',
+      'auth/too-many-requests':
+        'Too many failed attempts. Please try again later',
+      'auth/network-request-failed':
+        'Network error. Please check your connection',
     }
 
     return {
       code: error.code || 'auth/unknown-error',
-      message: errorMap[error.code] || error.message || 'An unknown error occurred'
+      message:
+        errorMap[error.code] || error.message || 'An unknown error occurred',
     }
   }
 
@@ -324,13 +335,15 @@ export class FirebaseAuthService {
   private trackAuthEvent(event: string, userId: string): void {
     try {
       // Send analytics event (non-blocking)
-      apiGateway.post('/analytics/events', {
-        event_type: `auth_${event}`,
-        user_id: userId,
-        timestamp: new Date().toISOString(),
-      }).catch(error => {
-        console.warn('Failed to track auth event:', error)
-      })
+      apiGateway
+        .post('/analytics/events', {
+          event_type: `auth_${event}`,
+          user_id: userId,
+          timestamp: new Date().toISOString(),
+        })
+        .catch(error => {
+          console.warn('Failed to track auth event:', error)
+        })
     } catch (error) {
       console.warn('Failed to track auth event:', error)
     }
@@ -339,4 +352,3 @@ export class FirebaseAuthService {
 
 // Export singleton instance
 export const firebaseAuth = new FirebaseAuthService()
-

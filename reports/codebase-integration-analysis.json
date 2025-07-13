@@ -1610,22 +1610,8 @@
         "time"
       ],
       "e2e-tests/utils/__init__.py": [],
-      "scripts/setup-testing-tools.py": [
-        "pathlib",
-        "sys",
-        "typing",
-        "subprocess",
-        "json",
-        "logging",
-        "platform",
-        "os"
-      ],
-      "scripts/verify-tools.py": [
-        "subprocess",
-        "os",
-        "pathlib",
-        "sys"
-      ],
+      "scripts/setup-testing-tools.py": ["pathlib", "sys", "typing", "subprocess", "json", "logging", "platform", "os"],
+      "scripts/verify-tools.py": ["subprocess", "os", "pathlib", "sys"],
       "scripts/analyze-codebase-integration.py": [
         "pathlib",
         "sys",
@@ -1637,13 +1623,7 @@
         "ast",
         "os"
       ],
-      "scripts/fix-integration-issues.py": [
-        "pathlib",
-        "typing",
-        "json",
-        "shutil",
-        "os"
-      ],
+      "scripts/fix-integration-issues.py": ["pathlib", "typing", "json", "shutil", "os"],
       "scripts/__init__.py": [],
       "server/health_check.py": [
         "dataclasses",
@@ -1661,9 +1641,7 @@
         "psutil",
         "shared_services"
       ],
-      "server/setup.py": [
-        "setuptools"
-      ],
+      "server/setup.py": ["setuptools"],
       "server/shared_api_utils.py": [
         "shared_exceptions",
         "typing",
@@ -1673,26 +1651,9 @@
         "fastapi.responses",
         "auth.permissions"
       ],
-      "server/shared_config.py": [
-        "dataclasses",
-        "pathlib",
-        "typing",
-        "logging",
-        "os"
-      ],
-      "server/shared_exceptions.py": [
-        "typing",
-        "enum",
-        "logging",
-        "pydantic"
-      ],
-      "server/shared_models.py": [
-        "enum",
-        "datetime",
-        "pydantic",
-        "typing",
-        "uuid"
-      ],
+      "server/shared_config.py": ["dataclasses", "pathlib", "typing", "logging", "os"],
+      "server/shared_exceptions.py": ["typing", "enum", "logging", "pydantic"],
+      "server/shared_models.py": ["enum", "datetime", "pydantic", "typing", "uuid"],
       "server/shared_services.py": [
         "data_models.firestore_models",
         "data_models.services.firestore_service",
@@ -1708,24 +1669,9 @@
         "logging"
       ],
       "server/__init__.py": [],
-      "server/data_models/__init__.py": [
-        "services.firestore_service",
-        "os",
-        "shared_models",
-        "sys"
-      ],
-      "server/data_models/setup_bigquery_tables.py": [
-        "argparse",
-        "google.cloud",
-        "json",
-        "google.oauth2",
-        "os"
-      ],
-      "server/data_models/validate_schemas.py": [
-        "json",
-        "os",
-        "sys"
-      ],
+      "server/data_models/__init__.py": ["services.firestore_service", "os", "shared_models", "sys"],
+      "server/data_models/setup_bigquery_tables.py": ["argparse", "google.cloud", "json", "google.oauth2", "os"],
+      "server/data_models/validate_schemas.py": ["json", "os", "sys"],
       "server/data_models/data_ingestion/__init__.py": [],
       "server/data_models/data_ingestion/ai_processing.py": [
         "requests",
@@ -1843,30 +1789,12 @@
         "apache_beam",
         "data_models.firestore_models.event"
       ],
-      "server/data_models/firestore_models/__init__.py": [
-        "os",
-        "shared_models",
-        "sys"
-      ],
-      "server/data_models/services/firestore_service.py": [
-        "typing",
-        "google.cloud",
-        "datetime",
-        "pydantic"
-      ],
+      "server/data_models/firestore_models/__init__.py": ["os", "shared_models", "sys"],
+      "server/data_models/services/firestore_service.py": ["typing", "google.cloud", "datetime", "pydantic"],
       "server/data_models/services/__init__.py": [],
       "server/data_models/tests/__init__.py": [],
-      "server/data_models/tests/common.py": [
-        "apache_beam.testing.test_pipeline",
-        "unittest.mock",
-        "unittest"
-      ],
-      "server/data_models/tests/conftest.py": [
-        "pytest",
-        "unittest.mock",
-        "pathlib",
-        "sys"
-      ],
+      "server/data_models/tests/common.py": ["apache_beam.testing.test_pipeline", "unittest.mock", "unittest"],
+      "server/data_models/tests/conftest.py": ["pytest", "unittest.mock", "pathlib", "sys"],
       "server/data_models/tests/test_ai_processing.py": [
         "apache_beam.testing.util",
         "data_models.tests.common",
@@ -1905,17 +1833,8 @@
         "data_models.firestore_models.event",
         "unittest"
       ],
-      "server/data_models/tests/test_firestore_models.py": [
-        "pytest",
-        "unittest.mock",
-        "datetime",
-        "data_models"
-      ],
-      "server/data_models/tests/test_schema_validation.py": [
-        "json",
-        "pytest",
-        "data_models"
-      ],
+      "server/data_models/tests/test_firestore_models.py": ["pytest", "unittest.mock", "datetime", "data_models"],
+      "server/data_models/tests/test_schema_validation.py": ["json", "pytest", "data_models"],
       "server/data_models/transforms/__init__.py": [],
       "server/data_models/transforms/multimedia_processing.py": [
         "requests",
@@ -1926,9 +1845,7 @@
         "apache_beam",
         "data_models.firestore_models.event"
       ],
-      "server/data_models/utils/pipeline_args.py": [
-        "argparse"
-      ],
+      "server/data_models/utils/pipeline_args.py": ["argparse"],
       "server/data_models/utils/__init__.py": [],
       "server/legacy-api/main.py": [
         "uvicorn",
@@ -1948,10 +1865,7 @@
         "os"
       ],
       "server/legacy-api/__init__.py": [],
-      "server/legacy-api/auth/__init__.py": [
-        "permissions",
-        "firebase_auth"
-      ],
+      "server/legacy-api/auth/__init__.py": ["permissions", "firebase_auth"],
       "server/legacy-api/auth/firebase_auth.py": [
         "starlette.middleware.base",
         "firebase_admin",
@@ -1964,27 +1878,10 @@
         "fastapi.security",
         "os"
       ],
-      "server/legacy-api/auth/permissions.py": [
-        "typing",
-        "enum"
-      ],
-      "server/legacy-api/models/__init__.py": [
-        "os",
-        "shared_exceptions",
-        "sys"
-      ],
-      "server/legacy-api/models/requests.py": [
-        "typing",
-        "enum",
-        "datetime",
-        "pydantic"
-      ],
-      "server/legacy-api/models/responses.py": [
-        "typing",
-        "enum",
-        "datetime",
-        "pydantic"
-      ],
+      "server/legacy-api/auth/permissions.py": ["typing", "enum"],
+      "server/legacy-api/models/__init__.py": ["os", "shared_exceptions", "sys"],
+      "server/legacy-api/models/requests.py": ["typing", "enum", "datetime", "pydantic"],
+      "server/legacy-api/models/responses.py": ["typing", "enum", "datetime", "pydantic"],
       "server/legacy-api/routers/__init__.py": [],
       "server/legacy-api/routers/analytics.py": [
         "shared_exceptions",
@@ -2101,35 +1998,11 @@
         "shared_services"
       ],
       "server/legacy-api/tests/__init__.py": [],
-      "server/legacy-api/tests/test_main.py": [
-        "main",
-        "pytest",
-        "unittest.mock",
-        "fastapi.testclient"
-      ],
-      "server/legacy-api/utils/__init__.py": [
-        "filtering",
-        "pagination",
-        "validation"
-      ],
-      "server/legacy-api/utils/filtering.py": [
-        "enum",
-        "datetime",
-        "pydantic",
-        "typing",
-        "fastapi"
-      ],
-      "server/legacy-api/utils/pagination.py": [
-        "typing",
-        "fastapi",
-        "pydantic"
-      ],
-      "server/legacy-api/utils/validation.py": [
-        "re",
-        "pydantic",
-        "datetime",
-        "typing"
-      ],
+      "server/legacy-api/tests/test_main.py": ["main", "pytest", "unittest.mock", "fastapi.testclient"],
+      "server/legacy-api/utils/__init__.py": ["filtering", "pagination", "validation"],
+      "server/legacy-api/utils/filtering.py": ["enum", "datetime", "pydantic", "typing", "fastapi"],
+      "server/legacy-api/utils/pagination.py": ["typing", "fastapi", "pydantic"],
+      "server/legacy-api/utils/validation.py": ["re", "pydantic", "datetime", "typing"],
       "tests/conftest.py": [
         "datetime",
         "unittest.mock",
@@ -2144,16 +2017,7 @@
         "pytest",
         "os"
       ],
-      "tests/report_generator.py": [
-        "argparse",
-        "datetime",
-        "pathlib",
-        "typing",
-        "json",
-        "logging",
-        "time",
-        "os"
-      ],
+      "tests/report_generator.py": ["argparse", "datetime", "pathlib", "typing", "json", "logging", "time", "os"],
       "tests/test_ai_processing.py": [
         "data_models.tests.common",
         "unittest.mock",
@@ -2186,14 +2050,7 @@
         "logging",
         "utils.data_generators"
       ],
-      "tests/e2e-legacy/run_tests.py": [
-        "argparse",
-        "pathlib",
-        "sys",
-        "utils.environment_helpers",
-        "subprocess",
-        "os"
-      ],
+      "tests/e2e-legacy/run_tests.py": ["argparse", "pathlib", "sys", "utils.environment_helpers", "subprocess", "os"],
       "tests/e2e-legacy/simple_pipeline_test.py": [
         "google.cloud",
         "datetime",
@@ -2204,26 +2061,11 @@
         "time"
       ],
       "tests/e2e-legacy/config/__init__.py": [],
-      "tests/e2e-legacy/config/test_config.py": [
-        "typing",
-        "utils.environment_helpers",
-        "dataclasses"
-      ],
+      "tests/e2e-legacy/config/test_config.py": ["typing", "utils.environment_helpers", "dataclasses"],
       "tests/e2e-legacy/tests/__init__.py": [],
       "tests/e2e-legacy/utils/__init__.py": [],
-      "tests/e2e-legacy/utils/data_generators.py": [
-        "datetime",
-        "typing",
-        "json",
-        "uuid",
-        "faker",
-        "random"
-      ],
-      "tests/e2e-legacy/utils/environment_helpers.py": [
-        "typing",
-        "os",
-        "sys"
-      ],
+      "tests/e2e-legacy/utils/data_generators.py": ["datetime", "typing", "json", "uuid", "faker", "random"],
+      "tests/e2e-legacy/utils/environment_helpers.py": ["typing", "os", "sys"],
       "tests/e2e-legacy/utils/gcp_helpers.py": [
         "google.cloud",
         "google.cloud.exceptions",
@@ -2291,11 +2133,7 @@
         "pytest"
       ],
       "tests/integration/__init__.py": [],
-      "tests/unit/test_basic.py": [
-        "pytest",
-        "os",
-        "sys"
-      ],
+      "tests/unit/test_basic.py": ["pytest", "os", "sys"],
       "tests/unit/test_data_pipelines.py": [
         "data_models.data_ingestion.enhanced_error_handling",
         "apache_beam.testing.util",
@@ -2332,162 +2170,47 @@
         "os"
       ],
       "tests/unit/__init__.py": [],
-      "next.config.ts": [
-        "next"
-      ],
-      "__tests__/firebase-config.test.ts": [
-        "../src/services/firebase/config"
-      ],
-      "__tests__/examples/msw-example.test.ts": [
-        "@/utils/constants",
-        "msw",
-        "msw/node"
-      ],
-      "__tests__/integration/api-routing.test.ts": [
-        "@/utils/constants"
-      ],
-      "__tests__/setup/msw.ts": [
-        "@/utils/constants",
-        "msw",
-        "msw/node"
-      ],
-      "src/app/api/v1/analytics/route.ts": [
-        "next/server",
-        "@/lib/api-utils",
-        "@/middleware/auth"
-      ],
-      "src/app/api/v1/auth/route.ts": [
-        "next/server",
-        "@/lib/validation"
-      ],
-      "src/app/api/v1/events/route.ts": [
-        "next/server",
-        "@/lib/api-utils",
-        "@/lib/validation",
-        "@/middleware/auth"
-      ],
+      "next.config.ts": ["next"],
+      "__tests__/firebase-config.test.ts": ["../src/services/firebase/config"],
+      "__tests__/examples/msw-example.test.ts": ["@/utils/constants", "msw", "msw/node"],
+      "__tests__/integration/api-routing.test.ts": ["@/utils/constants"],
+      "__tests__/setup/msw.ts": ["@/utils/constants", "msw", "msw/node"],
+      "src/app/api/v1/analytics/route.ts": ["next/server", "@/lib/api-utils", "@/middleware/auth"],
+      "src/app/api/v1/auth/route.ts": ["next/server", "@/lib/validation"],
+      "src/app/api/v1/events/route.ts": ["next/server", "@/lib/api-utils", "@/lib/validation", "@/middleware/auth"],
       "src/components/ui/index.ts": [],
-      "src/hooks/use-toast.ts": [
-        "react"
-      ],
+      "src/hooks/use-toast.ts": ["react"],
       "src/hooks/index.ts": [],
-      "src/middleware/auth.ts": [
-        "next/server",
-        "@/lib/api-utils",
-        "@/lib/firebase-admin"
-      ],
-      "src/middleware/validation.ts": [
-        "next/server",
-        "zod",
-        "@/lib/validation"
-      ],
-      "src/services/api/client.ts": [
-        "@/lib/config",
-        "@/utils/constants",
-        "axios",
-        "@/lib/error-handler"
-      ],
-      "src/services/firebase/auth.ts": [
-        "./config",
-        "@/lib/api-gateway"
-      ],
-      "src/services/firebase/config.ts": [
-        "firebase/app",
-        "firebase/firestore",
-        "firebase/storage",
-        "firebase/auth"
-      ],
-      "src/store/app-store.ts": [
-        "zustand/middleware",
-        "zustand",
-        "zustand/middleware/immer"
-      ],
+      "src/middleware/auth.ts": ["next/server", "@/lib/api-utils", "@/lib/firebase-admin"],
+      "src/middleware/validation.ts": ["next/server", "zod", "@/lib/validation"],
+      "src/services/api/client.ts": ["@/lib/config", "@/utils/constants", "axios", "@/lib/error-handler"],
+      "src/services/firebase/auth.ts": ["./config", "@/lib/api-gateway"],
+      "src/services/firebase/config.ts": ["firebase/app", "firebase/firestore", "firebase/storage", "firebase/auth"],
+      "src/store/app-store.ts": ["zustand/middleware", "zustand", "zustand/middleware/immer"],
       "src/store/index.ts": [],
       "src/styles/tokens.ts": [],
       "src/types/index.ts": [],
-      "src/utils/constants.ts": [
-        "@/lib/config"
-      ],
+      "src/utils/constants.ts": ["@/lib/config"],
       "src/utils/index.ts": [],
       "src/lib/config.ts": [],
       "src/lib/index.ts": [],
-      "src/app/error.tsx": [
-        "react",
-        "next/link",
-        "@/lib/error-handler"
-      ],
-      "src/app/global-error.tsx": [
-        "@/lib/error-handler"
-      ],
-      "src/app/layout.tsx": [
-        "next",
-        "./globals.css"
-      ],
-      "src/app/not-found.tsx": [
-        "next/link"
-      ],
+      "src/app/error.tsx": ["react", "next/link", "@/lib/error-handler"],
+      "src/app/global-error.tsx": ["@/lib/error-handler"],
+      "src/app/layout.tsx": ["next", "./globals.css"],
+      "src/app/not-found.tsx": ["next/link"],
       "src/app/page.tsx": [],
-      "src/components/ui/accordion.tsx": [
-        "react",
-        "@radix-ui/react-accordion",
-        "@/lib/utils",
-        "lucide-react"
-      ],
-      "src/components/ui/alert.tsx": [
-        "react",
-        "@/lib/utils",
-        "class-variance-authority"
-      ],
-      "src/components/ui/aspect-ratio.tsx": [
-        "@radix-ui/react-aspect-ratio"
-      ],
-      "src/components/ui/avatar.tsx": [
-        "@radix-ui/react-avatar",
-        "react",
-        "@/lib/utils"
-      ],
-      "src/components/ui/badge.tsx": [
-        "react",
-        "@/lib/utils",
-        "class-variance-authority"
-      ],
-      "src/components/ui/breadcrumb.tsx": [
-        "react",
-        "@radix-ui/react-slot",
-        "@/lib/utils",
-        "lucide-react"
-      ],
-      "src/components/ui/button.tsx": [
-        "react",
-        "@radix-ui/react-slot",
-        "@/lib/utils",
-        "class-variance-authority"
-      ],
-      "src/components/ui/calendar.tsx": [
-        "react",
-        "@/lib/utils",
-        "@/components/ui/button",
-        "react-day-picker"
-      ],
-      "src/components/ui/card.tsx": [
-        "react",
-        "@/lib/utils"
-      ],
-      "src/components/ui/carousel.tsx": [
-        "react",
-        "@/lib/utils",
-        "@/components/ui/button",
-        "lucide-react"
-      ],
-      "src/components/ui/checkbox.tsx": [
-        "react",
-        "@/lib/utils",
-        "@radix-ui/react-checkbox",
-        "lucide-react"
-      ],
-      "src/components/ui/collapsible.tsx": [
-        "@radix-ui/react-collapsible"
-      ],
+      "src/components/ui/accordion.tsx": ["react", "@radix-ui/react-accordion", "@/lib/utils", "lucide-react"],
+      "src/components/ui/alert.tsx": ["react", "@/lib/utils", "class-variance-authority"],
+      "src/components/ui/aspect-ratio.tsx": ["@radix-ui/react-aspect-ratio"],
+      "src/components/ui/avatar.tsx": ["@radix-ui/react-avatar", "react", "@/lib/utils"],
+      "src/components/ui/badge.tsx": ["react", "@/lib/utils", "class-variance-authority"],
+      "src/components/ui/breadcrumb.tsx": ["react", "@radix-ui/react-slot", "@/lib/utils", "lucide-react"],
+      "src/components/ui/button.tsx": ["react", "@radix-ui/react-slot", "@/lib/utils", "class-variance-authority"],
+      "src/components/ui/calendar.tsx": ["react", "@/lib/utils", "@/components/ui/button", "react-day-picker"],
+      "src/components/ui/card.tsx": ["react", "@/lib/utils"],
+      "src/components/ui/carousel.tsx": ["react", "@/lib/utils", "@/components/ui/button", "lucide-react"],
+      "src/components/ui/checkbox.tsx": ["react", "@/lib/utils", "@radix-ui/react-checkbox", "lucide-react"],
+      "src/components/ui/collapsible.tsx": ["@radix-ui/react-collapsible"],
       "src/components/ui/command.tsx": [
         "@radix-ui/react-dialog",
         "@/components/ui/dialog",
@@ -2496,29 +2219,10 @@
         "cmdk",
         "@/lib/utils"
       ],
-      "src/components/ui/context-menu.tsx": [
-        "lucide-react",
-        "react",
-        "@/lib/utils",
-        "@radix-ui/react-context-menu"
-      ],
-      "src/components/ui/dialog.tsx": [
-        "react",
-        "@/lib/utils",
-        "@radix-ui/react-dialog",
-        "lucide-react"
-      ],
-      "src/components/ui/drawer.tsx": [
-        "react",
-        "@/lib/utils",
-        "vaul"
-      ],
-      "src/components/ui/dropdown-menu.tsx": [
-        "react",
-        "@/lib/utils",
-        "@radix-ui/react-dropdown-menu",
-        "lucide-react"
-      ],
+      "src/components/ui/context-menu.tsx": ["lucide-react", "react", "@/lib/utils", "@radix-ui/react-context-menu"],
+      "src/components/ui/dialog.tsx": ["react", "@/lib/utils", "@radix-ui/react-dialog", "lucide-react"],
+      "src/components/ui/drawer.tsx": ["react", "@/lib/utils", "vaul"],
+      "src/components/ui/dropdown-menu.tsx": ["react", "@/lib/utils", "@radix-ui/react-dropdown-menu", "lucide-react"],
       "src/components/ui/form.tsx": [
         "@radix-ui/react-label",
         "react",
@@ -2526,27 +2230,10 @@
         "@radix-ui/react-slot",
         "@/lib/utils"
       ],
-      "src/components/ui/hover-card.tsx": [
-        "react",
-        "@radix-ui/react-hover-card",
-        "@/lib/utils"
-      ],
-      "src/components/ui/input.tsx": [
-        "react",
-        "@/lib/utils"
-      ],
-      "src/components/ui/label.tsx": [
-        "react",
-        "@radix-ui/react-label",
-        "@/lib/utils",
-        "class-variance-authority"
-      ],
-      "src/components/ui/menubar.tsx": [
-        "react",
-        "@/lib/utils",
-        "@radix-ui/react-menubar",
-        "lucide-react"
-      ],
+      "src/components/ui/hover-card.tsx": ["react", "@radix-ui/react-hover-card", "@/lib/utils"],
+      "src/components/ui/input.tsx": ["react", "@/lib/utils"],
+      "src/components/ui/label.tsx": ["react", "@radix-ui/react-label", "@/lib/utils", "class-variance-authority"],
+      "src/components/ui/menubar.tsx": ["react", "@/lib/utils", "@radix-ui/react-menubar", "lucide-react"],
       "src/components/ui/navigation-menu.tsx": [
         "react",
         "@radix-ui/react-navigation-menu",
@@ -2554,49 +2241,14 @@
         "@/lib/utils",
         "class-variance-authority"
       ],
-      "src/components/ui/pagination.tsx": [
-        "react",
-        "@/lib/utils",
-        "@/components/ui/button",
-        "lucide-react"
-      ],
-      "src/components/ui/popover.tsx": [
-        "react",
-        "@radix-ui/react-popover",
-        "@/lib/utils"
-      ],
-      "src/components/ui/progress.tsx": [
-        "react",
-        "@radix-ui/react-progress",
-        "@/lib/utils"
-      ],
-      "src/components/ui/radio-group.tsx": [
-        "react",
-        "@radix-ui/react-radio-group",
-        "@/lib/utils",
-        "lucide-react"
-      ],
-      "src/components/ui/resizable.tsx": [
-        "react-resizable-panels",
-        "@/lib/utils",
-        "lucide-react"
-      ],
-      "src/components/ui/scroll-area.tsx": [
-        "react",
-        "@radix-ui/react-scroll-area",
-        "@/lib/utils"
-      ],
-      "src/components/ui/select.tsx": [
-        "react",
-        "@radix-ui/react-select",
-        "@/lib/utils",
-        "lucide-react"
-      ],
-      "src/components/ui/separator.tsx": [
-        "react",
-        "@radix-ui/react-separator",
-        "@/lib/utils"
-      ],
+      "src/components/ui/pagination.tsx": ["react", "@/lib/utils", "@/components/ui/button", "lucide-react"],
+      "src/components/ui/popover.tsx": ["react", "@radix-ui/react-popover", "@/lib/utils"],
+      "src/components/ui/progress.tsx": ["react", "@radix-ui/react-progress", "@/lib/utils"],
+      "src/components/ui/radio-group.tsx": ["react", "@radix-ui/react-radio-group", "@/lib/utils", "lucide-react"],
+      "src/components/ui/resizable.tsx": ["react-resizable-panels", "@/lib/utils", "lucide-react"],
+      "src/components/ui/scroll-area.tsx": ["react", "@radix-ui/react-scroll-area", "@/lib/utils"],
+      "src/components/ui/select.tsx": ["react", "@radix-ui/react-select", "@/lib/utils", "lucide-react"],
+      "src/components/ui/separator.tsx": ["react", "@radix-ui/react-separator", "@/lib/utils"],
       "src/components/ui/sheet.tsx": [
         "@radix-ui/react-dialog",
         "react",
@@ -2616,36 +2268,13 @@
         "@/lib/utils",
         "class-variance-authority"
       ],
-      "src/components/ui/skeleton.tsx": [
-        "@/lib/utils"
-      ],
-      "src/components/ui/slider.tsx": [
-        "react",
-        "@radix-ui/react-slider",
-        "@/lib/utils"
-      ],
-      "src/components/ui/sonner.tsx": [
-        "next-themes",
-        "sonner"
-      ],
-      "src/components/ui/switch.tsx": [
-        "react",
-        "@/lib/utils",
-        "@radix-ui/react-switch"
-      ],
-      "src/components/ui/table.tsx": [
-        "react",
-        "@/lib/utils"
-      ],
-      "src/components/ui/tabs.tsx": [
-        "@radix-ui/react-tabs",
-        "react",
-        "@/lib/utils"
-      ],
-      "src/components/ui/textarea.tsx": [
-        "react",
-        "@/lib/utils"
-      ],
+      "src/components/ui/skeleton.tsx": ["@/lib/utils"],
+      "src/components/ui/slider.tsx": ["react", "@radix-ui/react-slider", "@/lib/utils"],
+      "src/components/ui/sonner.tsx": ["next-themes", "sonner"],
+      "src/components/ui/switch.tsx": ["react", "@/lib/utils", "@radix-ui/react-switch"],
+      "src/components/ui/table.tsx": ["react", "@/lib/utils"],
+      "src/components/ui/tabs.tsx": ["@radix-ui/react-tabs", "react", "@/lib/utils"],
+      "src/components/ui/textarea.tsx": ["react", "@/lib/utils"],
       "src/components/ui/toast.tsx": [
         "react",
         "@radix-ui/react-toast",
@@ -2653,9 +2282,7 @@
         "@/lib/utils",
         "class-variance-authority"
       ],
-      "src/components/ui/toaster.tsx": [
-        "@/hooks/use-toast"
-      ],
+      "src/components/ui/toaster.tsx": ["@/hooks/use-toast"],
       "src/components/ui/toggle-group.tsx": [
         "@radix-ui/react-toggle-group",
         "@/components/ui/toggle",
@@ -2663,20 +2290,9 @@
         "@/lib/utils",
         "class-variance-authority"
       ],
-      "src/components/ui/toggle.tsx": [
-        "react",
-        "@radix-ui/react-toggle",
-        "@/lib/utils",
-        "class-variance-authority"
-      ],
-      "src/components/ui/tooltip.tsx": [
-        "react",
-        "@radix-ui/react-tooltip",
-        "@/lib/utils"
-      ],
-      "src/hooks/use-mobile.tsx": [
-        "react"
-      ]
+      "src/components/ui/toggle.tsx": ["react", "@radix-ui/react-toggle", "@/lib/utils", "class-variance-authority"],
+      "src/components/ui/tooltip.tsx": ["react", "@radix-ui/react-tooltip", "@/lib/utils"],
+      "src/hooks/use-mobile.tsx": ["react"]
     },
     "reverse_dependencies": {
       "datetime": [
@@ -2723,9 +2339,7 @@
         "main.py",
         "server/data_models/data_ingestion/optimized_pipeline.py"
       ],
-      "dotenv": [
-        "main.py"
-      ],
+      "dotenv": ["main.py"],
       "logging": [
         "server/legacy-api/routers/events.py",
         "server/data_models/data_ingestion/enhanced_error_handling.py",
@@ -2778,9 +2392,7 @@
         "server/data_models/transforms/multimedia_processing.py",
         "server/data_models/data_ingestion/optimized_pipeline.py"
       ],
-      "server.data_models.data_ingestion.iot_pipeline": [
-        "main.py"
-      ],
+      "server.data_models.data_ingestion.iot_pipeline": ["main.py"],
       "os": [
         "scripts/fix-integration-issues.py",
         "server/legacy-api/routers/events.py",
@@ -2926,10 +2538,7 @@
         "tests/e2e-legacy/utils/data_generators.py",
         "tests/unit/test_services.py"
       ],
-      "httpx": [
-        "e2e-tests/core/api-integration/base_api_test.py",
-        "tests/integration/test_api_endpoints.py"
-      ],
+      "httpx": ["e2e-tests/core/api-integration/base_api_test.py", "tests/integration/test_api_endpoints.py"],
       "asyncio": [
         "tests/integration/test_database_operations.py",
         "server/health_check.py",
@@ -3052,12 +2661,8 @@
         "tests/unit/test_services.py",
         "server/legacy-api/routers/analytics.py"
       ],
-      "core.data_pipeline.pipeline_e2e_test": [
-        "e2e-tests/features/data-pipeline/test_pipeline_e2e.py"
-      ],
-      "core.api_integration.base_api_test": [
-        "e2e-tests/features/events-management/test_events_api.py"
-      ],
+      "core.data_pipeline.pipeline_e2e_test": ["e2e-tests/features/data-pipeline/test_pipeline_e2e.py"],
+      "core.api_integration.base_api_test": ["e2e-tests/features/events-management/test_events_api.py"],
       "subprocess": [
         "tests/test_runner.py",
         "tests/e2e-legacy/utils/gcp_helpers.py",
@@ -3074,10 +2679,7 @@
         "scripts/analyze-codebase-integration.py",
         "server/legacy-api/utils/validation.py"
       ],
-      "ast": [
-        "e2e-tests/legacy-cleanup/assessment-tool.py",
-        "scripts/analyze-codebase-integration.py"
-      ],
+      "ast": ["e2e-tests/legacy-cleanup/assessment-tool.py", "scripts/analyze-codebase-integration.py"],
       "argparse": [
         "tests/test_runner.py",
         "server/data_models/setup_bigquery_tables.py",
@@ -3086,18 +2688,10 @@
         "e2e-tests/utils/test-runner.py",
         "tests/report_generator.py"
       ],
-      "concurrent.futures": [
-        "e2e-tests/utils/test-runner.py"
-      ],
-      "platform": [
-        "scripts/setup-testing-tools.py"
-      ],
-      "collections": [
-        "scripts/analyze-codebase-integration.py"
-      ],
-      "shutil": [
-        "scripts/fix-integration-issues.py"
-      ],
+      "concurrent.futures": ["e2e-tests/utils/test-runner.py"],
+      "platform": ["scripts/setup-testing-tools.py"],
+      "collections": ["scripts/analyze-codebase-integration.py"],
+      "shutil": ["scripts/fix-integration-issues.py"],
       "dataclasses": [
         "server/data_models/data_ingestion/optimized_pipeline.py",
         "tests/e2e-legacy/config/test_config.py",
@@ -3152,9 +2746,7 @@
         "server/health_check.py",
         "server/shared_api_utils.py"
       ],
-      "psutil": [
-        "server/health_check.py"
-      ],
+      "psutil": ["server/health_check.py"],
       "shared_services": [
         "server/health_check.py",
         "server/legacy-api/services/event_service.py",
@@ -3162,9 +2754,7 @@
         "server/legacy-api/services/feedback_service.py",
         "server/legacy-api/services/user_service.py"
       ],
-      "setuptools": [
-        "server/setup.py"
-      ],
+      "setuptools": ["server/setup.py"],
       "shared_exceptions": [
         "server/legacy-api/routers/events.py",
         "server/legacy-api/models/__init__.py",
@@ -3179,10 +2769,7 @@
         "server/shared_services.py",
         "server/legacy-api/routers/analytics.py"
       ],
-      "functools": [
-        "server/legacy-api/auth/firebase_auth.py",
-        "server/shared_api_utils.py"
-      ],
+      "functools": ["server/legacy-api/auth/firebase_auth.py", "server/shared_api_utils.py"],
       "auth.permissions": [
         "server/legacy-api/routers/events.py",
         "server/legacy-api/routers/feedback.py",
@@ -3203,30 +2790,21 @@
         "server/shared_exceptions.py",
         "server/data_models/services/firestore_service.py"
       ],
-      "data_models.firestore_models": [
-        "tests/integration/test_database_operations.py",
-        "server/shared_services.py"
-      ],
+      "data_models.firestore_models": ["tests/integration/test_database_operations.py", "server/shared_services.py"],
       "data_models.services.firestore_service": [
         "tests/unit/test_services.py",
         "tests/integration/test_database_operations.py",
         "server/shared_services.py",
         "server/data_models/data_ingestion/base_pipeline.py"
       ],
-      "data_models.firestore_models.base_model": [
-        "server/shared_services.py"
-      ],
-      "threading": [
-        "server/shared_services.py"
-      ],
+      "data_models.firestore_models.base_model": ["server/shared_services.py"],
+      "threading": ["server/shared_services.py"],
       "contextlib": [
         "tests/e2e-legacy/utils/test_helpers.py",
         "server/legacy-api/main.py",
         "server/shared_services.py"
       ],
-      "services.firestore_service": [
-        "server/data_models/__init__.py"
-      ],
+      "services.firestore_service": ["server/data_models/__init__.py"],
       "shared_models": [
         "server/legacy-api/routers/events.py",
         "server/data_models/firestore_models/__init__.py",
@@ -3236,18 +2814,14 @@
         "server/legacy-api/services/user_service.py",
         "tests/unit/test_firestore_models.py"
       ],
-      "google.oauth2": [
-        "server/data_models/setup_bigquery_tables.py"
-      ],
+      "google.oauth2": ["server/data_models/setup_bigquery_tables.py"],
       "requests": [
         "server/data_models/data_ingestion/ai_processing.py",
         "server/data_models/data_ingestion/ai_utils.py",
         "server/data_models/tests/test_citizen_report_pipeline.py",
         "server/data_models/transforms/multimedia_processing.py"
       ],
-      "aiohttp": [
-        "server/data_models/data_ingestion/ai_processing.py"
-      ],
+      "aiohttp": ["server/data_models/data_ingestion/ai_processing.py"],
       "mimetypes": [
         "server/data_models/data_ingestion/ai_processing.py",
         "server/data_models/data_ingestion/ai_utils.py"
@@ -3306,16 +2880,9 @@
         "server/data_models/data_ingestion/enhanced_error_handling.py",
         "server/data_models/data_ingestion/optimized_pipeline.py"
       ],
-      "enhanced_error_handling": [
-        "server/data_models/data_ingestion/optimized_pipeline.py"
-      ],
-      "hashlib": [
-        "server/data_models/data_ingestion/optimized_pipeline.py"
-      ],
-      "data_models.core": [
-        "tests/test_ai_processing.py",
-        "server/data_models/data_ingestion/social_media_pipeline.py"
-      ],
+      "enhanced_error_handling": ["server/data_models/data_ingestion/optimized_pipeline.py"],
+      "hashlib": ["server/data_models/data_ingestion/optimized_pipeline.py"],
+      "data_models.core": ["tests/test_ai_processing.py", "server/data_models/data_ingestion/social_media_pipeline.py"],
       "data_models.firestore_models.event": [
         "server/data_models/tests/test_ai_processing.py",
         "tests/integration/test_database_operations.py",
@@ -3324,10 +2891,7 @@
         "server/data_models/tests/test_base_pipeline.py",
         "server/data_models/transforms/multimedia_processing.py"
       ],
-      "apache_beam.testing.test_pipeline": [
-        "server/data_models/tests/common.py",
-        "tests/unit/test_data_pipelines.py"
-      ],
+      "apache_beam.testing.test_pipeline": ["server/data_models/tests/common.py", "tests/unit/test_data_pipelines.py"],
       "unittest.mock": [
         "server/data_models/tests/test_ai_processing.py",
         "tests/test_ai_processing.py",
@@ -3363,60 +2927,25 @@
         "server/data_models/tests/test_base_pipeline.py",
         "server/data_models/tests/test_citizen_report_pipeline.py"
       ],
-      "google.api_core.exceptions": [
-        "server/data_models/tests/test_bigquery_setup.py"
-      ],
-      "google.cloud.bigquery": [
-        "server/data_models/tests/test_bigquery_setup.py"
-      ],
+      "google.api_core.exceptions": ["server/data_models/tests/test_bigquery_setup.py"],
+      "google.cloud.bigquery": ["server/data_models/tests/test_bigquery_setup.py"],
       "data_models.data_ingestion.citizen_report_pipeline": [
         "server/data_models/tests/test_citizen_report_pipeline.py"
       ],
-      "io": [
-        "server/data_models/transforms/multimedia_processing.py"
-      ],
-      "uvicorn": [
-        "server/legacy-api/main.py"
-      ],
-      "routers": [
-        "server/legacy-api/main.py"
-      ],
-      "auth.firebase_auth": [
-        "server/legacy-api/main.py"
-      ],
-      "utils.validation": [
-        "server/legacy-api/main.py"
-      ],
-      "fastapi.middleware.trustedhost": [
-        "server/legacy-api/main.py"
-      ],
-      "fastapi.middleware.cors": [
-        "server/legacy-api/main.py"
-      ],
-      "fastapi.openapi.utils": [
-        "server/legacy-api/main.py"
-      ],
-      "permissions": [
-        "server/legacy-api/auth/firebase_auth.py",
-        "server/legacy-api/auth/__init__.py"
-      ],
-      "firebase_auth": [
-        "server/legacy-api/auth/__init__.py"
-      ],
-      "starlette.middleware.base": [
-        "server/legacy-api/auth/firebase_auth.py"
-      ],
-      "firebase_admin": [
-        "server/legacy-api/services/user_service.py",
-        "server/legacy-api/auth/firebase_auth.py"
-      ],
-      "starlette.responses": [
-        "server/legacy-api/auth/firebase_auth.py"
-      ],
-      "fastapi.security": [
-        "server/legacy-api/auth/firebase_auth.py",
-        "tests/integration/test_api_endpoints.py"
-      ],
+      "io": ["server/data_models/transforms/multimedia_processing.py"],
+      "uvicorn": ["server/legacy-api/main.py"],
+      "routers": ["server/legacy-api/main.py"],
+      "auth.firebase_auth": ["server/legacy-api/main.py"],
+      "utils.validation": ["server/legacy-api/main.py"],
+      "fastapi.middleware.trustedhost": ["server/legacy-api/main.py"],
+      "fastapi.middleware.cors": ["server/legacy-api/main.py"],
+      "fastapi.openapi.utils": ["server/legacy-api/main.py"],
+      "permissions": ["server/legacy-api/auth/firebase_auth.py", "server/legacy-api/auth/__init__.py"],
+      "firebase_auth": ["server/legacy-api/auth/__init__.py"],
+      "starlette.middleware.base": ["server/legacy-api/auth/firebase_auth.py"],
+      "firebase_admin": ["server/legacy-api/services/user_service.py", "server/legacy-api/auth/firebase_auth.py"],
+      "starlette.responses": ["server/legacy-api/auth/firebase_auth.py"],
+      "fastapi.security": ["server/legacy-api/auth/firebase_auth.py", "tests/integration/test_api_endpoints.py"],
       "models.responses": [
         "server/legacy-api/routers/feedback.py",
         "server/legacy-api/services/analytics_service.py",
@@ -3431,119 +2960,57 @@
         "server/legacy-api/routers/users.py",
         "server/legacy-api/routers/analytics.py"
       ],
-      "services.analytics_service": [
-        "server/legacy-api/routers/analytics.py"
-      ],
-      "services.event_service": [
-        "server/legacy-api/routers/events.py"
-      ],
+      "services.analytics_service": ["server/legacy-api/routers/analytics.py"],
+      "services.event_service": ["server/legacy-api/routers/events.py"],
       "utils.pagination": [
         "server/legacy-api/routers/events.py",
         "server/legacy-api/services/feedback_service.py",
         "server/legacy-api/services/event_service.py",
         "server/legacy-api/routers/feedback.py"
       ],
-      "utils.filtering": [
-        "server/legacy-api/routers/events.py",
-        "server/legacy-api/services/event_service.py"
-      ],
+      "utils.filtering": ["server/legacy-api/routers/events.py", "server/legacy-api/services/event_service.py"],
       "models.requests": [
         "server/legacy-api/services/user_service.py",
         "server/legacy-api/routers/users.py",
         "server/legacy-api/services/feedback_service.py",
         "server/legacy-api/routers/feedback.py"
       ],
-      "services.feedback_service": [
-        "server/legacy-api/routers/feedback.py"
-      ],
-      "services.user_service": [
-        "server/legacy-api/routers/users.py"
-      ],
-      "user_service": [
-        "server/legacy-api/services/__init__.py"
-      ],
-      "feedback_service": [
-        "server/legacy-api/services/__init__.py"
-      ],
-      "analytics_service": [
-        "server/legacy-api/services/__init__.py"
-      ],
-      "event_service": [
-        "server/legacy-api/services/__init__.py"
-      ],
-      "main": [
-        "server/legacy-api/tests/test_main.py",
-        "tests/conftest.py"
-      ],
+      "services.feedback_service": ["server/legacy-api/routers/feedback.py"],
+      "services.user_service": ["server/legacy-api/routers/users.py"],
+      "user_service": ["server/legacy-api/services/__init__.py"],
+      "feedback_service": ["server/legacy-api/services/__init__.py"],
+      "analytics_service": ["server/legacy-api/services/__init__.py"],
+      "event_service": ["server/legacy-api/services/__init__.py"],
+      "main": ["server/legacy-api/tests/test_main.py", "tests/conftest.py"],
       "fastapi.testclient": [
         "tests/integration/test_api_endpoints.py",
         "server/legacy-api/tests/test_main.py",
         "tests/conftest.py"
       ],
-      "filtering": [
-        "server/legacy-api/utils/__init__.py"
-      ],
-      "pagination": [
-        "server/legacy-api/utils/__init__.py"
-      ],
-      "validation": [
-        "server/legacy-api/utils/__init__.py"
-      ],
-      "tempfile": [
-        "tests/conftest.py"
-      ],
-      "playwright.async_api": [
-        "tests/conftest.py"
-      ],
-      "utils.data_generators": [
-        "tests/e2e-legacy/publish_to_main_topic.py"
-      ],
-      "utils.environment_helpers": [
-        "tests/e2e-legacy/config/test_config.py",
-        "tests/e2e-legacy/run_tests.py"
-      ],
-      "faker": [
-        "tests/e2e-legacy/utils/data_generators.py"
-      ],
-      "random": [
-        "tests/e2e-legacy/utils/data_generators.py"
-      ],
-      "data_models.core.config": [
-        "tests/e2e-legacy/utils/publish_test_event.py"
-      ],
-      "google.cloud.firestore_v1.base_query": [
-        "tests/integration/test_database_operations.py"
-      ],
-      "base64": [
-        "tests/integration/test_external_services.py"
-      ],
-      "data_models.data_ingestion.enhanced_error_handling": [
-        "tests/unit/test_data_pipelines.py"
-      ],
-      "data_models.data_ingestion.optimized_pipeline": [
-        "tests/unit/test_data_pipelines.py"
-      ],
-      "next": [
-        "src/app/layout.tsx",
-        "next.config.ts"
-      ],
-      "../src/services/firebase/config": [
-        "__tests__/firebase-config.test.ts"
-      ],
+      "filtering": ["server/legacy-api/utils/__init__.py"],
+      "pagination": ["server/legacy-api/utils/__init__.py"],
+      "validation": ["server/legacy-api/utils/__init__.py"],
+      "tempfile": ["tests/conftest.py"],
+      "playwright.async_api": ["tests/conftest.py"],
+      "utils.data_generators": ["tests/e2e-legacy/publish_to_main_topic.py"],
+      "utils.environment_helpers": ["tests/e2e-legacy/config/test_config.py", "tests/e2e-legacy/run_tests.py"],
+      "faker": ["tests/e2e-legacy/utils/data_generators.py"],
+      "random": ["tests/e2e-legacy/utils/data_generators.py"],
+      "data_models.core.config": ["tests/e2e-legacy/utils/publish_test_event.py"],
+      "google.cloud.firestore_v1.base_query": ["tests/integration/test_database_operations.py"],
+      "base64": ["tests/integration/test_external_services.py"],
+      "data_models.data_ingestion.enhanced_error_handling": ["tests/unit/test_data_pipelines.py"],
+      "data_models.data_ingestion.optimized_pipeline": ["tests/unit/test_data_pipelines.py"],
+      "next": ["src/app/layout.tsx", "next.config.ts"],
+      "../src/services/firebase/config": ["__tests__/firebase-config.test.ts"],
       "@/utils/constants": [
         "__tests__/setup/msw.ts",
         "__tests__/examples/msw-example.test.ts",
         "src/services/api/client.ts",
         "__tests__/integration/api-routing.test.ts"
       ],
-      "msw": [
-        "__tests__/setup/msw.ts",
-        "__tests__/examples/msw-example.test.ts"
-      ],
-      "msw/node": [
-        "__tests__/setup/msw.ts",
-        "__tests__/examples/msw-example.test.ts"
-      ],
+      "msw": ["__tests__/setup/msw.ts", "__tests__/examples/msw-example.test.ts"],
+      "msw/node": ["__tests__/setup/msw.ts", "__tests__/examples/msw-example.test.ts"],
       "next/server": [
         "src/app/api/v1/auth/route.ts",
         "src/app/api/v1/analytics/route.ts",
@@ -3556,10 +3023,7 @@
         "src/middleware/auth.ts",
         "src/app/api/v1/events/route.ts"
       ],
-      "@/middleware/auth": [
-        "src/app/api/v1/analytics/route.ts",
-        "src/app/api/v1/events/route.ts"
-      ],
+      "@/middleware/auth": ["src/app/api/v1/analytics/route.ts", "src/app/api/v1/events/route.ts"],
       "@/lib/validation": [
         "src/app/api/v1/auth/route.ts",
         "src/middleware/validation.ts",
@@ -3609,61 +3073,23 @@
         "src/components/ui/avatar.tsx",
         "src/components/ui/drawer.tsx"
       ],
-      "@/lib/firebase-admin": [
-        "src/middleware/auth.ts"
-      ],
-      "zod": [
-        "src/middleware/validation.ts"
-      ],
-      "@/lib/config": [
-        "src/utils/constants.ts",
-        "src/services/api/client.ts"
-      ],
-      "axios": [
-        "src/services/api/client.ts"
-      ],
-      "@/lib/error-handler": [
-        "src/app/error.tsx",
-        "src/app/global-error.tsx",
-        "src/services/api/client.ts"
-      ],
-      "./config": [
-        "src/services/firebase/auth.ts"
-      ],
-      "@/lib/api-gateway": [
-        "src/services/firebase/auth.ts"
-      ],
-      "firebase/app": [
-        "src/services/firebase/config.ts"
-      ],
-      "firebase/firestore": [
-        "src/services/firebase/config.ts"
-      ],
-      "firebase/storage": [
-        "src/services/firebase/config.ts"
-      ],
-      "firebase/auth": [
-        "src/services/firebase/config.ts"
-      ],
-      "zustand/middleware": [
-        "src/store/app-store.ts"
-      ],
-      "zustand": [
-        "src/store/app-store.ts"
-      ],
-      "zustand/middleware/immer": [
-        "src/store/app-store.ts"
-      ],
-      "next/link": [
-        "src/app/error.tsx",
-        "src/app/not-found.tsx"
-      ],
-      "./globals.css": [
-        "src/app/layout.tsx"
-      ],
-      "@radix-ui/react-accordion": [
-        "src/components/ui/accordion.tsx"
-      ],
+      "@/lib/firebase-admin": ["src/middleware/auth.ts"],
+      "zod": ["src/middleware/validation.ts"],
+      "@/lib/config": ["src/utils/constants.ts", "src/services/api/client.ts"],
+      "axios": ["src/services/api/client.ts"],
+      "@/lib/error-handler": ["src/app/error.tsx", "src/app/global-error.tsx", "src/services/api/client.ts"],
+      "./config": ["src/services/firebase/auth.ts"],
+      "@/lib/api-gateway": ["src/services/firebase/auth.ts"],
+      "firebase/app": ["src/services/firebase/config.ts"],
+      "firebase/firestore": ["src/services/firebase/config.ts"],
+      "firebase/storage": ["src/services/firebase/config.ts"],
+      "firebase/auth": ["src/services/firebase/config.ts"],
+      "zustand/middleware": ["src/store/app-store.ts"],
+      "zustand": ["src/store/app-store.ts"],
+      "zustand/middleware/immer": ["src/store/app-store.ts"],
+      "next/link": ["src/app/error.tsx", "src/app/not-found.tsx"],
+      "./globals.css": ["src/app/layout.tsx"],
+      "@radix-ui/react-accordion": ["src/components/ui/accordion.tsx"],
       "@/lib/utils": [
         "src/components/ui/accordion.tsx",
         "src/components/ui/navigation-menu.tsx",
@@ -3738,12 +3164,8 @@
         "src/components/ui/sidebar.tsx",
         "src/components/ui/button.tsx"
       ],
-      "@radix-ui/react-aspect-ratio": [
-        "src/components/ui/aspect-ratio.tsx"
-      ],
-      "@radix-ui/react-avatar": [
-        "src/components/ui/avatar.tsx"
-      ],
+      "@radix-ui/react-aspect-ratio": ["src/components/ui/aspect-ratio.tsx"],
+      "@radix-ui/react-avatar": ["src/components/ui/avatar.tsx"],
       "@radix-ui/react-slot": [
         "src/components/ui/breadcrumb.tsx",
         "src/components/ui/form.tsx",
@@ -3756,117 +3178,46 @@
         "src/components/ui/carousel.tsx",
         "src/components/ui/sidebar.tsx"
       ],
-      "react-day-picker": [
-        "src/components/ui/calendar.tsx"
-      ],
-      "@radix-ui/react-checkbox": [
-        "src/components/ui/checkbox.tsx"
-      ],
-      "@radix-ui/react-collapsible": [
-        "src/components/ui/collapsible.tsx"
-      ],
+      "react-day-picker": ["src/components/ui/calendar.tsx"],
+      "@radix-ui/react-checkbox": ["src/components/ui/checkbox.tsx"],
+      "@radix-ui/react-collapsible": ["src/components/ui/collapsible.tsx"],
       "@radix-ui/react-dialog": [
         "src/components/ui/dialog.tsx",
         "src/components/ui/command.tsx",
         "src/components/ui/sheet.tsx"
       ],
-      "@/components/ui/dialog": [
-        "src/components/ui/command.tsx"
-      ],
-      "cmdk": [
-        "src/components/ui/command.tsx"
-      ],
-      "@radix-ui/react-context-menu": [
-        "src/components/ui/context-menu.tsx"
-      ],
-      "vaul": [
-        "src/components/ui/drawer.tsx"
-      ],
-      "@radix-ui/react-dropdown-menu": [
-        "src/components/ui/dropdown-menu.tsx"
-      ],
-      "@radix-ui/react-label": [
-        "src/components/ui/form.tsx",
-        "src/components/ui/label.tsx"
-      ],
-      "@/components/ui/label": [
-        "src/components/ui/form.tsx"
-      ],
-      "@radix-ui/react-hover-card": [
-        "src/components/ui/hover-card.tsx"
-      ],
-      "@radix-ui/react-menubar": [
-        "src/components/ui/menubar.tsx"
-      ],
-      "@radix-ui/react-navigation-menu": [
-        "src/components/ui/navigation-menu.tsx"
-      ],
-      "@radix-ui/react-popover": [
-        "src/components/ui/popover.tsx"
-      ],
-      "@radix-ui/react-progress": [
-        "src/components/ui/progress.tsx"
-      ],
-      "@radix-ui/react-radio-group": [
-        "src/components/ui/radio-group.tsx"
-      ],
-      "react-resizable-panels": [
-        "src/components/ui/resizable.tsx"
-      ],
-      "@radix-ui/react-scroll-area": [
-        "src/components/ui/scroll-area.tsx"
-      ],
-      "@radix-ui/react-select": [
-        "src/components/ui/select.tsx"
-      ],
-      "@radix-ui/react-separator": [
-        "src/components/ui/separator.tsx"
-      ],
-      "@/components/ui/input": [
-        "src/components/ui/sidebar.tsx"
-      ],
-      "@/hooks/use-mobile": [
-        "src/components/ui/sidebar.tsx"
-      ],
-      "@/components/ui/separator": [
-        "src/components/ui/sidebar.tsx"
-      ],
-      "@/components/ui/skeleton": [
-        "src/components/ui/sidebar.tsx"
-      ],
-      "@radix-ui/react-slider": [
-        "src/components/ui/slider.tsx"
-      ],
-      "next-themes": [
-        "src/components/ui/sonner.tsx"
-      ],
-      "sonner": [
-        "src/components/ui/sonner.tsx"
-      ],
-      "@radix-ui/react-switch": [
-        "src/components/ui/switch.tsx"
-      ],
-      "@radix-ui/react-tabs": [
-        "src/components/ui/tabs.tsx"
-      ],
-      "@radix-ui/react-toast": [
-        "src/components/ui/toast.tsx"
-      ],
-      "@/hooks/use-toast": [
-        "src/components/ui/toaster.tsx"
-      ],
-      "@radix-ui/react-toggle-group": [
-        "src/components/ui/toggle-group.tsx"
-      ],
-      "@/components/ui/toggle": [
-        "src/components/ui/toggle-group.tsx"
-      ],
-      "@radix-ui/react-toggle": [
-        "src/components/ui/toggle.tsx"
-      ],
-      "@radix-ui/react-tooltip": [
-        "src/components/ui/tooltip.tsx"
-      ]
+      "@/components/ui/dialog": ["src/components/ui/command.tsx"],
+      "cmdk": ["src/components/ui/command.tsx"],
+      "@radix-ui/react-context-menu": ["src/components/ui/context-menu.tsx"],
+      "vaul": ["src/components/ui/drawer.tsx"],
+      "@radix-ui/react-dropdown-menu": ["src/components/ui/dropdown-menu.tsx"],
+      "@radix-ui/react-label": ["src/components/ui/form.tsx", "src/components/ui/label.tsx"],
+      "@/components/ui/label": ["src/components/ui/form.tsx"],
+      "@radix-ui/react-hover-card": ["src/components/ui/hover-card.tsx"],
+      "@radix-ui/react-menubar": ["src/components/ui/menubar.tsx"],
+      "@radix-ui/react-navigation-menu": ["src/components/ui/navigation-menu.tsx"],
+      "@radix-ui/react-popover": ["src/components/ui/popover.tsx"],
+      "@radix-ui/react-progress": ["src/components/ui/progress.tsx"],
+      "@radix-ui/react-radio-group": ["src/components/ui/radio-group.tsx"],
+      "react-resizable-panels": ["src/components/ui/resizable.tsx"],
+      "@radix-ui/react-scroll-area": ["src/components/ui/scroll-area.tsx"],
+      "@radix-ui/react-select": ["src/components/ui/select.tsx"],
+      "@radix-ui/react-separator": ["src/components/ui/separator.tsx"],
+      "@/components/ui/input": ["src/components/ui/sidebar.tsx"],
+      "@/hooks/use-mobile": ["src/components/ui/sidebar.tsx"],
+      "@/components/ui/separator": ["src/components/ui/sidebar.tsx"],
+      "@/components/ui/skeleton": ["src/components/ui/sidebar.tsx"],
+      "@radix-ui/react-slider": ["src/components/ui/slider.tsx"],
+      "next-themes": ["src/components/ui/sonner.tsx"],
+      "sonner": ["src/components/ui/sonner.tsx"],
+      "@radix-ui/react-switch": ["src/components/ui/switch.tsx"],
+      "@radix-ui/react-tabs": ["src/components/ui/tabs.tsx"],
+      "@radix-ui/react-toast": ["src/components/ui/toast.tsx"],
+      "@/hooks/use-toast": ["src/components/ui/toaster.tsx"],
+      "@radix-ui/react-toggle-group": ["src/components/ui/toggle-group.tsx"],
+      "@/components/ui/toggle": ["src/components/ui/toggle-group.tsx"],
+      "@radix-ui/react-toggle": ["src/components/ui/toggle.tsx"],
+      "@radix-ui/react-tooltip": ["src/components/ui/tooltip.tsx"]
     }
   }
 }

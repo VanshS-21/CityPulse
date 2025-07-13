@@ -19,9 +19,7 @@
         "details": "In BigQuery, create the `city_intelligence.events` table with partitioning (by timestamp) and clustering (by type, ward, status). Implement all fields from the Event schema, ensuring support for geospatial queries and arrays (tags, media). In Firestore, define `users` and `feedback` collections: users with subcollections for preferences/subscriptions, feedback with reference integrity to events and users. Use strict data types (UUIDs as strings, timestamps, arrays, floats, enums). Add indexes for common queries (by type, status, location). Document schema evolution strategy for future fields (e.g., AI insights).",
         "testStrategy": "Verify table and collection creation. Insert and query sample data to confirm schema enforcement and index performance. Validate document structure and relationships in Firestore.",
         "priority": "high",
-        "dependencies": [
-          1
-        ],
+        "dependencies": [1],
         "status": "done",
         "subtasks": []
       },
@@ -32,10 +30,7 @@
         "details": "Create Pub/Sub topics for each data source: Twitter (social), citizen reports, IoT sensors, official feeds. Build Dataflow pipelines (Python/Java SDK) to subscribe, clean, normalize, and geotag incoming data. For citizen reports, process multimedia uploads to Cloud Storage, extract metadata, and write event records to BigQuery and Firestore. For social feeds, apply NLP preprocessing and sentiment scoring stub. Ensure all pipelines handle schema mapping, error logging, and support replay for late data. Integrate with API connectors for Twitter, Facebook, and city systems as per PRD.",
         "testStrategy": "Simulate data streams for each source. Monitor Pub/Sub and Dataflow job health. Verify data lands in BigQuery and Firestore with correct structure and metadata. Test error handling and replay logic.",
         "priority": "high",
-        "dependencies": [
-          1,
-          2
-        ],
+        "dependencies": [1, 2],
         "status": "done",
         "subtasks": []
       },
@@ -46,10 +41,7 @@
         "details": "Implement API endpoints using Cloud Functions or Cloud Run (Node.js/Python/Go). Endpoints: `GET/POST/PUT/DELETE /api/v1/events`, `GET/PUT /api/v1/users/{id}`, `POST /api/v1/feedback`, and analytics endpoints for KPIs. Integrate Firebase Authentication or Google Identity Platform for user auth (citizen, authority, admin roles). Enforce role-based access for sensitive operations (e.g., status updates by authority only). Ensure APIs interact with BigQuery (analytics, historical) and Firestore (real-time, current state) as per use case. Implement error handling, pagination, filtering, and input validation.",
         "testStrategy": "Test endpoints with Postman/curl. Validate auth flows and role restrictions. Verify CRUD operations, filtering, and error responses. Confirm data consistency between BigQuery and Firestore.",
         "priority": "medium",
-        "dependencies": [
-          1,
-          2
-        ],
+        "dependencies": [1, 2],
         "status": "done",
         "subtasks": [
           {
@@ -117,9 +109,7 @@
         "details": "Set up React/Next.js project with Material Design components. Integrate Google Maps JavaScript API for map-centric UI. Fetch and display events with markers, heatmaps, and category filters. Implement citizen report form (text, image upload, geolocation). Display live KPIs, incident lists, and AI-generated insights cards. Ensure accessibility (WCAG 2.1), multi-language support, and progressive disclosure for complex data. Deploy via Firebase Hosting with CDN.",
         "testStrategy": "Verify map and markers load. Test event filtering and reporting flow. Validate accessibility and localization. Submit reports and confirm backend/API integration. Test on multiple browsers and devices.",
         "priority": "medium",
-        "dependencies": [
-          4
-        ],
+        "dependencies": [4],
         "status": "in-progress",
         "subtasks": [
           {
@@ -187,9 +177,7 @@
         "details": "Create Flutter project. Build reporting UI: issue category selection, text/image/video input, geolocation (auto/manual). Integrate device camera/gallery and location APIs. Structure app for future map/alert features. Connect to backend Events API for submission. Implement push notification support (Firebase Cloud Messaging). Ensure accessibility, multi-language, and responsive design.",
         "testStrategy": "Test on iOS/Android emulators/devices. Validate reporting flow, media capture, and location. Submit reports and check backend/API integration. Test push notification receipt.",
         "priority": "medium",
-        "dependencies": [
-          4
-        ],
+        "dependencies": [4],
         "status": "pending",
         "subtasks": [
           {
@@ -257,10 +245,7 @@
         "details": "Implement clustering algorithm (spatial-temporal, AI tags) to assign cluster_id to related events. Refine categorization/severity using Gemini/Vision outputs and business rules. Build pipeline for social sentiment analysis (Vertex AI NLP) on ingested social data, compute sentiment_score, and aggregate by location/ward. Store clustering and sentiment data in BigQuery/Firestore for dashboard visualization.",
         "testStrategy": "Ingest related and unrelated events, verify clustering. Test categorization/severity output. Ingest varied sentiment social posts, confirm sentiment_score and aggregation accuracy.",
         "priority": "medium",
-        "dependencies": [
-          3,
-          7
-        ],
+        "dependencies": [3, 7],
         "status": "pending",
         "subtasks": [
           {
@@ -312,10 +297,7 @@
         "details": "Leverage Firestore's real-time listeners for low-latency updates. For high-volume or aggregated data, implement WebSocket server (Cloud Run/GKE) subscribing to Firestore/PubSub changes. Update frontend logic to handle live event/marker updates, heatmap overlays, and KPI gauges. Ensure stability, scalability, and graceful fallback for disconnected clients.",
         "testStrategy": "Open dashboard in multiple browsers. Trigger new/updated events, verify instant updates. Monitor WebSocket/Firestore connection health and latency.",
         "priority": "medium",
-        "dependencies": [
-          5,
-          4
-        ],
+        "dependencies": [5, 4],
         "status": "pending",
         "subtasks": [
           {
@@ -359,11 +341,7 @@
         "details": "Extend Firestore User Profile with preferences (alert_categories, locations, notification_methods). Build backend endpoints for managing preferences. Implement Cloud Function triggered by new/updated events to match against user preferences. Send notifications via Firebase Cloud Messaging, email, or SMS as per user settings. Integrate FCM in Flutter app for mobile notifications. Ensure GDPR compliance and opt-in/opt-out flows.",
         "testStrategy": "Create test users with varied preferences. Generate events matching/non-matching criteria. Verify notifications are sent/received only to relevant users. Test updating preferences and notification delivery.",
         "priority": "medium",
-        "dependencies": [
-          2,
-          4,
-          6
-        ],
+        "dependencies": [2, 4, 6],
         "status": "pending",
         "subtasks": [
           {
@@ -423,9 +401,7 @@
         "details": "Extend Dataflow pipeline or add Cloud Function for post-ingestion AI processing. For text: send to Gemini for summarization, classification, and narrative generation. For images/videos: use Vision API for object detection (e.g., waterlogging, pothole), and Imagen for UI visuals. Store AI-generated insights (summaries, tags, categories, confidence scores) in BigQuery/Firestore. Ensure provenance metadata for explainability. Prepare for future model retraining with feedback loops.",
         "testStrategy": "Submit diverse reports. Verify AI processing triggers and populates insights in event records. Check explainability metadata. Validate error handling for failed inferences.",
         "priority": "medium",
-        "dependencies": [
-          3
-        ],
+        "dependencies": [3],
         "status": "done",
         "subtasks": [
           {

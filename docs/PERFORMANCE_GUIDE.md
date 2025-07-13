@@ -1,8 +1,8 @@
 # CityPulse Performance Optimization Guide
 
-- *Version**: 0.1.0
-- *Last Updated**: July 13, 2025
-- *Target Audience**: DevOps Engineers, System Administrators, Developers
+- \*Version\*\*: 0.1.0
+- \*Last Updated\*\*: July 13, 2025
+- \*Target Audience\*\*: DevOps Engineers, System Administrators, Developers
 
 ## Table of Contents
 
@@ -19,17 +19,17 @@
 
 ### 🎯 Performance Targets
 
-| Metric | Target | Critical Threshold |
-|--------|--------|--------------------|
-| **Page Load Time**| < 2 seconds | < 3 seconds |
-|**API Response Time**| < 500ms | < 1 second |
-|**Database Query Time**| < 100ms | < 500ms |
-|**Uptime**| 99.9% | 99.5% |
-|**Error Rate** | < 0.1% | < 1% |
+| Metric                  | Target      | Critical Threshold |
+| ----------------------- | ----------- | ------------------ |
+| **Page Load Time**      | < 2 seconds | < 3 seconds        |
+| **API Response Time**   | < 500ms     | < 1 second         |
+| **Database Query Time** | < 100ms     | < 500ms            |
+| **Uptime**              | 99.9%       | 99.5%              |
+| **Error Rate**          | < 0.1%      | < 1%               |
 
 ### 📊 Current Performance Baseline
 
-```bash
+````bash
 
 ## Performance monitoring dashboard
 
@@ -37,11 +37,11 @@
 
 ## Key metrics to track
 
--  Average response time: 245ms
--  95th percentile: 890ms
--  99th percentile: 1.2s
--  Error rate: 0.03%
--  Throughput: 1,200 requests/minute
+-   Average response time: 245ms
+-   95th percentile: 890ms
+-   99th percentile: 1.2s
+-   Error rate: 0.03%
+-   Throughput: 1,200 requests/minute
 
 ## ```text
 
@@ -265,15 +265,19 @@ def cache_result(expiration=300):
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
+
 ## Create cache key
+
             cache_key = f"{func.**name**}:{hash(str(args) + str(kwargs))}"
 
 ## Try to get from cache
+
             cached_result = redis_client.get(cache_key)
             if cached_result:
                 return json.loads(cached_result)
 
 ## Execute function and cache result
+
             result = func(*args, **kwargs)
             redis_client.setex(cache_key, expiration, json.dumps(result))
             return result
@@ -282,7 +286,9 @@ def cache_result(expiration=300):
 
 @cache_result(expiration=600)  # Cache for 10 minutes
 def get_event_analytics(category, start_date, end_date):
+
 ## Expensive analytics calculation
+
     return calculate_analytics(category, start_date, end_date)
 ```text
 
@@ -338,14 +344,18 @@ class OptimizedEventProcessor(beam.DoFn):
         self.batch.append(element)
 
         if len(self.batch) >= self.batch_size:
+
 ## Process batch
+
             processed_batch = self.process_batch(self.batch)
             for item in processed_batch:
                 yield item
             self.batch = []
 
     def finish_bundle(self):
+
 ## Process remaining items
+
         if self.batch:
             processed_batch = self.process_batch(self.batch)
             for item in processed_batch:
@@ -353,7 +363,9 @@ class OptimizedEventProcessor(beam.DoFn):
             self.batch = []
 
     def process_batch(self, batch):
+
 ## Efficient batch processing logic
+
         return [self.process_single_item(item) for item in batch]
 
 ## ```text 3
@@ -442,9 +454,9 @@ const optimizedEventDocument = {
 
 ```sql
 
-- - Optimize BigQuery queries for performance
+-  - Optimize BigQuery queries for performance
 
-- - Use partitioning and clustering
+-  - Use partitioning and clustering
 CREATE TABLE city_intelligence.events_optimized (
   event_id STRING NOT NULL,
   event_type STRING NOT NULL,
@@ -458,23 +470,23 @@ CREATE TABLE city_intelligence.events_optimized (
 PARTITION BY DATE(timestamp)
 CLUSTER BY ward_name, event_type, severity_level;
 
-- - Efficient query patterns
-- - Good: Use partition pruning
+-  - Efficient query patterns
+-  - Good: Use partition pruning
 SELECT event_type, COUNT(*) as count
 FROM city_intelligence.events_optimized
 WHERE DATE(timestamp) BETWEEN '2025-01-01' AND '2025-01-31'
   AND ward_name = 'Downtown'
 GROUP BY event_type;
 
-- - Good: Use clustering columns in WHERE clause
+-  - Good: Use clustering columns in WHERE clause
 SELECT *FROM city_intelligence.events_optimized
 WHERE ward_name = 'Downtown'
   AND event_type = 'traffic'
   AND severity_level = 'high'
   AND DATE(timestamp) = '2025-01-15';
 
-- - Avoid: Full table scans
-- - SELECT* FROM city_intelligence.events_optimized; -- Don't do this
+-  - Avoid: Full table scans
+-  - SELECT* FROM city_intelligence.events_optimized; -- Don't do this
 
 ```text
 
@@ -482,9 +494,9 @@ WHERE ward_name = 'Downtown'
 
 ```sql
 
-- - Implement cost-effective querying strategies
+-  - Implement cost-effective querying strategies
 
-- - Use approximate aggregation for large datasets
+-  - Use approximate aggregation for large datasets
 SELECT
   event_type,
   APPROX_COUNT_DISTINCT(event_id) as unique_events,
@@ -493,7 +505,7 @@ FROM city_intelligence.events_optimized
 WHERE DATE(timestamp) >= DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)
 GROUP BY event_type;
 
-- - Use materialized views for frequently accessed aggregations
+-  - Use materialized views for frequently accessed aggregations
 CREATE MATERIALIZED VIEW city_intelligence.daily_event_summary
 PARTITION BY event_date
 CLUSTER BY ward_name, event_type
@@ -541,14 +553,14 @@ spec:
       timeoutSeconds: 300
       containers:
 
-      -  image: gcr.io/citypulse/api:latest
+      -   image: gcr.io/citypulse/api:latest
         resources:
           limits:
             memory: "2Gi"
             cpu: "2"
         env:
 
-        -  name: NODE_ENV
+        -   name: NODE_ENV
           value: "production"
 ```text
 
@@ -569,24 +581,24 @@ data:
     defaultService: citypulse-backend
     hostRules:
 
-    -  hosts:
-      -  "static.[your-citypulse-domain]"
+    -   hosts:
+      -   "static.[your-citypulse-domain]"
       pathMatcher: "static-matcher"
     pathMatchers:
 
-    -  name: "static-matcher"
+    -   name: "static-matcher"
       defaultService: citypulse-storage
       pathRules:
 
-      -  paths:
-        -  "/static/*"
-        -  "/images/*"
-        -  "/js/*"
-        -  "/css/*"
+      -   paths:
+        -   "/static/*"
+        -   "/images/*"
+        -   "/js/*"
+        -   "/css/*"
         service: citypulse-storage
     backends:
 
-    -  name: citypulse-storage
+    -   name: citypulse-storage
       bucketName: "citypulse-static-assets"
       enableCdn: true
       cdnPolicy:
@@ -609,7 +621,7 @@ metadata:
 spec:
   domains:
 
-  -  [your-citypulse-domain]
+  -   [your-citypulse-domain]
 
 ## - api.[your-citypulse-domain]
 
@@ -625,11 +637,11 @@ metadata:
 spec:
   rules:
 
-  -  host: [your-citypulse-domain]
+  -   host: [your-citypulse-domain]
     http:
       paths:
 
-      -  path: /*
+      -   path: /*
         pathType: ImplementationSpecific
         backend:
           service:
@@ -637,11 +649,11 @@ spec:
             port:
               number: 80
 
-  -  host: api.[your-citypulse-domain]
+  -   host: api.[your-citypulse-domain]
     http:
       paths:
 
-      -  path: /*
+      -   path: /*
         pathType: ImplementationSpecific
         backend:
           service:
@@ -671,21 +683,21 @@ data:
 
     rule_files:
 
-    -  "citypulse_rules.yml"
+    -   "citypulse_rules.yml"
 
     scrape_configs:
 
-    -  job_name: 'citypulse-api'
+    -   job_name: 'citypulse-api'
       static_configs:
 
-      -  targets: ['citypulse-api:8080']
+      -   targets: ['citypulse-api:8080']
       metrics_path: '/metrics'
       scrape_interval: 10s
 
-    -  job_name: 'citypulse-frontend'
+    -   job_name: 'citypulse-frontend'
       static_configs:
 
-      -  targets: ['citypulse-frontend:3000']
+      -   targets: ['citypulse-frontend:3000']
       metrics_path: '/api/metrics'
       scrape_interval: 30s
 
@@ -699,10 +711,10 @@ data:
 
 groups:
 
--  name: citypulse_performance
+-   name: citypulse_performance
   rules:
 
-  -  alert: HighResponseTime
+  -   alert: HighResponseTime
     expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 1
     for: 2m
     labels:
@@ -711,7 +723,7 @@ groups:
       summary: "High response time detected"
       description: "95th percentile response time is {{ $value }}s"
 
-  -  alert: HighErrorRate
+  -   alert: HighErrorRate
     expr: rate(http_requests_total{status=~"5.."}[5m]) / rate(http_requests_total[5m]) > 0.01
     for: 1m
     labels:
@@ -720,7 +732,7 @@ groups:
       summary: "High error rate detected"
       description: "Error rate is {{ $value | humanizePercentage }}"
 
-  -  alert: DatabaseSlowQueries
+  -   alert: DatabaseSlowQueries
     expr: mysql_slow_queries > 10
     for: 5m
     labels:
@@ -800,9 +812,9 @@ echo "Starting CityPulse Performance Benchmark..."
 echo "Testing frontend performance..."
 lighthouse [Your CityPulse URL] \
 
-  - -output=json \
-  - -output-path=./reports/lighthouse-report.json \
-  - -chrome-flags="--headless"
+  -  -output=json \
+  -  -output-path=./reports/lighthouse-report.json \
+  -  -chrome-flags="--headless"
 
 ## API performance test
 
@@ -844,7 +856,7 @@ kubectl logs -f deployment/citypulse-api --tail=100
 
 gcloud sql instances patch citypulse-db \
 
-  - -database-flags=slow_query_log=on,long_query_time=1
+  -  -database-flags=slow_query_log=on,long_query_time=1
 
 ## 3. Check memory usage
 
@@ -932,29 +944,30 @@ def monitor_connection_pool():
 
 ## Daily Performance Checks
 
--  [ ] Check response time metrics (< 500ms average)
--  [ ] Monitor error rates (< 0.1%)
--  [ ] Verify database query performance
--  [ ] Check memory and CPU usage
--  [ ] Review slow query logs
+-   [ ] Check response time metrics (< 500ms average)
+-   [ ] Monitor error rates (< 0.1%)
+-   [ ] Verify database query performance
+-   [ ] Check memory and CPU usage
+-   [ ] Review slow query logs
 
 ## Weekly Performance Reviews
 
--  [ ] Analyze performance trends
--  [ ] Review and optimize slow queries
--  [ ] Check cache hit rates
--  [ ] Monitor storage usage
--  [ ] Update performance baselines
+-   [ ] Analyze performance trends
+-   [ ] Review and optimize slow queries
+-   [ ] Check cache hit rates
+-   [ ] Monitor storage usage
+-   [ ] Update performance baselines
 
 ## Monthly Performance Optimization
 
--  [ ] Conduct load testing
--  [ ] Review and update performance targets
--  [ ] Optimize database indexes
--  [ ] Review and clean up unused resources
--  [ ] Plan capacity scaling
+-   [ ] Conduct load testing
+-   [ ] Review and update performance targets
+-   [ ] Optimize database indexes
+-   [ ] Review and clean up unused resources
+-   [ ] Plan capacity scaling
 
 ## ```text 8
 
-- This performance guide provides comprehensive strategies for optimizing CityPulse across all layers of the application
+-  This performance guide provides comprehensive strategies for optimizing CityPulse across all layers of the application
 stack.*
+````

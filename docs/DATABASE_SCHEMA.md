@@ -1,17 +1,18 @@
 # CityPulse Database Schema Documentation
 
-- *Version**: 1.0.0
-- *Last Updated**: July 9, 2025
-- *Database Systems**: Firestore (Real-time) + BigQuery (Analytics)
+- \*Version\*\*: 1.0.0
+- \*Last Updated\*\*: July 9, 2025
+- \*Database Systems\*\*: Firestore (Real-time) + BigQuery (Analytics)
 
 ## Overview
 
-CityPulse uses a **hybrid database architecture**combining Firestore for real-time operations and BigQuery for
-analytics. This design optimizes for both low-latency user interactions and complex analytical queries.
+CityPulse uses a **hybrid database architecture**combining Firestore for real-time operations and
+BigQuery for analytics. This design optimizes for both low-latency user interactions and complex
+analytical queries.
 
 ### Architecture Pattern
 
-```text
+````text
 User Actions → Firestore (Real-time) → Pub/Sub → BigQuery (Analytics)
 
 ## ```text
@@ -28,7 +29,7 @@ User Actions → Firestore (Real-time) → Pub/Sub → BigQuery (Analytics)
 
 ### 1.2 Event Collection
 
--*Collection Path**:`/events/{eventId}`
+- *Collection Path**:`/events/{eventId}`
 
 ```typescript
 
@@ -73,7 +74,7 @@ interface Event {
 
 ```text
 
-- *Enums**:
+-  *Enums**:
 
 ```typescript
 
@@ -108,13 +109,14 @@ enum EventStatus {
 
 ```text
 
-- *Indexes**:
+-  *Indexes**:
 
--  Composite: `(category, status, start_time)`-  Composite:`(severity, status, created_at)`-  Single:`user_id`, `status`, `category`-  Geospatial:`location`(for proximity queries)
+-  Composite: `(category, status, start_time)`- Composite:`(severity, status, created_at)`- Single:`user_id`, `status`,
+`category`- Geospatial:`location`(for proximity queries)
 
 ### 1.3 User Profile Collection
 
-- *Collection Path**:`/user_profiles/{userId}`
+-  *Collection Path**:`/user_profiles/{userId}`
 
 ```typescript
 
@@ -151,7 +153,7 @@ interface UserProfile {
 
 ```text
 
-- *Enums**:
+-  *Enums**:
 
 ```typescript
 
@@ -163,11 +165,11 @@ enum UserRole {
 
 ```text
 
-- *Indexes**:
+-  *Indexes**:
 
--  Single: `roles`, `is_active`, `last_login`-  Composite:`(roles, is_active)`### 1.4 Feedback Collection
+-   Single: `roles`, `is_active`, `last_login`-  Composite:`(roles, is_active)`### 1.4 Feedback Collection
 
-- *Collection Path**:`/user_feedback/{feedbackId}`
+-  *Collection Path**:`/user_feedback/{feedbackId}`
 
 ```typescript
 
@@ -206,7 +208,7 @@ interface Feedback {
 
 ```text
 
-- *Enums**:
+-  *Enums**:
 
 ```typescript
 
@@ -233,52 +235,52 @@ enum FeedbackStatus {
 
 ### 2.1 Events Analytics Table
 
-- *Table**: `city_intelligence.events`
+-  *Table**: `city_intelligence.events`
 
 ```sql
 CREATE TABLE city_intelligence.events (
 
-  - - Primary Keys
+  -  - Primary Keys
   event_id STRING NOT NULL,
 
-  - - Event Details
+  -  - Event Details
   event_type STRING NOT NULL,
   title STRING,
   description STRING,
 
-  - - Location
+  -  - Location
   location_lat FLOAT64,
   location_lng FLOAT64,
   ward_name STRING,
 
-  - - Temporal
+  -  - Temporal
   timestamp TIMESTAMP NOT NULL,
   end_timestamp TIMESTAMP,
 
-  - - Classification
+  -  - Classification
   source_type STRING NOT NULL,
   severity_level STRING,
   status STRING,
 
-  - - Analytics
+  -  - Analytics
   cluster_id STRING,
   confidence_score FLOAT64,
   sentiment_score FLOAT64,
 
-  - - Arrays
+  -  - Arrays
   tags ARRAY<STRING>,
   media_urls ARRAY<STRING>,
 
-  - - AI Processing
+  -  - AI Processing
   ai_summary STRING,
   ai_category STRING,
   ai_image_tags ARRAY<STRING>,
 
-  - - Metadata
+  -  - Metadata
   user_id STRING,
   metadata JSON,
 
-  - - Audit
+  -  - Audit
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
 )
@@ -286,18 +288,19 @@ PARTITION BY DATE(timestamp)
 CLUSTER BY ward_name, event_type, severity_level;
 ```text
 
-- *Partitioning Strategy**:
+-  *Partitioning Strategy**:
 
--  **Partition Field**: `DATE(timestamp)`-  **Retention**: 7 years (configurable)
--  **Benefits**: Query performance, cost optimization
+-   **Partition Field**: `DATE(timestamp)`-  **Retention**: 7 years (configurable)
+-   **Benefits**: Query performance, cost optimization
 
-- *Clustering Strategy**:
+-  *Clustering Strategy**:
 
--  **Cluster Fields**:`ward_name`, `event_type`, `severity_level`-  **Benefits**: Improved query performance for common filters
+-  **Cluster Fields**:`ward_name`, `event_type`, `severity_level`- **Benefits**: Improved query performance for common
+filters
 
 ### 2.2 User Analytics Table
 
-- *Table**:`city_intelligence.user_analytics`
+-  *Table**:`city_intelligence.user_analytics`
 
 ```sql
 CREATE TABLE city_intelligence.user_analytics (
@@ -385,31 +388,31 @@ graph LR
 
 ### 4.1 Firestore Optimization
 
-- *Read Optimization**:
+-  *Read Optimization**:
 
--  Use composite indexes for complex queries
--  Implement pagination for large result sets
--  Cache frequently accessed data
+-   Use composite indexes for complex queries
+-   Implement pagination for large result sets
+-   Cache frequently accessed data
 
-- *Write Optimization**:
+-  *Write Optimization**:
 
--  Batch writes when possible
--  Use transactions for data consistency
--  Implement optimistic locking
+-   Batch writes when possible
+-   Use transactions for data consistency
+-   Implement optimistic locking
 
 ### 4.2 BigQuery Optimization
 
-- *Query Optimization**:
+-  *Query Optimization**:
 
--  Use partitioning for time-based queries
--  Leverage clustering for common filters
--  Implement materialized views for complex aggregations
+-   Use partitioning for time-based queries
+-   Leverage clustering for common filters
+-   Implement materialized views for complex aggregations
 
-- *Cost Optimization**:
+-  *Cost Optimization**:
 
--  Use appropriate data types
--  Implement data lifecycle policies
--  Monitor query costs and optimize expensive queries
+-   Use appropriate data types
+-   Implement data lifecycle policies
+-   Monitor query costs and optimize expensive queries
 
 ## 5. Security and Access Control
 
@@ -442,27 +445,27 @@ service cloud.firestore {
 
 ### 5.2 BigQuery Access Control
 
-- *IAM Roles**:
+-  *IAM Roles**:
 
--  `bigquery.dataViewer`: Read-only access for analysts
--  `bigquery.dataEditor`: Write access for data pipelines
--  `bigquery.admin`: Full access for administrators
+-   `bigquery.dataViewer`: Read-only access for analysts
+-   `bigquery.dataEditor`: Write access for data pipelines
+-   `bigquery.admin`: Full access for administrators
 
 ## 6. Migration and Versioning
 
 ### 6.1 Schema Evolution Strategy
 
-- *Firestore**:
+-  *Firestore**:
 
--  Additive changes only (new fields)
--  Use optional fields for backward compatibility
--  Implement data migration functions for breaking changes
+-   Additive changes only (new fields)
+-   Use optional fields for backward compatibility
+-   Implement data migration functions for breaking changes
 
-- *BigQuery**:
+-  *BigQuery**:
 
--  Use `ALTER TABLE` for schema changes
--  Implement versioned table names for major changes
--  Maintain backward compatibility views
+-   Use `ALTER TABLE` for schema changes
+-   Implement versioned table names for major changes
+-   Maintain backward compatibility views
 
 ### 6.2 Migration Procedures
 
@@ -477,38 +480,39 @@ service cloud.firestore {
 
 ### 7.1 Health Metrics
 
-- *Firestore**:
+-  *Firestore**:
 
--  Read/write operations per second
--  Document count per collection
--  Index usage statistics
--  Error rates and latency
+-   Read/write operations per second
+-   Document count per collection
+-   Index usage statistics
+-   Error rates and latency
 
-- *BigQuery**:
+-  *BigQuery**:
 
--  Query performance metrics
--  Storage usage and costs
--  Slot utilization
--  Data freshness
+-   Query performance metrics
+-   Storage usage and costs
+-   Slot utilization
+-   Data freshness
 
 ### 7.2 Maintenance Tasks
 
-- *Daily**:
+-  *Daily**:
 
--  Monitor error rates and performance
--  Check data pipeline health
--  Validate data quality
+-   Monitor error rates and performance
+-   Check data pipeline health
+-   Validate data quality
 
-- *Weekly**:
+-  *Weekly**:
 
--  Review storage usage and costs
--  Analyze query performance
--  Update indexes if needed
+-   Review storage usage and costs
+-   Analyze query performance
+-   Update indexes if needed
 
-- *Monthly**:
+-  *Monthly**:
 
--  Review and optimize expensive queries
--  Clean up old data per retention policies
--  Update documentation for schema changes
+-   Review and optimize expensive queries
+-   Clean up old data per retention policies
+-   Update documentation for schema changes
 
-- This schema documentation provides the foundation for understanding and working with CityPulse data structures.*
+-  This schema documentation provides the foundation for understanding and working with CityPulse data structures.*
+````

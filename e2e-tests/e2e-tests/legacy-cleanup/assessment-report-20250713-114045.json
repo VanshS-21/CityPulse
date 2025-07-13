@@ -55,10 +55,7 @@
           "language": "json"
         }
       ],
-      "subdirectories": [
-        "legacy-cleanup",
-        "reports"
-      ],
+      "subdirectories": ["legacy-cleanup", "reports"],
       "total_files": 6,
       "test_files": 0
     }

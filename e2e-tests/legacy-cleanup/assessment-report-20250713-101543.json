@@ -143,15 +143,7 @@
               "line": 20
             }
           ],
-          "imports": [
-            "json",
-            "logging",
-            "time",
-            "datetime",
-            "typing",
-            "google.cloud",
-            "google.api_core"
-          ],
+          "imports": ["json", "logging", "time", "datetime", "typing", "google.cloud", "google.api_core"],
           "dependencies": [],
           "api_endpoints": [],
           "ui_selectors": [],
@@ -179,12 +171,7 @@
               "line": 68
             }
           ],
-          "imports": [
-            "typing",
-            "dataclasses",
-            "utils.environment_helpers",
-            "utils.environment_helpers"
-          ],
+          "imports": ["typing", "dataclasses", "utils.environment_helpers", "utils.environment_helpers"],
           "dependencies": [],
           "api_endpoints": [],
           "ui_selectors": [],
@@ -601,15 +588,7 @@
               "line": 19
             }
           ],
-          "imports": [
-            "time",
-            "json",
-            "logging",
-            "subprocess",
-            "typing",
-            "datetime",
-            "contextlib"
-          ],
+          "imports": ["time", "json", "logging", "subprocess", "typing", "datetime", "contextlib"],
           "dependencies": [],
           "api_endpoints": [],
           "ui_selectors": [],
@@ -1149,11 +1128,7 @@
               "line": 58
             }
           ],
-          "imports": [
-            "pytest",
-            "sys",
-            "os"
-          ],
+          "imports": ["pytest", "sys", "os"],
           "dependencies": [],
           "api_endpoints": [],
           "ui_selectors": [],
@@ -1480,16 +1455,7 @@
               "line": 72
             }
           ],
-          "imports": [
-            "pytest",
-            "datetime",
-            "unittest.mock",
-            "typing",
-            "sys",
-            "os",
-            "data_models",
-            "shared_models"
-          ],
+          "imports": ["pytest", "datetime", "unittest.mock", "typing", "sys", "os", "data_models", "shared_models"],
           "dependencies": [],
           "api_endpoints": [],
           "ui_selectors": [],
@@ -1741,11 +1707,7 @@
             "Next.js Rewrite Simulation"
           ],
           "classes": [],
-          "imports": [
-            "msw/node",
-            "msw",
-            "@/utils/constants"
-          ],
+          "imports": ["msw/node", "msw", "@/utils/constants"],
           "dependencies": [],
           "api_endpoints": [],
           "ui_selectors": [],
@@ -1774,13 +1736,9 @@
             "Routing Logic Verification"
           ],
           "classes": [],
-          "imports": [
-            "@/utils/constants"
-          ],
+          "imports": ["@/utils/constants"],
           "dependencies": [],
-          "api_endpoints": [
-            "'/api/v1/users/123/"
-          ],
+          "api_endpoints": ["'/api/v1/users/123/"],
           "ui_selectors": [],
           "potential_issues": []
         },
@@ -1793,11 +1751,7 @@
           "language": "typescript"
         }
       ],
-      "subdirectories": [
-        "examples",
-        "integration",
-        "setup"
-      ],
+      "subdirectories": ["examples", "integration", "setup"],
       "total_files": 4,
       "test_files": 3
     },
@@ -1899,16 +1853,7 @@
               "line": 326
             }
           ],
-          "imports": [
-            "asyncio",
-            "json",
-            "time",
-            "typing",
-            "datetime",
-            "httpx",
-            "pytest",
-            "pathlib"
-          ],
+          "imports": ["asyncio", "json", "time", "typing", "datetime", "httpx", "pytest", "pathlib"],
           "dependencies": [],
           "api_endpoints": [],
           "ui_selectors": [],
@@ -2027,15 +1972,7 @@
               "line": 20
             }
           ],
-          "imports": [
-            "json",
-            "logging",
-            "time",
-            "datetime",
-            "typing",
-            "google.cloud",
-            "google.api_core"
-          ],
+          "imports": ["json", "logging", "time", "datetime", "typing", "google.cloud", "google.api_core"],
           "dependencies": [],
           "api_endpoints": [],
           "ui_selectors": [],
@@ -2063,12 +2000,7 @@
               "line": 68
             }
           ],
-          "imports": [
-            "typing",
-            "dataclasses",
-            "utils.environment_helpers",
-            "utils.environment_helpers"
-          ],
+          "imports": ["typing", "dataclasses", "utils.environment_helpers", "utils.environment_helpers"],
           "dependencies": [],
           "api_endpoints": [],
           "ui_selectors": [],
@@ -2485,27 +2417,14 @@
               "line": 19
             }
           ],
-          "imports": [
-            "time",
-            "json",
-            "logging",
-            "subprocess",
-            "typing",
-            "datetime",
-            "contextlib"
-          ],
+          "imports": ["time", "json", "logging", "subprocess", "typing", "datetime", "contextlib"],
           "dependencies": [],
           "api_endpoints": [],
           "ui_selectors": [],
           "potential_issues": []
         }
       ],
-      "subdirectories": [
-        "config",
-        "data",
-        "tests",
-        "utils"
-      ],
+      "subdirectories": ["config", "data", "tests", "utils"],
       "total_files": 19,
       "test_files": 7
     },
@@ -3056,11 +2975,7 @@
               "line": 58
             }
           ],
-          "imports": [
-            "pytest",
-            "sys",
-            "os"
-          ],
+          "imports": ["pytest", "sys", "os"],
           "dependencies": [],
           "api_endpoints": [],
           "ui_selectors": [],
@@ -3387,16 +3302,7 @@
               "line": 72
             }
           ],
-          "imports": [
-            "pytest",
-            "datetime",
-            "unittest.mock",
-            "typing",
-            "sys",
-            "os",
-            "data_models",
-            "shared_models"
-          ],
+          "imports": ["pytest", "datetime", "unittest.mock", "typing", "sys", "os", "data_models", "shared_models"],
           "dependencies": [],
           "api_endpoints": [],
           "ui_selectors": [],
@@ -3671,18 +3577,12 @@
     },
     {
       "endpoint": "\"/api/v1/events?category=infrastructure\"",
-      "files": [
-        "tests/integration/test_api_endpoints.py",
-        "tests/integration/test_api_endpoints.py"
-      ],
+      "files": ["tests/integration/test_api_endpoints.py", "tests/integration/test_api_endpoints.py"],
       "recommendation": "Consolidate tests for \"/api/v1/events?category=infrastructure\""
     },
     {
       "endpoint": "\"/api/v1/events?limit=1&offset=0\"",
-      "files": [
-        "tests/integration/test_api_endpoints.py",
-        "tests/integration/test_api_endpoints.py"
-      ],
+      "files": ["tests/integration/test_api_endpoints.py", "tests/integration/test_api_endpoints.py"],
       "recommendation": "Consolidate tests for \"/api/v1/events?limit=1&offset=0\""
     },
     {
@@ -3703,10 +3603,7 @@
     },
     {
       "endpoint": "\"/api/v1/events/non-existent\"",
-      "files": [
-        "tests/integration/test_api_endpoints.py",
-        "tests/integration/test_api_endpoints.py"
-      ],
+      "files": ["tests/integration/test_api_endpoints.py", "tests/integration/test_api_endpoints.py"],
       "recommendation": "Consolidate tests for \"/api/v1/events/non-existent\""
     },
     {
@@ -3725,10 +3622,7 @@
     },
     {
       "endpoint": "\"/api/v1/analytics/trends?category=infrastructure&date_range=month\"",
-      "files": [
-        "tests/integration/test_api_endpoints.py",
-        "tests/integration/test_api_endpoints.py"
-      ],
+      "files": ["tests/integration/test_api_endpoints.py", "tests/integration/test_api_endpoints.py"],
       "recommendation": "Consolidate tests for \"/api/v1/analytics/trends?category=infrastructure&date_range=month\""
     }
   ],

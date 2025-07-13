@@ -4,9 +4,11 @@ description:
 
 # CityPulse Project Completion Audit Prompt
 
-Perform a comprehensive audit of the CityPulse project to validate all completed tasks marked as "done" in the task.json file:
+Perform a comprehensive audit of the CityPulse project to validate all completed tasks marked as
+"done" in the task.json file:
 
 **STEP 1: Parse and Analyze Task Status**
+
 - Read and parse the task.json file from the project root
 - Identify all tasks marked with status: "done"
 - List all subtasks within completed tasks and their status
@@ -15,8 +17,8 @@ Perform a comprehensive audit of the CityPulse project to validate all completed
   - Pending tasks and their dependencies
   - Any inconsistencies in task status
 
-**STEP 2: Verify Infrastructure Completeness (Task 1)**
-If marked as "done", validate:
+**STEP 2: Verify Infrastructure Completeness (Task 1)** If marked as "done", validate:
+
 - Google Cloud Project exists and is properly configured
 - All required APIs are enabled (Pub/Sub, Dataflow, BigQuery, Firestore, etc.)
 - IAM roles and permissions are correctly set up
@@ -28,8 +30,8 @@ If marked as "done", validate:
   gcloud logging logs list
   ```
 
-**STEP 3: Validate Data Models Implementation (Task 2)**
-If marked as "done", check:
+**STEP 3: Validate Data Models Implementation (Task 2)** If marked as "done", check:
+
 - BigQuery tables exist with correct schema and partitioning
 - Firestore collections are properly structured
 - Data types, indexes, and constraints are implemented
@@ -39,8 +41,8 @@ If marked as "done", check:
   SELECT table_name, table_type FROM `project.dataset.INFORMATION_SCHEMA.TABLES`
   ```
 
-**STEP 4: Test Data Ingestion Pipelines (Task 3)**
-If marked as "done", verify:
+**STEP 4: Test Data Ingestion Pipelines (Task 3)** If marked as "done", verify:
+
 - Pub/Sub topics exist and are functional
 - Dataflow pipelines are deployed and running
 - Data flows correctly from sources to BigQuery/Firestore
@@ -52,8 +54,8 @@ If marked as "done", verify:
   # Test message publishing and consumption
   ```
 
-**STEP 5: Validate AI Processing Implementation (Task 7)**
-If marked as "done", test:
+**STEP 5: Validate AI Processing Implementation (Task 7)** If marked as "done", test:
+
 - Vertex AI integrations are functional
 - Text processing with Gemini works correctly
 - Image/video analysis with Vision API is operational
@@ -65,8 +67,7 @@ If marked as "done", test:
   # Validate AI insights storage
   ```
 
-**STEP 6: Comprehensive Integration Testing**
-For all completed tasks, perform:
+**STEP 6: Comprehensive Integration Testing** For all completed tasks, perform:
 
 1. **End-to-End Data Flow Test:**
    - Submit a test citizen report with text and image
@@ -92,10 +93,10 @@ For all completed tasks, perform:
    - Validate audit logging functionality
    - Check data encryption at rest and in transit
 
-**STEP 7: Generate Comprehensive Audit Report**
-Create a detailed report including:
+**STEP 7: Generate Comprehensive Audit Report** Create a detailed report including:
 
 1. **Completion Status Matrix:**
+
    ```
    Task ID | Task Name | Status | Verification Result | Issues Found
    --------|-----------|--------|-------------------|-------------
@@ -121,21 +122,22 @@ Create a detailed report including:
    - Error logs and debugging information
    - Coverage analysis for completed features
 
-**STEP 8: Automated Fix Suggestions**
-For each failed verification, provide:
+**STEP 8: Automated Fix Suggestions** For each failed verification, provide:
+
 - Specific commands to run for fixes
 - Code snippets to implement missing features
 - Configuration updates required
 - Step-by-step remediation guides
 
-**STEP 9: Regression Testing**
-After any fixes are applied:
+**STEP 9: Regression Testing** After any fixes are applied:
+
 - Re-run all verification tests
 - Ensure fixes don't break existing functionality
 - Update task.json status if needed
 - Generate final completion report
 
 **OUTPUT FORMAT:**
+
 ```json
 {
   "audit_timestamp": "2025-07-05T10:30:00Z",
@@ -168,6 +170,7 @@ After any fixes are applied:
 ```
 
 **EXECUTION PRIORITY:**
+
 1. Run this audit before starting any new tasks
 2. Fix all critical issues before proceeding
 3. Update task.json file with accurate status

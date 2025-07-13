@@ -1,15 +1,15 @@
 # CityPulse API Guide
 
-- *Version**: 0.1.0
-- *Base URL**: `[Your CityPulse URL]`- *Authentication**: Bearer Token (Firebase Auth)
+- \*Version\*\*: 0.1.0
+- *Base URL\*\*: `[Your CityPulse URL]`- *Authentication\*\*: Bearer Token (Firebase Auth)
 
 ## 📚 Related Documentation
 
--  **[Architecture](./ARCHITECTURE.md)**- System architecture and design
--**[Database Schema](./DATABASE_SCHEMA.md)**- Database structure and relationships
--**[Security Operations](./SECURITY_OPERATIONS.md)**- Authentication and security procedures
--**[Deployment Guide](./DEPLOYMENT.md)**- API deployment and configuration
--**[Troubleshooting](./TROUBLESHOOTING.md)**- Common API issues and solutions
+- **[Architecture](./ARCHITECTURE.md)**- System architecture and design
+- **[Database Schema](./DATABASE_SCHEMA.md)**- Database structure and relationships
+- **[Security Operations](./SECURITY_OPERATIONS.md)**- Authentication and security procedures
+- **[Deployment Guide](./DEPLOYMENT.md)**- API deployment and configuration
+- **[Troubleshooting](./TROUBLESHOOTING.md)**- Common API issues and solutions
 
 ## Table of Contents
 
@@ -27,48 +27,44 @@
 ## Quick Start
 
 ### 🚀 5-Minute Integration```javascript
-// 1. Install the SDK
-npm install @citypulse/api-client
 
-// 2. Initialize client
-import { CityPulseClient } from '@citypulse/api-client';
+// 1. Install the SDK npm install @citypulse/api-client
 
-const client = new CityPulseClient({
-  apiKey: 'your-api-key',
-  baseURL: '[Your CityPulse URL]'
-});
+// 2. Initialize client import { CityPulseClient } from '@citypulse/api-client';
 
-// 3. Fetch events
-const events = await client.events.list({
-  category: 'traffic',
-  limit: 10
-});
+const client = new CityPulseClient({ apiKey: 'your-api-key', baseURL: '[Your CityPulse URL]' });
+
+// 3. Fetch events const events = await client.events.list({ category: 'traffic', limit: 10 });
 
 console.log('Recent traffic events:', events.data);
-```text
+
+````text
 
 ### 📋 Prerequisites
 
--**API Key**: Obtain from CityPulse Developer Console
--  **Authentication**: Firebase Auth token for user-specific operations
--  **Rate Limits**: 1000 requests/hour for free tier
+- **API Key**: Obtain from CityPulse Developer Console
+-   **Authentication**: Firebase Auth token for user-specific operations
+-   **Rate Limits**: 1000 requests/hour for free tier
 
 ## Authentication
 
 ### 🔐 API Key Authentication
 
-- *For public data access (read-only)**:
+-  *For public data access (read-only)**:
 
 ```bash
+
 curl -H "X-API-Key: your-api-key" \
   [Your CityPulse URL]
+
 ```text
 
 ### 🎫 Bearer Token Authentication
 
-- *For user-specific operations**:
+-  *For user-specific operations**:
 
 ```javascript
+
 // Get Firebase Auth token
 import { getAuth } from 'firebase/auth';
 
@@ -83,11 +79,13 @@ const response = await fetch('/api/v1/events', {
     'Content-Type': 'application/json'
   }
 });
+
 ```text
 
 ### 🔑 Authentication Flow
 
 ```mermaid
+
 sequenceDiagram
     participant Client
     participant Firebase
@@ -106,7 +104,7 @@ sequenceDiagram
 
 ### 📍 List Events
 
-- *Endpoint**: `GET /events`
+-  *Endpoint**: `GET /events`
 
 ```bash
 
@@ -115,7 +113,7 @@ curl -H "X-API-Key: your-api-key" \
 
 ```text
 
-- *Parameters**:
+-  *Parameters**:
 
 ```typescript
 
@@ -136,7 +134,7 @@ interface EventListParams {
 
 ```text
 
-- *Response**:
+-  *Response**:
 
 ```json
 
@@ -171,7 +169,7 @@ interface EventListParams {
 
 ### 📝 Create Event
 
-- *Endpoint**: `POST /events`- *Authentication**: Required```javascript
+-  *Endpoint**: `POST /events`- *Authentication**: Required```javascript
 
 const newEvent = await fetch('/api/v1/events', {
   method: 'POST',
@@ -202,7 +200,7 @@ console.log('Created event:', event.data.id);
 
 ### 🔍 Get Event Details
 
-- *Endpoint**: `GET /events/{eventId}`
+-  *Endpoint**: `GET /events/{eventId}`
 
 ```bash
 
@@ -211,7 +209,7 @@ curl -H "X-API-Key: your-api-key" \
 
 ```text
 
-- *Response**:
+-  *Response**:
 
 ```json
 
@@ -249,7 +247,7 @@ curl -H "X-API-Key: your-api-key" \
 
 ### ✏️ Update Event
 
-- *Endpoint**: `PUT /events/{eventId}`- *Authentication**: Required (Authority/Admin only)```javascript
+-  *Endpoint**: `PUT /events/{eventId}`- *Authentication**: Required (Authority/Admin only)```javascript
 
 const updateEvent = await fetch(`/api/v1/events/${eventId}`, {
   method: 'PUT',
@@ -272,7 +270,7 @@ const updateEvent = await fetch(`/api/v1/events/${eventId}`, {
 
 ### 👤 Get User Profile
 
-- *Endpoint**: `GET /users/me`- *Authentication**: Required```javascript
+-  *Endpoint**: `GET /users/me`- *Authentication**: Required```javascript
 const profile = await fetch('/api/v1/users/me', {
   headers: {
     'Authorization': `Bearer ${token}`}
@@ -281,9 +279,10 @@ const profile = await fetch('/api/v1/users/me', {
 const userData = await profile.json();
 console.log('User profile:', userData.data);```text
 
-- *Response**:
+-  *Response**:
 
 ```json
+
 {
   "data": {
     "user_id": "user_789",
@@ -305,11 +304,12 @@ console.log('User profile:', userData.data);```text
     "last_login": "2025-01-15T14:00:00Z"
   }
 }
+
 ```text
 
 ### ⚙️ Update User Preferences
 
-- *Endpoint**: `PATCH /users/me`- *Authentication**: Required```javascript
+-  *Endpoint**: `PATCH /users/me`- *Authentication**: Required```javascript
 const updatePreferences = await fetch('/api/v1/users/me', {
   method: 'PATCH',
   headers: {
@@ -335,7 +335,7 @@ const updatePreferences = await fetch('/api/v1/users/me', {
 
 ### 💬 Submit Feedback
 
-- *Endpoint**: `POST /feedback`- *Authentication**: Required```javascript
+-  *Endpoint**: `POST /feedback`- *Authentication**: Required```javascript
 
 const feedback = await fetch('/api/v1/feedback', {
   method: 'POST',
@@ -360,7 +360,7 @@ const feedback = await fetch('/api/v1/feedback', {
 
 ### 📋 List User Feedback
 
-- *Endpoint**: `GET /feedback`- *Authentication**: Required```bash
+-  *Endpoint**: `GET /feedback`- *Authentication**: Required```bash
 
 curl -H "Authorization: Bearer your-token" \
   "[Your CityPulse URL]?status=open"
@@ -371,7 +371,7 @@ curl -H "Authorization: Bearer your-token" \
 
 ### 📊 Get Event Trends
 
-- *Endpoint**: `GET /analytics/trends`
+-  *Endpoint**: `GET /analytics/trends`
 
 ```javascript
 const trends = await fetch('/api/v1/analytics/trends?' + new URLSearchParams({
@@ -388,7 +388,7 @@ const trends = await fetch('/api/v1/analytics/trends?' + new URLSearchParams({
 const trendData = await trends.json();
 ```text
 
-- *Response**:
+-  *Response**:
 
 ```json
 {
@@ -555,6 +555,7 @@ const events = await client.events.search(complexQuery);
 ### 📋 Error Response Format
 
 ```json
+
 {
   "error": {
     "code": "VALIDATION_ERROR",
@@ -566,6 +567,7 @@ const events = await client.events.search(complexQuery);
     "request_id": "req_abc123"
   }
 }
+
 ```text
 
 ### 🔧 Common Error Codes
@@ -581,6 +583,7 @@ const events = await client.events.search(complexQuery);
 |`INTERNAL_ERROR`| 500 | Server error |
 
 ### 🛠️ Error Handling Best Practices```javascript
+
 const handleApiCall = async (apiCall) => {
   try {
     const response = await apiCall();
@@ -645,14 +648,14 @@ const makeRequestWithRetry = async (url, options, maxRetries = 3) => {
 
       if (response.status === 429) {
         const retryAfter = response.headers.get('Retry-After');
-        await delay(retryAfter* 1000);
+        await delay(retryAfter*1000);
         continue;
       }
 
       return response;
     } catch (error) {
       if (i === maxRetries - 1) throw error;
-      await delay(Math.pow(2, i) *1000); // Exponential backoff
+      await delay(Math.pow(2, i)*1000); // Exponential backoff
     }
   }
 };
@@ -692,6 +695,8 @@ implementation 'com.citypulse:java-sdk:1.0.0'
 
 ## 🔗 Community Libraries
 
--**Go**: `github.com/community/citypulse-go`-  **Ruby**:`gem install citypulse-ruby`-  **C#**:`NuGet: CityPulse.NET`-  **Swift**:`github.com/community/citypulse-swift`
+- **Go**: `github.com/community/citypulse-go`- **Ruby**:`gem install citypulse-ruby`- **C#**:`NuGet: CityPulse.NET`-
+- *Swift**:`github.com/community/citypulse-swift`
 
-- For more examples and detailed API reference, visit our [Developer Portal]([Your CityPulse URL]).*
+-  For more examples and detailed API reference, visit our [Developer Portal]([Your CityPulse URL]).*
+````

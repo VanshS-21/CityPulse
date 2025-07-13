@@ -23,7 +23,7 @@ let mockEventsData = {
       category: 'test',
       severity: 'medium',
       status: 'active',
-      location: { latitude: 40.7128, longitude: -74.0060 },
+      location: { latitude: 40.7128, longitude: -74.006 },
     },
   ],
 }
@@ -48,7 +48,10 @@ jest.mock('@/hooks/use-api', () => ({
 }))
 
 // Mock performance monitoring component for tests
-const withPerformanceMonitoring = (Component: React.ComponentType, name: string) => {
+const withPerformanceMonitoring = (
+  Component: React.ComponentType,
+  name: string
+) => {
   return (props: any) => <Component {...props} />
 }
 
@@ -74,7 +77,7 @@ function TestComponent() {
       category: 'test',
       severity: 'medium',
       status: 'active',
-      location: { latitude: 40.7128, longitude: -74.0060 },
+      location: { latitude: 40.7128, longitude: -74.006 },
     })
   }
 
@@ -84,23 +87,23 @@ function TestComponent() {
 
   return (
     <div>
-      <div data-testid="user-info">
+      <div data-testid='user-info'>
         {user ? `User: ${user.name}` : 'No user'}
       </div>
-      
-      <div data-testid="notifications-count">
+
+      <div data-testid='notifications-count'>
         Notifications: {notifications.length}
       </div>
-      
-      <div data-testid="events-count">
+
+      <div data-testid='events-count'>
         Events: {events?.events?.length || 0}
       </div>
-      
-      <button onClick={handleAddNotification} data-testid="add-notification">
+
+      <button onClick={handleAddNotification} data-testid='add-notification'>
         Add Notification
       </button>
-      
-      <button onClick={handleCreateEvent} data-testid="create-event">
+
+      <button onClick={handleCreateEvent} data-testid='create-event'>
         Create Event
       </button>
     </div>
@@ -110,7 +113,7 @@ function TestComponent() {
 // Performance monitored component
 const MonitoredComponent = withPerformanceMonitoring(() => {
   const [count, setCount] = React.useState(0)
-  
+
   // Simulate expensive operation
   React.useEffect(() => {
     for (let i = 0; i < 10000; i++) {
@@ -120,8 +123,8 @@ const MonitoredComponent = withPerformanceMonitoring(() => {
 
   return (
     <div>
-      <span data-testid="count">{count}</span>
-      <button onClick={() => setCount(c => c + 1)} data-testid="increment">
+      <span data-testid='count'>{count}</span>
+      <button onClick={() => setCount(c => c + 1)} data-testid='increment'>
         Increment
       </button>
     </div>
@@ -134,7 +137,7 @@ function SuspendingComponent() {
 
   if (isLoading) {
     // Create a promise that resolves when loading is complete
-    const promise = new Promise((resolve) => {
+    const promise = new Promise(resolve => {
       setTimeout(resolve, 100)
     })
     throw promise
@@ -146,7 +149,7 @@ function SuspendingComponent() {
 // Suspense test component
 function SuspenseTestComponent() {
   return (
-    <Suspense fallback={<div data-testid="suspense-loading">Loading...</div>}>
+    <Suspense fallback={<div data-testid='suspense-loading'>Loading...</div>}>
       <SuspendingComponent />
     </Suspense>
   )
@@ -163,9 +166,7 @@ function TestWrapper({ children }: { children: React.ReactNode }) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AppProviders>
-        {children}
-      </AppProviders>
+      <AppProviders>{children}</AppProviders>
     </QueryClientProvider>
   )
 }
@@ -181,13 +182,13 @@ describe('React 19 Enhanced System', () => {
   beforeEach(() => {
     // Reset stores
     useAppStore.getState().reset?.()
-    
+
     // Clear localStorage
     localStorage.clear()
-    
+
     // Reset mock state
     mockIsLoading = false
-    
+
     // Mock console methods
     console.log = jest.fn()
     console.info = jest.fn()
@@ -206,7 +207,7 @@ describe('React 19 Enhanced System', () => {
   describe('React 19 Concurrent Features', () => {
     it('should use startTransition for state updates', async () => {
       const user = userEvent.setup()
-      
+
       render(
         <TestWrapper>
           <TestComponent />
@@ -214,20 +215,24 @@ describe('React 19 Enhanced System', () => {
       )
 
       // Initial state
-      expect(screen.getByTestId('notifications-count')).toHaveTextContent('Notifications: 0')
+      expect(screen.getByTestId('notifications-count')).toHaveTextContent(
+        'Notifications: 0'
+      )
 
       // Add notification using startTransition
       await user.click(screen.getByTestId('add-notification'))
 
       await waitFor(() => {
-        expect(screen.getByTestId('notifications-count')).toHaveTextContent('Notifications: 1')
+        expect(screen.getByTestId('notifications-count')).toHaveTextContent(
+          'Notifications: 1'
+        )
       })
     })
 
     it('should handle Suspense boundaries correctly', async () => {
       // Start with loading state to trigger Suspense
       setMockLoading(true)
-      
+
       render(
         <TestWrapper>
           <SuspenseTestComponent />
@@ -265,7 +270,7 @@ describe('React 19 Enhanced System', () => {
     it('should handle theme provider correctly', () => {
       render(
         <TestWrapper>
-          <div data-testid="theme-test">Theme test</div>
+          <div data-testid='theme-test'>Theme test</div>
         </TestWrapper>
       )
 
@@ -276,7 +281,7 @@ describe('React 19 Enhanced System', () => {
   describe('Performance Monitoring', () => {
     it('should monitor component performance', async () => {
       const user = userEvent.setup()
-      
+
       render(
         <TestWrapper>
           <MonitoredComponent />
@@ -308,7 +313,7 @@ describe('React 19 Enhanced System', () => {
   describe('Enhanced State Management', () => {
     it('should handle concurrent state updates', async () => {
       const user = userEvent.setup()
-      
+
       render(
         <TestWrapper>
           <TestComponent />
@@ -321,7 +326,9 @@ describe('React 19 Enhanced System', () => {
       await user.click(screen.getByTestId('add-notification'))
 
       await waitFor(() => {
-        expect(screen.getByTestId('notifications-count')).toHaveTextContent('Notifications: 3')
+        expect(screen.getByTestId('notifications-count')).toHaveTextContent(
+          'Notifications: 3'
+        )
       })
     })
 
@@ -333,14 +340,16 @@ describe('React 19 Enhanced System', () => {
       addPerformanceMetric?.('api_response_times', 200)
 
       const state = useAppStore.getState()
-      expect(state.performanceMetrics.apiResponseTimes.api_response_times).toEqual([150, 200])
+      expect(
+        state.performanceMetrics.apiResponseTimes.api_response_times
+      ).toEqual([150, 200])
     })
   })
 
   describe('API Integration with React 19', () => {
     it('should handle optimistic updates with startTransition', async () => {
       const user = userEvent.setup()
-      
+
       render(
         <TestWrapper>
           <TestComponent />
@@ -352,7 +361,9 @@ describe('React 19 Enhanced System', () => {
 
       // Should show optimistic update immediately
       await waitFor(() => {
-        expect(screen.getByTestId('events-count')).toHaveTextContent('Events: 1')
+        expect(screen.getByTestId('events-count')).toHaveTextContent(
+          'Events: 1'
+        )
       })
     })
   })
@@ -413,12 +424,18 @@ describe('React 19 Enhanced System', () => {
           </TestWrapper>
         )
 
-// Ensure development tools are available
-if (typeof (window as any).__CITYPULSE_DEV__ !== 'undefined' && (window as any).__CITYPULSE_DEV__.react19 && (window as any).__CITYPULSE_DEV__.react19.startTransition) {
-  expect((window as any).__CITYPULSE_DEV__).toBeDefined()
-  expect((window as any).__CITYPULSE_DEV__.react19).toBeDefined()
-  expect((window as any).__CITYPULSE_DEV__.react19.startTransition).toBe(startTransition)
-}
+        // Ensure development tools are available
+        if (
+          typeof (window as any).__CITYPULSE_DEV__ !== 'undefined' &&
+          (window as any).__CITYPULSE_DEV__.react19 &&
+          (window as any).__CITYPULSE_DEV__.react19.startTransition
+        ) {
+          expect((window as any).__CITYPULSE_DEV__).toBeDefined()
+          expect((window as any).__CITYPULSE_DEV__.react19).toBeDefined()
+          expect(
+            (window as any).__CITYPULSE_DEV__.react19.startTransition
+          ).toBe(startTransition)
+        }
       }
     })
   })
@@ -465,7 +482,7 @@ if (typeof (window as any).__CITYPULSE_DEV__ !== 'undefined' && (window as any).
 describe('React 19 Performance Optimizations', () => {
   it('should use concurrent features for better performance', async () => {
     const startTime = performance.now()
-    
+
     render(
       <TestWrapper>
         <TestComponent />
@@ -481,23 +498,27 @@ describe('React 19 Performance Optimizations', () => {
 
   it('should handle large lists efficiently', async () => {
     const LargeListComponent = () => {
-      const [items, setItems] = React.useState(Array.from({ length: 1000 }, (_, i) => i))
+      const [items, setItems] = React.useState(
+        Array.from({ length: 1000 }, (_, i) => i)
+      )
 
       return (
         <div>
-          <button 
-            onClick={() => startTransition(() => setItems(prev => [...prev, prev.length]))}
-            data-testid="add-item"
+          <button
+            onClick={() =>
+              startTransition(() => setItems(prev => [...prev, prev.length]))
+            }
+            data-testid='add-item'
           >
             Add Item
           </button>
-          <div data-testid="items-count">Items: {items.length}</div>
+          <div data-testid='items-count'>Items: {items.length}</div>
         </div>
       )
     }
 
     const user = userEvent.setup()
-    
+
     render(
       <TestWrapper>
         <LargeListComponent />

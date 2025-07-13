@@ -5,8 +5,16 @@
 
 import { initializeApp, getApps, FirebaseApp } from 'firebase/app'
 import { getAuth, Auth, connectAuthEmulator } from 'firebase/auth'
-import { getFirestore, Firestore, connectFirestoreEmulator } from 'firebase/firestore'
-import { getStorage, FirebaseStorage, connectStorageEmulator } from 'firebase/storage'
+import {
+  getFirestore,
+  Firestore,
+  connectFirestoreEmulator,
+} from 'firebase/firestore'
+import {
+  getStorage,
+  FirebaseStorage,
+  connectStorageEmulator,
+} from 'firebase/storage'
 
 /**
  * Firebase configuration interface
@@ -57,7 +65,7 @@ function validateFirebaseConfig(): FirebaseConfig {
     if (process.env.NODE_ENV === 'production') {
       throw new Error(
         `Missing required Firebase configuration in production: ${missingKeys.join(', ')}. ` +
-        'All Firebase environment variables must be set in production.'
+          'All Firebase environment variables must be set in production.'
       )
     }
 
@@ -72,7 +80,11 @@ function validateFirebaseConfig(): FirebaseConfig {
   // Additional validation for production
   if (process.env.NODE_ENV === 'production') {
     // Validate that we're not using mock values in production
-    const mockValues = ['mock-api-key', '123456789012', '1:123456789012:web:abcdef123456']
+    const mockValues = [
+      'mock-api-key',
+      '123456789012',
+      '1:123456789012:web:abcdef123456',
+    ]
     const hasMockValues = Object.values(config).some(value =>
       mockValues.includes(value as string)
     )
@@ -80,7 +92,7 @@ function validateFirebaseConfig(): FirebaseConfig {
     if (hasMockValues) {
       throw new Error(
         'Mock Firebase configuration detected in production. ' +
-        'Please set real Firebase configuration values.'
+          'Please set real Firebase configuration values.'
       )
     }
 
@@ -103,7 +115,7 @@ function initializeFirebaseApp(): FirebaseApp {
   }
 
   const config = validateFirebaseConfig()
-  
+
   try {
     const app = initializeApp(config)
     console.log('Firebase initialized successfully')
@@ -120,17 +132,19 @@ function initializeFirebaseApp(): FirebaseApp {
 function initializeFirebaseAuth(app: FirebaseApp): Auth {
   try {
     const auth = getAuth(app)
-    
+
     // Connect to Auth emulator in development
     if (process.env.NODE_ENV === 'development') {
       try {
-        connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: true })
+        connectAuthEmulator(auth, 'http://localhost:9099', {
+          disableWarnings: true,
+        })
         console.log('Connected to Firebase Auth emulator')
       } catch (error) {
         console.warn('Could not connect to Firebase Auth emulator:', error)
       }
     }
-    
+
     return auth
   } catch (error) {
     console.error('Failed to initialize Firebase Auth:', error)
@@ -144,7 +158,7 @@ function initializeFirebaseAuth(app: FirebaseApp): Auth {
 function initializeFirestore(app: FirebaseApp): Firestore {
   try {
     const firestore = getFirestore(app)
-    
+
     // Connect to Firestore emulator in development
     if (process.env.NODE_ENV === 'development') {
       try {
@@ -154,7 +168,7 @@ function initializeFirestore(app: FirebaseApp): Firestore {
         console.warn('Could not connect to Firestore emulator:', error)
       }
     }
-    
+
     return firestore
   } catch (error) {
     console.error('Failed to initialize Firestore:', error)
@@ -168,7 +182,7 @@ function initializeFirestore(app: FirebaseApp): Firestore {
 function initializeFirebaseStorage(app: FirebaseApp): FirebaseStorage {
   try {
     const storage = getStorage(app)
-    
+
     // Connect to Storage emulator in development
     if (process.env.NODE_ENV === 'development') {
       try {
@@ -178,7 +192,7 @@ function initializeFirebaseStorage(app: FirebaseApp): FirebaseStorage {
         console.warn('Could not connect to Firebase Storage emulator:', error)
       }
     }
-    
+
     return storage
   } catch (error) {
     console.error('Failed to initialize Firebase Storage:', error)
@@ -207,11 +221,17 @@ try {
 
   // In development, we can continue with limited functionality
   if (process.env.NODE_ENV === 'development') {
-    console.warn('Continuing with limited Firebase functionality in development mode')
-    console.warn('Some features may not work properly without real Firebase configuration')
+    console.warn(
+      'Continuing with limited Firebase functionality in development mode'
+    )
+    console.warn(
+      'Some features may not work properly without real Firebase configuration'
+    )
   } else {
     // In production, Firebase failure is critical
-    console.error('Firebase initialization failed in production - this is a critical error')
+    console.error(
+      'Firebase initialization failed in production - this is a critical error'
+    )
     throw new Error(`Firebase initialization failed in production: ${error}`)
   }
 }

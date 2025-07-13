@@ -28,7 +28,7 @@ export const colors = {
     900: '#1e3a8a',
     950: '#172554',
   },
-  
+
   // Secondary Colors
   secondary: {
     50: '#f8fafc',
@@ -43,7 +43,7 @@ export const colors = {
     900: '#0f172a',
     950: '#020617',
   },
-  
+
   // Status Colors
   success: {
     50: '#f0fdf4',
@@ -57,7 +57,7 @@ export const colors = {
     800: '#166534',
     900: '#14532d',
   },
-  
+
   warning: {
     50: '#fffbeb',
     100: '#fef3c7',
@@ -70,7 +70,7 @@ export const colors = {
     800: '#92400e',
     900: '#78350f',
   },
-  
+
   error: {
     50: '#fef2f2',
     100: '#fee2e2',
@@ -83,7 +83,7 @@ export const colors = {
     800: '#991b1b',
     900: '#7f1d1d',
   },
-  
+
   info: {
     50: '#eff6ff',
     100: '#dbeafe',
@@ -96,7 +96,7 @@ export const colors = {
     800: '#1e40af',
     900: '#1e3a8a',
   },
-  
+
   // Neutral Grays
   gray: {
     50: '#f9fafb',
@@ -111,7 +111,7 @@ export const colors = {
     900: '#111827',
     950: '#030712',
   },
-  
+
   // Special Colors for Urban/City Theme
   urban: {
     sky: '#0ea5e9',
@@ -120,17 +120,25 @@ export const colors = {
     sunset: '#ea580c',
     night: '#1e293b',
     dawn: '#fbbf24',
-  }
+  },
 } as const
 
 // Typography Scale
 export const typography = {
   fontFamily: {
-    sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+    sans: [
+      'Inter',
+      'system-ui',
+      '-apple-system',
+      'BlinkMacSystemFont',
+      'Segoe UI',
+      'Roboto',
+      'sans-serif',
+    ],
     mono: ['JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'monospace'],
     display: ['Inter', 'system-ui', 'sans-serif'],
   },
-  
+
   fontSize: {
     xs: ['0.75rem', { lineHeight: '1rem' }],
     sm: ['0.875rem', { lineHeight: '1.25rem' }],
@@ -146,7 +154,7 @@ export const typography = {
     '8xl': ['6rem', { lineHeight: '1' }],
     '9xl': ['8rem', { lineHeight: '1' }],
   },
-  
+
   fontWeight: {
     thin: '100',
     extralight: '200',
@@ -158,7 +166,7 @@ export const typography = {
     extrabold: '800',
     black: '900',
   },
-  
+
   letterSpacing: {
     tighter: '-0.05em',
     tight: '-0.025em',
@@ -241,7 +249,7 @@ export const transition = {
     slow: '300ms',
     slower: '500ms',
   },
-  
+
   timingFunction: {
     ease: 'cubic-bezier(0.4, 0, 0.2, 1)',
     easeIn: 'cubic-bezier(0.4, 0, 1, 1)',

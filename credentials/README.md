@@ -4,11 +4,11 @@ This directory contains all credential management files and documentation for th
 
 ## 📁 Files Overview
 
-| File | Purpose | Security Level |
-|------|---------|----------------|
-| `citypulse-credentials.env`| Master credentials template | 🔒 **NEVER COMMIT**|
-|`setup-credentials.js`| Interactive setup script | ✅ Safe to commit |
-|`README.md`| This documentation | ✅ Safe to commit |
+| File                        | Purpose                     | Security Level      |
+| --------------------------- | --------------------------- | ------------------- |
+| `citypulse-credentials.env` | Master credentials template | 🔒 **NEVER COMMIT** |
+| `setup-credentials.js`      | Interactive setup script    | ✅ Safe to commit   |
+| `README.md`                 | This documentation          | ✅ Safe to commit   |
 
 ## 🚀 Quick Start
 
@@ -32,7 +32,7 @@ node setup-credentials.js
 
 ## - Copy to .env.local
 
-```text
+````text
 
 ## 2. Manual Setup
 
@@ -45,13 +45,14 @@ cp citypulse-credentials.env ../.env.local
 ## Edit with your actual values
 
 nano ../.env.local
+
 ```text
 
 ## 🔥 Firebase Credentials Setup
 
 ### Required Firebase Configuration
 
-1.**Web App Config**(Public - frontend safe):
+1. **Web App Config**(Public - frontend safe):
    ```env
    NEXT_PUBLIC_FIREBASE_API_KEY="your_api_key"
    NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN="citypulse-21.firebaseapp.com"
@@ -76,6 +77,7 @@ nano ../.env.local
 1.  Place it in your project root as`citypulse-21-8fd96b025d3c.json`## ☁️ Google Cloud Platform Setup
 
 ### Required GCP Configuration```env
+
 GCP_PROJECT_ID="citypulse-21"
 GOOGLE_CLOUD_REGION="us-central1"
 GOOGLE_APPLICATION_CREDENTIALS="./citypulse-21-8fd96b025d3c.json"
@@ -83,7 +85,8 @@ GOOGLE_APPLICATION_CREDENTIALS="./citypulse-21-8fd96b025d3c.json"
 
 ### Required APIs to Enable
 
-1.**Firebase Admin SDK API**1.**Cloud Firestore API**1.**BigQuery API**1.**Pub/Sub API**1.**Cloud Storage API**1.**Identity and Access Management (IAM) API**### How to Enable APIs
+1. **Firebase Admin SDK API**1.**Cloud Firestore API**1.**BigQuery API**1.**Pub/Sub API**1.**Cloud Storage
+API**1.**Identity and Access Management (IAM) API**### How to Enable APIs
 
 ```bash
 
@@ -110,10 +113,12 @@ NEXT_PUBLIC_GOOGLE_MAPS_API_KEY="your_maps_api_key"
 ### How to Get Maps API Key
 
 1.  Go to [Google Cloud Console](https://console.cloud.google.com/)
-1.  Navigate to**APIs & Services**>**Credentials**1.  Click**Create Credentials**>**API Key**1.  Restrict the key to specific APIs:
-  -  Maps JavaScript API
-  -  Geocoding API
-  -  Places API
+1.  Navigate to**APIs & Services**>**Credentials**1. Click**Create Credentials**>**API Key**1. Restrict the key to
+specific APIs:
+
+  -   Maps JavaScript API
+  -   Geocoding API
+  -   Places API
 
 ## 🤖 AI Services Setup
 
@@ -172,22 +177,22 @@ SENDGRID_FROM_EMAIL="noreply@citypulse.com"
 
 .env*
 
-- credentials*- .json
+-  credentials*- .json
 !credentials/README.md
 !credentials/setup-credentials.js
 ```text
 
 ## 3. Rotate Credentials Regularly
 
--**API Keys**: Every 90 days
--  **Service Account Keys**: Every 6 months
--  **JWT Secrets**: Every 30 days
+- **API Keys**: Every 90 days
+-   **Service Account Keys**: Every 6 months
+-   **JWT Secrets**: Every 30 days
 
 ### 4. Use Least Privilege Access
 
--  Grant minimum required permissions
--  Use service accounts for server-side operations
--  Restrict API keys to specific services
+-   Grant minimum required permissions
+-   Use service accounts for server-side operations
+-   Restrict API keys to specific services
 
 ## 🚀 Deployment Configuration
 
@@ -253,14 +258,14 @@ npm run test:firebase
 
 ## Test authentication
 
-curl -X GET <http://localhost:3000/api/v1/auth>
+curl -X GET <<http://localhost:3000/api/v1/auth>>
 
 ## Test with credentials
 
-curl -X POST <http://localhost:3000/api/v1/auth> \
+curl -X POST <<http://localhost:3000/api/v1/auth>> \
 
-  - H "Content-Type: application/json" \
-  - d '{"action":"register","email":"test@citypulse.com","password":"Password123!","name":"Test User"}'
+  -  H "Content-Type: application/json" \
+  -  d '{"action":"register","email":"test@citypulse.com","password":"Password123!","name":"Test User"}'
 ```text
 
 ## 🆘 Troubleshooting
@@ -273,29 +278,35 @@ curl -X POST <http://localhost:3000/api/v1/auth> \
 Error: Caller does not have required permission
 ```text
 
-- *Solution**: Add `Service Usage Consumer`role to service account
+-  *Solution**: Add `Service Usage Consumer`role to service account
 
 #### 2. Invalid Service Account Key```bash
+
 Error: Invalid JSON format
+
 ```text
 
-- *Solution**: Re-download service account key from Firebase Console
+-  *Solution**: Re-download service account key from Firebase Console
 
 #### 3. API Key Restrictions
 
 ```bash
+
 Error: This API key is not authorized
+
 ```text
 
-- *Solution**: Check API key restrictions in Google Cloud Console
+-  *Solution**: Check API key restrictions in Google Cloud Console
 
 #### 4. CORS Issues
 
 ```bash
+
 Error: CORS policy blocked
+
 ```text
 
-- *Solution**: Add your domain to Firebase Auth authorized domains
+-  *Solution**: Add your domain to Firebase Auth authorized domains
 
 ### Getting Help
 
@@ -308,27 +319,27 @@ Error: CORS policy blocked
 
 ### ✅ Required for Basic Functionality
 
--  [ ] Firebase Web App Config
--  [ ] Firebase Service Account Key
--  [ ] GCP Project ID and Region
--  [ ] JWT Secret
--  [ ] App URL
+-   [ ] Firebase Web App Config
+-   [ ] Firebase Service Account Key
+-   [ ] GCP Project ID and Region
+-   [ ] JWT Secret
+-   [ ] App URL
 
 ### ✅ Required for Full Functionality
 
--  [ ] Google Maps API Key
--  [ ] Gemini AI API Key
--  [ ] SendGrid API Key
--  [ ] Analytics Tracking IDs
--  [ ] Social Media API Keys
+-   [ ] Google Maps API Key
+-   [ ] Gemini AI API Key
+-   [ ] SendGrid API Key
+-   [ ] Analytics Tracking IDs
+-   [ ] Social Media API Keys
 
 ### ✅ Required for Production
 
--  [ ] Production Firebase Project
--  [ ] Production GCP Project
--  [ ] SSL Certificates
--  [ ] Domain Configuration
--  [ ] Monitoring and Logging
+-   [ ] Production Firebase Project
+-   [ ] Production GCP Project
+-   [ ] SSL Certificates
+-   [ ] Domain Configuration
+-   [ ] Monitoring and Logging
 
 ## 🔄 Credential Rotation Schedule
 
@@ -340,3 +351,4 @@ Error: CORS policy blocked
 | OAuth Secrets | Annually | Set reminder |
 
 ### 🔒 Remember: Security is everyone's responsibility. Keep credentials secure and never share them publicly
+````

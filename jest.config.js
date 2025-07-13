@@ -23,7 +23,8 @@ const customJestConfig = {
     // Handle MSW imports
     '^msw/node$': '<rootDir>/node_modules/msw/lib/node/index.js',
     '^msw$': '<rootDir>/node_modules/msw/lib/index.js',
-    '^@mswjs/interceptors/(.*)$': '<rootDir>/node_modules/@mswjs/interceptors/lib/node/$1',
+    '^@mswjs/interceptors/(.*)$':
+      '<rootDir>/node_modules/@mswjs/interceptors/lib/node/$1',
   },
   testEnvironment: 'jest-environment-jsdom',
   collectCoverageFrom: [
@@ -40,9 +41,7 @@ const customJestConfig = {
       statements: 80,
     },
   },
-  testMatch: [
-    '<rootDir>/tests/**/*.test.{js,jsx,ts,tsx}',
-  ],
+  testMatch: ['<rootDir>/tests/**/*.test.{js,jsx,ts,tsx}'],
   testPathIgnorePatterns: [
     '<rootDir>/.next/',
     '<rootDir>/node_modules/',

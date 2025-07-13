@@ -1,28 +1,28 @@
 {
-    "fields": [
-        {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-            "mode": "REQUIRED",
-            "description": "The timestamp when the error occurred."
-        },
-        {
-            "name": "pipeline_step",
-            "type": "STRING",
-            "mode": "NULLABLE",
-            "description": "The pipeline step where the error occurred."
-        },
-        {
-            "name": "raw_data",
-            "type": "STRING",
-            "mode": "NULLABLE",
-            "description": "The raw data of the element that failed processing, as a string."
-        },
-        {
-            "name": "error_message",
-            "type": "STRING",
-            "mode": "NULLABLE",
-            "description": "The error message or exception that caused the failure."
-        }
-    ]
+  "fields": [
+    {
+      "name": "timestamp",
+      "type": "TIMESTAMP",
+      "mode": "REQUIRED",
+      "description": "The timestamp when the error occurred."
+    },
+    {
+      "name": "pipeline_step",
+      "type": "STRING",
+      "mode": "NULLABLE",
+      "description": "The pipeline step where the error occurred."
+    },
+    {
+      "name": "raw_data",
+      "type": "STRING",
+      "mode": "NULLABLE",
+      "description": "The raw data of the element that failed processing, as a string."
+    },
+    {
+      "name": "error_message",
+      "type": "STRING",
+      "mode": "NULLABLE",
+      "description": "The error message or exception that caused the failure."
+    }
+  ]
 }

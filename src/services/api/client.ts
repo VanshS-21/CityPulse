@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { APP_CONFIG, STORAGE_KEYS } from '@/utils/constants'
-import { createErrorBoundaryInfo } from '@/lib/error-handler';
+import { createErrorBoundaryInfo } from '@/lib/error-handler'
 import { config } from '@/lib/config'
 
 /**
@@ -25,7 +25,7 @@ class ApiClient {
   private setupInterceptors() {
     // Request interceptor
     this.instance.interceptors.request.use(
-      (config) => {
+      config => {
         // Add auth token if available
         const token = this.getAuthToken()
         if (token) {
@@ -33,14 +33,14 @@ class ApiClient {
         }
 
         // Add request timestamp
-        config.metadata = { 
+        config.metadata = {
           startTime: Date.now(),
-          requestId: Math.random().toString(36).substr(2, 9)
+          requestId: Math.random().toString(36).substr(2, 9),
         }
 
         return config
       },
-      (error) => {
+      error => {
         return Promise.reject(error)
       }
     )
@@ -58,7 +58,7 @@ class ApiClient {
 
         return response
       },
-      (error) => {
+      error => {
         // Handle specific error cases
         if (error.response?.status === 401) {
           this.handleUnauthorized()
@@ -70,7 +70,7 @@ class ApiClient {
           method: error.config?.method,
           requestId: error.config?.metadata?.requestId,
           status: error.response?.status,
-          message: error.message
+          message: error.message,
         })
 
         return Promise.reject(error)
@@ -101,9 +101,7 @@ class ApiClient {
    * @returns Promise resolving to response data
    */
   async get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
-    return this.requestWithRetry(() =>
-      this.instance.get<T>(url, config)
-    )
+    return this.requestWithRetry(() => this.instance.get<T>(url, config))
   }
 
   /**
@@ -113,10 +111,12 @@ class ApiClient {
    * @param config - Axios request configuration
    * @returns Promise resolving to response data
    */
-  async post<T>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<T> {
-    return this.requestWithRetry(() =>
-      this.instance.post<T>(url, data, config)
-    )
+  async post<T>(
+    url: string,
+    data?: unknown,
+    config?: AxiosRequestConfig
+  ): Promise<T> {
+    return this.requestWithRetry(() => this.instance.post<T>(url, data, config))
   }
 
   /**
@@ -126,10 +126,12 @@ class ApiClient {
    * @param config - Axios request configuration
    * @returns Promise resolving to response data
    */
-  async put<T>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<T> {
-    return this.requestWithRetry(() =>
-      this.instance.put<T>(url, data, config)
-    )
+  async put<T>(
+    url: string,
+    data?: unknown,
+    config?: AxiosRequestConfig
+  ): Promise<T> {
+    return this.requestWithRetry(() => this.instance.put<T>(url, data, config))
   }
 
   /**
@@ -139,7 +141,11 @@ class ApiClient {
    * @param config - Axios request configuration
    * @returns Promise resolving to response data
    */
-  async patch<T>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<T> {
+  async patch<T>(
+    url: string,
+    data?: unknown,
+    config?: AxiosRequestConfig
+  ): Promise<T> {
     return this.requestWithRetry(() =>
       this.instance.patch<T>(url, data, config)
     )
@@ -152,13 +158,15 @@ class ApiClient {
    * @returns Promise resolving to response data
    */
   async delete<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
-    return this.requestWithRetry(() =>
-      this.instance.delete<T>(url, config)
-    )
+    return this.requestWithRetry(() => this.instance.delete<T>(url, config))
   }
 
   // File upload with enhanced timeout
-  async uploadFile<T>(url: string, file: File, onProgress?: (progress: number) => void): Promise<T> {
+  async uploadFile<T>(
+    url: string,
+    file: File,
+    onProgress?: (progress: number) => void
+  ): Promise<T> {
     const formData = new FormData()
     formData.append('file', file)
 
@@ -168,9 +176,11 @@ class ApiClient {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
-      onUploadProgress: (progressEvent) => {
+      onUploadProgress: progressEvent => {
         if (onProgress && progressEvent.total) {
-          const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+          const progress = Math.round(
+            (progressEvent.loaded * 100) / progressEvent.total
+          )
           onProgress(progress)
         }
       },
@@ -187,32 +197,41 @@ class ApiClient {
   ): Promise<T> {
     const maxRetries = 3
     let lastError: Error
-    
+
     for (let attempt = 0; attempt < maxRetries; attempt++) {
       try {
         const response = await requestFn()
         return response.data
       } catch (error) {
         lastError = error as Error
-        
+
         // Don't retry on 4xx errors (client errors)
-        if (axios.isAxiosError(error) && error.response?.status && error.response.status >= 400 && error.response.status < 500) {
+        if (
+          axios.isAxiosError(error) &&
+          error.response?.status &&
+          error.response.status >= 400 &&
+          error.response.status < 500
+        ) {
           throw error
         }
-        
+
         // Wait before retrying (exponential backoff)
         if (attempt < maxRetries - 1) {
-          await new Promise(resolve => setTimeout(resolve, Math.pow(2, attempt) * 1000))
+          await new Promise(resolve =>
+            setTimeout(resolve, Math.pow(2, attempt) * 1000)
+          )
         }
       }
     }
-    
+
     throw lastError!
   }
 
   // Batch requests
   async batch<T>(requests: Array<() => Promise<T>>): Promise<(T | null)[]> {
-    const responses = await Promise.allSettled(requests.map(request => request()))
+    const responses = await Promise.allSettled(
+      requests.map(request => request())
+    )
     return responses.map(response =>
       response.status === 'fulfilled' ? response.value : null
     )

@@ -1,6 +1,6 @@
-title: "Data Ingestion Role"
-description: "Permissions for data ingestion pipelines to write to Pub/Sub, BigQuery, and Firestore."
-stage: "GA"
+title: 'Data Ingestion Role'
+description: 'Permissions for data ingestion pipelines to write to Pub/Sub, BigQuery, and Firestore.'
+stage: 'GA'
 includedPermissions:
   - pubsub.topics.publish
   - bigquery.tables.updateData

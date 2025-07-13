@@ -1,9 +1,9 @@
 # CityPulse Security Operations Guide
 
-- *Version**: 0.1.0
-- *Last Updated**: July 13, 2025
-- *Classification**: Internal Use Only
-- *Target Audience**: Security Engineers, DevOps, System Administrators
+- \*Version\*\*: 0.1.0
+- \*Last Updated\*\*: July 13, 2025
+- \*Classification\*\*: Internal Use Only
+- \*Target Audience\*\*: Security Engineers, DevOps, System Administrators
 
 ## Table of Contents
 
@@ -18,7 +18,7 @@
 
 ### 🛡️ Security Architecture
 
-```mermaid
+````mermaid
 graph TB
     subgraph "External"
         U[Users]
@@ -90,30 +90,30 @@ roles:
   citizen:
     permissions:
 
-      -  events:read
-      -  events:create
-      -  feedback:create
-      -  profile:read
-      -  profile:update
+      -   events:read
+      -   events:create
+      -   feedback:create
+      -   profile:read
+      -   profile:update
 
   authority:
     permissions:
 
-      -  events:read
-      -  events:update
-      -  events:assign
-      -  analytics:read
-      -  users:read_limited
+      -   events:read
+      -   events:update
+      -   events:assign
+      -   analytics:read
+      -   users:read_limited
 
   admin:
     permissions:
 
-      -  "*:*"  # Full access
+      -   "*:*"  # Full access
     restrictions:
 
-      -  require_mfa: true
-      -  ip_whitelist: ["10.0.0.0/8", "192.168.1.0/24"]
-      -  session_timeout: 3600  # 1 hour
+      -   require_mfa: true
+      -   ip_whitelist: ["10.0.0.0/8", "192.168.1.0/24"]
+      -   session_timeout: 3600  # 1 hour
 ```text
 
 ## Service Account Management
@@ -128,26 +128,26 @@ roles:
 
 gcloud iam service-accounts create citypulse-api \
 
-  - -description="CityPulse API service account" \
-  - -display-name="CityPulse API"
+  -  -description="CityPulse API service account" \
+  -  -display-name="CityPulse API"
 
 ## Grant minimal required permissions
 
 gcloud projects add-iam-policy-binding citypulse-project \
 
-  - -member="serviceAccount:citypulse-api@citypulse-project.iam.gserviceaccount.com" \
-  - -role="roles/datastore.user"
+  -  -member="serviceAccount:citypulse-api@citypulse-project.iam.gserviceaccount.com" \
+  -  -role="roles/datastore.user"
 
 gcloud projects add-iam-policy-binding citypulse-project \
 
-  - -member="serviceAccount:citypulse-api@citypulse-project.iam.gserviceaccount.com" \
-  - -role="roles/bigquery.dataEditor"
+  -  -member="serviceAccount:citypulse-api@citypulse-project.iam.gserviceaccount.com" \
+  -  -role="roles/bigquery.dataEditor"
 
 ## Create and download key (store securely)
 
 gcloud iam service-accounts keys create ./keys/citypulse-api-key.json \
 
-  - -iam-account=citypulse-api@citypulse-project.iam.gserviceaccount.com
+  -  -iam-account=citypulse-api@citypulse-project.iam.gserviceaccount.com
 ```text
 
 ## Multi-Factor Authentication (MFA)
@@ -212,7 +212,7 @@ const apiLimiter = rateLimit({
     client: redisClient,
     prefix: 'rl:api:'
   }),
-  windowMs: 15 *60* 1000, // 15 minutes
+  windowMs: 15 *60*1000, // 15 minutes
   max: 1000, // Limit each IP to 1000 requests per windowMs
   message: 'Too many requests from this IP',
   standardHeaders: true,
@@ -224,7 +224,7 @@ const authLimiter = rateLimit({
     client: redisClient,
     prefix: 'rl:auth:'
   }),
-  windowMs: 15 *60* 1000,
+  windowMs: 15*60*1000,
   max: 5, // Limit auth attempts
   skipSuccessfulRequests: true
 });
@@ -345,7 +345,7 @@ from sklearn.ensemble import IsolationForest
 import logging
 
 class SecurityAnomalyDetector:
-    def **init**(self):
+    def**init**(self):
         self.model = IsolationForest(contamination=0.1, random_state=42)
         self.is_trained = False
 
@@ -366,6 +366,7 @@ class SecurityAnomalyDetector:
         anomalies = self.model.predict(features)
 
 ## Flag anomalies (score = -1)
+
         anomalous_requests = current_traffic[anomalies == -1]
 
         if len(anomalous_requests) > 0:
@@ -392,6 +393,7 @@ class SecurityAnomalyDetector:
         }
 
 ## Send to monitoring system
+
         logging.critical(f"Security anomaly detected: {alert_data}")
 
 ```text
@@ -494,9 +496,9 @@ severity_levels:
     escalation: "Immediate C-level notification"
     examples:
 
-      -  "Complete system outage"
-      -  "Data breach with PII exposure"
-      -  "Successful unauthorized access"
+      -   "Complete system outage"
+      -   "Data breach with PII exposure"
+      -   "Successful unauthorized access"
 
   P2_HIGH:
     description: "Significant functionality impaired"
@@ -504,9 +506,9 @@ severity_levels:
     escalation: "Security team lead notification"
     examples:
 
-      -  "Authentication system down"
-      -  "Suspected intrusion attempt"
-      -  "DDoS attack in progress"
+      -   "Authentication system down"
+      -   "Suspected intrusion attempt"
+      -   "DDoS attack in progress"
 
   P3_MEDIUM:
     description: "Minor functionality impaired"
@@ -514,9 +516,9 @@ severity_levels:
     escalation: "On-call engineer notification"
     examples:
 
-      -  "Elevated error rates"
-      -  "Suspicious activity detected"
-      -  "Non-critical service degradation"
+      -   "Elevated error rates"
+      -   "Suspicious activity detected"
+      -   "Non-critical service degradation"
 
   P4_LOW:
     description: "Minimal impact or informational"
@@ -524,9 +526,9 @@ severity_levels:
     escalation: "Standard ticket queue"
     examples:
 
-      -  "Security scan alerts"
-      -  "Policy violations"
-      -  "Routine security events"
+      -   "Security scan alerts"
+      -   "Policy violations"
+      -   "Routine security events"
 ```text
 
 ## Incident Response Workflow
@@ -567,46 +569,56 @@ respond_to_critical_incident() {
     echo "CRITICAL INCIDENT DETECTED - Initiating response"
 
 ## 1. Immediate containment
+
     echo "Step 1: Immediate containment"
 
 ## Isolate affected systems
+
     kubectl scale deployment citypulse-api --replicas=0
 
 ## Block suspicious IPs at firewall level
+
     gcloud compute firewall-rules create block-suspicious-ips \
 
-        - -action=DENY \
-        - -rules=tcp,udp \
-        - -source-ranges="$SUSPICIOUS_IP_LIST"
+        -  -action=DENY \
+        -  -rules=tcp,udp \
+        -  -source-ranges="$SUSPICIOUS_IP_LIST"
 
 ## 2. Notify incident team
+
     echo "Step 2: Notifying incident team"
     curl -X POST "$SLACK_WEBHOOK" \
 
-        - H 'Content-type: application/json' \
-        - -data '{"text":"🚨 CRITICAL SECURITY INCIDENT - All hands on deck!"}'
+        -  H 'Content-type: application/json' \
+        -  -data '{"text":"🚨 CRITICAL SECURITY INCIDENT - All hands on deck!"}'
 
 ## 3. Preserve evidence
+
     echo "Step 3: Preserving evidence"
 
 ## Create snapshots of affected systems
+
     gcloud compute disks snapshot citypulse-api-disk \
 
-        - -snapshot-names="incident-$(date +%Y%m%d-%H%M%S)" \
-        - -zone=us-central1-a
+        -  -snapshot-names="incident-$(date +%Y%m%d-%H%M%S)" \
+        -  -zone=us-central1-a
 
 ## Export logs
+
     gcloud logging read "timestamp>=\"$(date -d '1 hour ago' --iso-8601)\"" \
 
-        - -format=json > "incident-logs-$(date +%Y%m%d-%H%M%S).json"
+        -  -format=json > "incident-logs-$(date +%Y%m%d-%H%M%S).json"
 
 ## 4. Begin investigation
+
     echo "Step 4: Beginning investigation"
 
 ## Analyze recent access logs
+
     grep -E "(FAILED|ERROR|UNAUTHORIZED)" /var/log/citypulse/access.log | tail -100
 
 ## Check for unusual network activity
+
     netstat -tuln | grep LISTEN
 
     echo "Critical incident response initiated. Continue with detailed investigation."
@@ -618,19 +630,27 @@ respond_to_data_breach() {
     echo "DATA BREACH DETECTED - Initiating breach response"
 
 ## 1. Immediate containment 2
+
 ## Revoke all API keys
+
     python scripts/revoke_all_api_keys.py
 
 ## 2. Legal and compliance notification
+
 ## Notify legal team within 1 hour
+
     echo "Notifying legal team and preparing breach notifications"
 
 ## 3. User notification preparation
+
 ## Prepare user notification templates
+
     echo "Preparing user breach notifications"
 
 ## 4. Regulatory compliance
+
 ## GDPR requires notification within 72 hours
+
     echo "Initiating regulatory notification process"
 }
 
@@ -654,16 +674,16 @@ on:
     branches: [main]
   schedule:
 
-    -  cron: '0 2 * * *'  # Daily at 2 AM
+    -   cron: '0 2 * * *'  # Daily at 2 AM
 
 jobs:
   security-scan:
     runs-on: ubuntu-latest
     steps:
 
-    -  uses: actions/checkout@v3
+    -   uses: actions/checkout@v3
 
-    -  name: Run Trivy vulnerability scanner
+    -   name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
         scan-type: 'fs'
@@ -671,19 +691,19 @@ jobs:
         format: 'sarif'
         output: 'trivy-results.sarif'
 
-    -  name: Upload Trivy scan results
+    -   name: Upload Trivy scan results
       uses: github/codeql-action/upload-sarif@v2
       with:
         sarif_file: 'trivy-results.sarif'
 
-    -  name: Run Snyk security scan
+    -   name: Run Snyk security scan
       uses: snyk/actions/node@master
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
         args: --severity-threshold=high
 
-    -  name: Run OWASP ZAP scan
+    -   name: Run OWASP ZAP scan
       uses: zaproxy/action-full-scan@v0.4.0
       with:
         target: '[Your CityPulse URL]'
@@ -836,15 +856,18 @@ update_system_packages() {
     log_message "Starting system package updates"
 
 ## Update package lists
+
     apt-get update
 
 ## Get list of upgradeable packages
+
     upgradeable=$(apt list --upgradeable 2>/dev/null | grep -v "WARNING" | wc -l)
 
     if [[$upgradeable -gt 1]]; then
         log_message "Found $upgradeable packages to update"
 
 ## Apply security updates only
+
         unattended-upgrade --dry-run
 
         if check_maintenance_window; then
@@ -862,13 +885,16 @@ update_container_images() {
     log_message "Checking for container image updates"
 
 ## Get current image versions
+
     current_images=$(kubectl get deployments -o jsonpath='{.items[*].spec.template.spec.containers[*].image}')
 
 ## Check for updates (simplified - would integrate with registry API)
+
     for image in $current_images; do
         log_message "Checking updates for image: $image"
 
 ## Pull latest image info
+
         latest_digest=$(docker manifest inspect "$image:latest" | jq -r '.config.digest')
         current_digest=$(docker inspect "$image" | jq -r '.[0].RepoDigests[0]')
 
@@ -890,17 +916,22 @@ main() {
     log_message "Starting patch management cycle"
 
 ## Check for system updates
+
     update_system_packages
 
 ## Check for container updates
+
     update_container_images
 
 ## Verify system health after updates
+
     if systemctl is-active --quiet citypulse-api; then
         log_message "System health check passed"
     else
         log_message "ERROR: System health check failed"
+
 ## Trigger rollback procedures
+
         kubectl rollout undo deployment/citypulse-api
     fi
 
@@ -966,11 +997,13 @@ class DataEncryption:
             key = Fernet.generate_key()
 
 ## Store key securely (in production, use KMS)
+
             os.makedirs(os.path.dirname(key_file), exist_ok=True)
             with open(key_file, 'wb') as f:
                 f.write(key)
 
 ## Set secure permissions
+
             os.chmod(key_file, 0o600)
 
             return key
@@ -1003,6 +1036,7 @@ class SecureUserProfile:
                 encrypted_data[key] = value
 
 ## Store in database
+
         return self._save_to_database(user_id, encrypted_data)
 
     def retrieve_sensitive_data(self, user_id: str) -> dict:
@@ -1120,14 +1154,19 @@ class DLPScanner:
 
         for key, value in data.items():
             if isinstance(value, str):
+
 ## Scan for sensitive data
+
                 findings = self.scan_text(value)
 
                 if findings:
+
 ## Log potential data leak
+
                     self._log_dlp_finding(key, findings)
 
 ## Sanitize if necessary
+
                     if key not in ['email', 'phone']:  # These fields should contain this data
                         value = self.sanitize_text(value)
 
@@ -1146,5 +1185,6 @@ class DLPScanner:
 
 ## ```text 5
 
-- This security operations guide provides comprehensive procedures for maintaining the security posture of the CityPulse
+-  This security operations guide provides comprehensive procedures for maintaining the security posture of the CityPulse
 platform.*
+````
