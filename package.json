@@ -12,6 +12,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:ci": "jest --ci --coverage --watchAll=false",
+    "test:e2e": "playwright test",
+    "test:e2e:ci": "playwright test --reporter=html",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "analyze": "cross-env ANALYZE=true npm run build"
