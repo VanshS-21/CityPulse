@@ -25,6 +25,7 @@ This Disaster Recovery Plan (DRP) provides comprehensive procedures for recoveri
 ### 📋 Scope
 
 This plan covers:
+
 - **Infrastructure**: Google Cloud Platform resources
 - **Applications**: Frontend, API, and data processing pipelines
 - **Data**: Firestore, BigQuery, and Cloud Storage
@@ -65,8 +66,7 @@ graph TB
     PFS -->|Daily Export| FS_BACKUP
     PBQ -->|Daily Backup| BQ_BACKUP
     PCS -->|Continuous Sync| BS
-```
-
+```text
 ---
 
 ## Recovery Objectives
@@ -85,18 +85,21 @@ graph TB
 ### 🎯 Business Impact Analysis
 
 #### Critical Services (Tier 1)
+
 - **User Authentication**: Essential for all operations
 - **Event Reporting**: Core citizen functionality
 - **Real-time Map**: Primary user interface
 - **Emergency Alerts**: Public safety critical
 
 #### Important Services (Tier 2)
+
 - **Analytics Dashboard**: Authority operations
 - **Data Processing Pipelines**: Background operations
 - **User Management**: Administrative functions
 - **API Documentation**: Developer resources
 
 #### Standard Services (Tier 3)
+
 - **Historical Analytics**: Reporting and insights
 - **Feedback System**: User experience enhancement
 - **Administrative Tools**: System management
@@ -111,6 +114,7 @@ graph TB
 
 ```bash
 #!/bin/bash
+
 # Automated Firestore backup script
 
 PROJECT_ID="citypulse-project"
@@ -118,6 +122,7 @@ BACKUP_BUCKET="citypulse-backups"
 DATE=$(date +%Y%m%d-%H%M%S)
 
 # Export Firestore collections
+
 export_firestore() {
     echo "Starting Firestore export at $(date)"
     
@@ -136,6 +141,7 @@ export_firestore() {
 }
 
 # Verify backup integrity
+
 verify_backup() {
     echo "Verifying backup integrity..."
     
@@ -154,6 +160,7 @@ verify_backup() {
 }
 
 # Cleanup old backups (keep last 30 days)
+
 cleanup_old_backups() {
     echo "Cleaning up old backups..."
     
@@ -162,6 +169,7 @@ cleanup_old_backups() {
 }
 
 # Main backup routine
+
 main() {
     export_firestore
     verify_backup
@@ -171,9 +179,9 @@ main() {
 }
 
 # Run backup
-main
-```
 
+main
+```text
 #### BigQuery Backup
 
 ```sql
@@ -210,15 +218,17 @@ EXPORT DATA OPTIONS(
 ) AS
 SELECT * FROM `citypulse-project.city_intelligence.events`
 WHERE DATE(timestamp) >= DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY);
-```
-
+```text
 #### Application Code Backup
 
 ```yaml
+
 # GitHub Actions workflow for code backup
+
 name: Code Backup
 on:
   schedule:
+
     - cron: '0 3 * * *'  # Daily at 3 AM
   workflow_dispatch:
 
@@ -226,6 +236,7 @@ jobs:
   backup-code:
     runs-on: ubuntu-latest
     steps:
+
     - name: Checkout code
       uses: actions/checkout@v4
       with:
@@ -251,12 +262,13 @@ jobs:
       run: |
         # Keep last 30 days of backups
         gsutil -m rm gs://citypulse-backups/code-backups/citypulse-code-backup-$(date -d '30 days ago' +%Y%m%d)*.tar.gz || true
-```
-
+```text
 ### 🔄 Backup Automation
 
 ```python
+
 # Comprehensive backup orchestration
+
 import subprocess
 import logging
 import datetime
@@ -383,8 +395,7 @@ class BackupOrchestrator:
         blob.upload_from_string(json.dumps(report, indent=2))
         
         self.logger.info(f"Backup report generated: {backup_id}")
-```
-
+```text
 ---
 
 ## Recovery Procedures
@@ -416,14 +427,14 @@ flowchart TD
     
     N --> P[Post-Incident Review]
     O --> G
-```
-
+```text
 ### 🔄 Service Recovery Procedures
 
 #### Frontend Application Recovery
 
 ```bash
 #!/bin/bash
+
 # Frontend service recovery script
 
 REGION_PRIMARY="us-central1"
@@ -517,13 +528,15 @@ get_secondary_ip() {
 }
 
 # Execute recovery
-recover_frontend
-```
 
+recover_frontend
+```text
 #### Database Recovery
 
 ```python
+
 # Database recovery procedures
+
 import time
 import logging
 from google.cloud import firestore, bigquery
@@ -667,9 +680,7 @@ class DatabaseRecovery:
         # Implementation would search backup metadata
         # For now, return latest backup
         return "latest"
-```
-
+```text
 ---
 
 *This disaster recovery plan provides comprehensive procedures for maintaining business continuity and recovering from various failure scenarios.*
-

@@ -5,6 +5,7 @@
 **Authentication**: Bearer Token (Firebase Auth)
 
 ## 📚 Related Documentation
+
 - **[Architecture](./ARCHITECTURE.md)** - System architecture and design
 - **[Database Schema](./DATABASE_SCHEMA.md)** - Database structure and relationships
 - **[Security Operations](./SECURITY_OPERATIONS.md)** - Authentication and security procedures
@@ -51,8 +52,7 @@ const events = await client.events.list({
 });
 
 console.log('Recent traffic events:', events.data);
-```
-
+```text
 ### 📋 Prerequisites
 
 - **API Key**: Obtain from CityPulse Developer Console
@@ -70,8 +70,7 @@ console.log('Recent traffic events:', events.data);
 ```bash
 curl -H "X-API-Key: your-api-key" \
   [Your CityPulse URL]
-```
-
+```text
 ### 🎫 Bearer Token Authentication
 
 **For user-specific operations**:
@@ -91,8 +90,7 @@ const response = await fetch('/api/v1/events', {
     'Content-Type': 'application/json'
   }
 });
-```
-
+```text
 ### 🔑 Authentication Flow
 
 ```mermaid
@@ -107,8 +105,7 @@ sequenceDiagram
     CityPulse API->>Firebase: Verify token
     Firebase->>CityPulse API: Token valid
     CityPulse API->>Client: Return data
-```
-
+```text
 ---
 
 ## Events API
@@ -120,9 +117,9 @@ sequenceDiagram
 ```bash
 curl -H "X-API-Key: your-api-key" \
   "[Your CityPulse URL]?category=traffic&limit=10"
-```
-
+```text
 **Parameters**:
+
 ```typescript
 interface EventListParams {
   category?: 'traffic' | 'safety' | 'civic' | 'weather' | 'social';
@@ -138,9 +135,9 @@ interface EventListParams {
   start_date?: string; // ISO 8601
   end_date?: string;   // ISO 8601
 }
-```
-
+```text
 **Response**:
+
 ```json
 {
   "data": [
@@ -170,8 +167,7 @@ interface EventListParams {
     "has_more": true
   }
 }
-```
-
+```text
 ### 📝 Create Event
 
 **Endpoint**: `POST /events`  
@@ -202,8 +198,7 @@ const newEvent = await fetch('/api/v1/events', {
 
 const event = await newEvent.json();
 console.log('Created event:', event.data.id);
-```
-
+```text
 ### 🔍 Get Event Details
 
 **Endpoint**: `GET /events/{eventId}`
@@ -211,9 +206,9 @@ console.log('Created event:', event.data.id);
 ```bash
 curl -H "X-API-Key: your-api-key" \
   [Your CityPulse URL]_123456
-```
-
+```text
 **Response**:
+
 ```json
 {
   "data": {
@@ -244,8 +239,7 @@ curl -H "X-API-Key: your-api-key" \
     "updated_at": "2025-01-15T14:35:00Z"
   }
 }
-```
-
+```text
 ### ✏️ Update Event
 
 **Endpoint**: `PUT /events/{eventId}`  
@@ -266,8 +260,7 @@ const updateEvent = await fetch(`/api/v1/events/${eventId}`, {
     }
   })
 });
-```
-
+```text
 ---
 
 ## Users API
@@ -286,9 +279,9 @@ const profile = await fetch('/api/v1/users/me', {
 
 const userData = await profile.json();
 console.log('User profile:', userData.data);
-```
-
+```text
 **Response**:
+
 ```json
 {
   "data": {
@@ -311,8 +304,7 @@ console.log('User profile:', userData.data);
     "last_login": "2025-01-15T14:00:00Z"
   }
 }
-```
-
+```text
 ### ⚙️ Update User Preferences
 
 **Endpoint**: `PATCH /users/me`  
@@ -337,8 +329,7 @@ const updatePreferences = await fetch('/api/v1/users/me', {
     }
   })
 });
-```
-
+```text
 ---
 
 ## Feedback API
@@ -367,8 +358,7 @@ const feedback = await fetch('/api/v1/feedback', {
     corrected_category: 'traffic'
   })
 });
-```
-
+```text
 ### 📋 List User Feedback
 
 **Endpoint**: `GET /feedback`  
@@ -377,8 +367,7 @@ const feedback = await fetch('/api/v1/feedback', {
 ```bash
 curl -H "Authorization: Bearer your-token" \
   "[Your CityPulse URL]?status=open"
-```
-
+```text
 ---
 
 ## Analytics API
@@ -400,9 +389,9 @@ const trends = await fetch('/api/v1/analytics/trends?' + new URLSearchParams({
 });
 
 const trendData = await trends.json();
-```
-
+```text
 **Response**:
+
 ```json
 {
   "data": {
@@ -433,8 +422,7 @@ const trendData = await trends.json();
     }
   }
 }
-```
-
+```text
 ---
 
 ## Code Examples
@@ -464,8 +452,7 @@ eventSource.onerror = (error) => {
   console.error('Stream error:', error);
   // Implement reconnection logic
 };
-```
-
+```text
 ### 📱 Mobile Integration (React Native)
 
 ```javascript
@@ -495,8 +482,7 @@ const getUserLocationEvents = async () => {
     console.error('Error fetching events:', error);
   }
 };
-```
-
+```text
 ### 🌐 Web Integration (React)
 
 ```jsx
@@ -525,8 +511,7 @@ const EventMap = () => {
     </div>
   );
 };
-```
-
+```text
 ### 🔍 Advanced Filtering
 
 ```javascript
@@ -561,8 +546,7 @@ const complexQuery = {
 };
 
 const events = await client.events.search(complexQuery);
-```
-
+```text
 ---
 
 ## Error Handling
@@ -583,8 +567,7 @@ const events = await client.events.search(complexQuery);
     "request_id": "req_abc123"
   }
 }
-```
-
+```text
 ### 🔧 Common Error Codes
 
 | Code | HTTP Status | Description |
@@ -628,8 +611,7 @@ const handleApiCall = async (apiCall) => {
     }
   }
 };
-```
-
+```text
 ---
 
 ## Rate Limiting
@@ -645,13 +627,12 @@ const handleApiCall = async (apiCall) => {
 
 ### 🔄 Rate Limit Headers
 
-```
+```text
 X-RateLimit-Limit: 1000
 X-RateLimit-Remaining: 999
 X-RateLimit-Reset: 1642694400
 Retry-After: 3600
-```
-
+```text
 ### ⏱️ Handling Rate Limits
 
 ```javascript
@@ -673,8 +654,7 @@ const makeRequestWithRetry = async (url, options, maxRetries = 3) => {
     }
   }
 };
-```
-
+```text
 ---
 
 ## SDKs and Libraries
@@ -682,25 +662,31 @@ const makeRequestWithRetry = async (url, options, maxRetries = 3) => {
 ### 📚 Official SDKs
 
 ```bash
+
 # JavaScript/TypeScript
+
 npm install @citypulse/api-client
 
 # React
+
 npm install @citypulse/react
 
 # React Native
+
 npm install @citypulse/react-native
 
 # Python
+
 pip install citypulse-python
 
 # PHP
+
 composer require citypulse/php-sdk
 
 # Java
-implementation 'com.citypulse:java-sdk:1.0.0'
-```
 
+implementation 'com.citypulse:java-sdk:1.0.0'
+```text
 ### 🔗 Community Libraries
 
 - **Go**: `github.com/community/citypulse-go`
@@ -711,4 +697,3 @@ implementation 'com.citypulse:java-sdk:1.0.0'
 ---
 
 *For more examples and detailed API reference, visit our [Developer Portal]([Your CityPulse URL]).*
-

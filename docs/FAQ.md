@@ -24,11 +24,12 @@
 
 ### ❓ What is CityPulse?
 
-**Q: What is CityPulse and what does it do?**
+#### Q: What is CityPulse and what does it do?
 
 A: CityPulse is a comprehensive urban intelligence platform that transforms real-time city data into actionable insights. It allows citizens to report urban issues, authorities to monitor city-wide events, and provides AI-powered analytics for better city management.
 
-**Key Features:**
+#### Key Features:
+
 - Real-time issue reporting by citizens
 - Interactive map dashboard with live events
 - AI-powered categorization and analysis
@@ -37,7 +38,7 @@ A: CityPulse is a comprehensive urban intelligence platform that transforms real
 
 ---
 
-**Q: Who can use CityPulse?**
+#### Q: Who can use CityPulse?
 
 A: CityPulse is designed for three main user types:
 
@@ -47,7 +48,7 @@ A: CityPulse is designed for three main user types:
 
 ---
 
-**Q: Is CityPulse free to use?**
+#### Q: Is CityPulse free to use?
 
 A: Yes, CityPulse is free for citizens to use. The platform is funded by participating municipalities to provide better city services to residents.
 
@@ -57,7 +58,7 @@ A: Yes, CityPulse is free for citizens to use. The platform is funded by partici
 
 ### 🚀 Account Setup
 
-**Q: How do I create an account?**
+#### Q: How do I create an account?
 
 A: Creating an account is simple:
 
@@ -72,9 +73,10 @@ A: Creating an account is simple:
 
 ---
 
-**Q: Do I need an account to view the map?**
+#### Q: Do I need an account to view the map?
 
 A: No, you can view the public map and events without an account. However, you need an account to:
+
 - Report new issues
 - Receive personalized notifications
 - Track your submitted reports
@@ -82,7 +84,7 @@ A: No, you can view the public map and events without an account. However, you n
 
 ---
 
-**Q: How do I set my location preferences?**
+#### Q: How do I set my location preferences?
 
 A: To set your location preferences:
 
@@ -96,11 +98,12 @@ A: To set your location preferences:
 
 ### 📱 Mobile Access
 
-**Q: Is there a mobile app?**
+#### Q: Is there a mobile app?
 
 A: Currently, CityPulse is available as a responsive web application that works great on mobile browsers. A dedicated mobile app for iOS and Android is in development and will be available soon.
 
-**Mobile Web Features:**
+#### Mobile Web Features:
+
 - Full functionality on mobile browsers
 - Touch-optimized interface
 - GPS location detection
@@ -113,7 +116,7 @@ A: Currently, CityPulse is available as a responsive web application that works 
 
 ### 🔐 Login Issues
 
-**Q: I forgot my password. How do I reset it?**
+#### Q: I forgot my password. How do I reset it?
 
 A: To reset your password:
 
@@ -127,7 +130,7 @@ If you don't receive the email within 10 minutes, check your spam folder or cont
 
 ---
 
-**Q: Why can't I log in with my social media account?**
+#### Q: Why can't I log in with my social media account?
 
 A: If you're having trouble with social login:
 
@@ -140,7 +143,7 @@ If the issue persists, try creating an account with email instead.
 
 ---
 
-**Q: How do I change my email address?**
+#### Q: How do I change my email address?
 
 A: To change your email address:
 
@@ -155,7 +158,7 @@ A: To change your email address:
 
 ### 👤 Profile Management
 
-**Q: How do I update my profile information?**
+#### Q: How do I update my profile information?
 
 A: To update your profile:
 
@@ -170,7 +173,7 @@ A: To update your profile:
 
 ---
 
-**Q: Can I delete my account?**
+#### Q: Can I delete my account?
 
 A: Yes, you can delete your account:
 
@@ -187,7 +190,7 @@ A: Yes, you can delete your account:
 
 ### 📝 Creating Reports
 
-**Q: How do I report an issue?**
+#### Q: How do I report an issue?
 
 A: To report an issue:
 
@@ -203,29 +206,33 @@ You'll receive a confirmation with a tracking ID.
 
 ---
 
-**Q: What types of issues can I report?**
+#### Q: What types of issues can I report?
 
 A: You can report various urban issues:
 
-**Traffic Issues:**
+#### Traffic Issues:
+
 - Accidents and collisions
 - Road closures and construction
 - Traffic signal problems
 - Parking violations
 
-**Safety Concerns:**
+#### Safety Concerns:
+
 - Suspicious activities
 - Poor lighting
 - Unsafe conditions
 - Emergency situations
 
-**Infrastructure Problems:**
+#### Infrastructure Problems:
+
 - Potholes and road damage
 - Broken streetlights
 - Water main breaks
 - Damaged public property
 
-**Environmental Issues:**
+#### Environmental Issues:
+
 - Illegal dumping
 - Air quality concerns
 - Noise complaints
@@ -233,7 +240,7 @@ A: You can report various urban issues:
 
 ---
 
-**Q: Can I report issues anonymously?**
+#### Q: Can I report issues anonymously?
 
 A: While you need an account to submit reports, you can choose to make your reports anonymous:
 
@@ -244,7 +251,7 @@ A: While you need an account to submit reports, you can choose to make your repo
 
 ---
 
-**Q: How do I track my submitted reports?**
+#### Q: How do I track my submitted reports?
 
 A: To track your reports:
 
@@ -261,7 +268,7 @@ A: To track your reports:
 
 ### 📷 Photos and Media
 
-**Q: What types of photos can I upload?**
+#### Q: What types of photos can I upload?
 
 A: Photo guidelines:
 
@@ -269,7 +276,8 @@ A: Photo guidelines:
 **Maximum size**: 10MB per photo
 **Maximum count**: 5 photos per report
 
-**Best practices:**
+#### Best practices:
+
 - Take clear, well-lit photos
 - Show the issue from multiple angles
 - Include context (street signs, landmarks)
@@ -277,7 +285,7 @@ A: Photo guidelines:
 
 ---
 
-**Q: Why was my photo rejected?**
+#### Q: Why was my photo rejected?
 
 A: Photos may be rejected for:
 
@@ -295,28 +303,31 @@ Try uploading a different photo or contact support for help.
 
 ### 🗺️ Using the Map
 
-**Q: How do I navigate the map?**
+#### Q: How do I navigate the map?
 
 A: Map navigation:
 
-**Desktop:**
+#### Desktop:
+
 - **Zoom**: Mouse wheel or +/- buttons
 - **Pan**: Click and drag
 - **Select**: Click on markers for details
 
-**Mobile:**
+#### Mobile:
+
 - **Zoom**: Pinch to zoom in/out
 - **Pan**: Touch and drag
 - **Select**: Tap on markers
 
-**Features:**
+#### Features:
+
 - **Filter events** by category using the sidebar
 - **Search** for specific locations or addresses
 - **Toggle layers** (traffic, boundaries, heatmap)
 
 ---
 
-**Q: What do the different colored markers mean?**
+#### Q: What do the different colored markers mean?
 
 A: Marker colors indicate event categories:
 
@@ -328,13 +339,14 @@ A: Marker colors indicate event categories:
 - 🟣 **Purple**: Administrative and civic matters
 
 **Marker sizes** indicate severity:
+
 - **Large**: High/Critical severity
 - **Medium**: Medium severity
 - **Small**: Low severity
 
 ---
 
-**Q: Why don't I see any events on the map?**
+#### Q: Why don't I see any events on the map?
 
 A: If the map appears empty:
 
@@ -350,7 +362,7 @@ If the problem persists, there might genuinely be no recent events in your area.
 
 ### 🔍 Search and Filters
 
-**Q: How do I search for specific locations?**
+#### Q: How do I search for specific locations?
 
 A: To search for locations:
 
@@ -360,6 +372,7 @@ A: To search for locations:
 4. The map will center on that location
 
 You can search for:
+
 - Street addresses
 - Landmarks and points of interest
 - Neighborhoods and districts
@@ -367,7 +380,7 @@ You can search for:
 
 ---
 
-**Q: How do I filter events by type?**
+#### Q: How do I filter events by type?
 
 A: To filter events:
 
@@ -376,7 +389,8 @@ A: To filter events:
 3. **Use the date range** selector to filter by time
 4. **Set severity filters** to show only high-priority issues
 
-**Advanced filters:**
+#### Advanced filters:
+
 - Status (Active, Resolved, Monitoring)
 - Source (Citizen reports, Official, Sensors)
 - Date range (Last hour, day, week, month)
@@ -387,7 +401,7 @@ A: To filter events:
 
 ### 🔔 Managing Notifications
 
-**Q: How do I enable notifications?**
+#### Q: How do I enable notifications?
 
 A: To enable notifications:
 
@@ -406,27 +420,30 @@ A: To enable notifications:
 
 ---
 
-**Q: I'm not receiving notifications. What should I do?**
+#### Q: I'm not receiving notifications. What should I do?
 
 A: If you're not receiving notifications:
 
-**Check your settings:**
+#### Check your settings:
+
 1. Verify notifications are enabled in your CityPulse settings
 2. Check your browser notification permissions
 3. Ensure your email address is correct and verified
 
-**Check your email:**
+#### Check your email:
+
 1. Look in your spam/junk folder
 2. Add [your-citypulse-domain] to your safe senders list
 3. Check if your email provider is blocking notifications
 
-**Browser notifications:**
+#### Browser notifications:
+
 1. Check if notifications are blocked in your browser settings
 2. Try refreshing the page and allowing notifications again
 
 ---
 
-**Q: How do I customize what notifications I receive?**
+#### Q: How do I customize what notifications I receive?
 
 A: To customize notifications:
 
@@ -441,21 +458,24 @@ A: To customize notifications:
 
 ### 📧 Email Notifications
 
-**Q: What types of email notifications will I receive?**
+#### Q: What types of email notifications will I receive?
 
 A: Email notification types:
 
-**Immediate Alerts:**
+#### Immediate Alerts:
+
 - High-severity incidents in your area
 - Emergency announcements
 - Updates on your submitted reports
 
-**Daily Digest:**
+#### Daily Digest:
+
 - Summary of events in your area
 - New events matching your interests
 - Weekly activity summary
 
-**Account Notifications:**
+#### Account Notifications:
+
 - Login security alerts
 - Account changes
 - System maintenance announcements
@@ -466,17 +486,19 @@ A: Email notification types:
 
 ### 💻 Browser Compatibility
 
-**Q: Which browsers are supported?**
+#### Q: Which browsers are supported?
 
 A: CityPulse supports modern browsers:
 
-**Fully Supported:**
+#### Fully Supported:
+
 - Chrome 90+ (recommended)
 - Firefox 88+
 - Safari 14+
 - Edge 90+
 
-**Limited Support:**
+#### Limited Support:
+
 - Internet Explorer 11 (basic functionality only)
 - Older browser versions may have reduced functionality
 
@@ -484,7 +506,7 @@ A: CityPulse supports modern browsers:
 
 ---
 
-**Q: The website is loading slowly. What can I do?**
+#### Q: The website is loading slowly. What can I do?
 
 A: To improve loading speed:
 
@@ -501,7 +523,7 @@ If the issue persists, it might be a temporary server issue. Try again in a few 
 
 ---
 
-**Q: I'm getting JavaScript errors. How do I fix this?**
+#### Q: I'm getting JavaScript errors. How do I fix this?
 
 A: To resolve JavaScript errors:
 
@@ -512,6 +534,7 @@ A: To resolve JavaScript errors:
 5. **Try a different browser**
 
 If errors persist, please contact support with:
+
 - Your browser type and version
 - The exact error message
 - What you were trying to do when the error occurred
@@ -520,7 +543,7 @@ If errors persist, please contact support with:
 
 ### 📱 Mobile Issues
 
-**Q: The mobile site isn't working properly. What should I do?**
+#### Q: The mobile site isn't working properly. What should I do?
 
 A: For mobile issues:
 
@@ -530,7 +553,8 @@ A: For mobile issues:
 4. **Update your mobile browser**
 5. **Try using a different mobile browser**
 
-**Common mobile issues:**
+#### Common mobile issues:
+
 - GPS location not working: Enable location services
 - Photos not uploading: Check camera permissions
 - Touch gestures not responding: Try refreshing the page
@@ -541,7 +565,7 @@ A: For mobile issues:
 
 ### 🔧 API Access
 
-**Q: How do I get API access?**
+#### Q: How do I get API access?
 
 A: To access the CityPulse API:
 
@@ -551,7 +575,8 @@ A: To access the CityPulse API:
 4. **Wait for approval** (usually 1-2 business days)
 5. **Start building** with your API key
 
-**API Features:**
+#### API Features:
+
 - Read public event data
 - Submit reports programmatically
 - Access analytics data (with permissions)
@@ -559,33 +584,37 @@ A: To access the CityPulse API:
 
 ---
 
-**Q: What are the API rate limits?**
+#### Q: What are the API rate limits?
 
 A: API rate limits by tier:
 
-**Free Tier:**
+#### Free Tier:
+
 - 1,000 requests per hour
 - 50 requests per minute
 - Public data access only
 
-**Basic Tier ($29/month):**
+#### Basic Tier ($29/month):
+
 - 10,000 requests per hour
 - 500 requests per minute
 - Enhanced data access
 
-**Pro Tier ($99/month):**
+#### Pro Tier ($99/month):
+
 - 100,000 requests per hour
 - 2,000 requests per minute
 - Full data access and analytics
 
-**Enterprise:**
+#### Enterprise:
+
 - Custom limits
 - Dedicated support
 - SLA guarantees
 
 ---
 
-**Q: Where can I find API documentation?**
+#### Q: Where can I find API documentation?
 
 A: Complete API documentation is available at:
 
@@ -600,58 +629,66 @@ A: Complete API documentation is available at:
 
 ### 🔒 Data Privacy
 
-**Q: What personal information do you collect?**
+#### Q: What personal information do you collect?
 
 A: We collect minimal personal information:
 
-**Required Information:**
+#### Required Information:
+
 - Email address (for account creation)
 - Location data (only when reporting issues)
 
-**Optional Information:**
+#### Optional Information:
+
 - Display name
 - Profile picture
 - Notification preferences
 - Additional contact information
 
-**Automatically Collected:**
+#### Automatically Collected:
+
 - Usage analytics (anonymized)
 - Device and browser information
 - IP address (for security purposes)
 
 ---
 
-**Q: How is my location data used?**
+#### Q: How is my location data used?
 
 A: Location data usage:
 
-**When Reporting Issues:**
+#### When Reporting Issues:
+
 - Used to place your report on the map
 - Helps authorities respond to the correct location
 - Can be made approximate for privacy
 
-**For Notifications:**
+#### For Notifications:
+
 - Used to send relevant local alerts
 - You control the notification radius
 - Can be disabled at any time
 
-**We Never:**
+#### We Never:
+
 - Track your location continuously
 - Share precise location with third parties
 - Store location history without permission
 
 ---
 
-**Q: Can I make my reports private?**
+#### Q: Can I make my reports private?
 
 A: Yes, you have privacy options:
 
-**Anonymous Reporting:**
+#### Anonymous Reporting:
+
 - Your name won't be displayed publicly
 - Authorities can still contact you if needed
 - You can still track the report status
 
-**Location Privacy:**
+#### Location Privacy:
+
 - Use approximate location instead of exact GPS
 - Manually adjust the location marker
 - Choose a nearby intersection instead of your exact address
@@ -660,38 +697,43 @@ A: Yes, you have privacy options:
 
 ### 🛡️ Account Security
 
-**Q: How do I keep my account secure?**
+#### Q: How do I keep my account secure?
 
 A: Account security best practices:
 
-**Strong Password:**
+#### Strong Password:
+
 - Use at least 12 characters
 - Include uppercase, lowercase, numbers, and symbols
 - Don't reuse passwords from other sites
 
-**Account Monitoring:**
+#### Account Monitoring:
+
 - Review login activity regularly
 - Log out from public computers
 - Enable email notifications for account changes
 
-**Safe Browsing:**
+#### Safe Browsing:
+
 - Always log in through [your-citypulse-domain]
 - Look for the lock icon (HTTPS)
 - Don't click suspicious links in emails
 
 ---
 
-**Q: I think my account was compromised. What should I do?**
+#### Q: I think my account was compromised. What should I do?
 
 A: If you suspect account compromise:
 
-**Immediate Actions:**
+#### Immediate Actions:
+
 1. **Change your password** immediately
 2. **Log out of all devices** in account settings
 3. **Review recent activity** for unauthorized actions
 4. **Check your email** for any account change notifications
 
-**Contact Support:**
+#### Contact Support:
+
 - Email: security@[your-citypulse-domain]
 - Include: Your username and when you noticed the issue
 - We'll help secure your account and investigate
@@ -702,7 +744,7 @@ A: If you suspect account compromise:
 
 ### 🔧 Common Solutions
 
-**Q: The page won't load or keeps crashing.**
+#### Q: The page won't load or keeps crashing.
 
 A: Try these solutions in order:
 
@@ -717,43 +759,49 @@ A: Try these solutions in order:
 
 ---
 
-**Q: I can't upload photos.**
+#### Q: I can't upload photos.
 
 A: Photo upload troubleshooting:
 
-**Check File Requirements:**
+#### Check File Requirements:
+
 - File size under 10MB
 - Supported formats: JPG, PNG, GIF, WebP
 - Maximum 5 photos per report
 
-**Browser Issues:**
+#### Browser Issues:
+
 - Enable JavaScript
 - Allow camera/file access permissions
 - Try a different browser
 - Clear browser cache
 
-**Connection Issues:**
+#### Connection Issues:
+
 - Check internet speed
 - Try uploading one photo at a time
 - Switch between WiFi and mobile data
 
 ---
 
-**Q: My location isn't being detected.**
+#### Q: My location isn't being detected.
 
 A: Location detection issues:
 
-**Browser Permissions:**
+#### Browser Permissions:
+
 1. Check if location access is allowed for [your-citypulse-domain]
 2. Look for location icon in address bar
 3. Click and select "Allow"
 
-**Device Settings:**
+#### Device Settings:
+
 - Enable location services on your device
 - Check GPS/location accuracy settings
 - Try refreshing the page
 
-**Manual Location:**
+#### Manual Location:
+
 - Use the search box to find your location
 - Click on the map to set location manually
 - Enter an address in the location field
@@ -762,49 +810,56 @@ A: Location detection issues:
 
 ### 📞 Getting Additional Help
 
-**Q: How do I contact support?**
+#### Q: How do I contact support?
 
 A: Multiple support options:
 
-**Email Support:**
+#### Email Support:
+
 - General: support@[your-citypulse-domain]
 - Technical: tech@[your-citypulse-domain]
 - Security: security@[your-citypulse-domain]
 
-**Response Times:**
+#### Response Times:
+
 - Critical issues: Within 2 hours
 - General support: Within 24 hours
 - Feature requests: Within 1 week
 
-**Live Chat:**
+#### Live Chat:
+
 - Available 9 AM - 5 PM weekdays
 - Click the chat icon in the bottom right
 
-**Community Forum:**
+#### Community Forum:
+
 - [community.[your-citypulse-domain]]([Your CityPulse URL])
 - Search existing questions
 - Get help from other users
 
 ---
 
-**Q: How do I report bugs or suggest features?**
+#### Q: How do I report bugs or suggest features?
 
 A: To report bugs or suggest features:
 
-**Bug Reports:**
+#### Bug Reports:
+
 1. Go to **Settings** → **Feedback**
 2. Select "Bug Report"
 3. Describe the issue in detail
 4. Include steps to reproduce
 5. Add screenshots if helpful
 
-**Feature Requests:**
+#### Feature Requests:
+
 1. Use the feedback form
 2. Select "Feature Request"
 3. Describe your idea clearly
 4. Explain how it would help you
 
-**GitHub Issues:**
+#### GitHub Issues:
+
 - Technical users can report issues on our GitHub repository
 - Include detailed technical information
 - Follow the issue template
@@ -812,4 +867,3 @@ A: To report bugs or suggest features:
 ---
 
 *For additional help not covered in this FAQ, please contact our support team. We're here to help!*
-

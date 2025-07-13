@@ -34,17 +34,19 @@
 ### 📊 Current Performance Baseline
 
 ```bash
+
 # Performance monitoring dashboard
+
 [Your CityPulse URL]
 
 # Key metrics to track:
+
 - Average response time: 245ms
 - 95th percentile: 890ms
 - 99th percentile: 1.2s
 - Error rate: 0.03%
 - Throughput: 1,200 requests/minute
-```
-
+```text
 ---
 
 ## Frontend Optimization
@@ -64,8 +66,7 @@ const EventMap = dynamic(() => import('../components/EventMap'), {
 const AdminDashboard = dynamic(() => import('../pages/admin/Dashboard'), {
   loading: () => <AdminSkeleton />
 });
-```
-
+```text
 #### Image Optimization
 
 ```javascript
@@ -84,28 +85,33 @@ const EventImage = ({ src, alt }) => (
     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
   />
 );
-```
-
+```text
 #### Bundle Analysis and Optimization
 
 ```bash
+
 # Analyze bundle size
+
 npm run build
 npm run analyze
 
 # Key optimizations:
+
 # 1. Remove unused dependencies
+
 npm uninstall unused-package
 
 # 2. Use tree shaking
+
 import { debounce } from 'lodash/debounce'; // Instead of entire lodash
 
 # 3. Optimize third-party libraries
+
 # Replace moment.js with date-fns (smaller bundle)
+
 npm uninstall moment
 npm install date-fns
-```
-
+```text
 ### 🚀 Caching Strategies
 
 #### Browser Caching
@@ -136,8 +142,7 @@ module.exports = {
     ];
   }
 };
-```
-
+```text
 #### Service Worker Caching
 
 ```javascript
@@ -166,8 +171,7 @@ self.addEventListener('fetch', (event) => {
       })
   );
 });
-```
-
+```text
 ### 📱 Mobile Optimization
 
 ```javascript
@@ -198,8 +202,7 @@ const useOptimizedTouch = () => {
     };
   }, []);
 };
-```
-
+```text
 ---
 
 ## Backend Optimization
@@ -209,7 +212,9 @@ const useOptimizedTouch = () => {
 #### Response Optimization
 
 ```python
+
 # Implement response compression
+
 from flask import Flask
 from flask_compress import Compress
 
@@ -217,6 +222,7 @@ app = Flask(__name__)
 Compress(app)
 
 # Use pagination for large datasets
+
 @app.route('/api/events')
 def get_events():
     page = request.args.get('page', 1, type=int)
@@ -237,12 +243,13 @@ def get_events():
             'pages': events.pages
         }
     }
-```
-
+```text
 #### Caching Layer
 
 ```python
+
 # Implement Redis caching
+
 import redis
 from functools import wraps
 
@@ -271,14 +278,15 @@ def cache_result(expiration=300):
 def get_event_analytics(category, start_date, end_date):
     # Expensive analytics calculation
     return calculate_analytics(category, start_date, end_date)
-```
-
+```text
 ### 🌊 Apache Beam Optimization
 
 #### Pipeline Performance
 
 ```python
+
 # Optimize Beam pipeline performance
+
 import apache_beam as beam
 from apache_beam.options.pipeline_options import PipelineOptions
 
@@ -308,12 +316,13 @@ def optimize_beam_pipeline():
              table_spec,
              write_disposition=beam.io.BigQueryDisposition.WRITE_APPEND,
              create_disposition=beam.io.BigQueryDisposition.CREATE_IF_NEEDED))
-```
-
+```text
 #### Batch Processing Optimization
 
 ```python
+
 # Implement efficient batch processing
+
 class OptimizedEventProcessor(beam.DoFn):
     def __init__(self, batch_size=1000):
         self.batch_size = batch_size
@@ -340,8 +349,7 @@ class OptimizedEventProcessor(beam.DoFn):
     def process_batch(self, batch):
         # Efficient batch processing logic
         return [self.process_single_item(item) for item in batch]
-```
-
+```text
 ---
 
 ## Database Optimization
@@ -382,8 +390,7 @@ const initializeFirestore = () => {
   
   db.settings(settings);
 };
-```
-
+```text
 #### Data Structure Optimization
 
 ```javascript
@@ -416,8 +423,7 @@ const optimizedEventDocument = {
   created_at: admin.firestore.FieldValue.serverTimestamp(),
   updated_at: admin.firestore.FieldValue.serverTimestamp()
 };
-```
-
+```text
 ### 📊 BigQuery Optimization
 
 #### Query Performance
@@ -457,8 +463,7 @@ WHERE ward_name = 'Downtown'
 
 -- Avoid: Full table scans
 -- SELECT * FROM city_intelligence.events_optimized; -- Don't do this
-```
-
+```text
 #### Cost Optimization
 
 ```sql
@@ -488,8 +493,7 @@ SELECT
 FROM city_intelligence.events_optimized
 WHERE DATE(timestamp) >= DATE_SUB(CURRENT_DATE(), INTERVAL 365 DAY)
 GROUP BY 1, 2, 3;
-```
-
+```text
 ---
 
 ## Infrastructure Optimization
@@ -499,7 +503,9 @@ GROUP BY 1, 2, 3;
 #### Compute Optimization
 
 ```yaml
+
 # Cloud Run optimization
+
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
@@ -519,20 +525,23 @@ spec:
       containerConcurrency: 80
       timeoutSeconds: 300
       containers:
+
       - image: gcr.io/citypulse/api:latest
         resources:
           limits:
             memory: "2Gi"
             cpu: "2"
         env:
+
         - name: NODE_ENV
           value: "production"
-```
-
+```text
 #### CDN Configuration
 
 ```yaml
+
 # Cloud CDN setup for static assets
+
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -543,13 +552,16 @@ data:
     description: "CDN for CityPulse static assets"
     defaultService: citypulse-backend
     hostRules:
+
     - hosts:
       - "static.[your-citypulse-domain]"
       pathMatcher: "static-matcher"
     pathMatchers:
+
     - name: "static-matcher"
       defaultService: citypulse-storage
       pathRules:
+
       - paths:
         - "/static/*"
         - "/images/*"
@@ -557,6 +569,7 @@ data:
         - "/css/*"
         service: citypulse-storage
     backends:
+
     - name: citypulse-storage
       bucketName: "citypulse-static-assets"
       enableCdn: true
@@ -565,18 +578,20 @@ data:
         defaultTtl: 3600
         maxTtl: 86400
         clientTtl: 3600
-```
-
+```text
 ### 🔄 Load Balancing
 
 ```yaml
+
 # Application Load Balancer configuration
+
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
   name: citypulse-ssl-cert
 spec:
   domains:
+
   - [your-citypulse-domain]
   - api.[your-citypulse-domain]
 ---
@@ -591,9 +606,11 @@ metadata:
     cloud.google.com/backend-config: '{"default": "citypulse-backend-config"}'
 spec:
   rules:
+
   - host: [your-citypulse-domain]
     http:
       paths:
+
       - path: /*
         pathType: ImplementationSpecific
         backend:
@@ -601,9 +618,11 @@ spec:
             name: citypulse-frontend
             port:
               number: 80
+
   - host: api.[your-citypulse-domain]
     http:
       paths:
+
       - path: /*
         pathType: ImplementationSpecific
         backend:
@@ -611,8 +630,7 @@ spec:
             name: citypulse-api
             port:
               number: 8080
-```
-
+```text
 ---
 
 ## Monitoring and Alerting
@@ -620,7 +638,9 @@ spec:
 ### 📊 Performance Monitoring
 
 ```yaml
+
 # Prometheus monitoring configuration
+
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -632,29 +652,36 @@ data:
       evaluation_interval: 15s
     
     rule_files:
+
     - "citypulse_rules.yml"
     
     scrape_configs:
+
     - job_name: 'citypulse-api'
       static_configs:
+
       - targets: ['citypulse-api:8080']
       metrics_path: '/metrics'
       scrape_interval: 10s
     
     - job_name: 'citypulse-frontend'
       static_configs:
+
       - targets: ['citypulse-frontend:3000']
       metrics_path: '/api/metrics'
       scrape_interval: 30s
-```
-
+```text
 ### 🚨 Alerting Rules
 
 ```yaml
+
 # Alert rules for performance issues
+
 groups:
+
 - name: citypulse_performance
   rules:
+
   - alert: HighResponseTime
     expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 1
     for: 2m
@@ -681,8 +708,7 @@ groups:
     annotations:
       summary: "Database slow queries detected"
       description: "{{ $value }} slow queries in the last 5 minutes"
-```
-
+```text
 ---
 
 ## Performance Testing
@@ -739,17 +765,18 @@ export default function() {
   
   sleep(2);
 }
-```
-
+```text
 ### 📈 Performance Benchmarking
 
 ```bash
 #!/bin/bash
+
 # Performance benchmarking script
 
 echo "Starting CityPulse Performance Benchmark..."
 
 # Frontend performance test
+
 echo "Testing frontend performance..."
 lighthouse [Your CityPulse URL] \
   --output=json \
@@ -757,21 +784,23 @@ lighthouse [Your CityPulse URL] \
   --chrome-flags="--headless"
 
 # API performance test
+
 echo "Testing API performance..."
 ab -n 1000 -c 10 -H "X-API-Key: test-key" \
   [Your CityPulse URL] > ./reports/api-benchmark.txt
 
 # Database performance test
+
 echo "Testing database performance..."
 k6 run --out json=./reports/db-performance.json ./tests/db-load-test.js
 
 # Generate performance report
+
 echo "Generating performance report..."
 node ./scripts/generate-performance-report.js
 
 echo "Performance benchmark complete. Check ./reports/ for results."
-```
-
+```text
 ---
 
 ## Troubleshooting
@@ -781,22 +810,29 @@ echo "Performance benchmark complete. Check ./reports/ for results."
 #### Slow API Responses
 
 ```bash
+
 # Diagnose slow API responses
+
 # 1. Check application logs
+
 kubectl logs -f deployment/citypulse-api --tail=100
 
 # 2. Monitor database queries
+
 # Enable slow query log in Cloud SQL
+
 gcloud sql instances patch citypulse-db \
   --database-flags=slow_query_log=on,long_query_time=1
 
 # 3. Check memory usage
+
 kubectl top pods -l app=citypulse-api
 
 # 4. Analyze request patterns
-# Check Cloud Monitoring for request distribution
-```
 
+# Check Cloud Monitoring for request distribution
+
+```text
 #### High Memory Usage
 
 ```javascript
@@ -828,16 +864,18 @@ const monitorMemory = () => {
 };
 
 setInterval(monitorMemory, 30000); // Every 30 seconds
-```
-
+```text
 #### Database Connection Issues
 
 ```python
+
 # Database connection pool optimization
+
 from sqlalchemy import create_engine
 from sqlalchemy.pool import QueuePool
 
 # Optimize connection pool settings
+
 engine = create_engine(
     database_url,
     poolclass=QueuePool,
@@ -849,6 +887,7 @@ engine = create_engine(
 )
 
 # Monitor connection pool
+
 def monitor_connection_pool():
     pool = engine.pool
     return {
@@ -858,12 +897,13 @@ def monitor_connection_pool():
         'overflow': pool.overflow(),
         'invalid': pool.invalid()
     }
-```
-
+```text
 ### 📋 Performance Checklist
 
 ```markdown
+
 ## Daily Performance Checks
+
 - [ ] Check response time metrics (< 500ms average)
 - [ ] Monitor error rates (< 0.1%)
 - [ ] Verify database query performance
@@ -871,6 +911,7 @@ def monitor_connection_pool():
 - [ ] Review slow query logs
 
 ## Weekly Performance Reviews
+
 - [ ] Analyze performance trends
 - [ ] Review and optimize slow queries
 - [ ] Check cache hit rates
@@ -878,14 +919,13 @@ def monitor_connection_pool():
 - [ ] Update performance baselines
 
 ## Monthly Performance Optimization
+
 - [ ] Conduct load testing
 - [ ] Review and update performance targets
 - [ ] Optimize database indexes
 - [ ] Review and clean up unused resources
 - [ ] Plan capacity scaling
-```
-
+```text
 ---
 
 *This performance guide provides comprehensive strategies for optimizing CityPulse across all layers of the application stack.*
-

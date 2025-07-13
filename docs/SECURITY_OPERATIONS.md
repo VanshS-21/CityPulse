@@ -68,8 +68,7 @@ graph TB
     FS --> KMS
     BQ --> KMS
     CS --> KMS
-```
-
+```text
 ### 🎯 Security Objectives
 
 | Objective | Target | Measurement |
@@ -89,10 +88,13 @@ graph TB
 #### User Role Matrix
 
 ```yaml
+
 # IAM Role Definitions
+
 roles:
   citizen:
     permissions:
+
       - events:read
       - events:create
       - feedback:create
@@ -101,6 +103,7 @@ roles:
 
   authority:
     permissions:
+
       - events:read
       - events:update
       - events:assign
@@ -109,25 +112,29 @@ roles:
 
   admin:
     permissions:
+
       - "*:*"  # Full access
     restrictions:
+
       - require_mfa: true
       - ip_whitelist: ["10.0.0.0/8", "192.168.1.0/24"]
       - session_timeout: 3600  # 1 hour
-```
-
+```text
 #### Service Account Management
 
 ```bash
 #!/bin/bash
+
 # Service account creation and management
 
 # Create service account for API
+
 gcloud iam service-accounts create citypulse-api \
   --description="CityPulse API service account" \
   --display-name="CityPulse API"
 
 # Grant minimal required permissions
+
 gcloud projects add-iam-policy-binding citypulse-project \
   --member="serviceAccount:citypulse-api@citypulse-project.iam.gserviceaccount.com" \
   --role="roles/datastore.user"
@@ -137,10 +144,10 @@ gcloud projects add-iam-policy-binding citypulse-project \
   --role="roles/bigquery.dataEditor"
 
 # Create and download key (store securely)
+
 gcloud iam service-accounts keys create ./keys/citypulse-api-key.json \
   --iam-account=citypulse-api@citypulse-project.iam.gserviceaccount.com
-```
-
+```text
 #### Multi-Factor Authentication (MFA)
 
 ```javascript
@@ -180,8 +187,7 @@ const requireMFA = (requiredRole) => {
     next();
   };
 };
-```
-
+```text
 ### 🔐 API Security
 
 #### Rate Limiting and Throttling
@@ -223,8 +229,7 @@ const authLimiter = rateLimit({
 // Apply rate limiting
 app.use('/api/', apiLimiter);
 app.use('/auth/', authLimiter);
-```
-
+```text
 #### Input Validation and Sanitization
 
 ```javascript
@@ -280,8 +285,7 @@ const handleValidationErrors = (req, res, next) => {
   }
   next();
 };
-```
-
+```text
 ---
 
 ## Security Monitoring
@@ -291,7 +295,9 @@ const handleValidationErrors = (req, res, next) => {
 #### Log Aggregation and Analysis
 
 ```yaml
+
 # Fluentd configuration for security log collection
+
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -321,12 +327,13 @@ data:
       vm_id citypulse-security
       vm_name citypulse-security-vm
     </match>
-```
-
+```text
 #### Intrusion Detection
 
 ```python
+
 # Anomaly detection for security events
+
 import pandas as pd
 from sklearn.ensemble import IsolationForest
 import logging
@@ -382,8 +389,7 @@ class SecurityAnomalyDetector:
 
         # Send to monitoring system
         logging.critical(f"Security anomaly detected: {alert_data}")
-```
-
+```text
 #### Real-time Threat Detection
 
 ```javascript
@@ -463,8 +469,7 @@ const isSuspiciousUserAgent = (userAgent) => {
 
   return suspiciousPatterns.some(pattern => pattern.test(userAgent));
 };
-```
-
+```text
 ---
 
 ## Incident Response
@@ -474,13 +479,16 @@ const isSuspiciousUserAgent = (userAgent) => {
 #### Incident Classification
 
 ```yaml
+
 # Incident severity levels
+
 severity_levels:
   P1_CRITICAL:
     description: "System completely unavailable or data breach"
     response_time: "15 minutes"
     escalation: "Immediate C-level notification"
     examples:
+
       - "Complete system outage"
       - "Data breach with PII exposure"
       - "Successful unauthorized access"
@@ -490,6 +498,7 @@ severity_levels:
     response_time: "1 hour"
     escalation: "Security team lead notification"
     examples:
+
       - "Authentication system down"
       - "Suspected intrusion attempt"
       - "DDoS attack in progress"
@@ -499,6 +508,7 @@ severity_levels:
     response_time: "4 hours"
     escalation: "On-call engineer notification"
     examples:
+
       - "Elevated error rates"
       - "Suspicious activity detected"
       - "Non-critical service degradation"
@@ -508,11 +518,11 @@ severity_levels:
     response_time: "24 hours"
     escalation: "Standard ticket queue"
     examples:
+
       - "Security scan alerts"
       - "Policy violations"
       - "Routine security events"
-```
-
+```text
 #### Incident Response Workflow
 
 ```mermaid
@@ -535,15 +545,16 @@ flowchart TD
 
     J --> N[Update Procedures]
     N --> O[Close Incident]
-```
-
+```text
 #### Incident Response Playbooks
 
 ```bash
 #!/bin/bash
+
 # Security Incident Response Playbook
 
 # P1 Critical Incident Response
+
 respond_to_critical_incident() {
     echo "CRITICAL INCIDENT DETECTED - Initiating response"
 
@@ -590,6 +601,7 @@ respond_to_critical_incident() {
 }
 
 # Data Breach Response
+
 respond_to_data_breach() {
     echo "DATA BREACH DETECTED - Initiating breach response"
 
@@ -609,8 +621,7 @@ respond_to_data_breach() {
     # GDPR requires notification within 72 hours
     echo "Initiating regulatory notification process"
 }
-```
-
+```text
 ---
 
 ## Vulnerability Management
@@ -620,7 +631,9 @@ respond_to_data_breach() {
 #### Automated Security Scanning
 
 ```yaml
+
 # GitHub Actions security scanning workflow
+
 name: Security Scan
 on:
   push:
@@ -628,12 +641,14 @@ on:
   pull_request:
     branches: [main]
   schedule:
+
     - cron: '0 2 * * *'  # Daily at 2 AM
 
 jobs:
   security-scan:
     runs-on: ubuntu-latest
     steps:
+
     - uses: actions/checkout@v3
 
     - name: Run Trivy vulnerability scanner
@@ -662,8 +677,7 @@ jobs:
         target: '[Your CityPulse URL]'
         rules_file_name: '.zap/rules.tsv'
         cmd_options: '-a'
-```
-
+```text
 #### Dependency Vulnerability Management
 
 ```javascript
@@ -776,12 +790,12 @@ class VulnerabilityManager {
     console.log('Vulnerability report generated: ./reports/vulnerability-report.json');
   }
 }
-```
-
+```text
 ### 🔧 Patch Management
 
 ```bash
 #!/bin/bash
+
 # Automated patch management system
 
 PATCH_LOG="/var/log/citypulse/patch-management.log"
@@ -853,6 +867,7 @@ update_container_images() {
 }
 
 # Main patch management routine
+
 main() {
     log_message "Starting patch management cycle"
 
@@ -875,11 +890,11 @@ main() {
 }
 
 # Run if called directly
+
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
     main "$@"
 fi
-```
-
+```text
 ---
 
 ## Data Protection
@@ -889,7 +904,9 @@ fi
 #### Data Encryption at Rest
 
 ```python
+
 # Data encryption utilities
+
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
@@ -952,6 +969,7 @@ class DataEncryption:
         return decrypted_data.decode()
 
 # Usage in application
+
 class SecureUserProfile:
     def __init__(self):
         self.encryption = DataEncryption()
@@ -981,12 +999,13 @@ class SecureUserProfile:
                 decrypted_data[key] = value
 
         return decrypted_data
-```
-
+```text
 #### Key Management with Google Cloud KMS
 
 ```python
+
 # Google Cloud KMS integration
+
 from google.cloud import kms
 import base64
 
@@ -1028,12 +1047,13 @@ class CloudKMSManager:
         )
 
         return response.name
-```
-
+```text
 ### 🛡️ Data Loss Prevention (DLP)
 
 ```python
+
 # Data Loss Prevention implementation
+
 import re
 from typing import List, Dict, Any
 
@@ -1103,8 +1123,7 @@ class DLPScanner:
 
         logger = logging.getLogger('dlp')
         logger.warning(f"Sensitive data detected in field '{field}': {findings}")
-```
-
+```text
 ---
 
 *This security operations guide provides comprehensive procedures for maintaining the security posture of the CityPulse platform.*

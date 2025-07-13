@@ -28,7 +28,9 @@ Based on comprehensive research of 2024-2025 best practices for Apache Beam, Nex
 **Enhancement**: Implement comprehensive dead letter queue pattern
 
 ```python
+
 # Enhanced dead letter queue implementation
+
 class EnhancedDeadLetterHandler(beam.DoFn):
     def __init__(self, error_table_spec):
         self.error_table_spec = error_table_spec
@@ -45,15 +47,16 @@ class EnhancedDeadLetterHandler(beam.DoFn):
             'processing_stage': getattr(element, 'processing_stage', 'unknown')
         }
         yield error_record
-```
-
+```text
 ### 2. **Streaming Optimization with Windowing**
 
 **Current State**: Basic 60-second fixed windows
 **Enhancement**: Implement adaptive windowing strategies
 
 ```python
+
 # Adaptive windowing based on data volume
+
 def create_adaptive_window(data_volume_threshold=1000):
     """Creates adaptive windows based on data volume"""
     if data_volume_threshold > 1000:
@@ -62,15 +65,17 @@ def create_adaptive_window(data_volume_threshold=1000):
         return window.FixedWindows(120)  # Larger windows for low volume
 
 # Session-based windowing for related events
-session_window = window.Sessions(gap=300)  # 5-minute session gap
-```
 
+session_window = window.Sessions(gap=300)  # 5-minute session gap
+```text
 ### 3. **Performance Optimization Patterns**
 
 **Enhancement**: Implement fusion optimization and batching
 
 ```python
+
 # Prevent fusion for CPU-intensive operations
+
 class CPUIntensiveTransform(beam.PTransform):
     def expand(self, pcoll):
         return (pcoll
@@ -80,6 +85,7 @@ class CPUIntensiveTransform(beam.PTransform):
                 | 'ExtractValues' >> beam.Map(lambda kv: kv[1]))
 
 # Batch external API calls
+
 class BatchedAPICall(beam.DoFn):
     def __init__(self, batch_size=100):
         self.batch_size = batch_size
@@ -89,8 +95,7 @@ class BatchedAPICall(beam.DoFn):
         """Process batch of elements with single API call"""
         # Implement batched API processing
         pass
-```
-
+```text
 ---
 
 ## ⚛️ Next.js 15 Architecture Enhancements
@@ -130,8 +135,7 @@ export default async function DashboardPage() {
 
 // ISR for frequently updated static content
 export const revalidate = 60; // Revalidate every 60 seconds
-```
-
+```text
 ### 2. **Server Actions Enhancement**
 
 **Current State**: Basic server action in submit-report
@@ -182,8 +186,7 @@ export async function submitReport(formData: FormData) {
     };
   }
 }
-```
-
+```text
 ### 3. **State Management Optimization**
 
 **Enhancement**: Implement granular state management
@@ -220,8 +223,7 @@ export const useDashboardStore = create<DashboardState>()(
       set((state) => ({ ui: { ...state.ui, [key]: !state.ui[key] } }))
   }))
 );
-```
-
+```text
 ---
 
 ## 🔒 GCP Security Enhancements
@@ -232,8 +234,11 @@ export const useDashboardStore = create<DashboardState>()(
 **Enhancement**: Implement principle of least privilege
 
 ```hcl
+
 # Enhanced Terraform IAM configuration
+
 # infra/security.tf
+
 resource "google_service_account" "dataflow_worker" {
   account_id   = "citypulse-dataflow-worker"
   display_name = "CityPulse Dataflow Worker Service Account"
@@ -241,6 +246,7 @@ resource "google_service_account" "dataflow_worker" {
 }
 
 # Granular permissions for different pipeline types
+
 resource "google_project_iam_custom_role" "citizen_report_processor" {
   role_id     = "citizenReportProcessor"
   title       = "Citizen Report Processor"
@@ -256,18 +262,20 @@ resource "google_project_iam_custom_role" "citizen_report_processor" {
 }
 
 # Separate service accounts for different pipeline types
+
 resource "google_service_account" "ai_processor" {
   account_id   = "citypulse-ai-processor"
   display_name = "CityPulse AI Processing Service Account"
 }
-```
-
+```text
 ### 2. **Network Security Hardening**
 
 **Enhancement**: Implement VPC and private networking
 
 ```hcl
+
 # Private VPC for Dataflow workers
+
 resource "google_compute_network" "citypulse_vpc" {
   name                    = "citypulse-private-network"
   auto_create_subnetworks = false
@@ -284,6 +292,7 @@ resource "google_compute_subnetwork" "dataflow_subnet" {
 }
 
 # Firewall rules for secure communication
+
 resource "google_compute_firewall" "dataflow_internal" {
   name    = "citypulse-dataflow-internal"
   network = google_compute_network.citypulse_vpc.name
@@ -296,8 +305,7 @@ resource "google_compute_firewall" "dataflow_internal" {
   source_ranges = ["10.0.1.0/24"]
   target_tags   = ["dataflow-worker"]
 }
-```
-
+```text
 ---
 
 ## 🏗️ Microservices Architecture Patterns
@@ -307,8 +315,11 @@ resource "google_compute_firewall" "dataflow_internal" {
 **Enhancement**: Implement domain-driven microservices
 
 ```python
+
 # Domain-specific pipeline services
+
 # src/services/citizen_reports/pipeline.py
+
 class CitizenReportService(BasePipeline):
     """Dedicated service for citizen report processing"""
     
@@ -328,6 +339,7 @@ class CitizenReportService(BasePipeline):
                 | 'TriggerNotifications' >> beam.ParDo(NotificationTriggerFn()))
 
 # src/services/ai_analysis/pipeline.py
+
 class AIAnalysisService(BasePipeline):
     """Dedicated service for AI-powered analysis"""
     
@@ -338,8 +350,7 @@ class AIAnalysisService(BasePipeline):
                 | 'AnalyzeSentiment' >> beam.ParDo(SentimentAnalysisFn())
                 | 'GenerateSummary' >> beam.ParDo(SummaryGenerationFn())
                 | 'DetectAnomalies' >> beam.ParDo(AnomalyDetectionFn()))
-```
-
+```text
 ### 2. **API Gateway Pattern**
 
 **Enhancement**: Implement centralized API management
@@ -397,8 +408,7 @@ export class APIGateway {
     }
   }
 }
-```
-
+```text
 ---
 
 ## 📊 Performance Monitoring Enhancements
@@ -408,7 +418,9 @@ export class APIGateway {
 **Enhancement**: Implement comprehensive monitoring
 
 ```python
+
 # Enhanced metrics collection for pipelines
+
 class MetricsCollector(beam.DoFn):
     def __init__(self, metric_name: str):
         self.metric_name = metric_name
@@ -434,8 +446,7 @@ class MetricsCollector(beam.DoFn):
             error_counter = Metrics.counter(self.__class__, f'{self.metric_name}_errors')
             error_counter.inc()
             raise
-```
-
+```text
 ---
 
 ## 🎯 Implementation Roadmap

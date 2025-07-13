@@ -75,16 +75,14 @@ A validation script, `validate_schemas.py`, is provided to ensure that the schem
 
 ```bash
 python validate_schemas.py
-```
-
+```text
 ### Table Setup
 
 The `setup_bigquery_tables.py` script creates the BigQuery dataset and tables based on the JSON schemas.
 
 ```bash
 python setup_bigquery_tables.py --project-id YOUR_PROJECT_ID
-```
-
+```text
 ---
 
 ## Data Ingestion Pipelines
@@ -130,4 +128,4 @@ The `tests/` directory contains a suite of tests for the data models, schemas, a
 
 ```bash
 pytest
-```
+```text

@@ -37,14 +37,12 @@ We aim for high test coverage to ensure the quality of our code. To generate a c
 
 ```bash
 pytest --cov=data_models
-```
-
+```text
 To view the report in HTML format, run:
 
 ```bash
 pytest --cov=data_models --cov-report=html
-```
-
+```text
 This will create an `htmlcov` directory. Open `htmlcov/index.html` in your browser to view the detailed report.
 
 ## Test Structure

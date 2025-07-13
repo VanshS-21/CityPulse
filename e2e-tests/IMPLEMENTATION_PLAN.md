@@ -8,33 +8,38 @@ This document outlines the comprehensive implementation plan for the CityPulse E
 
 ### ✅ What's Implemented and Ready for Testing
 
-**Backend APIs (Python/FastAPI)**
+#### Backend APIs (Python/FastAPI)
+
 - Events API: Full CRUD operations with authentication
 - Users API: Profile management and role-based access
 - Feedback API: User feedback collection and processing
 - Analytics API: KPIs, trends, and location-based analytics
 - Authentication: Firebase Auth with role-based permissions
 
-**Data Pipeline**
+#### Data Pipeline
+
 - Apache Beam/Dataflow integration
 - Pub/Sub messaging system
 - BigQuery data storage
 - AI processing capabilities
 
-**Frontend (Minimal)**
+#### Frontend (Minimal)
+
 - Next.js API routes forwarding to backend
 - Basic authentication middleware
 - Placeholder UI components
 
 ### 🧹 Legacy Test Issues Identified
 
-**Assessment Results:**
+#### Assessment Results:
+
 - 6 test directories found with scattered organization
 - 11 redundant test groups requiring consolidation
 - Tests spread across `tests/`, `__tests__/`, and `tests/e2e-legacy/`
 - Mixed Jest and pytest configurations
 
-**Recommendations:**
+#### Recommendations:
+
 1. Consolidate redundant test groups
 2. Migrate valuable tests from legacy directories
 3. Unify test configurations
@@ -43,7 +48,8 @@ This document outlines the comprehensive implementation plan for the CityPulse E
 ## 🏗️ Framework Architecture
 
 ### Directory Structure
-```
+
+```text
 e2e-tests/
 ├── config/                    # Environment and test configurations
 ├── core/                      # Core testing frameworks
@@ -57,9 +63,9 @@ e2e-tests/
 ├── utils/                     # Testing utilities and helpers
 ├── legacy-cleanup/            # Legacy test management
 └── reports/                   # Test execution reports
-```
-
+```text
 ### Technology Stack
+
 - **Backend Testing**: pytest with asyncio, httpx for API testing
 - **Frontend Testing**: Jest + Playwright (when needed)
 - **Data Pipeline**: Google Cloud SDK for GCP services
@@ -70,6 +76,7 @@ e2e-tests/
 ## 🚀 Implementation Phases
 
 ### Phase 1: Foundation Setup ✅ COMPLETED
+
 - [x] Created comprehensive directory structure
 - [x] Implemented configuration management system
 - [x] Built legacy assessment tool
@@ -78,9 +85,11 @@ e2e-tests/
 - [x] Set up test runner and execution framework
 
 ### Phase 2: Backend API Testing 🚧 IN PROGRESS
-**Priority: HIGH - Aligns with backend-first development**
 
-**Tasks:**
+#### Priority: HIGH - Aligns with backend-first development
+
+#### Tasks:
+
 - [ ] Implement comprehensive Events API tests
 - [ ] Create Users API authentication flow tests
 - [ ] Build Feedback API integration tests
@@ -88,16 +97,19 @@ e2e-tests/
 - [ ] Add role-based access control testing
 - [ ] Create API performance benchmarks
 
-**Deliverables:**
+#### Deliverables:
+
 - Complete API test coverage for all implemented endpoints
 - Authentication and authorization test suite
 - API performance baseline metrics
 - Error handling and edge case validation
 
 ### Phase 3: Data Pipeline E2E Testing 📋 PLANNED
-**Priority: HIGH - Critical for data integrity**
 
-**Tasks:**
+#### Priority: HIGH - Critical for data integrity
+
+#### Tasks:
+
 - [ ] Implement Pub/Sub message flow testing
 - [ ] Create Dataflow pipeline execution validation
 - [ ] Build BigQuery data integrity testing
@@ -105,32 +117,38 @@ e2e-tests/
 - [ ] Add error handling and recovery testing
 - [ ] Create data quality validation tests
 
-**Deliverables:**
+#### Deliverables:
+
 - End-to-end data flow validation
 - Data quality and integrity assurance
 - Pipeline performance monitoring
 - Error recovery testing
 
 ### Phase 4: Legacy Cleanup and Migration 📋 PLANNED
-**Priority: MEDIUM - Maintenance and organization**
 
-**Tasks:**
+#### Priority: MEDIUM - Maintenance and organization
+
+#### Tasks:
+
 - [ ] Execute legacy test removal based on assessment
 - [ ] Migrate valuable test components to new framework
 - [ ] Consolidate redundant test cases
 - [ ] Unify test configurations and dependencies
 - [ ] Update CI/CD pipeline integration
 
-**Deliverables:**
+#### Deliverables:
+
 - Clean, organized test structure
 - Eliminated redundancy and obsolete tests
 - Unified testing approach
 - Updated documentation
 
 ### Phase 5: Frontend Integration Testing 📋 FUTURE
-**Priority: LOW - Pending frontend development**
 
-**Tasks:**
+#### Priority: LOW - Pending frontend development
+
+#### Tasks:
+
 - [ ] Basic UI component testing
 - [ ] API integration from frontend
 - [ ] Authentication flow testing
@@ -140,9 +158,11 @@ e2e-tests/
 **Note:** This phase will be expanded when frontend development progresses.
 
 ### Phase 6: Performance and Security Testing 📋 PLANNED
-**Priority: MEDIUM - Production readiness**
 
-**Tasks:**
+#### Priority: MEDIUM - Production readiness
+
+#### Tasks:
+
 - [ ] API load testing and benchmarking
 - [ ] Data pipeline stress testing
 - [ ] Security vulnerability scanning
@@ -152,6 +172,7 @@ e2e-tests/
 ## 🛠️ Implementation Guidelines
 
 ### Development Approach
+
 1. **Backend-First Focus**: Prioritize API and data pipeline testing
 2. **Incremental Implementation**: Build and test one component at a time
 3. **Continuous Integration**: Integrate tests into CI/CD pipeline
@@ -159,12 +180,14 @@ e2e-tests/
 5. **Performance Monitoring**: Track test execution performance
 
 ### Quality Standards
+
 - **Test Coverage**: Aim for >90% coverage of implemented features
 - **Test Reliability**: >95% consistent pass rate
 - **Execution Speed**: Full suite completes in <15 minutes
 - **Maintenance**: <2 hours/week for test maintenance
 
 ### Best Practices
+
 - Use fixtures and factories for test data
 - Implement proper cleanup and resource management
 - Follow naming conventions for easy navigation
@@ -174,18 +197,21 @@ e2e-tests/
 ## 📈 Success Metrics
 
 ### Technical Metrics
+
 - **API Coverage**: 100% of implemented endpoints tested
 - **Data Pipeline Coverage**: Complete flow validation
 - **Performance Baselines**: Established for all components
 - **Security Validation**: All auth flows tested
 
 ### Process Metrics
+
 - **Test Execution Time**: <15 minutes for full suite
 - **Test Stability**: >95% pass rate
 - **Defect Detection**: >85% bugs caught before production
 - **Maintenance Overhead**: <2 hours/week
 
 ### Business Metrics
+
 - **Deployment Confidence**: Reduced production issues
 - **Development Velocity**: Faster feature delivery
 - **Quality Assurance**: Improved code quality
@@ -194,12 +220,14 @@ e2e-tests/
 ## 🔄 Continuous Improvement
 
 ### Monitoring and Feedback
+
 - Daily test execution monitoring
 - Weekly performance analysis
 - Monthly test quality assessment
 - Quarterly strategy review
 
 ### Adaptation Strategy
+
 - Regular assessment of test relevance
 - Automated obsolete test detection
 - Performance optimization
@@ -208,18 +236,21 @@ e2e-tests/
 ## 📋 Next Steps
 
 ### Immediate Actions (Next 1-2 weeks)
+
 1. **Install Dependencies**: Set up Python and Node.js environments
 2. **Configure GCP**: Set up test project and credentials
 3. **Implement API Tests**: Start with Events API comprehensive testing
 4. **Set up CI Integration**: Add tests to GitHub Actions
 
 ### Short-term Goals (Next month)
+
 1. Complete backend API testing suite
 2. Implement basic data pipeline testing
 3. Execute legacy cleanup
 4. Establish performance baselines
 
 ### Long-term Vision (Next quarter)
+
 1. Full data pipeline E2E validation
 2. Performance and security testing
 3. Frontend integration testing (when ready)
@@ -228,12 +259,14 @@ e2e-tests/
 ## 🤝 Team Collaboration
 
 ### Roles and Responsibilities
+
 - **Development Team**: Provide API specifications and test requirements
 - **QA Team**: Review test cases and validation criteria
 - **DevOps Team**: Integrate tests into CI/CD pipeline
 - **Product Team**: Define acceptance criteria and user journeys
 
 ### Communication Plan
+
 - Weekly test status updates
 - Monthly test quality reviews
 - Quarterly framework evolution planning

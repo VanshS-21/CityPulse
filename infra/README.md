@@ -17,16 +17,14 @@ Authenticate with Google Cloud. This command will open a browser window for you 
 ```bash
 gcloud auth application-default login
 gcloud auth login
-```
-
+```text
 ## 3. Configuration
 
 All infrastructure variables are defined in `terraform.tfvars`. To get started, copy the example file:
 
 ```bash
 cp terraform.tfvars.example terraform.tfvars
-```
-
+```text
 Now, open `terraform.tfvars` and update the following values for your environment:
 
 -   `project_id`: Your Google Cloud project ID.
@@ -78,8 +76,7 @@ To decommission all resources created by this configuration, run the following c
 
 ```bash
 terraform destroy
-```
-
+```text
 - [Terraform Documentation](https://www.terraform.io/docs/index.html)
 - [Google Cloud Terraform Provider](https://registry.terraform.io/providers/hashicorp/google/latest/docs)
 - [Google Cloud Best Practices](https://cloud.google.com/docs/terraform/best-practices-for-terraform)

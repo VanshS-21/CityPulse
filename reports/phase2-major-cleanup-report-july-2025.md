@@ -34,13 +34,14 @@ Based on git history and codebase analysis, CityPulse underwent major architectu
 ### **Git History Analysis**
 
 ```bash
+
 # Recent major commits identified:
+
 - July 13: Comprehensive debugging audit fixes
 - July 13: Documentation maintenance updates  
 - July 13: Phase 1 cleanup (previous cleanup)
 - Multiple architectural improvements
-```
-
+```text
 ---
 
 ## 🗑️ Cleanup Activities Completed
@@ -204,31 +205,37 @@ Based on git history and codebase analysis, CityPulse underwent major architectu
 ### **Restore Legacy API** (if needed)
 
 ```bash
+
 # Restore entire legacy API implementation
+
 git checkout HEAD~1 -- server/legacy-api/
 
 # Restore specific components
+
 git checkout HEAD~1 -- server/legacy-api/main.py
 git checkout HEAD~1 -- server/legacy-api/requirements.txt
-```
-
+```text
 ### **Restore Reports** (if needed)
 
 ```bash
+
 # Restore all removed reports
+
 git checkout HEAD~1 -- reports/comprehensive-cleanup-report.md
 git checkout HEAD~1 -- reports/redundancy-cleanup-report.md
-# ... (other reports as needed)
-```
 
+# ... (other reports as needed)
+
+```text
 ### **Restore Generated Artifacts** (if needed)
 
 ```bash
+
 # Restore build cache (though it will be regenerated)
+
 git checkout HEAD~1 -- tsconfig.tsbuildinfo
 git checkout HEAD~1 -- test-reports/
-```
-
+```text
 ---
 
 ## 🎯 Future Recommendations

@@ -169,17 +169,19 @@ Successfully completed Phase 1 of comprehensive codebase cleanup for CityPulse, 
 If any issues are discovered, the following files can be restored from git history:
 
 ```bash
+
 # Restore removed files (if needed)
+
 git checkout HEAD~1 -- ques.java
 git checkout HEAD~1 -- data/seeds/package-lock.json
 git checkout HEAD~1 -- data/seeds/bandit_security_report.json
 git checkout HEAD~1 -- next.config.js
 
 # Revert test file changes
+
 git checkout HEAD~1 -- __tests__/integration/api-routing.test.ts
 git checkout HEAD~1 -- jest.config.js
-```
-
+```text
 ### Validation After Rollback
 
 1. Run `npm run build` to verify build process

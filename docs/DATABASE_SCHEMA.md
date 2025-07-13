@@ -11,10 +11,10 @@
 CityPulse uses a **hybrid database architecture** combining Firestore for real-time operations and BigQuery for analytics. This design optimizes for both low-latency user interactions and complex analytical queries.
 
 ### Architecture Pattern
-```
-User Actions → Firestore (Real-time) → Pub/Sub → BigQuery (Analytics)
-```
 
+```text
+User Actions → Firestore (Real-time) → Pub/Sub → BigQuery (Analytics)
+```text
 ---
 
 ## 1. Firestore Schema
@@ -70,9 +70,9 @@ interface Event {
   // Metadata
   metadata: Record<string, any>;  // Flexible additional data
 }
-```
-
+```text
 **Enums**:
+
 ```typescript
 enum EventCategory {
   TRAFFIC = "traffic",
@@ -102,9 +102,9 @@ enum EventStatus {
   MONITORING = "monitoring",
   ARCHIVED = "archived"
 }
-```
-
+```text
 **Indexes**:
+
 - Composite: `(category, status, start_time)`
 - Composite: `(severity, status, created_at)`
 - Single: `user_id`, `status`, `category`
@@ -145,18 +145,18 @@ interface UserProfile {
   created_at: Timestamp;
   updated_at: Timestamp;
 }
-```
-
+```text
 **Enums**:
+
 ```typescript
 enum UserRole {
   USER = "user",
   MODERATOR = "moderator", 
   ADMIN = "admin"
 }
-```
-
+```text
 **Indexes**:
+
 - Single: `roles`, `is_active`, `last_login`
 - Composite: `(roles, is_active)`
 
@@ -197,9 +197,9 @@ interface Feedback {
   created_at: Timestamp;
   updated_at: Timestamp;
 }
-```
-
+```text
 **Enums**:
+
 ```typescript
 enum FeedbackType {
   BUG = "bug",
@@ -217,8 +217,7 @@ enum FeedbackStatus {
   WONT_FIX = "wont_fix",
   DUPLICATE = "duplicate"
 }
-```
-
+```text
 ---
 
 ## 2. BigQuery Schema
@@ -275,14 +274,15 @@ CREATE TABLE city_intelligence.events (
 )
 PARTITION BY DATE(timestamp)
 CLUSTER BY ward_name, event_type, severity_level;
-```
-
+```text
 **Partitioning Strategy**:
+
 - **Partition Field**: `DATE(timestamp)`
 - **Retention**: 7 years (configurable)
 - **Benefits**: Query performance, cost optimization
 
 **Clustering Strategy**:
+
 - **Cluster Fields**: `ward_name`, `event_type`, `severity_level`
 - **Benefits**: Improved query performance for common filters
 
@@ -309,8 +309,7 @@ CREATE TABLE city_intelligence.user_analytics (
 )
 PARTITION BY DATE(timestamp)
 CLUSTER BY user_id, action_type;
-```
-
+```text
 ---
 
 ## 3. Data Relationships
@@ -353,8 +352,7 @@ erDiagram
         object related_entity
         timestamp created_at
     }
-```
-
+```text
 ### 3.2 Data Flow
 
 ```mermaid
@@ -367,8 +365,7 @@ graph LR
     
     B --> G[Real-time UI Update]
     F --> H[Analytics Dashboard]
-```
-
+```text
 ---
 
 ## 4. Performance Considerations
@@ -376,11 +373,13 @@ graph LR
 ### 4.1 Firestore Optimization
 
 **Read Optimization**:
+
 - Use composite indexes for complex queries
 - Implement pagination for large result sets
 - Cache frequently accessed data
 
 **Write Optimization**:
+
 - Batch writes when possible
 - Use transactions for data consistency
 - Implement optimistic locking
@@ -388,11 +387,13 @@ graph LR
 ### 4.2 BigQuery Optimization
 
 **Query Optimization**:
+
 - Use partitioning for time-based queries
 - Leverage clustering for common filters
 - Implement materialized views for complex aggregations
 
 **Cost Optimization**:
+
 - Use appropriate data types
 - Implement data lifecycle policies
 - Monitor query costs and optimize expensive queries
@@ -426,11 +427,11 @@ service cloud.firestore {
     }
   }
 }
-```
-
+```text
 ### 5.2 BigQuery Access Control
 
 **IAM Roles**:
+
 - `bigquery.dataViewer`: Read-only access for analysts
 - `bigquery.dataEditor`: Write access for data pipelines
 - `bigquery.admin`: Full access for administrators
@@ -442,11 +443,13 @@ service cloud.firestore {
 ### 6.1 Schema Evolution Strategy
 
 **Firestore**:
+
 - Additive changes only (new fields)
 - Use optional fields for backward compatibility
 - Implement data migration functions for breaking changes
 
 **BigQuery**:
+
 - Use `ALTER TABLE` for schema changes
 - Implement versioned table names for major changes
 - Maintain backward compatibility views
@@ -467,12 +470,14 @@ service cloud.firestore {
 ### 7.1 Health Metrics
 
 **Firestore**:
+
 - Read/write operations per second
 - Document count per collection
 - Index usage statistics
 - Error rates and latency
 
 **BigQuery**:
+
 - Query performance metrics
 - Storage usage and costs
 - Slot utilization
@@ -481,16 +486,19 @@ service cloud.firestore {
 ### 7.2 Maintenance Tasks
 
 **Daily**:
+
 - Monitor error rates and performance
 - Check data pipeline health
 - Validate data quality
 
 **Weekly**:
+
 - Review storage usage and costs
 - Analyze query performance
 - Update indexes if needed
 
 **Monthly**:
+
 - Review and optimize expensive queries
 - Clean up old data per retention policies
 - Update documentation for schema changes
@@ -498,4 +506,3 @@ service cloud.firestore {
 ---
 
 *This schema documentation provides the foundation for understanding and working with CityPulse data structures.*
-

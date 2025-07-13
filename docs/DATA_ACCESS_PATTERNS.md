@@ -38,8 +38,7 @@ useEffect(() => {
   // Unsubscribe when the component unmounts
   return () => unsubscribe();
 }, []);
-```
-
+```text
 ## 3. Backend REST API (for Business Logic & CRUD)
 
 The backend REST API (planned, to be built on Cloud Run/Functions) will be the primary method for most data interactions.
@@ -74,8 +73,7 @@ async function submitNewEvent(eventData) {
 
   return await response.json();
 }
-```
-
+```text
 ## Summary of Patterns
 
 | Use Case | Recommended Pattern | Rationale |
@@ -87,4 +85,3 @@ async function submitNewEvent(eventData) {
 | **Real-time chat/notifications**| Direct Firestore Access | Ideal for low-latency, subscription-based features. |
 
 By adhering to these patterns, we ensure that the CityPulse application remains secure, scalable, and maintainable as it evolves.
-

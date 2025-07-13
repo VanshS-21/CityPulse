@@ -67,6 +67,7 @@ The backend consists of Apache Beam pipelines that process streaming data. These
         # Set the entrypoint for the template
         ENV FLEX_TEMPLATE_PYTHON_PY_FILE="data_ingestion/iot_pipeline.py"
         ```
+
     *   Build the Docker image and push it to Google Container Registry (GCR):
         ```bash
         # Set your GCP Project ID and desired image name
@@ -124,4 +125,3 @@ The backend consists of Apache Beam pipelines that process streaming data. These
     *   You will see your running job and can monitor its progress, inspect logs, and view metrics.
 
 Repeat this process for each data pipeline (`citizen_report_pipeline`, `social_media_pipeline`, etc.) by creating a corresponding Dockerfile, template spec, and launch command.
-

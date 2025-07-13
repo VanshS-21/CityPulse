@@ -48,6 +48,7 @@ This guide is intended to help developers resolve common issues encountered whil
           --input_subscription projects/your-gcp-project-id/subscriptions/your-iot-subscription \
           --output_collection events
         ```
+
     -   Ensure the service account you are using has the "Dataflow Worker" and other necessary roles.
 
 ### Issue: Dataflow job fails with "permission denied" on a GCP service
@@ -79,4 +80,3 @@ This guide is intended to help developers resolve common issues encountered whil
     1.  **Check GCS Path:** Double-check that the `--template-file-gcs-location` path is correct and that the JSON template file exists at that location.
     2.  **Check Docker Image Path:** In your template JSON file, verify that the `image` path points to a valid Docker image in Google Container Registry (GCR) that you have permission to access.
     3.  **Check API Enablement:** Ensure the `Dataflow API` and `Cloud Build API` are enabled in your GCP project.
-

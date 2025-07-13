@@ -32,6 +32,7 @@ This project and everyone participating in it is governed by the [CityPulse Code
 ### Prerequisites
 
 Make sure you have the following tools installed on your system:
+
 -   Node.js (v18 or later)
 -   Python (v3.11 or later)
 -   Terraform (v1.0 or later)
@@ -48,16 +49,19 @@ Make sure you have the following tools installed on your system:
 ### Frontend (Next.js)
 
 ```bash
+
 # Navigate to the project root
+
 cd CityPulse
 
 # Install dependencies
+
 npm install
 
 # Run the development server
-npm run dev
-```
 
+npm run dev
+```text
 ### Backend Data Pipelines (Python)
 
 Refer to the `data_models/README.md` for detailed instructions on setting up the Python environment and running the data ingestion pipelines locally.
@@ -65,6 +69,7 @@ Refer to the `data_models/README.md` for detailed instructions on setting up the
 ### Backend API Layer (Planned)
 
 When contributing to the backend API (Cloud Run/Functions):
+
 1.  Set up a local development server for the chosen framework (e.g., Express for Node.js, FastAPI for Python).
 2.  Use tools like the Firebase Local Emulator Suite to mock cloud services.
 3.  Ensure you have authenticated with the Google Cloud SDK.
@@ -72,6 +77,7 @@ When contributing to the backend API (Cloud Run/Functions):
 ### Mobile App (Planned)
 
 To contribute to the Flutter mobile app:
+
 1.  Ensure you have the Flutter SDK and its dependencies (Xcode for iOS, Android Studio for Android) installed.
 2.  Run `flutter doctor` to verify your setup.
 3.  Open the project in your preferred editor (VS Code or Android Studio) and run it on an emulator or a physical device.
@@ -113,7 +119,7 @@ We follow the [PEP 8](https://www.python.org/dev/peps/pep-0008/) style guide for
 ### API Design
 
 For contributions to the backend API:
+
 -   **Specification First**: All new endpoints or changes to existing ones must be documented in the OpenAPI/Swagger specification first.
 -   **RESTful Principles**: Follow RESTful design principles for creating scalable and maintainable APIs.
 -   **Security**: Ensure all endpoints have proper authentication and authorization checks.
-

@@ -7,22 +7,26 @@ CityPulse now uses **Roboto Flex** as its primary typeface. Roboto Flex is a var
 ## What's Implemented
 
 ### 1. Font Loading
+
 - **Google Fonts Integration**: Roboto Flex is loaded via Google Fonts in `src/app/layout.tsx`
 - **Variable Font Settings**: Full weight range (100-1000) and optical sizing (8-144) enabled
 - **Performance Optimized**: Uses `font-display: swap` for better loading performance
 
 ### 2. CSS Configuration
+
 - **Primary Font**: Roboto Flex is now the primary font in `globals.css`
 - **Fallback Chain**: Robust fallback to Inter, system fonts, and sans-serif
 - **CSS Variables**: Updated to prioritize Roboto Flex in the font stack
 
 ### 3. Tailwind Configuration
+
 - **Font Families**: Updated Tailwind config to use Roboto Flex as primary
 - **Additional Font Stack**: Added `font-flex` utility for explicit Roboto Flex usage
 
 ## Variable Font Features
 
 ### Weight Variations
+
 Roboto Flex supports variable weights from 100 to 1000:
 
 ```css
@@ -36,9 +40,9 @@ Roboto Flex supports variable weights from 100 to 1000:
 .font-bold { font-variation-settings: 'wght' 700; }
 .font-extrabold { font-variation-settings: 'wght' 800; }
 .font-black { font-variation-settings: 'wght' 900; }
-```
-
+```text
 ### Optical Sizing
+
 Optical sizing automatically adjusts the font for different text sizes:
 
 ```css
@@ -52,8 +56,7 @@ Optical sizing automatically adjusts the font for different text sizes:
 .text-optical-4xl { font-variation-settings: 'opsz' 64; }  /* Display text */
 .text-optical-5xl { font-variation-settings: 'opsz' 96; }  /* Hero text */
 .text-optical-6xl { font-variation-settings: 'opsz' 144; } /* Maximum size */
-```
-
+```text
 ## CityPulse Typography Presets
 
 We've created semantic typography classes that combine weight and optical sizing:
@@ -75,8 +78,7 @@ We've created semantic typography classes that combine weight and optical sizing
 // Display text
 <div className="font-display text-6xl">98.5%</div>
 <h1 className="font-hero text-8xl">CityPulse</h1>
-```
-
+```text
 ### Preset Classes
 
 | Class | Weight | Optical Size | Use Case |
@@ -92,6 +94,7 @@ We've created semantic typography classes that combine weight and optical sizing
 ## Best Practices
 
 ### 1. Use Semantic Classes
+
 Prefer semantic typography classes over generic weight classes:
 
 ```jsx
@@ -100,18 +103,18 @@ Prefer semantic typography classes over generic weight classes:
 
 // ❌ Avoid - Generic and inconsistent
 <h2 className="font-semibold">System Status</h2>
-```
-
+```text
 ### 2. Combine with Tailwind Text Sizes
+
 The preset classes work with Tailwind's text sizing:
 
 ```jsx
 <h1 className="font-hero text-6xl md:text-8xl">CityPulse</h1>
 <h2 className="font-heading text-2xl md:text-4xl">Analytics</h2>
 <p className="font-body text-base">Content description</p>
-```
-
+```text
 ### 3. Letter Spacing
+
 Some presets include optimized letter spacing:
 
 - **Headings**: Negative letter spacing for tighter appearance
@@ -119,27 +122,30 @@ Some presets include optimized letter spacing:
 - **Captions**: Slight positive spacing for readability
 
 ### 4. Responsive Typography
+
 Use responsive modifiers for different screen sizes:
 
 ```jsx
 <h1 className="font-hero text-4xl md:text-6xl lg:text-8xl">
   Smart City Dashboard
 </h1>
-```
-
+```text
 ## Performance Considerations
 
 ### 1. Font Loading
+
 - Roboto Flex loads asynchronously with `font-display: swap`
 - Fallback fonts ensure immediate text rendering
 - Consider using `font-optical-sizing: auto` in CSS for automatic optimization
 
 ### 2. Variable Font Efficiency
+
 - Single font file supports all weights and optical sizes
 - Reduces HTTP requests compared to multiple font files
 - Smaller total file size than loading multiple weights
 
 ### 3. Browser Support
+
 - Excellent support in modern browsers
 - Graceful fallback to system fonts in older browsers
 - Progressive enhancement approach
@@ -147,6 +153,7 @@ Use responsive modifiers for different screen sizes:
 ## Migration Guide
 
 ### From Existing Components
+
 1. Remove explicit font weight classes where semantic classes exist
 2. Add optical sizing for better text rendering
 3. Use preset classes for consistency
@@ -159,30 +166,32 @@ Use responsive modifiers for different screen sizes:
 // After
 <h1 className="text-4xl font-heading">Dashboard</h1>
 <p className="text-base font-body">Content</p>
-```
-
+```text
 ### Custom Combinations
+
 For unique cases, combine optical sizing with weight:
 
 ```jsx
 <span className="text-optical-lg font-medium">
   Custom styled text
 </span>
-```
-
+```text
 ## Troubleshooting
 
 ### Font Not Loading
+
 1. Check network requests for Google Fonts
 2. Verify `layout.tsx` has correct font links
 3. Ensure fallback fonts are working
 
 ### Inconsistent Rendering
+
 1. Use semantic classes instead of generic weights
 2. Check for conflicting CSS
 3. Verify optical sizing is appropriate for text size
 
 ### Performance Issues
+
 1. Ensure `font-display: swap` is set
 2. Consider preloading critical font variations
 3. Check for unused font weights

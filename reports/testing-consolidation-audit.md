@@ -140,7 +140,7 @@
 
 ### **Unified Structure Design**
 
-```
+```text
 tests-unified/
 ├── config/
 │   ├── environments.json          # All environment configurations
@@ -171,8 +171,7 @@ tests-unified/
     ├── README.md                  # Unified documentation
     ├── QUICK_START.md             # Getting started guide
     └── ADVANCED.md                # Advanced testing features
-```
-
+```text
 ### **Consolidation Benefits**
 
 #### **Immediate Benefits**

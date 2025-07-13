@@ -7,18 +7,21 @@ The CityPulse Design System is a comprehensive collection of reusable components
 ## 🎯 Design Principles
 
 ### **Trust & Reliability**
+
 - Clear visual hierarchy
 - Consistent interaction patterns
 - Accessible design standards
 - Professional appearance
 
 ### **Data Clarity**
+
 - Clean information architecture
 - Readable typography
 - Meaningful use of color
 - Efficient data visualization
 
 ### **Urban Intelligence**
+
 - Modern, tech-forward aesthetic
 - City-inspired color palette
 - Scalable components
@@ -27,20 +30,22 @@ The CityPulse Design System is a comprehensive collection of reusable components
 ## 🏗️ Architecture
 
 ### **Atomic Design Structure**
-```
+
+```text
 Design System
 ├── Tokens/         # Design tokens (colors, spacing, typography)
 ├── Base/          # Foundational components (Button, Input, Card)
 ├── Composite/     # Complex components (Forms, Navigation)
 ├── Patterns/      # Common UI patterns and templates
 └── Guidelines/    # Usage guidelines and best practices
-```
+```text
 
 ## 🎨 Design Tokens
 
 ### **Color Palette**
 
 #### Primary Colors
+
 ```scss
 primary-50:  #eff6ff
 primary-100: #dbeafe
@@ -53,15 +58,17 @@ primary-700: #1d4ed8
 primary-800: #1e40af
 primary-900: #1e3a8a
 primary-950: #172554
-```
+```text
 
 #### Semantic Colors
+
 - **Success**: Green palette for positive actions and states
 - **Warning**: Amber palette for caution and attention
 - **Error**: Red palette for errors and destructive actions
 - **Info**: Blue palette for informational content
 
 #### Urban Theme Colors
+
 - **Sky**: `#0ea5e9` - Open spaces and clarity
 - **Ocean**: `#0284c7` - Depth and reliability
 - **Forest**: `#059669` - Growth and sustainability
@@ -72,11 +79,13 @@ primary-950: #172554
 ### **Typography Scale**
 
 #### Font Families
+
 - **Sans**: Inter (primary), system fonts
 - **Mono**: JetBrains Mono, Fira Code (code/data)
 - **Display**: Inter (headings)
 
 #### Font Sizes
+
 ```scss
 text-xs:   0.75rem   (12px)
 text-sm:   0.875rem  (14px)
@@ -87,10 +96,12 @@ text-2xl:  1.5rem    (24px)
 text-3xl:  1.875rem  (30px)
 text-4xl:  2.25rem   (36px)
 text-5xl:  3rem      (48px)
-```
+```text
 
 ### **Spacing Scale**
+
 Based on 0.25rem (4px) increments:
+
 ```scss
 1:  0.25rem   (4px)
 2:  0.5rem    (8px)
@@ -103,9 +114,10 @@ Based on 0.25rem (4px) increments:
 12: 3rem      (48px)
 16: 4rem      (64px)
 20: 5rem      (80px)
-```
+```text
 
 ### **Border Radius**
+
 ```scss
 sm:  0.125rem  (2px)
 md:  0.375rem  (6px)
@@ -113,22 +125,24 @@ lg:  0.5rem    (8px)
 xl:  0.75rem   (12px)
 2xl: 1rem      (16px)
 3xl: 1.5rem    (24px)
-```
+```text
 
 ### **Shadows**
+
 ```scss
 soft:     Subtle shadow for cards
 medium:   Standard elevation
 hard:     Strong emphasis
 glow:     Interactive elements
 glow-lg:  High emphasis
-```
+```text
 
 ## 🧩 Base Components
 
 ### **Button**
 
 #### Variants
+
 - `primary` - Main brand color, primary actions
 - `secondary` - Subtle background, secondary actions
 - `success` - Green, positive actions
@@ -140,6 +154,7 @@ glow-lg:  High emphasis
 - `urban` - Urban theme variant
 
 #### Sizes
+
 - `xs` - 24px height, compact spaces
 - `sm` - 32px height, tight layouts
 - `md` - 40px height, standard use
@@ -147,6 +162,7 @@ glow-lg:  High emphasis
 - `xl` - 48px height, hero actions
 
 #### Usage
+
 ```tsx
 <Button variant="primary" size="md">
   Primary Action
@@ -159,17 +175,19 @@ glow-lg:  High emphasis
 <Button variant="ghost" loading>
   Loading...
 </Button>
-```
+```text
 
 ### **Input**
 
 #### Variants
+
 - `default` - Standard input style
 - `success` - Success state
 - `warning` - Warning state
 - `error` - Error state
 
 #### Features
+
 - Label support
 - Helper text
 - Error messages
@@ -177,6 +195,7 @@ glow-lg:  High emphasis
 - Left/right addons
 
 #### Usage
+
 ```tsx
 <Input 
   label="Email" 
@@ -189,11 +208,12 @@ glow-lg:  High emphasis
   errorMessage="This field is required"
   leftIcon={<EmailIcon />}
 />
-```
+```text
 
 ### **Card**
 
 #### Variants
+
 - `default` - Standard card
 - `elevated` - Increased shadow
 - `outlined` - Emphasized border
@@ -201,6 +221,7 @@ glow-lg:  High emphasis
 - `urban` - Urban theme styling
 
 #### Anatomy
+
 - `Card` - Container
 - `CardHeader` - Header section
 - `CardTitle` - Title text
@@ -209,6 +230,7 @@ glow-lg:  High emphasis
 - `CardFooter` - Footer actions
 
 #### Usage
+
 ```tsx
 <Card variant="elevated">
   <CardHeader>
@@ -222,11 +244,12 @@ glow-lg:  High emphasis
     <Button>Action</Button>
   </CardFooter>
 </Card>
-```
+```text
 
 ### **Badge**
 
 #### Variants
+
 - `default` - Primary badge
 - `secondary` - Secondary style
 - `success` - Success indicator
@@ -236,11 +259,13 @@ glow-lg:  High emphasis
 - `urban` - Urban theme
 
 #### Features
+
 - Icon support
 - Removable badges
 - Multiple sizes
 
 #### Usage
+
 ```tsx
 <Badge variant="success">Active</Badge>
 <Badge variant="warning" icon={<WarningIcon />}>
@@ -249,20 +274,22 @@ glow-lg:  High emphasis
 <Badge removable onRemove={() => {}}>
   Removable
 </Badge>
-```
+```text
 
 ## 📐 Layout System
 
 ### **Responsive Breakpoints**
+
 ```scss
 sm:  640px   // Small devices
 md:  768px   // Medium devices  
 lg:  1024px  // Large devices
 xl:  1280px  // Extra large devices
 2xl: 1536px  // 2X large devices
-```
+```text
 
 ### **Container Sizes**
+
 - Responsive containers with proper margins
 - Max-width constraints for readability
 - Consistent padding across breakpoints
@@ -270,6 +297,7 @@ xl:  1280px  // Extra large devices
 ## 🎭 Animation System
 
 ### **Transitions**
+
 - `fade-in` - 200ms fade in
 - `fade-out` - 200ms fade out
 - `slide-in` - 300ms slide in from top
@@ -278,6 +306,7 @@ xl:  1280px  // Extra large devices
 - `scale-in` - 200ms scale entrance
 
 ### **Timing Functions**
+
 - `ease` - Standard easing
 - `ease-in` - Acceleration
 - `ease-out` - Deceleration
@@ -286,6 +315,7 @@ xl:  1280px  // Extra large devices
 ## 🔧 Implementation
 
 ### **Using Components**
+
 ```tsx
 import { Button, Card, Input, Badge } from '@/components/ui'
 
@@ -305,9 +335,10 @@ function ExampleComponent() {
     </Card>
   )
 }
-```
+```text
 
 ### **Using Design Tokens**
+
 ```tsx
 import { colors, spacing, typography } from '@/styles/tokens'
 
@@ -317,9 +348,10 @@ const customStyles = {
   padding: spacing[4],
   fontSize: typography.fontSize.lg[0],
 }
-```
+```text
 
 ### **Using Utilities**
+
 ```tsx
 import { cn } from '@/lib/utils'
 
@@ -336,29 +368,33 @@ function Component({ className, variant }) {
     </div>
   )
 }
-```
+```text
 
 ## 📝 Best Practices
 
 ### **Component Usage**
+
 1. **Use design system components first** before creating custom ones
 2. **Follow variant patterns** for consistent behavior
 3. **Compose components** instead of modifying base styles
 4. **Test accessibility** with keyboard navigation and screen readers
 
 ### **Color Usage**
+
 1. **Use semantic colors** for status and actions
 2. **Maintain contrast ratios** for accessibility (WCAG AA: 4.5:1)
 3. **Test in different lighting** conditions
 4. **Consider color blindness** when using color alone for meaning
 
 ### **Typography**
+
 1. **Use consistent scales** from the typography system
 2. **Maintain readable line heights** (1.4-1.6 for body text)
 3. **Limit font weights** to 3-4 per project
 4. **Test readability** at different sizes
 
 ### **Spacing**
+
 1. **Use the spacing scale** instead of arbitrary values
 2. **Be consistent** with margins and padding
 3. **Create rhythm** with consistent vertical spacing
@@ -367,12 +403,14 @@ function Component({ className, variant }) {
 ## 🧪 Testing
 
 ### **Component Testing**
+
 - Unit tests for component behavior
 - Visual regression tests for styling
 - Accessibility tests with axe-core
 - Interactive tests with user events
 
 ### **Design System Validation**
+
 - Token usage validation
 - Component variant testing
 - Cross-browser compatibility
@@ -381,6 +419,7 @@ function Component({ className, variant }) {
 ## 📚 Resources
 
 ### **Tools Used**
+
 - **Tailwind CSS** - Utility-first CSS framework
 - **Class Variance Authority** - Component variant management
 - **Radix UI** - Accessible component primitives
@@ -388,6 +427,7 @@ function Component({ className, variant }) {
 - **TypeScript** - Type safety
 
 ### **Inspiration**
+
 - Material Design 3
 - Apple Human Interface Guidelines
 - Ant Design

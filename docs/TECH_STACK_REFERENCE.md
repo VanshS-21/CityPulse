@@ -5,6 +5,7 @@ This document provides a comprehensive reference to the documentation for all te
 ## Frontend Technologies
 
 ### Next.js (v15.3.4)
+
 - **Description**: A React framework for building full-stack web applications.
 - **Official Documentation**: [https://nextjs.org/docs](https://nextjs.org/docs)
 - **Getting Started**: [https://nextjs.org/docs/app/getting-started/installation](https://nextjs.org/docs/app/getting-started/installation)
@@ -12,24 +13,28 @@ This document provides a comprehensive reference to the documentation for all te
 - **Blog/Release Notes**: [https://nextjs.org/blog/next-15](https://nextjs.org/blog/next-15)
 
 ### React (v19.1.0)
+
 - **Description**: A JavaScript library for building user interfaces.
 - **Official Documentation**: [https://react.dev/](https://react.dev/)
 - **Upgrade Guide**: [https://react.dev/blog/2024/04/25/react-19-upgrade-guide](https://react.dev/blog/2024/04/25/react-19-upgrade-guide)
 - **Blog/Release Notes**: [https://react.dev/blog/2024/12/05/react-19](https://react.dev/blog/2024/12/05/react-19)
 
 ### Firebase (v11.10.0)
+
 - **Description**: A platform for building web and mobile applications, providing backend services.
 - **Official Documentation**: [https://firebase.google.com/docs/web/setup](https://firebase.google.com/docs/web/setup)
 - **Release Notes**: [https://firebase.google.com/support/release-notes/js](https://firebase.google.com/support/release-notes/js)
 - **Modular Upgrade Guide**: [https://firebase.google.com/docs/web/modular-upgrade](https://firebase.google.com/docs/web/modular-upgrade)
 
 ### Tailwind CSS (v4)
+
 - **Description**: A utility-first CSS framework for rapid UI development.
 - **Official Documentation**: [https://tailwindcss.com/docs/upgrade-guide](https://tailwindcss.com/docs/upgrade-guide)
 - **Blog/Release Notes**: [https://tailwindcss.com/blog/tailwindcss-v4](https://tailwindcss.com/blog/tailwindcss-v4)
 - **Compatibility**: [https://tailwindcss.com/docs/compatibility](https://tailwindcss.com/docs/compatibility)
 
 ### TypeScript (v5)
+
 - **Description**: A typed superset of JavaScript that compiles to plain JavaScript.
 - **Official Documentation**: [https://www.typescriptlang.org/docs/](https://www.typescriptlang.org/docs/)
 - **Handbook**: [https://www.typescriptlang.org/docs/handbook/intro.html](https://www.typescriptlang.org/docs/handbook/intro.html)
@@ -51,6 +56,7 @@ This document provides a comprehensive reference to the documentation for all te
 ## Backend Technologies (Python)
 
 ### Apache Beam (v2.57.0)
+
 - **Description**: A unified model for defining both batch and streaming data-parallel processing pipelines.
 - **Python SDK Docs**: [https://beam.apache.org/documentation/sdks/python/](https://beam.apache.org/documentation/sdks/python/)
 - **Programming Guide**: [https://beam.apache.org/documentation/programming-guide/](https://beam.apache.org/documentation/programming-guide/)
@@ -74,4 +80,3 @@ This document provides a comprehensive reference to the documentation for all te
 ### Testing
 
 - **Pytest (v7.4.4)**: [https://docs.pytest.org/en/stable/](https://docs.pytest.org/en/stable/)
-
