@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
+import { immer } from 'zustand/middleware/immer'
 
 // Types for the store
 interface User {
@@ -36,7 +37,15 @@ interface AppState {
   addNotification: (notification: Omit<AppState['notifications'][0], 'id' | 'timestamp'>) => void
   removeNotification: (id: string) => void
   clearNotifications: () => void
-  
+
+  // Atomic operations to prevent race conditions
+  updateUserProfile: (updates: Partial<User>) => void
+  batchUpdateNotifications: (operations: Array<{
+    type: 'add' | 'remove' | 'clear'
+    notification?: Omit<AppState['notifications'][0], 'id' | 'timestamp'>
+    id?: string
+  }>) => void
+
   // Reset function
   reset: () => void
 }
@@ -51,65 +60,105 @@ const initialState = {
   notifications: []
 }
 
-// Create the store
+// Create the store with immer for safe mutations
 export const useAppStore = create<AppState>()(
   devtools(
     persist(
-      (set, get) => ({
+      immer((set, get) => ({
         ...initialState,
         
-        // User actions
-        setUser: (user) => set((state) => ({
-          ...state,
-          user,
-          isAuthenticated: !!user
-        })),
-        
-        setAuthenticated: (authenticated) => set((state) => ({
-          ...state,
-          isAuthenticated: authenticated,
-          user: authenticated ? state.user : null
-        })),
-        
-        // UI actions
-        setTheme: (theme) => set((state) => ({
-          ...state,
-          theme
-        })),
-        
-        setSidebarOpen: (open) => set((state) => ({
-          ...state,
-          sidebarOpen: open
-        })),
-        
-        setLoading: (loading) => set((state) => ({
-          ...state,
-          loading
-        })),
-        
-        // Notification actions
-        addNotification: (notification) => set((state) => {
-          const id = Math.random().toString(36).substr(2, 9)
-          return {
-            ...state,
-            notifications: [...state.notifications, {
-              ...notification,
-              id,
-              timestamp: Date.now()
-            }]
+        // User actions with atomic updates
+        setUser: (user) => set((state) => {
+          state.user = user
+          state.isAuthenticated = !!user
+        }),
+
+        setAuthenticated: (authenticated) => set((state) => {
+          state.isAuthenticated = authenticated
+          if (!authenticated) {
+            state.user = null
           }
         }),
         
-        removeNotification: (id) => set((state) => ({
-          ...state,
-          notifications: state.notifications.filter(n => n.id !== id)
-        })),
+        // UI actions with immer mutations
+        setTheme: (theme) => set((state) => {
+          state.theme = theme
+        }),
+
+        setSidebarOpen: (open) => set((state) => {
+          state.sidebarOpen = open
+        }),
+
+        setLoading: (loading) => set((state) => {
+          state.loading = loading
+        }),
         
-        clearNotifications: () => set((state) => ({
-          ...state,
-          notifications: []
-        })),
-        
+        // Notification actions with race condition prevention
+        addNotification: (notification) => set((state) => {
+          const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+          state.notifications.push({
+            ...notification,
+            id,
+            timestamp: Date.now()
+          })
+
+          // Limit notifications to prevent memory issues
+          if (state.notifications.length > 50) {
+            state.notifications = state.notifications.slice(-50)
+          }
+        }),
+
+        removeNotification: (id) => set((state) => {
+          const index = state.notifications.findIndex(n => n.id === id)
+          if (index !== -1) {
+            state.notifications.splice(index, 1)
+          }
+        }),
+
+        clearNotifications: () => set((state) => {
+          state.notifications = []
+        }),
+
+        // Atomic operations to prevent race conditions
+        updateUserProfile: (updates) => set((state) => {
+          if (state.user) {
+            Object.assign(state.user, updates)
+          }
+        }),
+
+        batchUpdateNotifications: (operations) => set((state) => {
+          operations.forEach(operation => {
+            switch (operation.type) {
+              case 'add':
+                if (operation.notification) {
+                  const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+                  state.notifications.push({
+                    ...operation.notification,
+                    id,
+                    timestamp: Date.now()
+                  })
+                }
+                break
+              case 'remove':
+                if (operation.id) {
+                  const index = state.notifications.findIndex(n => n.id === operation.id)
+                  if (index !== -1) {
+                    state.notifications.splice(index, 1)
+                  }
+                }
+                break
+              case 'clear':
+                state.notifications = []
+                break
+            }
+          })
+
+          // Limit notifications after batch operations
+          if (state.notifications.length > 50) {
+            state.notifications = state.notifications.slice(-50)
+          }
+        }),
+
         // Reset function
         reset: () => set(() => ({ ...initialState }))
       }),
@@ -122,10 +171,7 @@ export const useAppStore = create<AppState>()(
           sidebarOpen: state.sidebarOpen
         })
       }
-    ),
-    {
-      name: 'citypulse-app-store'
-    }
+    )
   )
 )
 
@@ -147,5 +193,7 @@ export const useAppActions = () => useAppStore((state) => ({
   addNotification: state.addNotification,
   removeNotification: state.removeNotification,
   clearNotifications: state.clearNotifications,
+  updateUserProfile: state.updateUserProfile,
+  batchUpdateNotifications: state.batchUpdateNotifications,
   reset: state.reset
 }))

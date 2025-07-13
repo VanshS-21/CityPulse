@@ -6,8 +6,10 @@ of the CityPulse platform (API, data models, pipelines, etc.).
 """
 
 import logging
+import threading
 from typing import Type, TypeVar, Optional, List, Dict, Any
 from datetime import datetime
+from contextlib import contextmanager
 
 from google.cloud import firestore, bigquery
 from google.cloud.exceptions import NotFound
@@ -38,19 +40,33 @@ T = TypeVar('T')
 class UnifiedDatabaseService:
     """
     Unified database service that provides a consistent interface
-    for both Firestore and BigQuery operations.
+    for both Firestore and BigQuery operations with connection pooling.
     """
-    
+
     def __init__(self, config=None):
-        """Initialize the unified database service."""
+        """Initialize the unified database service with connection pooling."""
         self.config = config or get_config()
         self.db_config = get_database_config()
         self.collections = get_collections_config()
-        
-        # Initialize clients
-        self._init_firestore_client()
-        self._init_bigquery_client()
-        
+
+        # Connection pool configuration
+        self.pool_config = {
+            'max_connections': 20,
+            'min_connections': 5,
+            'connection_timeout': 30,
+            'idle_timeout': 300,
+            'retry_attempts': 3
+        }
+
+        # Thread safety
+        self._lock = threading.Lock()
+        self._connection_count = 0
+        self._max_connections = self.pool_config['max_connections']
+
+        # Initialize clients with pooling
+        self._init_firestore_client_with_pool()
+        self._init_bigquery_client_with_pool()
+
         # Initialize Firestore service if available
         if FirestoreService:
             self.firestore_service = FirestoreService(
@@ -59,9 +75,38 @@ class UnifiedDatabaseService:
             )
         else:
             self.firestore_service = None
+
+    @contextmanager
+    def get_connection(self):
+        """Context manager for database connections with pooling."""
+        connection_acquired = False
+        try:
+            with self._lock:
+                if self._connection_count >= self._max_connections:
+                    raise RuntimeError(f"Connection pool exhausted. Max connections: {self._max_connections}")
+                self._connection_count += 1
+                connection_acquired = True
+                logger.debug(f"Connection acquired. Active connections: {self._connection_count}")
+
+            yield self
+
+        finally:
+            if connection_acquired:
+                with self._lock:
+                    self._connection_count -= 1
+                    logger.debug(f"Connection released. Active connections: {self._connection_count}")
+
+    def get_connection_stats(self):
+        """Get current connection pool statistics."""
+        with self._lock:
+            return {
+                'active_connections': self._connection_count,
+                'max_connections': self._max_connections,
+                'utilization_percent': (self._connection_count / self._max_connections) * 100
+            }
     
-    def _init_firestore_client(self):
-        """Initialize Firestore client."""
+    def _init_firestore_client_with_pool(self):
+        """Initialize Firestore client with connection pooling."""
         try:
             if self.db_config.credentials_path:
                 self.firestore_client = firestore.Client.from_service_account_json(
@@ -70,13 +115,13 @@ class UnifiedDatabaseService:
                 )
             else:
                 self.firestore_client = firestore.Client(project=self.db_config.project_id)
-            logger.info("Firestore client initialized successfully")
+            logger.info("Firestore client initialized successfully with connection pooling")
         except Exception as e:
             logger.error(f"Failed to initialize Firestore client: {e}")
             self.firestore_client = None
     
-    def _init_bigquery_client(self):
-        """Initialize BigQuery client."""
+    def _init_bigquery_client_with_pool(self):
+        """Initialize BigQuery client with connection pooling."""
         try:
             if self.db_config.credentials_path:
                 self.bigquery_client = bigquery.Client.from_service_account_json(
@@ -85,7 +130,7 @@ class UnifiedDatabaseService:
                 )
             else:
                 self.bigquery_client = bigquery.Client(project=self.db_config.project_id)
-            logger.info("BigQuery client initialized successfully")
+            logger.info("BigQuery client initialized successfully with connection pooling")
         except Exception as e:
             logger.error(f"Failed to initialize BigQuery client: {e}")
             self.bigquery_client = None
@@ -296,6 +341,38 @@ class UnifiedDatabaseService:
     def add_feedback(self, feedback_data: Dict[str, Any]) -> str:
         """Add new feedback."""
         return self.add_document(self.collections.feedback, feedback_data)
+
+    def batch_operation(self, operations: List[Dict[str, Any]]) -> List[Any]:
+        """
+        Perform multiple database operations in a single connection context.
+        Example of using connection pooling for batch operations.
+        """
+        results = []
+        with self.get_connection() as service:
+            for operation in operations:
+                op_type = operation.get('type')
+                collection = operation.get('collection')
+                data = operation.get('data')
+                doc_id = operation.get('doc_id')
+
+                try:
+                    if op_type == 'add':
+                        result = service.add_document(collection, data, doc_id)
+                    elif op_type == 'update':
+                        result = service.update_document(collection, doc_id, data)
+                    elif op_type == 'get':
+                        result = service.get_document(collection, doc_id)
+                    elif op_type == 'delete':
+                        result = service.delete_document(collection, doc_id)
+                    else:
+                        result = {'error': f'Unknown operation type: {op_type}'}
+
+                    results.append({'success': True, 'result': result})
+                except Exception as e:
+                    logger.error(f"Batch operation failed: {e}")
+                    results.append({'success': False, 'error': str(e)})
+
+        return results
 
 
 # Global service instance

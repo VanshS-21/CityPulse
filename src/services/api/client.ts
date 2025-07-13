@@ -1,5 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { APP_CONFIG, STORAGE_KEYS } from '@/utils/constants'
+import { parseBackendError, logError, CityPulseError } from '@/lib/error-handler'
+import { config, timeoutUtils } from '@/lib/config'
 
 /**
  * API Client for CityPulse application
@@ -11,7 +13,7 @@ class ApiClient {
   constructor() {
     this.instance = axios.create({
       baseURL: APP_CONFIG.api.baseUrl,
-      timeout: APP_CONFIG.api.timeout,
+      timeout: config.api.timeout,
       headers: {
         'Content-Type': 'application/json',
       },
@@ -57,12 +59,22 @@ class ApiClient {
         return response
       },
       (error) => {
-        // Handle common errors
+        // Parse error using standardized error handler
+        const cityPulseError = parseBackendError(error)
+
+        // Handle specific error cases
         if (error.response?.status === 401) {
           this.handleUnauthorized()
         }
 
-        return Promise.reject(error)
+        // Log error for monitoring
+        logError(cityPulseError, {
+          url: error.config?.url,
+          method: error.config?.method,
+          requestId: error.config?.metadata?.requestId
+        })
+
+        return Promise.reject(cityPulseError)
       }
     )
   }
@@ -90,8 +102,9 @@ class ApiClient {
    * @returns Promise resolving to response data
    */
   async get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
-    const response = await this.instance.get<T>(url, config)
-    return response.data
+    return this.requestWithRetry(() =>
+      this.instance.get<T>(url, config)
+    )
   }
 
   /**
@@ -102,8 +115,9 @@ class ApiClient {
    * @returns Promise resolving to response data
    */
   async post<T>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<T> {
-    const response = await this.instance.post<T>(url, data, config)
-    return response.data
+    return this.requestWithRetry(() =>
+      this.instance.post<T>(url, data, config)
+    )
   }
 
   /**
@@ -114,8 +128,9 @@ class ApiClient {
    * @returns Promise resolving to response data
    */
   async put<T>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<T> {
-    const response = await this.instance.put<T>(url, data, config)
-    return response.data
+    return this.requestWithRetry(() =>
+      this.instance.put<T>(url, data, config)
+    )
   }
 
   /**
@@ -126,8 +141,9 @@ class ApiClient {
    * @returns Promise resolving to response data
    */
   async patch<T>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<T> {
-    const response = await this.instance.patch<T>(url, data, config)
-    return response.data
+    return this.requestWithRetry(() =>
+      this.instance.patch<T>(url, data, config)
+    )
   }
 
   /**
@@ -137,16 +153,19 @@ class ApiClient {
    * @returns Promise resolving to response data
    */
   async delete<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
-    const response = await this.instance.delete<T>(url, config)
-    return response.data
+    return this.requestWithRetry(() =>
+      this.instance.delete<T>(url, config)
+    )
   }
 
-  // File upload
+  // File upload with enhanced timeout
   async uploadFile<T>(url: string, file: File, onProgress?: (progress: number) => void): Promise<T> {
     const formData = new FormData()
     formData.append('file', file)
 
+    const uploadTimeout = timeoutUtils.getOperationTimeout('upload')
     const config: AxiosRequestConfig = {
+      timeout: uploadTimeout,
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -158,8 +177,19 @@ class ApiClient {
       },
     }
 
-    const response = await this.instance.post<T>(url, formData, config)
-    return response.data
+    return this.requestWithRetry(() =>
+      this.instance.post<T>(url, formData, config)
+    )
+  }
+
+  // Private method for request with retry logic
+  private async requestWithRetry<T>(
+    requestFn: () => Promise<AxiosResponse<T>>
+  ): Promise<T> {
+    return timeoutUtils.withRetry(async () => {
+      const response = await requestFn()
+      return response.data
+    })
   }
 
   // Batch requests

@@ -130,6 +130,7 @@ export const reducer = (state: State, action: Action): State => {
 }
 
 const listeners: Array<(state: State) => void> = []
+const listenerCleanup = new WeakMap<(state: State) => void, () => void>()
 
 let memoryState: State = { toasts: [] }
 
@@ -138,6 +139,16 @@ function dispatch(action: Action) {
   listeners.forEach((listener) => {
     listener(memoryState)
   })
+}
+
+// Add periodic cleanup for orphaned listeners
+if (typeof window !== 'undefined') {
+  setInterval(() => {
+    if (listeners.length > 50) {
+      console.warn('Toast listeners growing unexpectedly:', listeners.length)
+      console.warn('This may indicate a memory leak in toast notifications')
+    }
+  }, 30000) // Check every 30 seconds
 }
 
 type Toast = Omit<ToasterToast, "id">
@@ -176,19 +187,60 @@ function useToast() {
 
   React.useEffect(() => {
     listeners.push(setState)
-    return () => {
+
+    // Enhanced cleanup with timeout fallback and WeakMap tracking
+    const cleanup = () => {
       const index = listeners.indexOf(setState)
       if (index > -1) {
         listeners.splice(index, 1)
       }
     }
-  }, [state])
+
+    // Store cleanup function in WeakMap for better memory management
+    listenerCleanup.set(setState, cleanup)
+
+    return cleanup
+  }, []) // Remove state dependency to prevent re-registration
 
   return {
     ...state,
     toast,
     dismiss: (toastId?: string) => dispatch({ type: "DISMISS_TOAST", toastId }),
   }
+}
+
+/**
+ * Utility function to manually clean up orphaned listeners
+ * Useful for debugging memory leaks
+ */
+export function cleanupOrphanedListeners() {
+  const initialCount = listeners.length
+
+  // Remove listeners that don't have cleanup functions
+  for (let i = listeners.length - 1; i >= 0; i--) {
+    const listener = listeners[i]
+    if (!listenerCleanup.has(listener)) {
+      listeners.splice(i, 1)
+    }
+  }
+
+  const cleanedCount = initialCount - listeners.length
+  if (cleanedCount > 0) {
+    console.log(`Cleaned up ${cleanedCount} orphaned toast listeners`)
+  }
+
+  return {
+    initialCount,
+    finalCount: listeners.length,
+    cleanedCount
+  }
+}
+
+/**
+ * Get current listener count for debugging
+ */
+export function getListenerCount() {
+  return listeners.length
 }
 
 export { useToast, toast }

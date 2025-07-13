@@ -95,14 +95,18 @@ const SidebarProvider = React.forwardRef<
       [setOpenProp, open]
     )
 
-    // Helper to toggle the sidebar.
+    // Helper to toggle the sidebar with stable reference
     const toggleSidebar = React.useCallback(() => {
       return isMobile
         ? setOpenMobile((open) => !open)
         : setOpen((open) => !open)
     }, [isMobile, setOpen, setOpenMobile])
 
-    // Adds a keyboard shortcut to toggle the sidebar.
+    // Use useRef to maintain stable reference for event listener
+    const toggleSidebarRef = React.useRef(toggleSidebar)
+    toggleSidebarRef.current = toggleSidebar
+
+    // Adds a keyboard shortcut to toggle the sidebar with optimized event listener
     React.useEffect(() => {
       const handleKeyDown = (event: KeyboardEvent) => {
         if (
@@ -110,13 +114,15 @@ const SidebarProvider = React.forwardRef<
           (event.metaKey || event.ctrlKey)
         ) {
           event.preventDefault()
-          toggleSidebar()
+          // Use ref to avoid re-registering listener
+          toggleSidebarRef.current()
         }
       }
 
-      window.addEventListener("keydown", handleKeyDown)
+      // Add passive: false for preventDefault to work properly
+      window.addEventListener("keydown", handleKeyDown, { passive: false })
       return () => window.removeEventListener("keydown", handleKeyDown)
-    }, [toggleSidebar])
+    }, []) // Empty dependency array - listener registered once
 
     // We add a state so that we can do data-state="expanded" or "collapsed".
     // This makes it easier to style the sidebar with Tailwind classes.
