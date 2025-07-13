@@ -2,77 +2,655 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Clean slate - minimal global styles */
+
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Roboto Flex', var(--font-sans, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif);
+  line-height: 1.6;
+  color: var(--foreground);
+  background-color: var(--background);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Focus styles for accessibility */
+.focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
+  :root {
+    /* Urban Intelligence Light Theme - Professional Smart City Interface */
+    --background: #f8fafc;
+    --foreground: #1a1a1a;
+    --card: #ffffff;
+    --card-foreground: #1a1a1a;
+    --popover: #ffffff;
+    --popover-foreground: #1a1a1a;
+    --primary: #3b82f6;
+    --primary-foreground: #ffffff;
+    --secondary: #f8fafc;
+    --secondary-foreground: #334155;
+    --muted: #f8fafc;
+    --muted-foreground: #64748b;
+    --accent: #06b6d4;
+    --accent-foreground: #ffffff;
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+    --border: rgba(100, 116, 139, 0.2);
+    --input: #ffffff;
+    --ring: #3b82f6;
+    
+    /* Urban Intelligence Data Colors */
+    --chart-1: #3b82f6; /* Electric Blue */
+    --chart-2: #06b6d4; /* Info Cyan */
+    --chart-3: #f59e0b; /* Warning Amber */
+    --chart-4: #8b5cf6; /* Purple */
+    --chart-5: #10b981; /* Success Green */
+    
 
+    
+    /* Urban Intelligence Core Colors */
+    --deep-charcoal: #1a1a1a;
+    --slate-gray: #2a2a2a;
+    --electric-blue: #3b82f6;
+    --pure-white: #ffffff;
+    --success-green: #10b981;
+    --warning-amber: #f59e0b;
+    --critical-red: #ef4444;
+    --info-cyan: #06b6d4;
+    --accent-purple: #8b5cf6;
+    --light-gray: #f8fafc;
+    --medium-gray: #64748b;
+    --dark-gray: #334155;
+    
+    --font-sans: 'Roboto Flex', 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    --font-serif: Georgia, serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+    --radius: 0.5rem; /* 8px for cards */
+    --radius-sm: 0.25rem; /* 4px for buttons */
+    --radius-lg: 0.75rem; /* 12px for larger elements */
+    
+    /* Urban Intelligence Shadows - Subtle Elevation */
+    --shadow-2xs: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+    --shadow-xs: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+    --shadow-sm: 0px 1px 3px 0px rgba(0, 0, 0, 0.1);
+    --shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0px 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0px 20px 25px -5px rgba(0, 0, 0, 0.1);
+    --shadow-2xl: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --shadow-focus: 0 0 0 2px #3b82f6, 0 0 0 4px rgba(59, 130, 246, 0.2);
+    --shadow-glow: 0px 0px 20px rgba(59, 130, 246, 0.3);
+    --shadow-glow-cyan: 0px 0px 20px rgba(6, 182, 212, 0.3);
+    --shadow-glow-amber: 0px 0px 20px rgba(245, 158, 11, 0.3);
+  }
+  
+  /* Urban Intelligence Dark Theme - High-Tech Professional Interface */
+  .dark {
+    --background: #0a0a0a;
+    --foreground: #ffffff;
+    --card: rgba(26, 26, 26, 0.9);
+    --card-foreground: #ffffff;
+    --popover: rgba(26, 26, 26, 0.95);
+    --popover-foreground: #ffffff;
+    --primary: #3b82f6;
+    --primary-foreground: #ffffff;
+    --secondary: rgba(42, 42, 42, 0.8);
+    --secondary-foreground: #f8fafc;
+    --muted: rgba(51, 65, 85, 0.6);
+    --muted-foreground: #94a3b8;
+    --accent: #06b6d4;
+    --accent-foreground: #ffffff;
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+    --border: rgba(255, 255, 255, 0.1);
+    --input: rgba(26, 26, 26, 0.9);
+    --ring: #3b82f6;
+    
+    /* Urban Intelligence Data Colors for Dark Theme */
+    --chart-1: #3b82f6; /* Electric Blue */
+    --chart-2: #06b6d4; /* Info Cyan */
+    --chart-3: #f59e0b; /* Warning Amber */
+    --chart-4: #8b5cf6; /* Purple */
+    --chart-5: #10b981; /* Success Green */
+    
+
+    
+    /* Urban Intelligence Core Colors for Dark Theme */
+    --deep-charcoal: #1a1a1a;
+    --slate-gray: #2a2a2a;
+    --electric-blue: #3b82f6;
+    --pure-white: #ffffff;
+    --success-green: #10b981;
+    --warning-amber: #f59e0b;
+    --critical-red: #ef4444;
+    --info-cyan: #06b6d4;
+    --accent-purple: #8b5cf6;
+    --light-gray: #334155;
+    --medium-gray: #64748b;
+    --dark-gray: #1a1a1a;
+    
+    /* Enhanced shadows for dark theme with subtle glow */
+    --shadow-2xs: 0px 1px 2px 0px rgba(0, 0, 0, 0.5);
+    --shadow-xs: 0px 1px 2px 0px rgba(0, 0, 0, 0.5);
+    --shadow-sm: 0px 1px 3px 0px rgba(0, 0, 0, 0.5);
+    --shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0px 4px 6px -1px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0px 10px 15px -3px rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0px 20px 25px -5px rgba(0, 0, 0, 0.5);
+    --shadow-2xl: 0px 25px 50px -12px rgba(0, 0, 0, 0.7);
+    --shadow-focus: 0 0 0 2px #3b82f6, 0 0 0 4px rgba(59, 130, 246, 0.3);
+    --shadow-glow: 0px 0px 20px rgba(59, 130, 246, 0.4);
+    --shadow-glow-cyan: 0px 0px 20px rgba(6, 182, 212, 0.4);
+    --shadow-glow-amber: 0px 0px 20px rgba(245, 158, 11, 0.4);
+  }
+  @theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+
+    --font-sans: var(--font-sans);
+    --font-mono: var(--font-mono);
+    --font-serif: var(--font-serif);
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) + 4px);
+    --shadow-2xs: var(--shadow-2xs);
+    --shadow-xs: var(--shadow-xs);
+    --shadow-sm: var(--shadow-sm);
+    --shadow: var(--shadow);
+    --shadow-md: var(--shadow-md);
+    --shadow-lg: var(--shadow-lg);
+    --shadow-xl: var(--shadow-xl);
+    --shadow-2xl: var(--shadow-2xl);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
   body {
-    @apply font-sans antialiased;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold;
+    @apply bg-background text-foreground;
   }
 }
 
+/* CityPulse Custom Styles */
 @layer components {
-  .btn {
-    @apply px-4 py-2 rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
+  /* Advanced Glassmorphism Effects */
+  .glass-morphism {
+    backdrop-filter: blur(20px) saturate(180%);
+    background: rgba(17, 25, 40, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    box-shadow: 
+      0 8px 32px 0 rgba(31, 38, 135, 0.37),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
-
-  .btn-primary {
-    @apply bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500;
+  
+  .glass-morphism-secondary {
+    backdrop-filter: blur(16px) saturate(180%);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 
+      0 8px 32px 0 rgba(31, 38, 135, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
   }
-
-  .btn-secondary {
-    @apply bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500;
+  
+  .glass-morphism-accent {
+    backdrop-filter: blur(24px) saturate(200%);
+    background: linear-gradient(135deg, 
+      rgba(59, 130, 246, 0.08) 0%, 
+      rgba(6, 182, 212, 0.06) 100%);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    box-shadow: 
+      0 8px 32px 0 rgba(59, 130, 246, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
-
-  .btn-danger {
-    @apply bg-red-600 text-white hover:bg-red-700 focus:ring-red-500;
+  
+  /* Modern CityPulse Card Styles */
+  .citypulse-card {
+    @apply relative overflow-hidden rounded-2xl transition-all duration-500 ease-out;
+    backdrop-filter: blur(20px) saturate(180%);
+    background: linear-gradient(135deg, 
+      rgba(17, 25, 40, 0.8) 0%, 
+      rgba(30, 41, 59, 0.6) 50%,
+      rgba(17, 25, 40, 0.8) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    box-shadow: 
+      0 8px 32px 0 rgba(31, 38, 135, 0.37),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 0 0 1px rgba(255, 255, 255, 0.05);
   }
-
-  .card {
-    @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6;
+  
+  .citypulse-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(255, 255, 255, 0.2), 
+      transparent);
+    z-index: 1;
   }
-
-  .input {
-    @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500;
+  
+  .citypulse-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 
+      0 20px 60px 0 rgba(31, 38, 135, 0.5),
+      0 0 40px rgba(59, 130, 246, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      0 0 0 1px rgba(59, 130, 246, 0.1);
   }
-
-  .badge {
-    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  
+  /* CityPulse Glow Effects */
+  .glow-blue {
+    box-shadow: 0 0 10px rgba(14, 165, 233, 0.5), 0 0 20px rgba(14, 165, 233, 0.3), 0 0 30px rgba(14, 165, 233, 0.1);
   }
-
-  .badge-primary {
-    @apply bg-blue-100 text-blue-800;
+  
+  .glow-cyan {
+    box-shadow: 0 0 10px rgba(6, 182, 212, 0.5), 0 0 20px rgba(6, 182, 212, 0.3), 0 0 30px rgba(6, 182, 212, 0.1);
   }
-
-  .badge-success {
-    @apply bg-green-100 text-green-800;
+  
+  .glow-amber {
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.5), 0 0 20px rgba(245, 158, 11, 0.3), 0 0 30px rgba(245, 158, 11, 0.1);
   }
-
-  .badge-warning {
-    @apply bg-yellow-100 text-yellow-800;
+  
+  /* CityPulse Interactive Elements */
+  .citypulse-button {
+    @apply px-6 py-3 rounded-lg font-medium transition-all duration-300;
+    background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+    border: 1px solid rgba(14, 165, 233, 0.5);
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   }
-
-  .badge-danger {
-    @apply bg-red-100 text-red-800;
+  
+  .citypulse-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 15px rgba(14, 165, 233, 0.6), 0 4px 15px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #0284c7 0%, #0891b2 100%);
   }
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  
+  /* CityPulse Data Visualization */
+  .metric-display {
+    @apply font-mono text-2xl font-bold;
+    background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 8px rgba(14, 165, 233, 0.3));
   }
-
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  
+  .metric-large {
+    @apply font-mono text-4xl font-bold;
+    background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 12px rgba(14, 165, 233, 0.4));
   }
+  
+  /* CityPulse Status Indicators */
+  .status-indicator {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium backdrop-blur-sm;
+  }
+  
+  .status-active {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.2) 100%);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: #10b981;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+  }
+  
+  .status-warning {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(217, 119, 6, 0.2) 100%);
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    color: #f59e0b;
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
+  }
+  
+  .status-critical {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.2) 100%);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: #ef4444;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+  }
+  
+  /* CityPulse Grid Background */
+  .citypulse-grid {
+    background-image: 
+      linear-gradient(rgba(14, 165, 233, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(14, 165, 233, 0.1) 1px, transparent 1px),
+      radial-gradient(circle at 20px 20px, rgba(6, 182, 212, 0.15) 1px, transparent 1px);
+    background-size: 40px 40px, 40px 40px, 40px 40px;
+  }
+  
+  /* CityPulse Animation */
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes pulseGlow {
+    0% {
+      box-shadow: 0 0 5px rgba(14, 165, 233, 0.4);
+    }
+    100% {
+      box-shadow: 0 0 20px rgba(14, 165, 233, 0.8), 0 0 30px rgba(6, 182, 212, 0.4);
+    }
+  }
+  
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .transition-glow {
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+  }
+  
+  /* Roboto Flex Variable Font Utilities */
+  .font-roboto-flex {
+    font-family: 'Roboto Flex', var(--font-sans);
+  }
+  
+  /* Roboto Flex Weight Variations */
+  .font-thin {
+    font-variation-settings: 'wght' 100;
+  }
+  
+  .font-extralight {
+    font-variation-settings: 'wght' 200;
+  }
+  
+  .font-light {
+    font-variation-settings: 'wght' 300;
+  }
+  
+  .font-normal {
+    font-variation-settings: 'wght' 400;
+  }
+  
+  .font-medium {
+    font-variation-settings: 'wght' 500;
+  }
+  
+  .font-semibold {
+    font-variation-settings: 'wght' 600;
+  }
+  
+  .font-bold {
+    font-variation-settings: 'wght' 700;
+  }
+  
+  .font-extrabold {
+    font-variation-settings: 'wght' 800;
+  }
+  
+  .font-black {
+    font-variation-settings: 'wght' 900;
+  }
+  
+  /* Roboto Flex Optical Size Variations */
+  .text-optical-sm {
+    font-variation-settings: 'opsz' 8;
+  }
+  
+  .text-optical-base {
+    font-variation-settings: 'opsz' 14;
+  }
+  
+  .text-optical-lg {
+    font-variation-settings: 'opsz' 18;
+  }
+  
+  .text-optical-xl {
+    font-variation-settings: 'opsz' 24;
+  }
+  
+  .text-optical-2xl {
+    font-variation-settings: 'opsz' 32;
+  }
+  
+  .text-optical-3xl {
+    font-variation-settings: 'opsz' 48;
+  }
+  
+  .text-optical-4xl {
+    font-variation-settings: 'opsz' 64;
+  }
+  
+  .text-optical-5xl {
+    font-variation-settings: 'opsz' 96;
+  }
+  
+  .text-optical-6xl {
+    font-variation-settings: 'opsz' 144;
+  }
+  
+  /* Combined Roboto Flex Presets for CityPulse */
+  .font-heading {
+    font-variation-settings: 'wght' 600, 'opsz' 32;
+    letter-spacing: -0.02em;
+  }
+  
+  .font-subheading {
+    font-variation-settings: 'wght' 500, 'opsz' 18;
+    letter-spacing: -0.01em;
+  }
+  
+  .font-body {
+    font-variation-settings: 'wght' 400, 'opsz' 14;
+  }
+  
+  .font-caption {
+    font-variation-settings: 'wght' 400, 'opsz' 8;
+    letter-spacing: 0.01em;
+  }
+  
+  .font-button {
+    font-variation-settings: 'wght' 500, 'opsz' 14;
+    letter-spacing: 0.005em;
+  }
+  
+  .font-display {
+    font-variation-settings: 'wght' 700, 'opsz' 64;
+    letter-spacing: -0.03em;
+  }
+  
 
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
+  
+  /* Enhanced Neon Accents */
+  .neon-blue {
+    color: #3b82f6;
+    text-shadow: 0 0 5px #3b82f6, 0 0 10px #3b82f6, 0 0 20px #3b82f6;
+  }
+  
+  .neon-cyan {
+    color: #06b6d4;
+    text-shadow: 0 0 5px #06b6d4, 0 0 10px #06b6d4, 0 0 20px #06b6d4;
+  }
+  
+  .neon-amber {
+    color: #f59e0b;
+    text-shadow: 0 0 5px #f59e0b, 0 0 10px #f59e0b, 0 0 20px #f59e0b;
+  }
+  
+  .neon-green {
+    color: #10b981;
+    text-shadow: 0 0 5px #10b981, 0 0 10px #10b981, 0 0 20px #10b981;
+  }
+  
+  .neon-purple {
+    color: #8b5cf6;
+    text-shadow: 0 0 5px #8b5cf6, 0 0 10px #8b5cf6, 0 0 20px #8b5cf6;
+  }
+  
+  /* Modern Card Variations */
+  
+  /* Enhanced Interactive Elements */
+  .interactive-element {
+    @apply transition-all duration-300 ease-out cursor-pointer;
+    transform-origin: center;
+  }
+  
+  .interactive-element:hover {
+    transform: scale(1.02);
+  }
+  
+  .interactive-element:active {
+    transform: scale(0.98);
+  }
+  
+  /* Dark background with depth */
+  .dark-gradient-bg {
+    background: linear-gradient(135deg, 
+      #0a0a0a 0%, 
+      #1a1a1a 25%, 
+      #0f0f0f 50%, 
+      #1a1a1a 75%, 
+      #0a0a0a 100%);
+  }
+  
+  /* Subtle grid pattern for depth */
+  .dark-grid-pattern {
+    background-image: 
+      radial-gradient(circle at 25px 25px, rgba(59, 130, 246, 0.05) 2px, transparent 2px),
+      radial-gradient(circle at 75px 75px, rgba(6, 182, 212, 0.03) 2px, transparent 2px);
+    background-size: 100px 100px, 100px 100px;
+    background-position: 0 0, 50px 50px;
+  }
+  
+  /* Enhanced Typography with Modern Hierarchy */
+  .text-glow {
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.3));
+  }
+  
+  .text-glow-cyan {
+    filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.3));
+  }
+  
+  .text-glow-amber {
+    filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.3));
+  }
+  
+  /* Modern Scrollbar */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(59, 130, 246, 0.3) transparent;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(59, 130, 246, 0.3);
+    border-radius: 3px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(59, 130, 246, 0.5);
+  }
+  
+  /* Advanced Animations */
+  .fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .stagger-animation {
+    animation: staggerIn 0.8s ease-out;
+  }
+  
+  @keyframes staggerIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  /* Enhanced Loading States */
+  .loading-shimmer {
+    background: linear-gradient(90deg, 
+      rgba(255, 255, 255, 0.05) 0%, 
+      rgba(255, 255, 255, 0.1) 50%, 
+      rgba(255, 255, 255, 0.05) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
   }
 }
