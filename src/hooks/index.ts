@@ -1,4 +1,3 @@
-// Auto-generated index file for better module connectivity
+// Essential hooks export
 export * from './use-mobile'
-export * from './use-toast'
 export * from './use-api'
