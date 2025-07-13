@@ -1,0 +1,16 @@
+{
+  "timestamp": "2025-07-13T10:15:31.290923",
+  "project_root": "/mnt/persist/workspace/e2e-tests",
+  "test_directories": {},
+  "obsolete_tests": [],
+  "broken_tests": [],
+  "redundant_tests": [],
+  "valid_tests": [],
+  "recommendations": [
+    "Migrate valuable tests from tests/e2e-legacy/ to e2e-tests/",
+    "Consolidate Jest and pytest configurations",
+    "Implement automated test relevance checking",
+    "Set up test coverage reporting",
+    "Create test maintenance automation"
+  ]
+}

@@ -1,0 +1,307 @@
+{
+  "events": {
+    "validEvent": {
+      "title": "Road Pothole on Main Street",
+      "description": "Large pothole causing traffic issues near intersection",
+      "category": "infrastructure",
+      "subcategory": "road_maintenance",
+      "priority": "medium",
+      "location": {
+        "latitude": 40.7128,
+        "longitude": -74.0060,
+        "address": "123 Main Street, New York, NY 10001",
+        "ward": "Manhattan District 1"
+      },
+      "reporter": {
+        "type": "citizen",
+        "anonymous": false
+      },
+      "media": {
+        "images": [
+          "https://example.com/pothole1.jpg",
+          "https://example.com/pothole2.jpg"
+        ],
+        "videos": []
+      },
+      "tags": ["road", "safety", "urgent"],
+      "expectedStatus": "open"
+    },
+    "trafficEvent": {
+      "title": "Traffic Light Malfunction",
+      "description": "Traffic light stuck on red at busy intersection",
+      "category": "traffic",
+      "subcategory": "signal_malfunction",
+      "priority": "high",
+      "location": {
+        "latitude": 40.7589,
+        "longitude": -73.9851,
+        "address": "Times Square, New York, NY 10036",
+        "ward": "Manhattan District 5"
+      },
+      "reporter": {
+        "type": "authority",
+        "anonymous": false
+      },
+      "tags": ["traffic", "emergency", "intersection"],
+      "expectedStatus": "open"
+    },
+    "environmentalEvent": {
+      "title": "Illegal Dumping in Park",
+      "description": "Construction debris dumped in Central Park area",
+      "category": "environment",
+      "subcategory": "illegal_dumping",
+      "priority": "medium",
+      "location": {
+        "latitude": 40.7829,
+        "longitude": -73.9654,
+        "address": "Central Park, New York, NY 10024",
+        "ward": "Manhattan District 8"
+      },
+      "reporter": {
+        "type": "citizen",
+        "anonymous": true
+      },
+      "tags": ["environment", "cleanup", "park"],
+      "expectedStatus": "open"
+    },
+    "invalidEvent": {
+      "title": "",
+      "description": "Missing title should cause validation error",
+      "category": "invalid_category",
+      "location": {
+        "latitude": 200,
+        "longitude": -200
+      }
+    }
+  },
+  "users": {
+    "citizen": {
+      "email": "test.citizen@example.com",
+      "displayName": "Test Citizen",
+      "profile": {
+        "firstName": "Test",
+        "lastName": "Citizen",
+        "phone": "+1-555-0123",
+        "address": {
+          "street": "123 Test Street",
+          "city": "Test City",
+          "state": "NY",
+          "zipCode": "10001"
+        },
+        "preferences": {
+          "notifications": {
+            "email": true,
+            "push": false,
+            "sms": false
+          },
+          "privacy": {
+            "shareLocation": true,
+            "publicProfile": false
+          }
+        }
+      },
+      "roles": ["citizen"],
+      "status": "active"
+    },
+    "authority": {
+      "email": "test.authority@city.gov",
+      "displayName": "Test Authority",
+      "profile": {
+        "firstName": "Test",
+        "lastName": "Authority",
+        "phone": "+1-555-0456",
+        "department": "Public Works",
+        "badgeNumber": "PW-12345",
+        "jurisdiction": "Manhattan District 1"
+      },
+      "roles": ["citizen", "authority"],
+      "status": "active"
+    },
+    "admin": {
+      "email": "test.admin@citypulse.com",
+      "displayName": "Test Administrator",
+      "profile": {
+        "firstName": "Test",
+        "lastName": "Administrator",
+        "phone": "+1-555-0789",
+        "department": "IT Administration",
+        "clearanceLevel": "high"
+      },
+      "roles": ["citizen", "authority", "admin"],
+      "status": "active"
+    }
+  },
+  "feedback": {
+    "positive": {
+      "rating": 5,
+      "comment": "Excellent response time and resolution quality",
+      "category": "service_quality",
+      "tags": ["responsive", "helpful", "professional"]
+    },
+    "negative": {
+      "rating": 2,
+      "comment": "Issue took too long to resolve and communication was poor",
+      "category": "response_time",
+      "tags": ["slow", "communication", "delayed"]
+    },
+    "neutral": {
+      "rating": 3,
+      "comment": "Average service, room for improvement",
+      "category": "general",
+      "tags": ["average", "improvement"]
+    }
+  },
+  "analytics": {
+    "dateRanges": {
+      "lastWeek": {
+        "startDate": "2025-07-06T00:00:00Z",
+        "endDate": "2025-07-13T23:59:59Z"
+      },
+      "lastMonth": {
+        "startDate": "2025-06-13T00:00:00Z",
+        "endDate": "2025-07-13T23:59:59Z"
+      },
+      "lastQuarter": {
+        "startDate": "2025-04-13T00:00:00Z",
+        "endDate": "2025-07-13T23:59:59Z"
+      }
+    },
+    "expectedKPIs": {
+      "totalEvents": {
+        "min": 0,
+        "type": "number"
+      },
+      "activeEvents": {
+        "min": 0,
+        "type": "number"
+      },
+      "resolvedEvents": {
+        "min": 0,
+        "type": "number"
+      },
+      "averageResolutionTime": {
+        "min": 0,
+        "type": "number",
+        "unit": "hours"
+      },
+      "userSatisfactionScore": {
+        "min": 1,
+        "max": 5,
+        "type": "number"
+      }
+    }
+  },
+  "locations": {
+    "manhattan": {
+      "name": "Manhattan",
+      "bounds": {
+        "north": 40.8176,
+        "south": 40.7047,
+        "east": -73.9442,
+        "west": -74.0479
+      },
+      "wards": [
+        "Manhattan District 1",
+        "Manhattan District 2",
+        "Manhattan District 3",
+        "Manhattan District 4",
+        "Manhattan District 5",
+        "Manhattan District 6",
+        "Manhattan District 7",
+        "Manhattan District 8",
+        "Manhattan District 9",
+        "Manhattan District 10"
+      ]
+    },
+    "brooklyn": {
+      "name": "Brooklyn",
+      "bounds": {
+        "north": 40.7394,
+        "south": 40.5707,
+        "east": -73.8333,
+        "west": -74.0421
+      },
+      "wards": [
+        "Brooklyn District 1",
+        "Brooklyn District 2",
+        "Brooklyn District 3",
+        "Brooklyn District 4",
+        "Brooklyn District 5"
+      ]
+    }
+  },
+  "categories": {
+    "infrastructure": {
+      "name": "Infrastructure",
+      "subcategories": [
+        "road_maintenance",
+        "sidewalk_repair",
+        "bridge_issues",
+        "utility_problems"
+      ],
+      "expectedResponseTime": 48,
+      "priority": "medium"
+    },
+    "traffic": {
+      "name": "Traffic",
+      "subcategories": [
+        "signal_malfunction",
+        "congestion",
+        "parking_issues",
+        "road_closure"
+      ],
+      "expectedResponseTime": 2,
+      "priority": "high"
+    },
+    "environment": {
+      "name": "Environment",
+      "subcategories": [
+        "illegal_dumping",
+        "air_quality",
+        "noise_pollution",
+        "water_quality"
+      ],
+      "expectedResponseTime": 72,
+      "priority": "medium"
+    },
+    "safety": {
+      "name": "Public Safety",
+      "subcategories": [
+        "street_lighting",
+        "vandalism",
+        "suspicious_activity",
+        "emergency"
+      ],
+      "expectedResponseTime": 1,
+      "priority": "high"
+    }
+  },
+  "testScenarios": {
+    "bulkEventCreation": {
+      "count": 50,
+      "categories": ["infrastructure", "traffic", "environment"],
+      "timeSpread": "24h",
+      "locationSpread": "manhattan"
+    },
+    "userJourneyComplete": {
+      "steps": [
+        "user_registration",
+        "profile_setup",
+        "event_creation",
+        "event_tracking",
+        "feedback_submission"
+      ],
+      "expectedDuration": "15m"
+    },
+    "authorityWorkflow": {
+      "steps": [
+        "authority_login",
+        "event_assignment",
+        "status_update",
+        "resolution_confirmation",
+        "report_generation"
+      ],
+      "expectedDuration": "10m"
+    }
+  }
+}
