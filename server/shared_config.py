@@ -6,9 +6,12 @@ all components of the CityPulse platform (API, data models, pipelines, etc.).
 """
 
 import os
+import logging
 from typing import Optional, Dict, Any
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -80,17 +83,64 @@ class StorageConfig:
 
 @dataclass
 class APIConfig:
-    """API configuration settings."""
-    host: str = "0.0.0.0"
-    port: int = 8000
-    debug: bool = False
+    """API configuration settings with security-first defaults."""
+    host: str = field(default_factory=lambda: os.getenv("API_HOST", "127.0.0.1"))
+    port: int = field(default_factory=lambda: int(os.getenv("API_PORT", "8000")))
+    debug: bool = field(default_factory=lambda: os.getenv("DEBUG", "false").lower() == "true")
     cors_origins: list = None
     max_request_size: int = 10 * 1024 * 1024  # 10MB
     rate_limit_per_minute: int = 100
-    
+
     def __post_init__(self):
+        # Environment-specific host validation
+        if self.host == "0.0.0.0" and os.getenv("CITYPULSE_ENV") == "production":
+            raise ValueError(
+                "Cannot bind to all interfaces (0.0.0.0) in production environment. "
+                "Set API_HOST environment variable to a specific interface."
+            )
+
+        # Security warning for development
+        if self.host == "0.0.0.0" and os.getenv("CITYPULSE_ENV") == "development":
+            logger.warning(
+                "API binding to all interfaces (0.0.0.0) in development. "
+                "This exposes the API to external networks. "
+                "Consider using 127.0.0.1 for local development."
+            )
+
+        # Set CORS origins
         if self.cors_origins is None:
-            self.cors_origins = ["http://localhost:3000", "https://citypulse.example.com"]
+            self.cors_origins = self._get_cors_origins()
+
+        # Add security headers configuration
+        self.security_headers = {
+            "X-Content-Type-Options": "nosniff",
+            "X-Frame-Options": "DENY",
+            "X-XSS-Protection": "1; mode=block",
+            "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+            "X-Permitted-Cross-Domain-Policies": "none",
+            "Referrer-Policy": "strict-origin-when-cross-origin"
+        }
+
+    def _get_cors_origins(self) -> list:
+        """Get CORS origins based on environment."""
+        env = os.getenv("CITYPULSE_ENV", "development")
+
+        if env == "production":
+            return [
+                "https://citypulse.example.com",
+                "https://www.citypulse.example.com"
+            ]
+        elif env == "staging":
+            return [
+                "https://staging.citypulse.example.com",
+                "http://localhost:3000"
+            ]
+        else:  # development
+            return [
+                "http://localhost:3000",
+                "http://127.0.0.1:3000",
+                "http://localhost:3001"
+            ]
 
 
 @dataclass

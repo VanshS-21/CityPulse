@@ -21,7 +21,21 @@ interface FirebaseConfig {
 }
 
 /**
- * Validate Firebase configuration
+ * Get mock Firebase configuration for development
+ */
+function getMockFirebaseConfig(): FirebaseConfig {
+  return {
+    apiKey: 'mock-api-key',
+    authDomain: 'citypulse-21.firebaseapp.com',
+    projectId: 'citypulse-21',
+    storageBucket: 'citypulse-21.appspot.com',
+    messagingSenderId: '123456789012',
+    appId: '1:123456789012:web:abcdef123456',
+  }
+}
+
+/**
+ * Validate Firebase configuration with strict production checks
  */
 function validateFirebaseConfig(): FirebaseConfig {
   const config = {
@@ -39,20 +53,40 @@ function validateFirebaseConfig(): FirebaseConfig {
     .map(([key]) => key)
 
   if (missingKeys.length > 0) {
+    // Strict validation for production environment
+    if (process.env.NODE_ENV === 'production') {
+      throw new Error(
+        `Missing required Firebase configuration in production: ${missingKeys.join(', ')}. ` +
+        'All Firebase environment variables must be set in production.'
+      )
+    }
+
+    // Log warning for development
     console.warn('Missing Firebase configuration keys:', missingKeys)
-    
-    // Use default/mock configuration for development
-    if (process.env.NODE_ENV === 'development') {
-      return {
-        apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || 'mock-api-key',
-        authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || 'citypulse-21.firebaseapp.com',
-        projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || 'citypulse-21',
-        storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || 'citypulse-21.appspot.com',
-        messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || '123456789012',
-        appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || '1:123456789012:web:abcdef123456',
-      }
-    } else {
-      throw new Error(`Missing required Firebase configuration: ${missingKeys.join(', ')}`)
+    console.warn('Using mock Firebase configuration for development')
+
+    // Only allow mock values in development
+    return getMockFirebaseConfig()
+  }
+
+  // Additional validation for production
+  if (process.env.NODE_ENV === 'production') {
+    // Validate that we're not using mock values in production
+    const mockValues = ['mock-api-key', '123456789012', '1:123456789012:web:abcdef123456']
+    const hasMockValues = Object.values(config).some(value =>
+      mockValues.includes(value as string)
+    )
+
+    if (hasMockValues) {
+      throw new Error(
+        'Mock Firebase configuration detected in production. ' +
+        'Please set real Firebase configuration values.'
+      )
+    }
+
+    // Validate API key format (basic check)
+    if (config.apiKey && !config.apiKey.startsWith('AIza')) {
+      console.warn('Firebase API key format may be invalid')
     }
   }
 
@@ -163,14 +197,22 @@ try {
   auth = initializeFirebaseAuth(app)
   firestore = initializeFirestore(app)
   storage = initializeFirebaseStorage(app)
+
+  // Log successful initialization
+  if (process.env.NODE_ENV === 'development') {
+    console.log('Firebase services initialized successfully')
+  }
 } catch (error) {
   console.error('Firebase initialization failed:', error)
-  
-  // In development, we can continue with mock services
+
+  // In development, we can continue with limited functionality
   if (process.env.NODE_ENV === 'development') {
-    console.warn('Continuing with limited Firebase functionality')
+    console.warn('Continuing with limited Firebase functionality in development mode')
+    console.warn('Some features may not work properly without real Firebase configuration')
   } else {
-    throw error
+    // In production, Firebase failure is critical
+    console.error('Firebase initialization failed in production - this is a critical error')
+    throw new Error(`Firebase initialization failed in production: ${error}`)
   }
 }
 

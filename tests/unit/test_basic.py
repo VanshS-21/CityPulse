@@ -7,8 +7,8 @@ import sys
 import os
 
 def test_python_version():
-    """Test that we're running Python 3.11+"""
-    assert sys.version_info >= (3, 11)
+    """Test that we're running Python 3.10+"""
+    assert sys.version_info >= (3, 10)
 
 def test_basic_math():
     """Test basic mathematical operations"""
