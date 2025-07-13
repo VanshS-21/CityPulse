@@ -334,13 +334,16 @@ class TestFeedback:
         feedback = Feedback(
             event_id="event123",
             user_id="user123",
+            type=FeedbackType.GENERAL,
+            title="Test Feedback",
             content="This is helpful feedback"
         )
-        
+
         assert feedback.event_id == "event123"
         assert feedback.user_id == "user123"
+        assert feedback.type == FeedbackType.GENERAL
+        assert feedback.title == "Test Feedback"
         assert feedback.content == "This is helpful feedback"
-        assert feedback.feedback_type == FeedbackType.GENERAL
         assert feedback.status == FeedbackStatus.PENDING
         assert feedback.rating is None
         assert feedback.is_anonymous is False
@@ -350,21 +353,22 @@ class TestFeedback:
         feedback = Feedback(
             event_id="event123",
             user_id="user123",
+            type=FeedbackType.COMPLAINT,
+            title="Service Complaint",
             content="Detailed feedback with rating",
-            feedback_type=FeedbackType.COMPLAINT,
             status=FeedbackStatus.REVIEWED,
             rating=4,
-            is_anonymous=True,
-            moderator_notes="Reviewed and approved"
+            metadata={"is_anonymous": True, "moderator_notes": "Reviewed and approved"}
         )
         
         assert feedback.event_id == "event123"
         assert feedback.user_id == "user123"
+        assert feedback.type == FeedbackType.COMPLAINT
+        assert feedback.title == "Service Complaint"
         assert feedback.content == "Detailed feedback with rating"
-        assert feedback.feedback_type == FeedbackType.COMPLAINT
         assert feedback.status == FeedbackStatus.REVIEWED
         assert feedback.rating == 4
-        assert feedback.is_anonymous is True
+        assert feedback.metadata["is_anonymous"] is True
         assert feedback.moderator_notes == "Reviewed and approved"
     
     def test_feedback_rating_validation(self):
@@ -373,6 +377,8 @@ class TestFeedback:
         feedback = Feedback(
             event_id="event123",
             user_id="user123",
+            type=FeedbackType.GENERAL,
+            title="Good Feedback",
             content="Good feedback",
             rating=5
         )
@@ -383,15 +389,19 @@ class TestFeedback:
             Feedback(
                 event_id="event123",
                 user_id="user123",
+                type=FeedbackType.GENERAL,
+                title="Bad Rating",
                 content="Bad rating",
                 rating=0
             )
-        
+
         # Invalid rating - too high
         with pytest.raises(ValueError):
             Feedback(
                 event_id="event123",
                 user_id="user123",
+                type=FeedbackType.GENERAL,
+                title="Bad Rating",
                 content="Bad rating",
                 rating=6
             )
@@ -402,6 +412,8 @@ class TestFeedback:
         feedback = Feedback(
             event_id="event123",
             user_id="user123",
+            type=FeedbackType.GENERAL,
+            title="Valid Feedback",
             content="This is valid feedback content"
         )
         assert feedback.content == "This is valid feedback content"
@@ -411,15 +423,19 @@ class TestFeedback:
             Feedback(
                 event_id="event123",
                 user_id="user123",
+                type=FeedbackType.GENERAL,
+                title="Empty Content",
                 content=""
             )
-        
+
         # Content too long should raise error
-        long_content = "x" * 1001  # Assuming 1000 char limit
+        long_content = "x" * 6000  # Exceeds 5000 char limit
         with pytest.raises(ValueError):
             Feedback(
                 event_id="event123",
                 user_id="user123",
+                type=FeedbackType.GENERAL,
+                title="Long Content",
                 content=long_content
             )
     
@@ -428,6 +444,8 @@ class TestFeedback:
         feedback = Feedback(
             event_id="event123",
             user_id="user123",
+            type=FeedbackType.GENERAL,
+            title="Test Feedback",
             content="Test feedback"
         )
         
@@ -441,6 +459,8 @@ class TestFeedback:
         feedback = Feedback(
             event_id="event123",
             user_id="user123",
+            type=FeedbackType.GENERAL,
+            title="Test Feedback",
             content="Test feedback"
         )
         
@@ -481,8 +501,9 @@ def sample_feedback():
     return Feedback(
         event_id="event-123",
         user_id="user-123",
+        type=FeedbackType.GENERAL,
+        title="Sample Feedback",
         content="This is sample feedback",
-        feedback_type=FeedbackType.GENERAL,
         rating=4
     )
 
