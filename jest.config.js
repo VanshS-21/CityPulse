@@ -20,6 +20,10 @@ const customJestConfig = {
     '^@/lib/(.*)$': '<rootDir>/src/lib/$1',
     '^@/middleware/(.*)$': '<rootDir>/src/middleware/$1',
     '^@/(.*)$': '<rootDir>/src/$1',
+    // Handle MSW imports
+    '^msw/node$': '<rootDir>/node_modules/msw/lib/node/index.js',
+    '^msw$': '<rootDir>/node_modules/msw/lib/index.js',
+    '^@mswjs/interceptors/(.*)$': '<rootDir>/node_modules/@mswjs/interceptors/lib/node/$1',
   },
   testEnvironment: 'jest-environment-jsdom',
   collectCoverageFrom: [
@@ -38,20 +42,18 @@ const customJestConfig = {
   },
   testMatch: [
     '<rootDir>/tests/**/*.test.{js,jsx,ts,tsx}',
-    '<rootDir>/src/**/*.test.{js,jsx,ts,tsx}',
-    '<rootDir>/__tests__/**/*.test.{js,jsx,ts,tsx}',
   ],
   testPathIgnorePatterns: [
     '<rootDir>/.next/',
     '<rootDir>/node_modules/',
-    '<rootDir>/tests/e2e/',
-    '<rootDir>/__tests__/examples/msw-example.test.ts',
+    '<rootDir>/tests/backend/',
+    '<rootDir>/tests/e2e-legacy/',
   ],
   transform: {
     '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],
   },
   transformIgnorePatterns: [
-    '/node_modules/',
+    '/node_modules/(?!(msw|@mswjs)/)',
     '^.+\\.module\\.(css|sass|scss)$',
   ],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],

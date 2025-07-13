@@ -20,7 +20,7 @@ export {
 export { Separator } from './separator'
 export { AspectRatio } from './aspect-ratio'
 export { ScrollArea } from './scroll-area'
-export { Resizable, ResizableHandle, ResizablePanel, ResizablePanelGroup } from './resizable'
+export { ResizableHandle, ResizablePanel, ResizablePanelGroup } from './resizable'
 
 // Navigation Components
 export { 
@@ -79,7 +79,7 @@ export {
 export { Alert, AlertDescription, AlertTitle } from './alert'
 export { Progress } from './progress'
 export { Skeleton } from './skeleton'
-export { toast, useToast } from './toast'
+export { toast, useToast } from '@/hooks/use-toast'
 export { Toaster } from './toaster'
 
 // Overlay Components

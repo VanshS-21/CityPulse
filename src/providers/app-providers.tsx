@@ -19,8 +19,11 @@ function PerformanceProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     // Use React 19 scheduler for performance monitoring
     startTransition(() => {
-      if (typeof window !== 'undefined' && window.performance) {
-        const loadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart
+      if (typeof window !== 'undefined' && window.performance && window.performance.timing) {
+        const timing = window.performance.timing
+        const loadTime = timing.loadEventEnd && timing.navigationStart
+          ? timing.loadEventEnd - timing.navigationStart
+          : 0
         
         if (loadTime > 0) {
           const { addPerformanceMetric } = useAppStore.getState()
@@ -206,10 +209,10 @@ interface AppProvidersProps {
 
 export function AppProviders({ children }: AppProvidersProps) {
   return (
-    <ErrorBoundary level="critical">
+    <ErrorBoundary>
       <ThemeProvider
         attribute="class"
-        defaultTheme={config.theme.defaultTheme}
+        defaultTheme="system"
         enableSystem={true}
         disableTransitionOnChange={false}
       >
@@ -220,7 +223,7 @@ export function AppProviders({ children }: AppProvidersProps) {
                 <ErrorTrackingProvider>
                   <NotificationProvider>
                     <DevToolsProvider>
-                      <ErrorBoundary level="page">
+                      <ErrorBoundary>
                         {children}
                       </ErrorBoundary>
                     </DevToolsProvider>

@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { APP_CONFIG, STORAGE_KEYS } from '@/utils/constants'
-import { parseBackendError, logError, CityPulseError } from '@/lib/error-handler'
-import { config, timeoutUtils } from '@/lib/config'
+import { createErrorBoundaryInfo } from '@/lib/error-handler';
+import { config } from '@/lib/config'
 
 /**
  * API Client for CityPulse application
@@ -59,22 +59,21 @@ class ApiClient {
         return response
       },
       (error) => {
-        // Parse error using standardized error handler
-        const cityPulseError = parseBackendError(error)
-
         // Handle specific error cases
         if (error.response?.status === 401) {
           this.handleUnauthorized()
         }
 
         // Log error for monitoring
-        logError(cityPulseError, {
+        console.error('API Error:', {
           url: error.config?.url,
           method: error.config?.method,
-          requestId: error.config?.metadata?.requestId
+          requestId: error.config?.metadata?.requestId,
+          status: error.response?.status,
+          message: error.message
         })
 
-        return Promise.reject(cityPulseError)
+        return Promise.reject(error)
       }
     )
   }
@@ -163,8 +162,8 @@ class ApiClient {
     const formData = new FormData()
     formData.append('file', file)
 
-    const uploadTimeout = timeoutUtils.getOperationTimeout('upload')
-    const config: AxiosRequestConfig = {
+    const uploadTimeout = config.api.timeout * 2 // Double timeout for uploads
+    const requestConfig: AxiosRequestConfig = {
       timeout: uploadTimeout,
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -178,7 +177,7 @@ class ApiClient {
     }
 
     return this.requestWithRetry(() =>
-      this.instance.post<T>(url, formData, config)
+      this.instance.post<T>(url, formData, requestConfig)
     )
   }
 
@@ -186,10 +185,29 @@ class ApiClient {
   private async requestWithRetry<T>(
     requestFn: () => Promise<AxiosResponse<T>>
   ): Promise<T> {
-    return timeoutUtils.withRetry(async () => {
-      const response = await requestFn()
-      return response.data
-    })
+    const maxRetries = 3
+    let lastError: Error
+    
+    for (let attempt = 0; attempt < maxRetries; attempt++) {
+      try {
+        const response = await requestFn()
+        return response.data
+      } catch (error) {
+        lastError = error as Error
+        
+        // Don't retry on 4xx errors (client errors)
+        if (axios.isAxiosError(error) && error.response?.status && error.response.status >= 400 && error.response.status < 500) {
+          throw error
+        }
+        
+        // Wait before retrying (exponential backoff)
+        if (attempt < maxRetries - 1) {
+          await new Promise(resolve => setTimeout(resolve, Math.pow(2, attempt) * 1000))
+        }
+      }
+    }
+    
+    throw lastError!
   }
 
   // Batch requests

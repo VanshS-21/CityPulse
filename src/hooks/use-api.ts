@@ -54,7 +54,7 @@ export function useEvents(
       try {
         const result = await apiClient.get('/api/v1/events', { params: filters })
         trackApiCall('events_list', startTime)
-        return result.data
+        return result
       } catch (error) {
         trackApiCall('events_list', startTime)
         throw error
@@ -78,7 +78,7 @@ export function useEvent(
       try {
         const result = await apiClient.get(`/api/v1/events/${id}`)
         trackApiCall('events_detail', startTime)
-        return result.data
+        return result
       } catch (error) {
         trackApiCall('events_detail', startTime)
         throw error
@@ -102,7 +102,7 @@ export function useNearbyEvents(
       const result = await apiClient.get('/api/v1/events/nearby', {
         params: { latitude, longitude, radius }
       })
-      return result.data
+      return result
     },
     enabled: !!(latitude && longitude),
     staleTime: config.cache.shortTTL,
@@ -119,29 +119,26 @@ export function useCreateEvent(
   return useMutation({
     mutationFn: async (eventData: any) => {
       const result = await apiClient.post('/api/v1/events', eventData)
-      return result.data
+      return result
     },
     onMutate: async (newEvent) => {
-      // React 19 optimistic update with startTransition
-      return startTransition(() => {
-        const tempId = `temp_${Date.now()}`
-        const optimisticEvent = { ...newEvent, id: tempId, createdAt: new Date().toISOString() }
-        
-        // Cancel outgoing refetches
-        queryClient.cancelQueries({ queryKey: queryKeys.events.all })
-        
-        // Optimistically update cache
-        queryClient.setQueryData(queryKeys.events.lists(), (old: any) => {
-          if (!old) return { events: [optimisticEvent], total: 1 }
-          return {
-            ...old,
-            events: [optimisticEvent, ...old.events],
-            total: old.total + 1,
-          }
-        })
-        
-        return { tempId, optimisticEvent }
+      // Cancel outgoing refetches
+      await queryClient.cancelQueries({ queryKey: queryKeys.events.all })
+      
+      const tempId = `temp_${Date.now()}`
+      const optimisticEvent = { ...newEvent, id: tempId, createdAt: new Date().toISOString() }
+      
+      // Optimistically update cache
+      queryClient.setQueryData(queryKeys.events.lists(), (old: any) => {
+        if (!old) return { events: [optimisticEvent], total: 1 }
+        return {
+          ...old,
+          events: [optimisticEvent, ...old.events],
+          total: old.total + 1,
+        }
       })
+      
+      return { tempId, optimisticEvent }
     },
     onSuccess: (data, variables, context) => {
       startTransition(() => {
@@ -167,19 +164,17 @@ export function useUpdateEvent(
   return useMutation({
     mutationFn: async ({ id, updates }) => {
       const result = await apiClient.put(`/api/v1/events/${id}`, updates)
-      return result.data
+      return result
     },
     onMutate: async ({ id, updates }) => {
-      return startTransition(() => {
-        queryClient.cancelQueries({ queryKey: queryKeys.events.detail(id) })
-        
-        queryClient.setQueryData(queryKeys.events.detail(id), (old: any) => ({
-          ...old,
-          ...updates,
-        }))
-        
-        return { id, updates }
-      })
+      await queryClient.cancelQueries({ queryKey: queryKeys.events.detail(id) })
+      
+      queryClient.setQueryData(queryKeys.events.detail(id), (old: any) => ({
+        ...old,
+        ...updates,
+      }))
+      
+      return { id, updates }
     },
     onSuccess: (data, { id }) => {
       startTransition(() => {
@@ -205,7 +200,7 @@ export function useCurrentUser(
     queryKey: queryKeys.users.profile(),
     queryFn: async () => {
       const result = await apiClient.get('/api/v1/users/me')
-      return result.data
+      return result
     },
     staleTime: config.cache.longTTL,
     retry: false,
@@ -222,7 +217,7 @@ export function useUpdateProfile(
   return useMutation({
     mutationFn: async (updates: any) => {
       const result = await apiClient.put('/api/v1/users/me', updates)
-      return result.data
+      return result
     },
     onSuccess: (data) => {
       startTransition(() => {
@@ -249,7 +244,7 @@ export function useDashboardMetrics(
     queryKey: queryKeys.analytics.dashboard(),
     queryFn: async () => {
       const result = await apiClient.get('/api/v1/analytics/dashboard', { params: filters })
-      return result.data
+      return result
     },
     staleTime: config.cache.defaultTTL,
     ...options,

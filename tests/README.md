@@ -21,13 +21,20 @@ The **CityPulse Unified Testing Framework** consolidates all testing approaches 
 
 ### **Unified Structure**
 ```
-tests-unified/
+tests/
+├── frontend/                   # Frontend tests (Jest + React Testing Library)
+│   ├── unit/                   # Unit tests for components and utilities
+│   ├── integration/            # Integration tests for API routing and React 19
+│   ├── examples/               # Example tests (MSW concepts, etc.)
+│   └── firebase-config.test.ts # Firebase configuration tests
+├── backend/                    # Backend tests (Python + pytest)
+│   ├── unit/                   # Unit tests for services and models
+│   ├── integration/            # Integration tests for auth and database
+│   └── e2e/                    # End-to-end API tests
 ├── config/                     # Environment configurations
-│   ├── environments.json       # Multi-environment support
-│   └── test-data.json          # Unified test data
+│   └── environments.json       # Multi-environment support
 ├── core/                       # Core testing frameworks
 │   ├── api_client/             # Unified API client (mock + real)
-│   ├── database/               # Database testing utilities
 │   ├── auth/                   # Authentication testing
 │   └── pipeline/               # Data pipeline testing
 ├── tests/                      # All test types

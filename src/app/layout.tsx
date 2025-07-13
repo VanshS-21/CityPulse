@@ -1,6 +1,10 @@
 import type { Metadata, Viewport } from "next";
+import { Inter, Roboto_Flex } from "next/font/google";
 import { AppProviders } from "@/providers/app-providers";
 import "./globals.css";
+
+const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
+const robotoFlex = Roboto_Flex({ subsets: ["latin"], variable: '--font-roboto-flex' });
 
 export const metadata: Metadata = {
   title: "CityPulse - Urban Intelligence Platform",
@@ -21,13 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet" />
-      </head>
-      <body className="antialiased min-h-screen bg-background font-sans text-foreground">
+      <body className={`${inter.variable} ${robotoFlex.variable} antialiased min-h-screen bg-background font-sans text-foreground`}>
         <AppProviders>
           {children}
         </AppProviders>

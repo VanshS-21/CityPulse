@@ -187,10 +187,10 @@ function initializeFirebaseStorage(app: FirebaseApp): FirebaseStorage {
 }
 
 // Initialize Firebase services
-let app: FirebaseApp
-let auth: Auth
-let firestore: Firestore
-let storage: FirebaseStorage
+let app: FirebaseApp | undefined
+let auth: Auth | undefined
+let firestore: Firestore | undefined
+let storage: FirebaseStorage | undefined
 
 try {
   app = initializeFirebaseApp()
@@ -216,14 +216,14 @@ try {
   }
 }
 
-// Export Firebase services
+// Export Firebase services (may be undefined if initialization failed)
 export { app, auth, firestore, storage }
 
 // Export configuration for debugging
 export const firebaseConfig = validateFirebaseConfig()
 
 // Export initialization status
-export const isFirebaseInitialized = !!app && !!auth
+export const isFirebaseInitialized = () => !!app && !!auth
 
 // Health check function
 export function checkFirebaseHealth(): {

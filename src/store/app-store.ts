@@ -1,11 +1,11 @@
 import { create } from 'zustand'
-import { devtools, persist, subscribeWithSelector } from 'zustand/middleware'
+import { devtools, persist } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
 
 // Enhanced types for React 19 compatibility
 export interface User {
   id: string
-  name: string
+  name: string | null
   email: string
   role: 'citizen' | 'admin' | 'moderator'
   avatar?: string
@@ -63,15 +63,19 @@ export interface AppState {
   setTheme: (theme: 'light' | 'dark' | 'system') => void
   setSidebarOpen: (open: boolean) => void
   setLoading: (loading: boolean) => void
-  addNotification: (notification: Omit<AppState['notifications'][0], 'id' | 'timestamp'>) => void
+  addNotification: (notification: Omit<Notification, 'id' | 'timestamp'>) => void
   removeNotification: (id: string) => void
   clearNotifications: () => void
+
+  // Performance metric updates
+  addPerformanceMetric: (key: string, value: number) => void
+  setOnlineStatus: (isOnline: boolean) => void
 
   // Atomic operations to prevent race conditions
   updateUserProfile: (updates: Partial<User>) => void
   batchUpdateNotifications: (operations: Array<{
     type: 'add' | 'remove' | 'clear'
-    notification?: Omit<AppState['notifications'][0], 'id' | 'timestamp'>
+    notification?: Omit<Notification, 'id' | 'timestamp'>
     id?: string
   }>) => void
 
@@ -80,13 +84,21 @@ export interface AppState {
 }
 
 // Initial state
-const initialState = {
+const initialState: Omit<AppState, 'setUser' | 'setAuthenticated' | 'setTheme' | 'setSidebarOpen' | 'setLoading' | 'addNotification' | 'removeNotification' | 'clearNotifications' | 'addPerformanceMetric' | 'setOnlineStatus' | 'updateUserProfile' | 'batchUpdateNotifications' | 'reset'> = {
   user: null,
   isAuthenticated: false,
-  theme: 'system' as const,
+  theme: 'system',
   sidebarOpen: false,
   loading: false,
-  notifications: []
+  loadingStates: {},
+  notifications: [],
+  isOnline: true,
+  lastSyncTime: null,
+  performanceMetrics: {
+    apiResponseTimes: {},
+    errorCount: 0,
+    renderCount: 0
+  }
 }
 
 // Create the store with immer for safe mutations
@@ -148,6 +160,18 @@ export const useAppStore = create<AppState>()(
           state.notifications = []
         }),
 
+        // Performance metric updates
+        addPerformanceMetric: (key, value) => set((state) => {
+          if (!state.performanceMetrics.apiResponseTimes[key]) {
+            state.performanceMetrics.apiResponseTimes[key] = []
+          }
+          state.performanceMetrics.apiResponseTimes[key].push(value)
+        }),
+
+        setOnlineStatus: (isOnline) => set((state) => {
+          state.isOnline = isOnline
+        }),
+
         // Atomic operations to prevent race conditions
         updateUserProfile: (updates) => set((state) => {
           if (state.user) {
@@ -190,7 +214,7 @@ export const useAppStore = create<AppState>()(
 
         // Reset function
         reset: () => set(() => ({ ...initialState }))
-      }),
+      })),
       {
         name: 'citypulse-app-store',
         partialize: (state) => ({
@@ -222,6 +246,7 @@ export const useAppActions = () => useAppStore((state) => ({
   addNotification: state.addNotification,
   removeNotification: state.removeNotification,
   clearNotifications: state.clearNotifications,
+  addPerformanceMetric: state.addPerformanceMetric,
   updateUserProfile: state.updateUserProfile,
   batchUpdateNotifications: state.batchUpdateNotifications,
   reset: state.reset

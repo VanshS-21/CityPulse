@@ -56,6 +56,9 @@ export class FirebaseAuthService {
   private authStateListeners: ((user: AuthUser | null) => void)[] = []
 
   constructor() {
+    if (!auth) {
+      throw new Error('Firebase Auth is not initialized. Please check your Firebase configuration.')
+    }
     this.auth = auth
     this.initializeAuthStateListener()
   }

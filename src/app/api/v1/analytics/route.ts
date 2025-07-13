@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { withErrorHandler, forwardToBackend, getQueryParams, createBackendHeaders, createErrorResponse, createSuccessResponse, handleOptions } from '@/lib/api-utils'
-import { optionalAuth, requireAuth, requireModerator, getCorsHeaders } from '@/middleware/auth'
+import { optionalAuth, requireAuth, requireModerator, getCorsHeaders, AuthenticatedUser } from '@/middleware/auth'
 
 /**
  * Analytics API Route Handler
@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Handle authentication based on endpoint type
-    let user = null
+    let user: AuthenticatedUser | null = null
     if (protectedEndpoints.includes(endpoint)) {
       // Require moderator role for protected analytics
       const authResult = await requireModerator(request)
