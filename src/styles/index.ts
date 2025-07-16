@@ -3,6 +3,21 @@
  * Centralized export for all design system tokens, utilities, and types
  */
 
+// Import all design tokens first
+import {
+  colorTokens,
+  semanticColors,
+  typographyTokens,
+  typographyPresets,
+  spacingTokens,
+  semanticSpacing,
+  elevationTokens,
+  motionTokens,
+  breakpointTokens,
+  borderRadiusTokens,
+  designTokens,
+} from './tokens';
+
 // Export all design tokens
 export {
   colorTokens,
@@ -16,7 +31,7 @@ export {
   breakpointTokens,
   borderRadiusTokens,
   designTokens,
-} from './tokens';
+};
 
 // Export TypeScript types
 export type {
@@ -122,7 +137,7 @@ export const designSystemUtils = {
     
     // Generate typography variables
     Object.entries(designTokens.typography.fontSize).forEach(([key, value]) => {
-      cssVars[`--font-size-${key}`] = Array.isArray(value) ? value[0] : value;
+      cssVars[`--font-size-${key}`] = Array.isArray(value) ? (value as any)[0] as string : (value as unknown as string);
     });
     
     return cssVars;
@@ -293,10 +308,12 @@ export const animationPresets = {
 } as const;
 
 // Export everything as default
-export default {
+const designSystem = {
   tokens: designTokens,
   utils: designSystemUtils,
   config: designSystemConfig,
   animationPresets,
   useBreakpoint,
 };
+
+export default designSystem;
